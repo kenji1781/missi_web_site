@@ -1,1 +1,1 @@
-web: gunicorn missi_site_project.wsgi --logfile -
+web: gunicorn missi_site_project.wsgi --log-file -
