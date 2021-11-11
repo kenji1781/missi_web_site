@@ -2,6 +2,8 @@ from django import forms
 from django.forms import fields, models,widgets
 from models import Machine_data,Machine_setting,Machine_drive_data
 
+
+
 class Machine_data_form(forms.ModelForm):
     class Meta:
         models = Machine_data
