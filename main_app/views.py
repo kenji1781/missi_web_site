@@ -1,16 +1,18 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.contrib.auth import login as auth_login
+from django.http.response import HttpResponseRedirect
+from django.template.response import TemplateResponse
+from django.urls import reverse
+from django.views import View
+#from .forms import LoginForm
+from django.views.generic import TemplateView
 
 
 
-def index(request):
-    params = {
-        'title':'Hello/Index',
-        'msg':'これは、サンプルで作ったページです。',
-        'goto':'next',
-    }
-    return render(request, 'index.html', params)
+class IndexView(TemplateView):
+    template_name = 'index.html'
+index = IndexView.as_view()
 
+"""
 def next(request):
     params = {
         'title':'Hello/Next',
@@ -18,3 +20,4 @@ def next(request):
         'goto':'index',
     }
     return render(request, 'index.html', params)
+"""

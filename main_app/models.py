@@ -32,7 +32,7 @@ class Machine_setting(models.Model):
 
 
 class Machine_drive_data(models.Model):
-    machine_setting = models.ForeignKey(Machine_setting,)
+    machine_setting = models.ForeignKey(Machine_setting,on_delete=CASCADE)
     machine_drying_time = models.IntegerField(default=0,blank=True,null=True)
     machine_drive_count = models.IntegerField(default=0,blank=True,null=True)
     machine_drive_time_m = models.IntegerField(default=0,blank=True,null=True)
