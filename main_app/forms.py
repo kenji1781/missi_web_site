@@ -38,6 +38,7 @@ class Machine_drive_data_form(forms.ModelForm):
                     'machine_electric_used',
                     'machine_air_used',
                     'machine_gas_used',
+                    'data_date_year',
                     'data_date_month',
                     'data_date_day'
                     ]
@@ -50,6 +51,7 @@ class Machine_drive_data_form(forms.ModelForm):
                     'machine_electric_used':'電力使用量',
                     'machine_air_used':'エア使用量',
                     'machine_gas_used':'ガス使用量',
+                    'data_date_year':'年',
                     'data_date_month':'月',
                     'data_date_day':'日'
                     }            
