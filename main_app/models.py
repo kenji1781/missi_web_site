@@ -6,9 +6,9 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 
 # Create your models here.
 class Machine_data(models.Model):
-    machine_name = models.CharField(verbose_name='装置名',max_length=20,blank=True,null=False)  #装置名
-    machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=True,null=False)    #号機
-    machine_inst_date = models.DateField(verbose_name='納入日',blank=True,null=True)  #設置日
+    machine_name = models.CharField(verbose_name='装置名',max_length=20,blank=True,null=False)
+    machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=True,null=False)
+    machine_inst_date = models.DateField(verbose_name='納入日',blank=True,null=True)
 
     #class Meta:
         #verbose_name_plural = 'Machine_data'
@@ -22,8 +22,8 @@ class Machine_data(models.Model):
 
 
 class Machine_setting(models.Model):
-    machine_data = models.ForeignKey(Machine_data,on_delete=CASCADE) #装置データ
-    set_couse_no = models.IntegerField(verbose_name='コースNo',validators=[MinValueValidator(0)],blank=True,null=True) #コースNo
+    machine_data = models.ForeignKey(Machine_data,on_delete=CASCADE)
+    set_couse_no = models.IntegerField(verbose_name='コースNo',validators=[MinValueValidator(0)],blank=True,null=True)
     
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
