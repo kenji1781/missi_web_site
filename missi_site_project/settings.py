@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+    #'allauth.socialaccount',
     'main_app',
     #'accounts',
 ]
@@ -169,7 +169,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -179,9 +179,9 @@ ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_LOGOUT_ON_GET = True
 
-ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
+#ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 
-DEFAULT_FROM_EMAIL = 'admin@example.com'
+#DEFAULT_FROM_EMAIL = 'admin@example.com'
 
 
 
