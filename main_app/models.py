@@ -30,6 +30,21 @@ class Machine_setting(models.Model):
 		' ' + str(self.machine_data) + ' コースNo : ' + str(self.set_couse_no) +'>'
 
 
+class Energy_unit_price(models.Model):
+    water_price = models.FloatField(verbose_name='水単価',validators=[MinValueValidator(0.001)],default=0,blank=True,null=False)
+    steam_unit_price = models.FloatField(verbose_name='蒸気単価',validators=[MinValueValidator(0.001)],default=0,blank=True,null=False)
+    electricity_unit_price =  models.FloatField(verbose_name='電気単価',validators=[MinValueValidator(0.001)],default=0,blank=True,null=False)
+    gas_unit_price = models.FloatField(verbose_name='ガス単価',validators=[MinValueValidator(0.001)],default=0,blank=True,null=False)
+    solvent_1_unit_price = models.FloatField(verbose_name='溶剤1単価',validators=[MinValueValidator(0.001)],default=0,blank=True,null=False)
+    solvent_2_unit_price = models.FloatField(verbose_name='溶剤2単価',validators=[MinValueValidator(0.001)],default=0,blank=True,null=False)
+    
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + ' ' +\
+           '蒸気単価 : ' +str(self.steam_unit_price) + \
+                '電気単価 : ' +str(self.electricity_unit_price) + \
+                    'ガス単価 : ' +str(self.gas_unit_price) + \
+                +'>'
+
 
 
 class Machine_drive_data(models.Model):
@@ -38,9 +53,9 @@ class Machine_drive_data(models.Model):
     machine_drive_count = models.IntegerField(verbose_name='稼働回数',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     machine_drive_time_m = models.IntegerField(verbose_name='運転時間:分',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     machine_drive_time_s = models.IntegerField(verbose_name='運転時間:秒',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    machine_steam_used = models.IntegerField(verbose_name='蒸気使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    machine_water_used = models.IntegerField(verbose_name='水使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    machime_steam_used = models.IntegerField(verbose_name='蒸気使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     machine_electric_used = models.IntegerField(verbose_name='電力使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    machime_air_used = models.IntegerField(verbose_name='エア使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     machime_gas_used = models.IntegerField(verbose_name='ガス使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
