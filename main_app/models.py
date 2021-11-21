@@ -26,10 +26,10 @@ class Customer_Infomation(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 企業名 : '+ self.Customer_name + ' TEL : ' + self.Customer_tel_number) + \
+		' 企業名 : '+ self.Customer_name + ' TEL : ' + self.Customer_tel_number + \
             ' メモ: ' + self.Customer_memo + ' 登録日: ' +  str(self.Customer_input_date) + '>'
 
-
+#装置カテゴリー
 class Equipment_Category(models.Model):
     Equipment_category = CharField(verbose_name='装置カテゴリー',max_length=10,blank=True,null=True)
 
@@ -49,8 +49,7 @@ class Machine_Model(models.Model):
        return '<id=' + str(self.id) + ', ' + \
 		' 装置 : '+ self.Machine_category + \
             ' 型式 : ' + self.Machine_model + \
-                ' 登録日 : ' + str(self.Machine_model_input_date) + \
-			+'>'
+                ' 登録日 : ' + str(self.Machine_model_input_date) + '>'
 
 
 #異常内容
@@ -60,7 +59,6 @@ class Trouble_Contents(models.Model):
     Trouble_contents = models.CharField(verbose_name='異常',max_length=20,blank=True,null=True)
     Trouble_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
     Trouble_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
-    
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -68,7 +66,7 @@ class Trouble_Contents(models.Model):
             ' 異常No : '+ str(self.Trouble_no) + \
                 ' 異常 : ' + self.Trouble_contents + \
                     ' 異常内容 : ' + self.Trouble_memo + \
-			+'>'
+			'>'
 #基本情報#####################################################################
 
 #電気単価
@@ -121,34 +119,35 @@ class Unit_Price_Water(models.Model):
             ' メモ : ' + self.Unit_price_water_memo + '>'
 
 
-
+#溶剤名
 class Solvent_Name(models.Model):
     Solvent_name = models.CharField(verbose_name='名前',max_length=20,blank=True,null=True)
     
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 名前 : ' + self.Solvent0_name  + '>'
+		' 名前 : ' + self._Solvent0_name  + '>'
 
-
+#溶剤メーカー
 class Solvent_Manufacturer(models.Model):
     Solvent_name = models.ForeignKey(Solvent_Name,on_delete=models.SET_NULL,null=True)
     Solvent_manu = models.CharField(verbose_name='メーカー',max_length=20,blank=True,null=True)
     
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 名前 : ' + self.Solvent_name + ' メーカー : ' + self.Solvent_manu + '>'
+		' 名前 : ' + self.Solvent_name + \
+            ' メーカー : ' + self.Solvent_manu + '>'
 
 
 #設定:溶剤
 class Solvent_Conf(models.Model):
-    Solvent_name = models.ForeignKey(Solvent_Manufacturer,on_delete=models.SET_NULL,null=True)
+    Solvent_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=models.SET_NULL,null=True)
     Solvent_unit_price = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.001)],default=0,blank=True,null=True)
     Solvent_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Solvent_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 名前 : ' + self.Solvent_name + \
+		' 名前 : ' + self.Solvent_manu + \
             ' 単価 : ' + str(self.Solvent_unit_price) + \
                 ' 登録日 : ' + str(self.Solvent_input_date) + \
                 ' メモ : ' + self.Solvent_memo + '>'
@@ -157,7 +156,7 @@ class Solvent_Conf(models.Model):
 
 #客先装置
 class Customer_Machine(models.Model):
-    Customer_machine = models.ForeignKey(Machine_Model,on_delete=models.SET_NULL,null=True)
+    Machine_model = models.ForeignKey(Machine_Model,on_delete=models.SET_NULL,null=True)
     Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=True,null=True)
     Customer_machine_inst_date = models.DateField(verbose_name='納入日',blank=True,null=True)
     Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=True)
@@ -165,7 +164,8 @@ class Customer_Machine(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : '+self.Customer_machine + '(' + str(self.Customer_machine_unit_no) + '),' +\
+		' 装置名 : '+self.Machine_model + \
+            '(' + str(self.Customer_machine_unit_no) + '),' +\
 			' 納入日 : ' + str(self.Customer_machine_inst_date) +'>'
 
 
@@ -221,7 +221,7 @@ class Customer_Machine_Recipe(models.Model):
 
 #装置稼働履歴
 class Machine_Drive_History(models.Model):
-    Customer_machine = ForeignKey(Customer_Machine_Recipe,on_delete=models.SET_NULL,null=True)
+    Customer_machine_recipe = ForeignKey(Customer_Machine_Recipe,on_delete=models.SET_NULL,null=True)
     Machine_drying_time = models.IntegerField(verbose_name='乾燥時間',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_count = models.IntegerField(verbose_name='稼働回数',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_water_used = models.FloatField(verbose_name='水使用量',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
@@ -237,7 +237,7 @@ class Machine_Drive_History(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : ' + self.Customer_machine + \
+		' 装置名 : ' + self.Customer_machine_recipe + \
             ' データ取得日 : ' + str(self.Data_datetime) + \
                 ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
