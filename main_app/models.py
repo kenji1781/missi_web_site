@@ -40,7 +40,7 @@ class Equipment_Category(models.Model):
 
 #装置型式
 class Machine_Model(models.Model):
-    Machine_category = models.ForeignKey(Equipment_Category,on_delete=CASCADE)
+    Machine_category = models.ForeignKey(Equipment_Category,on_delete=CASCADE,verbose_name='装置カテゴリー')
     Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False)
     Machine_model_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Machine_model_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
@@ -54,7 +54,7 @@ class Machine_Model(models.Model):
 
 #異常内容
 class Trouble_Contents(models.Model):
-    Machine_model = models.ForeignKey(Machine_Model,on_delete=CASCADE)
+    Machine_model = models.ForeignKey(Machine_Model,on_delete=CASCADE,verbose_name='装置')
     Trouble_no = models.IntegerField(verbose_name='異常No',validators=[MinValueValidator(0)],blank=False,null=False)
     Trouble_contents = models.CharField(verbose_name='異常',max_length=20,blank=False,null=False)
     Trouble_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
@@ -121,33 +121,33 @@ class Unit_Price_Water(models.Model):
 
 #溶剤名
 class Solvent_Name(models.Model):
-    Solvent_name = models.CharField(verbose_name='名前',max_length=20,blank=False,null=False)
+    Solvent_name = models.CharField(verbose_name='溶剤名',max_length=20,blank=False,null=False)
     
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 名前 : ' + self._Solvent0_name  + '>'
+		' 溶剤名 : ' + self._Solvent0_name  + '>'
 
 #溶剤メーカー
 class Solvent_Manufacturer(models.Model):
-    Solvent_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE)
+    Solvent_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤')
     Solvent_manu = models.CharField(verbose_name='メーカー',max_length=20,blank=False,null=False)
     
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 名前 : ' + self.Solvent_name + \
+		' 溶剤名 : ' + self.Solvent_name + \
             ' メーカー : ' + self.Solvent_manu + '>'
 
 
 #設定:溶剤
 class Solvent_Conf(models.Model):
-    Solvent_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE)
+    Solvent_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='溶剤')
     Solvent_unit_price = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.001)],default=0,blank=True,null=True)
     Solvent_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 名前 : ' + self.Solvent_manu + \
+		' 溶剤名 : ' + self.Solvent_manu + \
             ' 単価 : ' + str(self.Solvent_unit_price) + \
                 ' 登録日 : ' + str(self.Solvent_input_date) + \
                 ' メモ : ' + self.Solvent_memo + '>'
@@ -156,7 +156,7 @@ class Solvent_Conf(models.Model):
 
 #客先装置
 class Customer_Machine(models.Model):
-    Machine_model = models.ForeignKey(Machine_Model,on_delete=CASCADE)
+    Machine_model = models.ForeignKey(Machine_Model,on_delete=CASCADE,verbose_name='装置')
     Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
     Customer_machine_inst_date = models.DateField(verbose_name='納入日',blank=True,null=True)
     Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
@@ -164,7 +164,7 @@ class Customer_Machine(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : '+self.Machine_model + \
+		' 装置 : '+self.Machine_model + \
             '(' + str(self.Customer_machine_unit_no) + '),' +\
 			' 納入日 : ' + str(self.Customer_machine_inst_date) +'>'
 
@@ -172,14 +172,14 @@ class Customer_Machine(models.Model):
 
 #異常履歴
 class Trouble_History(models.Model):
-    Customer_machine = ForeignKey(Customer_Machine,on_delete=CASCADE)
-    Trouble_contents = ForeignKey(Trouble_Contents,on_delete=CASCADE)
+    Customer_machine = ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
+    Trouble_contents = ForeignKey(Trouble_Contents,on_delete=CASCADE,verbose_name='異常')
     Trouble_occurrence_time = models.DateTimeField(verbose_name='発生時刻',blank=True,null=True)   
     Trouble_recovery_time = models.DateTimeField(verbose_name='復帰時刻',blank=True,null=True)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : ' + self.Customer_machine + \
+		' 装置 : ' + self.Customer_machine + \
             ' 異常 : ' + self.Trouble_contents + \
                 ' 発生時刻 : ' + str(self.Trouble_occurrence_time) + \
                     ' 復帰時刻 : ' + str(self.Trouble_recovery_time) + \
@@ -188,7 +188,7 @@ class Trouble_History(models.Model):
 
 #レシピ
 class Customer_Machine_Recipe(models.Model):
-    Customer_machine = ForeignKey(Customer_Machine,on_delete=CASCADE)
+    Customer_machine = ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
     Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
     Customer_recipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
     Customer_recipe_time = models.FloatField(verbose_name='運転時間',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
@@ -211,7 +211,7 @@ class Customer_Machine_Recipe(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : ' + self.Customer_machine + \
+		' 装置 : ' + self.Customer_machine + \
             ' 品種No : ' + str(self.Customer_recipe_no) + \
                 ' 品種名 : ' + self.Customer_recipe_name + \
         '>'
@@ -221,7 +221,7 @@ class Customer_Machine_Recipe(models.Model):
 
 #装置稼働履歴
 class Machine_Drive_History(models.Model):
-    Customer_machine_recipe = ForeignKey(Customer_Machine_Recipe,on_delete=CASCADE)
+    Customer_machine_recipe = ForeignKey(Customer_Machine_Recipe,on_delete=CASCADE,verbose_name='品種')
     Machine_drying_time = models.IntegerField(verbose_name='乾燥時間',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_count = models.IntegerField(verbose_name='稼働回数',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_water_used = models.FloatField(verbose_name='水使用量',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
@@ -237,7 +237,7 @@ class Machine_Drive_History(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : ' + self.Customer_machine_recipe + \
+		' 装置 : ' + self.Customer_machine_recipe + \
             ' データ取得日 : ' + str(self.Data_datetime) + \
                 ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
@@ -245,9 +245,9 @@ class Machine_Drive_History(models.Model):
 
 #電気コスト
 class Cost_Electric(models.Model):
-    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE)
-    Unit_price_electric = ForeignKey(Unit_Price_Electric,on_delete=CASCADE)
-    Cost_electric = models.FloatField(verbose_name='電気費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
+    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
+    Unit_price_electric = ForeignKey(Unit_Price_Electric,on_delete=CASCADE,verbose_name='単価')
+    Cost_electric = models.FloatField(verbose_name='電力費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
@@ -257,7 +257,7 @@ class Cost_Electric(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + self.Machine_drive_history + \
             ' 単価 : ' + str(self.Unit_price_electric) + \
                 ' 電気費用 : ' + str(self.Cost_electric) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
@@ -267,8 +267,8 @@ class Cost_Electric(models.Model):
 
 #蒸気コスト
 class Cost_Steam(models.Model):
-    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE)
-    Unit_price_steam = ForeignKey(Unit_Price_Steam,on_delete=CASCADE)
+    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
+    Unit_price_steam = ForeignKey(Unit_Price_Steam,on_delete=CASCADE,verbose_name='単価')
     Cost_steam = models.FloatField(verbose_name='蒸気費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
@@ -279,7 +279,7 @@ class Cost_Steam(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + self.Machine_drive_history + \
             ' 単価 : ' + str(self.Unit_price_steam) + \
                 ' 蒸気費用 : ' + str(self.Cost_steam) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
@@ -289,8 +289,8 @@ class Cost_Steam(models.Model):
 
 #ガスコスト
 class Cost_Gas(models.Model):
-    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE)
-    Unit_price_gas = ForeignKey(Unit_Price_Gas,on_delete=CASCADE)
+    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
+    Unit_price_gas = ForeignKey(Unit_Price_Gas,on_delete=CASCADE,verbose_name='単価')
     Cost_gas = models.FloatField(verbose_name='ガス費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
@@ -301,7 +301,7 @@ class Cost_Gas(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + self.Machine_drive_history + \
             ' 単価 : ' + str(self.Unit_price_gas) + \
                 ' ガス費用 : ' + str(self.Cost_gas) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
@@ -311,8 +311,8 @@ class Cost_Gas(models.Model):
 
 #水コスト
 class Cost_Water(models.Model):
-    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE)
-    Unit_price_water = ForeignKey(Unit_Price_Water,on_delete=CASCADE)
+    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
+    Unit_price_water = ForeignKey(Unit_Price_Water,on_delete=CASCADE,verbose_name='単価')
     Cost_water = models.FloatField(verbose_name='水費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
@@ -323,7 +323,7 @@ class Cost_Water(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + self.Machine_drive_history + \
             ' 単価 : ' + str(self.Unit_price_water) + \
                 ' 水費用 : ' + str(self.Cost_water) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
@@ -333,8 +333,8 @@ class Cost_Water(models.Model):
 
 #溶剤コスト
 class Cost_Solvent(models.Model):
-    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE)
-    Solvent_conf = ForeignKey(Solvent_Conf,on_delete=CASCADE)
+    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
+    Solvent_conf = ForeignKey(Solvent_Conf,on_delete=CASCADE,verbose_name='単価')
     Cost_solvent = models.FloatField(verbose_name='溶剤費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
@@ -345,7 +345,7 @@ class Cost_Solvent(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + self.Machine_drive_history + \
             ' 単価 : ' + str(self.Solvent_conf) + \
                 ' 溶剤費用 : ' + str(self.Cost_solvent) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
@@ -355,12 +355,12 @@ class Cost_Solvent(models.Model):
 
 #トータルコスト
 class Cost_Total(models.Model):
-    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=models.SET_NULL,null=True)
-    Cost_electric = ForeignKey(Cost_Electric,on_delete=models.SET_NULL,null=True)
-    Cost_steam = ForeignKey(Cost_Steam,on_delete=models.SET_NULL,null=True)
-    Cost_gas = ForeignKey(Cost_Gas,on_delete=models.SET_NULL,null=True)
-    Cost_water = ForeignKey(Cost_Water,on_delete=models.SET_NULL,null=True)
-    Cost_solvent = ForeignKey(Cost_Solvent,on_delete=models.SET_NULL,null=True)
+    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=models.SET_NULL,null=True,verbose_name='稼働履歴')
+    Cost_electric = ForeignKey(Cost_Electric,on_delete=models.SET_NULL,null=True,verbose_name='電力費用')
+    Cost_steam = ForeignKey(Cost_Steam,on_delete=models.SET_NULL,null=True,verbose_name='蒸気費用')
+    Cost_gas = ForeignKey(Cost_Gas,on_delete=models.SET_NULL,null=True,verbose_name='ガス費用')
+    Cost_water = ForeignKey(Cost_Water,on_delete=models.SET_NULL,null=True,verbose_name='水費用')
+    Cost_solvent = ForeignKey(Cost_Solvent,on_delete=models.SET_NULL,null=True,verbose_name='溶剤費用')
     Cost_total = models.FloatField(verbose_name='合計費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
@@ -371,7 +371,7 @@ class Cost_Total(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置名 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + self.Machine_drive_history + \
             ' 合計費用 : ' + self.Cost_total + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
                         ' 登録日 : ' + str(self.Machine_history_input_date) + \
