@@ -1,17 +1,19 @@
 from django import forms
 from django.forms import fields, models,widgets
-from models import Machine_data,Machine_setting,Machine_drive_data
+from .models import Customer_Infomation,Equipment_Category,Machine_Model,Trouble_Contents,\
+    Unit_Price_Electric,Unit_Price_Steam,Unit_Price_Gas,Unit_Price_Water,Solvent_Name,Solvent_Manufacturer,Solvent_Conf,\
+        Customer_Machine,Trouble_History,Customer_Machine_Recipe,Machine_Drive_History,\
+            Cost_Electric,Cost_Steam,Cost_Gas,Cost_Water,Cost_Solvent,Cost_Total
 
-
-
-class Machine_data_form(forms.ModelForm):
+class customer_infomation(forms.ModelForm):
     class Meta:
-        models = Machine_data
+        models = Customer_Infomation
         fields = '__all__'
         Labels = {  
-                    'machine_name':'機種',
-                    'machine_unit_no':'号機',
-                    'machine_inst_date':'設置日'
+                    'Customer_name':'企業名',
+                    'Customer_tel_number':'Tel',
+                    'Customer_pastal_code':'〒',
+                    'Customer_address1':'都道府県'
                     }
 
 

@@ -18,9 +18,9 @@ class Customer_Infomation(models.Model):
     postal_code_regex = RegexValidator(regex=r'^[0-9]+$', message = ("Postal Code must be entered in the format: '1234567'. Up to 7 digits allowed."))
     Customer_pastal_code = models.CharField(validators=[postal_code_regex], max_length=7, verbose_name='郵便番号',blank=True,null=True)    
     
-    Customer_address = models.CharField(verbose_name='都道府県',max_length=40,blank=True,null=True)
-    Customer_address = models.CharField(verbose_name='市町村番地',max_length=40,blank=True,null=True)
-    Customer_address = models.CharField(verbose_name='建物名',max_length=40,blank=True,null=True)
+    Customer_address1 = models.CharField(verbose_name='都道府県',max_length=40,blank=True,null=True)
+    Customer_address2 = models.CharField(verbose_name='市町村番地',max_length=40,blank=True,null=True)
+    Customer_address3 = models.CharField(verbose_name='建物名',max_length=40,blank=True,null=True)
     Customer_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Customer_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
