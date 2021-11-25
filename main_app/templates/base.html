@@ -21,11 +21,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="{% url 'main_app:index' %}">ホーム</a></li>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">ログアウト</a></li>
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">基本設定</a></li>
+                            {% elif request.user.is_staff %}
+                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">test</a></li>
+                            {% elif request.user.is_active %}
+                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">kari</a></li>
+                            {% else %}
+                                
+                            {% endif %}
+                                <li class="nav-item "><a class="nav-link" href="{% url 'account_logout' %}">ログアウト</a></li>
                         {% else %}
-                        <li class="nav-item {% block active_login %}{% endblock %}"><a class="nav-link" href="{% url 'account_login' %}">ログイン</a></li>
-                        <li class="nav-item {% block active_signup %}{% endblock %}"><a class="nav-link" href="{% url 'account_signup' %}">サインアップ</a></li>
+                            <li class="nav-item {% block active_login %}{% endblock %}"><a class="nav-link" href="{% url 'account_login' %}">ログイン</a></li>
+                            <li class="nav-item {% block active_signup %}{% endblock %}"><a class="nav-link" href="{% url 'account_signup' %}">サインアップ</a></li>
                         {% endif %}
                     </ul>
                 </div>

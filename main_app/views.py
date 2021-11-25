@@ -12,6 +12,13 @@ class IndexView(TemplateView):
     template_name = 'index.html'
 index = IndexView.as_view()
 
+
+class BasicConfView(TemplateView):
+    template_name = 'basicconf.html'
+conf = BasicConfView.as_view()
+
+
+
 """
 def next(request):
     params = {
