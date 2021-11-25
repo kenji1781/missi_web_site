@@ -28,6 +28,10 @@ class Customer_Infomation(models.Model):
        return '<id=' + str(self.id) + ', ' + \
 		' 企業名 : '+ self.Customer_name + ' TEL : ' + self.Customer_tel_number + \
             ' メモ: ' + self.Customer_memo + ' 登録日: ' +  str(self.Customer_input_date) + '>'
+    
+    class Meta:
+        verbose_name_plural = ('客先情報')
+
 
 #装置カテゴリー
 class Equipment_Category(models.Model):
@@ -35,7 +39,10 @@ class Equipment_Category(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置カテゴリー : '+ self.Equipment_category + '>'
+		        ' 装置カテゴリー : '+ self.Equipment_category + '>'
+
+    class Meta:
+        verbose_name_plural = ('装置カテゴリー')
 
 
 #装置型式
@@ -47,9 +54,11 @@ class Machine_Model(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置 : '+ self.Machine_category + \
-            ' 型式 : ' + self.Machine_model + \
+           ' 型式: ' + self.Machine_model + \
                 ' 登録日 : ' + str(self.Machine_model_input_date) + '>'
+
+    class Meta:
+        verbose_name_plural = ('装置型式')
 
 
 #異常内容
@@ -62,11 +71,13 @@ class Trouble_Contents(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置 : '+ self.Machine_category + \
-            ' 異常No : '+ str(self.Trouble_no) + \
+		    ' 異常No : '+ str(self.Trouble_no) + \
                 ' 異常 : ' + self.Trouble_contents + \
                     ' 異常内容 : ' + self.Trouble_memo + \
 			'>'
+    
+    class Meta:
+        verbose_name_plural = ('異常内容')
 #基本情報#####################################################################
 
 #電気単価
@@ -80,6 +91,9 @@ class Unit_Price_Electric(models.Model):
 		' 単価 : ' + str(self.Unit_price_electric) + ' 登録日 : ' + str(self.Unit_price_electric_input_date) + \
             ' メモ : ' + self.Unit_price_electric_memo + '>'
 
+    class Meta:
+        verbose_name_plural = ('電力単価')
+
 
 #蒸気単価
 class Unit_Price_Steam(models.Model):
@@ -92,6 +106,8 @@ class Unit_Price_Steam(models.Model):
 		' 単価 : ' + str(self.Unit_price_steam) + ' 登録日 : ' + str(self.Unit_price_steam_input_date) + \
             ' メモ : ' + self.Unit_price_steam_memo + '>'
 
+    class Meta:
+        verbose_name_plural = ('蒸気単価')
 
 
 #ガス単価
@@ -105,6 +121,8 @@ class Unit_Price_Gas(models.Model):
 		' 単価 : ' + str(self.Unit_price_gas) + ' 登録日 : ' + str(self.Unit_price_gas_input_date) + \
             ' メモ : ' + self.Unit_price_gas_memo + '>'
 
+    class Meta:
+        verbose_name_plural = ('ガス単価')
 
 
 #水単価
@@ -118,6 +136,9 @@ class Unit_Price_Water(models.Model):
 		' 単価 : ' + str(self.Unit_price_water) + ' 登録日 : ' + str(self.Unit_price_water_input_date) + \
             ' メモ : ' + self.Unit_price_water_memo + '>'
 
+    class Meta:
+        verbose_name_plural = ('水単価')
+
 
 #溶剤名
 class Solvent_Name(models.Model):
@@ -127,6 +148,10 @@ class Solvent_Name(models.Model):
        return '<id=' + str(self.id) + ', ' + \
 		' 溶剤名 : ' + self._Solvent0_name  + '>'
 
+    class Meta:
+        verbose_name_plural = ('溶剤名')
+
+
 #溶剤メーカー
 class Solvent_Manufacturer(models.Model):
     Solvent_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤')
@@ -134,8 +159,11 @@ class Solvent_Manufacturer(models.Model):
     
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 溶剤名 : ' + self.Solvent_name + \
+		' 溶剤名 : ' + str(self.Solvent_name) + \
             ' メーカー : ' + self.Solvent_manu + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤メーカー')
 
 
 #設定:溶剤
@@ -147,10 +175,13 @@ class Solvent_Conf(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 溶剤名 : ' + self.Solvent_manu + \
+		' 溶剤名 : ' + str(self.Solvent_manu) + \
             ' 単価 : ' + str(self.Solvent_unit_price) + \
                 ' 登録日 : ' + str(self.Solvent_input_date) + \
                 ' メモ : ' + self.Solvent_memo + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤設定')
 
 
 
@@ -164,10 +195,12 @@ class Customer_Machine(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置 : '+self.Machine_model + \
+		' 装置 : ' + str(self.Machine_model) + \
             '(' + str(self.Customer_machine_unit_no) + '),' +\
 			' 納入日 : ' + str(self.Customer_machine_inst_date) +'>'
 
+    class Meta:
+        verbose_name_plural = ('客先装置')
 
 
 #異常履歴
@@ -179,11 +212,14 @@ class Trouble_History(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置 : ' + self.Customer_machine + \
-            ' 異常 : ' + self.Trouble_contents + \
+		' 装置 : ' + str(self.Customer_machine) + \
+            ' 異常 : ' + str(self.Trouble_contents) + \
                 ' 発生時刻 : ' + str(self.Trouble_occurrence_time) + \
                     ' 復帰時刻 : ' + str(self.Trouble_recovery_time) + \
                  + '>'
+
+    class Meta:
+        verbose_name_plural = ('異常履歴')
 
 
 #レシピ
@@ -211,12 +247,13 @@ class Customer_Machine_Recipe(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置 : ' + self.Customer_machine + \
+		' 装置 : ' + str(self.Customer_machine) + \
             ' 品種No : ' + str(self.Customer_recipe_no) + \
                 ' 品種名 : ' + self.Customer_recipe_name + \
         '>'
 
-
+    class Meta:
+        verbose_name_plural = ('レシピ情報')
 
 
 #装置稼働履歴
@@ -237,10 +274,13 @@ class Machine_Drive_History(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置 : ' + self.Customer_machine_recipe + \
+		' 装置 : ' + str(self.Customer_machine_recipe) + \
             ' データ取得日 : ' + str(self.Data_datetime) + \
                 ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
+
+    class Meta:
+        verbose_name_plural = ('稼働履歴')
 
 
 #電気コスト
@@ -257,12 +297,15 @@ class Cost_Electric(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 稼働履歴 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + str(self.Machine_drive_history) + \
             ' 単価 : ' + str(self.Unit_price_electric) + \
-                ' 電気費用 : ' + str(self.Cost_electric) + \
+                ' 電力費用 : ' + str(self.Cost_electric) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
                         ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
+
+    class Meta:
+        verbose_name_plural = ('電力コスト')
 
 
 #蒸気コスト
@@ -279,12 +322,15 @@ class Cost_Steam(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 稼働履歴 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + str(self.Machine_drive_history) + \
             ' 単価 : ' + str(self.Unit_price_steam) + \
                 ' 蒸気費用 : ' + str(self.Cost_steam) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
                         ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
+
+    class Meta:
+        verbose_name_plural = ('蒸気コスト')
 
 
 #ガスコスト
@@ -301,12 +347,15 @@ class Cost_Gas(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 稼働履歴 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + str(self.Machine_drive_history) + \
             ' 単価 : ' + str(self.Unit_price_gas) + \
                 ' ガス費用 : ' + str(self.Cost_gas) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
                         ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
+
+    class Meta:
+        verbose_name_plural = ('ガスコスト')
 
 
 #水コスト
@@ -323,12 +372,15 @@ class Cost_Water(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 稼働履歴 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + str(self.Machine_drive_history) + \
             ' 単価 : ' + str(self.Unit_price_water) + \
                 ' 水費用 : ' + str(self.Cost_water) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
                         ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
+
+    class Meta:
+        verbose_name_plural = ('水コスト')
 
 
 #溶剤コスト
@@ -345,12 +397,15 @@ class Cost_Solvent(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 稼働履歴 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + str(self.Machine_drive_history) + \
             ' 単価 : ' + str(self.Solvent_conf) + \
                 ' 溶剤費用 : ' + str(self.Cost_solvent) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
                         ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤コスト')
 
 
 #トータルコスト
@@ -371,8 +426,11 @@ class Cost_Total(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 稼働履歴 : ' + self.Machine_drive_history + \
+		' 稼働履歴 : ' + str(self.Machine_drive_history) + \
             ' 合計費用 : ' + self.Cost_total + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
                         ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
+
+    class Meta:
+        verbose_name_plural = ('トータルコスト')
