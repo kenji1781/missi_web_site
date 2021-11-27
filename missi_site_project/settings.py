@@ -187,7 +187,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 
-#追加
+#追加 importで＊を使用しているため、警告が出る
 try:
     from .local_settings import *
 except ImportError:
