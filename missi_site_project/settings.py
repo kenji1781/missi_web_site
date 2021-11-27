@@ -179,7 +179,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_LOGOUT_ON_GET = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 #ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 
@@ -195,11 +195,19 @@ except ImportError:
 
 if DEBUG:
     ALLOWED_HOSTS = ['*']
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #heroku側のpythonシークレットキーを使う
 if not DEBUG:
-    AOWELLD_HOSTS = ['127.0.0.1', '.herokuapp.com']
     SECRET_KEY = os.environ['SECRET_KEY']
+    AOWELLD_HOSTS = ['127.0.0.1', '.herokuapp.com']
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+
     import django_heroku
     django_heroku.settings(locals())
 
