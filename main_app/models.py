@@ -142,7 +142,7 @@ class Unit_Price_Water(models.Model):
 
 #溶剤名
 class Solvent_Name(models.Model):
-    Solvent_name = models.CharField(verbose_name='溶剤名',max_length=20,blank=False,null=False)
+    Solvent_name = models.CharField(verbose_name='溶剤名',max_length=20,blank=True,null=True)
     
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -155,7 +155,7 @@ class Solvent_Name(models.Model):
 #溶剤メーカー
 class Solvent_Manufacturer(models.Model):
     Solvent_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤')
-    Solvent_manu = models.CharField(verbose_name='メーカー',max_length=20,blank=False,null=False)
+    Solvent_manu = models.CharField(verbose_name='メーカー',max_length=20,blank=True,null=True)
     
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -242,8 +242,8 @@ class Customer_Machine_Recipe(models.Model):
     Customer_recipe_conf4 = models.CharField(verbose_name='設定4',max_length=20,blank=True,null=True)
     Customer_recipe_conf5 = models.CharField(verbose_name='設定5',max_length=20,blank=True,null=True)
     Customer_recipe_conf6 = models.CharField(verbose_name='設定6',max_length=20,blank=True,null=True)
-    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=True)
-    Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
+    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -269,8 +269,8 @@ class Machine_Drive_History(models.Model):
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=True)
-    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -292,8 +292,8 @@ class Cost_Electric(models.Model):
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=True)
-    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -317,8 +317,8 @@ class Cost_Steam(models.Model):
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=True)
-    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -342,8 +342,8 @@ class Cost_Gas(models.Model):
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=True)
-    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -367,8 +367,8 @@ class Cost_Water(models.Model):
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=True)
-    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -392,8 +392,8 @@ class Cost_Solvent(models.Model):
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=True)
-    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -421,8 +421,8 @@ class Cost_Total(models.Model):
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=True)
-    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
