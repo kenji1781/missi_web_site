@@ -82,7 +82,7 @@ class Trouble_Contents(models.Model):
 
 #電気単価
 class Unit_Price_Electric(models.Model):
-    Unit_price_electric = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.001)],default=0,blank=False,null=False)
+    Unit_price_electric = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.0)],default=0,blank=False,null=False)
     Unit_price_electric_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Unit_price_electric_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
@@ -97,7 +97,7 @@ class Unit_Price_Electric(models.Model):
 
 #蒸気単価
 class Unit_Price_Steam(models.Model):
-    Unit_price_steam = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.001)],default=0,blank=False,null=False)
+    Unit_price_steam = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.0)],default=0,blank=False,null=False)
     Unit_price_steam_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Unit_price_steam_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
@@ -112,7 +112,7 @@ class Unit_Price_Steam(models.Model):
 
 #ガス単価
 class Unit_Price_Gas(models.Model):
-    Unit_price_gas = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.001)],default=0,blank=False,null=False)
+    Unit_price_gas = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.0)],default=0,blank=False,null=False)
     Unit_price_gas_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Unit_price_gas_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
@@ -127,7 +127,7 @@ class Unit_Price_Gas(models.Model):
 
 #水単価
 class Unit_Price_Water(models.Model):
-    Unit_price_water = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.001)],default=0,blank=False,null=False)
+    Unit_price_water = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.0)],default=0,blank=False,null=False)
     Unit_price_water_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Unit_price_water_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
@@ -169,7 +169,7 @@ class Solvent_Manufacturer(models.Model):
 #設定:溶剤
 class Solvent_Conf(models.Model):
     Solvent_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='溶剤')
-    Solvent_unit_price = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.001)],default=0,blank=True,null=True)
+    Solvent_unit_price = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
     Solvent_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
@@ -227,15 +227,15 @@ class Customer_Machine_Recipe(models.Model):
     Customer_machine = ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
     Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
     Customer_recipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
-    Customer_recipe_time = models.FloatField(verbose_name='運転時間',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Customer_recipe_time1 = models.FloatField(verbose_name='乾燥時間1',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Customer_recipe_time2 = models.FloatField(verbose_name='乾燥時間2',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Customer_recipe_time3 = models.FloatField(verbose_name='乾燥時間3',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Customer_recipe_time4 = models.FloatField(verbose_name='乾燥時間4',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Customer_recipe_temp1 = models.FloatField(verbose_name='温度設定1',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Customer_recipe_temp2 = models.FloatField(verbose_name='温度設定2',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Customer_recipe_temp3 = models.FloatField(verbose_name='温度設定3',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Customer_recipe_temp4 = models.FloatField(verbose_name='温度設定4',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
+    Customer_recipe_time = models.FloatField(verbose_name='運転時間',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Customer_recipe_time1 = models.FloatField(verbose_name='乾燥時間1',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Customer_recipe_time2 = models.FloatField(verbose_name='乾燥時間2',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Customer_recipe_time3 = models.FloatField(verbose_name='乾燥時間3',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Customer_recipe_time4 = models.FloatField(verbose_name='乾燥時間4',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Customer_recipe_temp1 = models.FloatField(verbose_name='温度設定1',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Customer_recipe_temp2 = models.FloatField(verbose_name='温度設定2',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Customer_recipe_temp3 = models.FloatField(verbose_name='温度設定3',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Customer_recipe_temp4 = models.FloatField(verbose_name='温度設定4',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
     Customer_recipe_conf1 = models.CharField(verbose_name='設定1',max_length=20,blank=True,null=True)
     Customer_recipe_conf2 = models.CharField(verbose_name='設定2',max_length=20,blank=True,null=True)
     Customer_recipe_conf3 = models.CharField(verbose_name='設定3',max_length=20,blank=True,null=True)
@@ -261,10 +261,10 @@ class Machine_Drive_History(models.Model):
     Customer_machine_recipe = ForeignKey(Customer_Machine_Recipe,on_delete=CASCADE,verbose_name='品種')
     Machine_drying_time = models.IntegerField(verbose_name='乾燥時間',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_count = models.IntegerField(verbose_name='稼働回数',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_water_used = models.FloatField(verbose_name='水使用量',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Machine_steam_used = models.FloatField(verbose_name='蒸気使用量',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Machine_electric_used = models.FloatField(verbose_name='電力使用量',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
-    Machine_gas_used = models.FloatField(verbose_name='ガス使用量',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
+    Machine_water_used = models.FloatField(verbose_name='水使用量',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Machine_steam_used = models.FloatField(verbose_name='蒸気使用量',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Machine_electric_used = models.FloatField(verbose_name='電力使用量',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
+    Machine_gas_used = models.FloatField(verbose_name='ガス使用量',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
@@ -287,7 +287,7 @@ class Machine_Drive_History(models.Model):
 class Cost_Electric(models.Model):
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Unit_price_electric = ForeignKey(Unit_Price_Electric,on_delete=CASCADE,verbose_name='単価')
-    Cost_electric = models.FloatField(verbose_name='電力費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
+    Cost_electric = models.FloatField(verbose_name='電力費用',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
@@ -312,7 +312,7 @@ class Cost_Electric(models.Model):
 class Cost_Steam(models.Model):
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Unit_price_steam = ForeignKey(Unit_Price_Steam,on_delete=CASCADE,verbose_name='単価')
-    Cost_steam = models.FloatField(verbose_name='蒸気費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
+    Cost_steam = models.FloatField(verbose_name='蒸気費用',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
@@ -337,7 +337,7 @@ class Cost_Steam(models.Model):
 class Cost_Gas(models.Model):
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Unit_price_gas = ForeignKey(Unit_Price_Gas,on_delete=CASCADE,verbose_name='単価')
-    Cost_gas = models.FloatField(verbose_name='ガス費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
+    Cost_gas = models.FloatField(verbose_name='ガス費用',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
@@ -362,7 +362,7 @@ class Cost_Gas(models.Model):
 class Cost_Water(models.Model):
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Unit_price_water = ForeignKey(Unit_Price_Water,on_delete=CASCADE,verbose_name='単価')
-    Cost_water = models.FloatField(verbose_name='水費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
+    Cost_water = models.FloatField(verbose_name='水費用',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
@@ -387,7 +387,7 @@ class Cost_Water(models.Model):
 class Cost_Solvent(models.Model):
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Solvent_conf = ForeignKey(Solvent_Conf,on_delete=CASCADE,verbose_name='単価')
-    Cost_solvent = models.FloatField(verbose_name='溶剤費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
+    Cost_solvent = models.FloatField(verbose_name='溶剤費用',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
@@ -416,7 +416,7 @@ class Cost_Total(models.Model):
     Cost_gas = ForeignKey(Cost_Gas,on_delete=models.SET_NULL,null=True,verbose_name='ガス費用')
     Cost_water = ForeignKey(Cost_Water,on_delete=models.SET_NULL,null=True,verbose_name='水費用')
     Cost_solvent = ForeignKey(Cost_Solvent,on_delete=models.SET_NULL,null=True,verbose_name='溶剤費用')
-    Cost_total = models.FloatField(verbose_name='合計費用',validators=[MinValueValidator(0.1)],default=0,blank=True,null=True)
+    Cost_total = models.FloatField(verbose_name='合計費用',validators=[MinValueValidator(0.0)],default=0,blank=True,null=True)
     Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
