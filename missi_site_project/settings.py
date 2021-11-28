@@ -202,10 +202,11 @@ if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     AOWELLD_HOSTS = ['127.0.0.1', '.herokuapp.com']
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = 'smtp.sendgrid.net'
-    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
-    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
-    EMAIL_PORT = 587
+    EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER','')
+    EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT','')
+    EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN','')
+    EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD','')
+    
     EMAIL_USE_TLS = True
 
     import django_heroku
