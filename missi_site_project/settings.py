@@ -200,7 +200,8 @@ if DEBUG:
 #heroku側のpythonシークレットキーを使う
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
-    AOWELLD_HOSTS = ['127.0.0.1', '.herokuapp.com']
+    ALLOWED_HOSTS = ['*']
+    #AOWELLD_HOSTS = ['127.0.0.1', '.herokuapp.com']
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     #EMAIL_BACKEND = 'django.core.mail.mailgun.EmailBackend'
     DEFAULT_FROM_EMAIL = 'kenji1781@gmail.com'
