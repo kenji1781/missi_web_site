@@ -205,10 +205,10 @@ if not DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     #EMAIL_BACKEND = 'django.core.mail.mailgun.EmailBackend'
     #DEFAULT_FROM_EMAIL = 'kenji1781@gmail.com'
-    EMAIL_HOST = 'smtp.gmail.net'
+    EMAIL_HOST = 'smtp.sendgrid.net'
     EMAIL_PORT = 587
-    EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-    EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+    EMAIL_HOST_USER = 'apikey'
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_API_KEY']
     #SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 
     EMAIL_USE_TLS = True
