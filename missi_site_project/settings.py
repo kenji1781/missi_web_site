@@ -207,8 +207,8 @@ if not DEBUG:
     #DEFAULT_FROM_EMAIL = 'kenji1781@gmail.com'
     EMAIL_HOST = 'smtp.gmail.net'
     EMAIL_PORT = 587
-    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
-    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+    EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
     #SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
 
     EMAIL_USE_TLS = True
