@@ -204,7 +204,7 @@ if not DEBUG:
     AOWELLD_HOSTS = ['127.0.0.1', '.herokuapp.com']
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     #EMAIL_BACKEND = 'django.core.mail.mailgun.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'kenji1781@gmail.com'
+    DEFAULT_FROM_EMAIL = 'mishima1781@gmail.com'
     EMAIL_HOST = 'smtp.sendgrid.net'
     EMAIL_PORT = 587
     EMAIL_HOST_USER = 'apikey'
