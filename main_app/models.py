@@ -8,7 +8,7 @@ from django.db.models.fields.related import ForeignKey
 
 #メーカー登録情報#####################################################################
 
-# 客先情報
+# 客先情報☆
 class Customer_Infomation(models.Model):
     Customer_name = models.CharField(verbose_name='企業名',max_length=20,blank=True,null=False)
     
@@ -33,7 +33,7 @@ class Customer_Infomation(models.Model):
         verbose_name_plural = ('客先情報')
 
 
-#装置カテゴリー
+#装置カテゴリー☆
 class Equipment_Category(models.Model):
     Equipment_category = CharField(verbose_name='装置カテゴリー',max_length=10,blank=False,null=False)
 
@@ -45,7 +45,7 @@ class Equipment_Category(models.Model):
         verbose_name_plural = ('装置カテゴリー')
 
 
-#装置型式
+#装置型式☆
 class Machine_Model(models.Model):
     Machine_category = models.ForeignKey(Equipment_Category,on_delete=CASCADE,verbose_name='装置カテゴリー')
     Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False)

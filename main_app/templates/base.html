@@ -25,10 +25,17 @@
                         {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
                                 <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">基本設定</a></li>
+                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">装置情報</a></li>
+                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">メーカー設定</a></li>
+                            
                             {% elif request.user.is_staff %}
-                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">test</a></li>
+                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">基本設定</a></li>
+                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">装置情報</a></li>
+                                                            
                             {% elif request.user.is_active %}
+                            
                                 <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">kari</a></li>
+                            
                             {% else %}
                                 
                             {% endif %}
