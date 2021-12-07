@@ -60,10 +60,28 @@ class Machine_Model(models.Model):
     class Meta:
         verbose_name_plural = ('装置型式')
 
+#客先装置
+class Customer_Machine(models.Model):
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
+    Machine_model = models.ForeignKey(Machine_Model,on_delete=CASCADE,verbose_name='装置')
+    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
+    Customer_machine_inst_date = models.DateField(verbose_name='納入日',blank=True,null=True)
+    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 装置 : ' + str(self.Machine_model) + \
+            '(' + str(self.Customer_machine_unit_no) + '),' +\
+			' 納入日 : ' + str(self.Customer_machine_inst_date) +'>'
+
+    class Meta:
+        verbose_name_plural = ('客先装置')
+
 
 #異常内容
 class Trouble_Contents(models.Model):
-    Machine_model = models.ForeignKey(Machine_Model,on_delete=CASCADE,verbose_name='装置')
+    Machine_model = models.ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
     Trouble_no = models.IntegerField(verbose_name='異常No',validators=[MinValueValidator(0)],blank=False,null=False)
     Trouble_contents = models.CharField(verbose_name='異常',max_length=20,blank=False,null=False)
     Trouble_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
@@ -78,7 +96,135 @@ class Trouble_Contents(models.Model):
     
     class Meta:
         verbose_name_plural = ('異常内容')
-#基本情報#####################################################################
+
+#異常履歴
+class Trouble_History(models.Model):
+    Trouble_contents = ForeignKey(Trouble_Contents,on_delete=CASCADE,verbose_name='異常')
+    Trouble_occurrence_time = models.DateTimeField(verbose_name='発生時刻',blank=True,null=True)   
+    Trouble_recovery_time = models.DateTimeField(verbose_name='復帰時刻',blank=True,null=True)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		    ' 異常 : ' + str(self.Trouble_contents) + \
+                ' 発生時刻 : ' + str(self.Trouble_occurrence_time) + \
+                    ' 復帰時刻 : ' + str(self.Trouble_recovery_time) + \
+                 + '>'
+
+    class Meta:
+        verbose_name_plural = ('異常履歴')
+
+#品種名
+class Recipe_Name(models.Model):
+    Recipe_id = models.IntegerField(verbose_name='品種ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
+    Racipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
+    Racipe_name_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Racipe_name_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 品種ID : ' + str(self.Recipe_id) + \
+            ' 品種名 : ' + str(self.Racipe_name) + \
+        '>'
+
+    class Meta:
+        verbose_name_plural = ('レシピ情報')
+
+
+#レシピ
+class Customer_Machine_Recipe(models.Model):
+    Customer_racipe_name = ForeignKey(Recipe_Name,on_delete=CASCADE,verbose_name='品種')
+    Customer_machine = ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
+    Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
+    Customer_recipe_time0 = models.FloatField(verbose_name='運転時間設定0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_time1 = models.FloatField(verbose_name='運転時間設定1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_time2 = models.FloatField(verbose_name='運転時間設定2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_time3 = models.FloatField(verbose_name='運転時間設定3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_time4 = models.FloatField(verbose_name='運転時間設定4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp0 = models.FloatField(verbose_name='温度設定0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp1 = models.FloatField(verbose_name='温度設定1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp2 = models.FloatField(verbose_name='温度設定2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp3 = models.FloatField(verbose_name='温度設定3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp4 = models.FloatField(verbose_name='温度設定4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp5 = models.FloatField(verbose_name='温度設定5',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp6 = models.FloatField(verbose_name='温度設定6',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp7 = models.FloatField(verbose_name='温度設定7',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp8 = models.FloatField(verbose_name='温度設定8',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp9 = models.FloatField(verbose_name='温度設定9',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp10 = models.FloatField(verbose_name='温度設定10',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_temp11 = models.FloatField(verbose_name='温度設定11',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_conf0 = models.CharField(verbose_name='設定0',max_length=20,blank=True,null=True)
+    Customer_recipe_conf1 = models.CharField(verbose_name='設定1',max_length=20,blank=True,null=True)
+    Customer_recipe_conf2 = models.CharField(verbose_name='設定2',max_length=20,blank=True,null=True)
+    Customer_recipe_conf3 = models.CharField(verbose_name='設定3',max_length=20,blank=True,null=True)
+    Customer_recipe_conf4 = models.CharField(verbose_name='設定4',max_length=20,blank=True,null=True)
+    Customer_recipe_conf5 = models.CharField(verbose_name='設定5',max_length=20,blank=True,null=True)
+    Customer_recipe_conf6 = models.CharField(verbose_name='設定6',max_length=20,blank=True,null=True)
+    Customer_recipe_conf7 = models.CharField(verbose_name='設定7',max_length=20,blank=True,null=True)
+    Customer_recipe_conf8 = models.CharField(verbose_name='設定8',max_length=20,blank=True,null=True)
+    Customer_recipe_conf9 = models.CharField(verbose_name='設定9',max_length=20,blank=True,null=True)
+    Customer_recipe_conf10 = models.CharField(verbose_name='設定10',max_length=20,blank=True,null=True)
+    Customer_recipe_conf11 = models.CharField(verbose_name='設定11',max_length=20,blank=True,null=True)
+    Customer_recipe_conf12 = models.CharField(verbose_name='設定12',max_length=20,blank=True,null=True)
+    Customer_recipe_conf13 = models.CharField(verbose_name='設定13',max_length=20,blank=True,null=True)
+    Customer_recipe_conf14 = models.CharField(verbose_name='設定14',max_length=20,blank=True,null=True)
+    Customer_recipe_conf15 = models.CharField(verbose_name='設定15',max_length=20,blank=True,null=True)
+    Customer_recipe_conf16 = models.CharField(verbose_name='設定16',max_length=20,blank=True,null=True)
+    Customer_recipe_conf17 = models.CharField(verbose_name='設定17',max_length=20,blank=True,null=True)
+    Customer_recipe_conf18 = models.CharField(verbose_name='設定18',max_length=20,blank=True,null=True)
+    Customer_recipe_conf19 = models.CharField(verbose_name='設定19',max_length=20,blank=True,null=True)
+    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 品種No : ' + str(self.Customer_recipe_no) + \
+            ' 品種名 : ' + str(self.Customer_racipe_name)+ \
+        '>'
+
+    class Meta:
+        verbose_name_plural = ('レシピ情報')
+
+
+#装置稼働履歴
+class Machine_Drive_History(models.Model):
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
+    Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
+    Machine_drive_time0 = models.IntegerField(verbose_name='運転時間0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_time1 = models.IntegerField(verbose_name='運転時間1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_time2 = models.IntegerField(verbose_name='運転時間2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp0 = models.IntegerField(verbose_name='温度0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp1 = models.IntegerField(verbose_name='温度1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp2 = models.IntegerField(verbose_name='温度2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp3 = models.IntegerField(verbose_name='温度3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp4 = models.IntegerField(verbose_name='温度4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp5 = models.IntegerField(verbose_name='温度5',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp6 = models.IntegerField(verbose_name='温度6',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp7 = models.IntegerField(verbose_name='温度7',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp8 = models.IntegerField(verbose_name='温度8',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp9 = models.IntegerField(verbose_name='温度9',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_count = models.IntegerField(verbose_name='稼働回数',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_water_used = models.FloatField(verbose_name='水使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_steam_used = models.FloatField(verbose_name='蒸気使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_electric_used = models.FloatField(verbose_name='電力使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_gas_used = models.FloatField(verbose_name='ガス使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
+    Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
+    Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
+    Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 装置 : ' + str(self.Customer_machine_recipe) + \
+            ' データ取得日 : ' + str(self.Data_datetime) + \
+                ' 登録日 : ' + str(self.Machine_history_input_date) + \
+        '>'
+
+    class Meta:
+        verbose_name_plural = ('稼働履歴')
+
+
 
 #電気単価
 class Unit_Price_Electric(models.Model):
@@ -185,102 +331,6 @@ class Solvent_Conf(models.Model):
 
 
 
-#客先装置
-class Customer_Machine(models.Model):
-    Machine_model = models.ForeignKey(Machine_Model,on_delete=CASCADE,verbose_name='装置')
-    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
-    Customer_machine_inst_date = models.DateField(verbose_name='納入日',blank=True,null=True)
-    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
-    Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
-
-    def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 装置 : ' + str(self.Machine_model) + \
-            '(' + str(self.Customer_machine_unit_no) + '),' +\
-			' 納入日 : ' + str(self.Customer_machine_inst_date) +'>'
-
-    class Meta:
-        verbose_name_plural = ('客先装置')
-
-
-#異常履歴
-class Trouble_History(models.Model):
-    Customer_machine = ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
-    Trouble_contents = ForeignKey(Trouble_Contents,on_delete=CASCADE,verbose_name='異常')
-    Trouble_occurrence_time = models.DateTimeField(verbose_name='発生時刻',blank=True,null=True)   
-    Trouble_recovery_time = models.DateTimeField(verbose_name='復帰時刻',blank=True,null=True)
-
-    def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 装置 : ' + str(self.Customer_machine) + \
-            ' 異常 : ' + str(self.Trouble_contents) + \
-                ' 発生時刻 : ' + str(self.Trouble_occurrence_time) + \
-                    ' 復帰時刻 : ' + str(self.Trouble_recovery_time) + \
-                 + '>'
-
-    class Meta:
-        verbose_name_plural = ('異常履歴')
-
-
-#レシピ
-class Customer_Machine_Recipe(models.Model):
-    Customer_machine = ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
-    Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
-    Customer_recipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
-    Customer_recipe_time = models.FloatField(verbose_name='運転時間',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Customer_recipe_time1 = models.FloatField(verbose_name='乾燥時間1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Customer_recipe_time2 = models.FloatField(verbose_name='乾燥時間2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Customer_recipe_time3 = models.FloatField(verbose_name='乾燥時間3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Customer_recipe_time4 = models.FloatField(verbose_name='乾燥時間4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Customer_recipe_temp1 = models.FloatField(verbose_name='温度設定1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Customer_recipe_temp2 = models.FloatField(verbose_name='温度設定2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Customer_recipe_temp3 = models.FloatField(verbose_name='温度設定3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Customer_recipe_temp4 = models.FloatField(verbose_name='温度設定4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Customer_recipe_conf1 = models.CharField(verbose_name='設定1',max_length=20,blank=True,null=True)
-    Customer_recipe_conf2 = models.CharField(verbose_name='設定2',max_length=20,blank=True,null=True)
-    Customer_recipe_conf3 = models.CharField(verbose_name='設定3',max_length=20,blank=True,null=True)
-    Customer_recipe_conf4 = models.CharField(verbose_name='設定4',max_length=20,blank=True,null=True)
-    Customer_recipe_conf5 = models.CharField(verbose_name='設定5',max_length=20,blank=True,null=True)
-    Customer_recipe_conf6 = models.CharField(verbose_name='設定6',max_length=20,blank=True,null=True)
-    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
-    Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
-
-    def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 装置 : ' + str(self.Customer_machine) + \
-            ' 品種No : ' + str(self.Customer_recipe_no) + \
-                ' 品種名 : ' + self.Customer_recipe_name + \
-        '>'
-
-    class Meta:
-        verbose_name_plural = ('レシピ情報')
-
-
-#装置稼働履歴
-class Machine_Drive_History(models.Model):
-    Customer_machine_recipe = ForeignKey(Customer_Machine_Recipe,on_delete=CASCADE,verbose_name='品種')
-    Machine_drying_time = models.IntegerField(verbose_name='乾燥時間',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_count = models.IntegerField(verbose_name='稼働回数',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_water_used = models.FloatField(verbose_name='水使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_steam_used = models.FloatField(verbose_name='蒸気使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_electric_used = models.FloatField(verbose_name='電力使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_gas_used = models.FloatField(verbose_name='ガス使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
-    Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
-    Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
-    Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
-    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
-
-    def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 装置 : ' + str(self.Customer_machine_recipe) + \
-            ' データ取得日 : ' + str(self.Data_datetime) + \
-                ' 登録日 : ' + str(self.Machine_history_input_date) + \
-        '>'
-
-    class Meta:
-        verbose_name_plural = ('稼働履歴')
 
 
 #電気コスト
