@@ -434,3 +434,5 @@ class Cost_Total(models.Model):
 
     class Meta:
         verbose_name_plural = ('トータルコスト')
+
+    
