@@ -115,9 +115,9 @@ class Trouble_History(models.Model):
 
 #品種名
 class Recipe_Name(models.Model):
-    Recipe_id = models.IntegerField(verbose_name='品種ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
+    Recipe_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True)
     Racipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
-    Racipe_name_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Racipe_name_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Racipe_name_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -187,7 +187,7 @@ class Customer_Machine_Recipe(models.Model):
 
 #装置稼働履歴
 class Machine_Drive_History(models.Model):
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
     Machine_drive_time0 = models.IntegerField(verbose_name='運転時間0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_time1 = models.IntegerField(verbose_name='運転時間1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -216,7 +216,7 @@ class Machine_Drive_History(models.Model):
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 装置 : ' + str(self.Customer_machine_recipe) + \
+		' 装置 : ' + str(self.Customer_machine_id) + \
             ' データ取得日 : ' + str(self.Data_datetime) + \
                 ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
@@ -484,21 +484,20 @@ class Cost_Total(models.Model):
 
     class Meta:
         verbose_name_plural = ('トータルコスト')
-
 #通知メール登録
 class Mail_Notification(models.Model):
-    Mail_name = models.CharField(verbose_name='氏名',max_length=20,blank=False,null=False)
+    Mail_name = models.CharField(verbose_name='氏名',max_length=20,blank=True,null=True)
     Mail_department = models.CharField(verbose_name='部署',max_length=20,blank=True,null=True)
     Mail_address = models.EmailField(max_length=240)
-    Mail_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Mail_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Mail_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 氏名 : ' + self.Mail_name + \
-            ' Email : ' + str(self.Mail_address) + \
+        return '<id=' + str(self.id) + ', ' + \
+            ' 氏名 : ' + self.Mail_name + \
+                ' Email : ' + str(self.Mail_address) + \
                     ' 登録日 : ' + str(self.Mail_input_date) + \
-                        '>'
+                '>'
 
     class Meta:
         verbose_name_plural = ('通知メール登録')
@@ -509,35 +508,35 @@ class Trouble_Mail_Setting(models.Model):
     Trouble_contents = ForeignKey(Trouble_Contents,on_delete=CASCADE,verbose_name='異常')
     Trouble_mail_notification = ForeignKey(Mail_Notification,on_delete=CASCADE,verbose_name='メール設定')
     Trouble_mail_send_setting = models.BooleanField(verbose_name='送信設定')
-    Trouble_mail_setting_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
-    Trouble_mail_setting_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+    Trouble_mail_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Trouble_mail_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
   
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 異常 : ' + str(self.Trouble_contents) + \
-            ' 通知メール設定 : ' + str(self.Trouble_mail_notification) + \
+        return '<id=' + str(self.id) + ', ' + \
+            ' 異常 : ' + str(self.Trouble_contents) + \
+                ' 通知メール設定 : ' + str(self.Trouble_mail_notification) + \
                     ' 送信設定 : ' + self.Trouble_mail_send_setting + \
-                        '>'
+                '>'
 
     class Meta:
         verbose_name_plural = ('異常メール設定')
 
 #メンテナンスメール設定
 class Maintenance_Mail_Setting(models.Model):
-    Maintenance_machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
+    Maintenance_machine_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Maintenance_mail_notification = ForeignKey(Mail_Notification,on_delete=CASCADE,verbose_name='メール設定')
     Maintenance_threshold = models.IntegerField(verbose_name='閾値',validators=[MinValueValidator(1)],default=1,blank=True,null=True)
-    Maintenance_mail_send_setting = models.BooleanField(verbose_name='送信設定')
-    Maintenance_mail_setting_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
-    Maintenance_mail_setting_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+    Maintenance_send_setting = models.BooleanField(verbose_name='送信設定')
+    Maintenance_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Maintenance_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
   
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 稼働履歴 : ' + str(self.Maintenance_machine_drive_history) + \
-            ' 通知メール設定 : ' + str(self.Maintenance_mail_notification) + \
+        return '<id=' + str(self.id) + ', ' + \
+            ' 稼働履歴 : ' + str(self.Maintenance_machine_history) + \
+                ' 通知メール設定 : ' + str(self.Maintenance_mail_notification) + \
                     ' 閾値 : ' + str(self.Maintenance_threshold) + \
-                        ' 送信設定 : ' + self.Maintenance_mail_send_setting + \
-                        '>'
+                        ' 送信設定 : ' + self.Maintenance_send_setting + \
+                '>'
 
     class Meta:
         verbose_name_plural = ('メンテナンスメール設定')
