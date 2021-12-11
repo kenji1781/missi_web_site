@@ -4,7 +4,7 @@ from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.views import View
 #from .forms import LoginForm
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,CreateView,ListView
 
 
 
