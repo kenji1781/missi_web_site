@@ -5,7 +5,7 @@ from .import views
 app_name = 'main_app'
 urlpatterns = [
     path('',views.index,name="index"),  #ホーム
-    path('electric_price/',views.electric_price,name="electric_price"),    #電力単価
+    path('electricity_unit_price/',views.electric_price,name="electric_price"),    #電力単価
     #path('water_price/',views.water_price,name="water_price"),    #水単価    
     #path('steam_price/',views.steam_price,name="steam_price"),   #蒸気単価
     #path('gas_price/',views.gas_price,name="gas_price"),    #ガス単価
