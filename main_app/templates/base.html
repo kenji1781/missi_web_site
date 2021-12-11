@@ -33,12 +33,12 @@
                                         　設定
                                       </a>
                                       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">装置</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">品種データ</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">装置</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">品種データ</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">電力単価</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">蒸気単価</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">ガス単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">電力単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">蒸気単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">ガス単価</a></li>
                                       </ul>
                                     </li>
                                   </ul>
@@ -52,14 +52,14 @@
                                         　モニター
                                       </a>
                                       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">レシピ</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">稼働履歴</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">異常履歴</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">レシピ</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">稼働履歴</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">異常履歴</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">電力コスト</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">蒸気コスト</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">ガスコスト</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">トータルコスト</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">電力コスト</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">蒸気コスト</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">ガスコスト</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">トータルコスト</a></li>
                                       </ul>
                                     </li>
                                   </ul>
@@ -73,14 +73,14 @@
                                         　メーカー設定
                                       </a>
                                       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">レシピ</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">稼働履歴</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">異常履歴</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">レシピ</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">稼働履歴</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">異常履歴</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">電力コスト</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">蒸気コスト</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">ガスコスト</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:basic_conf' %}">トータルコスト</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">電力コスト</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">蒸気コスト</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">ガスコスト</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">トータルコスト</a></li>
                                       </ul>
                                     </li>
                                   </ul>
@@ -88,12 +88,12 @@
 
                               
                             {% elif request.user.is_staff %}
-                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">基本設定</a></li>
-                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">装置情報</a></li>
+                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:electric_price' %}">基本設定</a></li>
+                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:electric_price' %}">装置情報</a></li>
                                                             
                             {% elif request.user.is_active %}
                             
-                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:basic_conf' %}">kari</a></li>
+                                <li class="nav-item "><a class="nav-link" href="{% url 'main_app:electric_price' %}">kari</a></li>
                             
                             {% else %}
                                 
