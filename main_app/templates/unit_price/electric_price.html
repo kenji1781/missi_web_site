@@ -13,10 +13,10 @@ Data Monitoring System 電力単価
         
 {% endblock %}
 {% block content %}
-    
+    <a href="{% url 'main_app:electric_price_create' %}">登録</a>
     <table class="table" style="font-size : 12px;">
         <tr>
-            <th>単価</th>
+            <th>単価:(¥)</th>
             <th>登録日</th>
             <th>メモ</th>
         </tr>

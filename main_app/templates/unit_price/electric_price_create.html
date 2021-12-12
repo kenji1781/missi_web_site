@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Data Monitoring System 電力単価
+{% endblock %}
+{% block header %}
+    <br>
+    <h3 class="display-6 text-light bg-secondary d-inline p-3">{{title}}</h3>
+            <p class="h5 mt-4">{{msg|safe}}</p>
+        <br>
+       
+        
+{% endblock %}
+{% block content %}
+    <form action="" method="POST">
+        {{form.as_p}}
+        <input type="submit" value="登録">{% csrf_token %}
+    </form>
+   
+
+{% endblock %}
