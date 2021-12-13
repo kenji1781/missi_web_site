@@ -6,6 +6,7 @@ from django.views import View
 from django.shortcuts import render
 from django.views.generic import TemplateView,CreateView,ListView
 from .models import Unit_Price_Electric,Unit_Price_Electric
+from .forms import ElectricPriceCreateForm
 
 
 class IndexView(TemplateView):
@@ -32,7 +33,8 @@ class ElectricPriceCreateView(CreateView):
 
     template_name = 'unit_price/electric_price_create.html'
     model = Unit_Price_Electric
-    fields = ('Unit_price_electric','Unit_price_electric_input_date','Unit_price_electric_memo')
+    form_class = ElectricPriceCreateForm
+    
     success_url = '/electricity_unit_price/'    #reverse_lazy("electric_price")     
 
     def get_context_data(self):
