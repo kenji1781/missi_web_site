@@ -4,10 +4,9 @@ from django.template.response import TemplateResponse
 from django.urls import reverse_lazy
 from django.views import View
 from django.shortcuts import render
-from django.views.generic import TemplateView,CreateView,ListView
+from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
 from .models import Unit_Price_Electric,Unit_Price_Electric
-from .forms import ElectricPriceCreateForm
-
+from .forms import ElectricPriceCreateForm,ElectricPriceUpdateForm
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -27,6 +26,9 @@ class ElectricPriceView(ListView):
         ctx['title'] = '電力単価'
         ctx['msg'] = '電力単価設定の確認／変更が出来ます。'
         return ctx
+
+    def get_queryset(self):
+        return Unit_Price_Electric.objects.order_by('-Unit_price_electric_input_date')
 ################################################################################
 class ElectricPriceCreateView(CreateView):
     
@@ -41,5 +43,32 @@ class ElectricPriceCreateView(CreateView):
         ctx = super().get_context_data()
         # page_title を追加する
         ctx['title'] = '電力単価'
-        ctx['msg'] = '電力単価設定の確認／変更が出来ます。'
+        ctx['msg'] = '電力単価の登録が出来ます。'
         return ctx
+    
+################################################################################
+class ElectricPriceUpdateView(UpdateView):
+
+    template_name = 'unit_price/electric_price_update.html'
+    model = Unit_Price_Electric
+    form_class = ElectricPriceUpdateForm
+    
+    success_url = '/electricity_unit_price/'    #reverse_lazy("electric_price")     
+
+    def get_context_data(self):
+        ctx = super().get_context_data()
+        # page_title を追加する
+        ctx['title'] = '電力単価'
+        ctx['msg'] = '電力単価設定の変更が出来ます。'
+        return ctx
+
+################################################################################
+class ElectricPriceDeleteView(DeleteView):
+    
+
+    template_name = 'unit_price/electric_price_delete.html'
+    model = Unit_Price_Electric
+    #form_class = ElectricPriceCreateForm
+    
+    success_url = '/electricity_unit_price/'    #reverse_lazy("electric_price")     
+  

@@ -8,8 +8,8 @@ Data Monitoring System 電力単価
 <div style="padding: 15px">
     <br>
     
-    <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
-            <p class="h5 mt-4">{{msg|safe}}</p>
+    <h3 class="display-6 text-light bg-primary d-inline p-3">電力単価</h3>
+            <p class="h5 mt-4">電力単価設定の削除が出来ます。</p>
 
         <br>
 </div>    
@@ -17,9 +17,9 @@ Data Monitoring System 電力単価
 {% endblock %}
 {% block content %}
 <div style="padding: 15px">
-    <form action="" method="POST">
-        {{form.as_p}}
-        <button type="submit" class="btn btn-secondary">登録</button>{% csrf_token %}
+    <form action="" method="POST">{% csrf_token %}
+     
+        <button type="submit" class="btn btn-secondary">削除</button>
         <a href="{% url 'main_app:electric_price' %}" class="btn btn-secondary">戻る</a>
     </form>
     

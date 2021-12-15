@@ -1,12 +1,14 @@
 from django.urls import path,include
 from django.contrib import admin
-from .views import IndexView,ElectricPriceView,ElectricPriceCreateView
+from .views import IndexView,ElectricPriceView,ElectricPriceCreateView,ElectricPriceUpdateView,ElectricPriceDeleteView
 
 app_name = 'main_app'
 urlpatterns = [
     path('',IndexView.as_view(),name="index"),  #ホーム
     path('electricity_unit_price/',ElectricPriceView.as_view(),name="electric_price"),        #電力単価
-    path('electricity_unit_price/create/',ElectricPriceCreateView.as_view(),name="electric_price_create"),        #電力単価
+    path('electricity_unit_price/create/',ElectricPriceCreateView.as_view(),name="electric_price_create"),   #電力単価
+    path('electricity_unit_price/update/<int:pk>',ElectricPriceUpdateView.as_view(),name="electric_price_update"),   #電力単価
+    path('electricity_unit_price/delete/<int:pk>',ElectricPriceDeleteView.as_view(),name="electric_price_delete"),   #電力単価
     #path('water_price/',views.water_price,name="water_price"),    #水単価    
     #path('steam_price/',views.steam_price,name="steam_price"),   #蒸気単価
     #path('gas_price/',views.gas_price,name="gas_price"),    #ガス単価

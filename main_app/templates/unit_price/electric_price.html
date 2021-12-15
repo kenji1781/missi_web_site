@@ -5,14 +5,16 @@
 Data Monitoring System 電力単価
 {% endblock %}
 {% block header %}
+<div style="padding: 15px">
     <br>
-    <h3 class="display-6 text-light bg-secondary d-inline p-3">{{title}}</h3>
+    <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
             <p class="h5 mt-4">{{msg|safe}}</p>
         <br>
-       
+</div>    
         
 {% endblock %}
 {% block content %}
+<div style="padding: 15px">
     <a href="{% url 'main_app:electric_price_create' %}">登録</a>
     <table class="table" style="font-size : 12px;">
         <tr>
@@ -26,8 +28,10 @@ Data Monitoring System 電力単価
             <td>{{ item.Unit_price_electric }}</td>
             <td>{{ item.Unit_price_electric_input_date }}</td>
             <td>{{ item.Unit_price_electric_memo }}</td>
+            <td><a href="{% url 'main_app:electric_price_update' item.pk %}">編集</a></td>
+            <td><a href="{% url 'main_app:electric_price_delete' item.pk %}">削除</a></td>
         </tr>
     {% endfor %}
     </table>
-
+</div>
 {% endblock %}

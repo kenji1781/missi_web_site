@@ -31,6 +31,30 @@ class ElectricPriceCreateForm(forms.ModelForm):
                 self.fields['Unit_price_electric_memo'].widgets.attrs["class"] = "form-control"
 
 
+class ElectricPriceUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Unit_Price_Electric
+        fields = ('Unit_price_electric','Unit_price_electric_input_date','Unit_price_electric_memo')
+        widgets = {
+            'Unit_price_electric_input_date':DateInput(),
+        }
+        labels = {
+                    'Unit_price_electric':'単価：（￥）',
+                    'Unit_price_electric_input_date':'登録日',
+                    'Unit_price_electric_memo':'メモ',
+        }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Unit_price_electric'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_electric_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_electric_memo'].widgets.attrs["class"] = "form-control"
+
+
+
+
+
 class customer_infomation(forms.ModelForm):
     class Meta:
         models = Customer_Infomation
