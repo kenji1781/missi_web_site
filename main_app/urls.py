@@ -1,6 +1,7 @@
 from django.urls import path,include
 from django.contrib import admin
-from .views import IndexView,ElectricPriceView,ElectricPriceCreateView,ElectricPriceUpdateView,ElectricPriceDeleteView
+from .views.index import IndexView
+from .views.electric_price import ElectricPriceView,ElectricPriceCreateView,ElectricPriceUpdateView,ElectricPriceDeleteView
 
 app_name = 'main_app'
 urlpatterns = [

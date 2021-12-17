@@ -5,11 +5,10 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.shortcuts import render
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from .models import Unit_Price_Electric,Unit_Price_Electric
-from .forms import ElectricPriceCreateForm,ElectricPriceUpdateForm
+from ..models import Unit_Price_Electric,Unit_Price_Electric
+from ..forms import ElectricPriceCreateForm,ElectricPriceUpdateForm
+from django.db .models import Q
 
-class IndexView(TemplateView):
-    template_name = 'index.html'
 
 
 
@@ -28,7 +27,16 @@ class ElectricPriceView(ListView):
         return ctx
 
     def get_queryset(self):
-        return Unit_Price_Electric.objects.order_by('-Unit_price_electric_input_date')
+        q_woed = self.request.GET.get('query')
+
+        if q_woed:
+            object_list = Unit_Price_Electric.objects.filter(Q(Unit_price_electric__icontains=q_woed)|Q(Unit_price_electric_memo=q_woed))
+
+        else:
+            object_list = Unit_Price_Electric.objects.order_by('-Unit_price_electric_input_date')
+
+
+        return object_list
 ################################################################################
 class ElectricPriceCreateView(CreateView):
     
