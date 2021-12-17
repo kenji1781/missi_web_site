@@ -1,9 +1,5 @@
 from django.contrib.auth import login as auth_login
-from django.http.response import HttpResponseRedirect
-from django.template.response import TemplateResponse
 from django.urls import reverse_lazy
-from django.views import View
-from django.shortcuts import render
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
 from ..models import Unit_Price_Electric,Unit_Price_Electric
 from ..forms import ElectricPriceCreateForm,ElectricPriceUpdateForm
@@ -29,11 +25,12 @@ class ElectricPriceView(ListView):
         return ctx
 
     def get_queryset(self):
-        q_woed = self.request.GET.get('query')
-
-        if q_woed:
-            object_list = Unit_Price_Electric.objects.filter(Q(Unit_price_electric__icontains=q_woed)|Q(Unit_price_electric_memo=q_woed))
-
+        q_word = self.request.GET.get('query_text')
+        q_date = self.request.GET.get('query_date')
+        if q_word:
+            object_list = Unit_Price_Electric.objects.filter(Q(Unit_price_electric__icontains=q_word)|Q(Unit_price_electric_memo=q_word))
+        elif q_date:
+            object_list = Unit_Price_Electric.objects.filter(Q(Unit_price_electric_input_date__icontains=q_date))
         else:
             object_list = Unit_Price_Electric.objects.order_by('-Unit_price_electric_input_date')
 
