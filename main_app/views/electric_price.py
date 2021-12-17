@@ -1,7 +1,7 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Unit_Price_Electric,Unit_Price_Electric
+from ..models import Unit_Price_Electric
 from ..forms import ElectricPriceCreateForm,ElectricPriceUpdateForm
 from django.db .models import Q
 

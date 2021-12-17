@@ -51,7 +51,131 @@ class ElectricPriceUpdateForm(forms.ModelForm):
                 self.fields['Unit_price_electric_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Unit_price_electric_memo'].widgets.attrs["class"] = "form-control"
 
+######################################################################################################
+class WaterPriceCreateForm(forms.ModelForm):
+    class Meta:
+        model = Unit_Price_Water
+        fields = ('Unit_price_water','Unit_price_water_input_date','Unit_price_water_memo')
+        widgets = {
+            'Unit_price_water_input_date':DateInput(),
+        }
+        labels = {
+                    'Unit_price_water':'単価：（￥）',
+                    'Unit_price_water_input_date':'登録日',
+                    'Unit_price_water_memo':'メモ',
+        }
 
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Unit_price_water'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_water_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_water_memo'].widgets.attrs["class"] = "form-control"
+
+
+class WaterPriceUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Unit_Price_Water
+        fields = ('Unit_price_water','Unit_price_water_input_date','Unit_price_water_memo')
+        widgets = {
+            'Unit_price_water_input_date':DateInput(),
+        }
+        labels = {
+                    'Unit_price_water':'単価：（￥）',
+                    'Unit_price_water_input_date':'登録日',
+                    'Unit_price_water_memo':'メモ',
+        }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Unit_price_water'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_water_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_water_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class SteamPriceCreateForm(forms.ModelForm):
+    class Meta:
+        model = Unit_Price_Steam
+        fields = ('Unit_price_steam','Unit_price_steam_input_date','Unit_price_steam_memo')
+        widgets = {
+            'Unit_price_steam_input_date':DateInput(),
+        }
+        labels = {
+                    'Unit_price_steam':'単価：（￥）',
+                    'Unit_price_steam_input_date':'登録日',
+                    'Unit_price_steam_memo':'メモ',
+        }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Unit_price_steam'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_steam_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_steam_memo'].widgets.attrs["class"] = "form-control"
+
+
+class SteamPriceUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Unit_Price_Steam
+        fields = ('Unit_price_steam','Unit_price_steam_input_date','Unit_price_steam_memo')
+        widgets = {
+            'Unit_price_steam_input_date':DateInput(),
+        }
+        labels = {
+                    'Unit_price_steam':'単価：（￥）',
+                    'Unit_price_steam_input_date':'登録日',
+                    'Unit_price_steam_memo':'メモ',
+        }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Unit_price_steam'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_steam_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_steam_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class GasPriceCreateForm(forms.ModelForm):
+    class Meta:
+        model = Unit_Price_Gas
+        fields = ('Unit_price_gas','Unit_price_gas_input_date','Unit_price_gas_memo')
+        widgets = {
+            'Unit_price_gas_input_date':DateInput(),
+        }
+        labels = {
+                    'Unit_price_gas':'単価：（￥）',
+                    'Unit_price_gas_input_date':'登録日',
+                    'Unit_price_gas_memo':'メモ',
+        }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Unit_price_gas'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_gas_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
+
+
+class GasPriceUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Unit_Price_Gas
+        fields = ('Unit_price_gas','Unit_price_gas_input_date','Unit_price_gas_memo')
+        widgets = {
+            'Unit_price_gas_input_date':DateInput(),
+        }
+        labels = {
+                    'Unit_price_gas':'単価：（￥）',
+                    'Unit_price_gas_input_date':'登録日',
+                    'Unit_price_gas_memo':'メモ',
+        }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Unit_price_gas'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_gas_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
 
 
 

@@ -2,6 +2,9 @@ from django.urls import path,include
 from django.contrib import admin
 from .views.index import IndexView
 from .views.electric_price import ElectricPriceView,ElectricPriceCreateView,ElectricPriceUpdateView,ElectricPriceDeleteView
+from .views.water_price import WaterPriceView,WaterPriceCreateView,WaterPriceUpdateView,WaterPriceDeleteView
+from .views.steam_price import SteamPriceView,SteamPriceCreateView,SteamPriceUpdateView,SteamPriceDeleteView
+from .views.gas_price import GasPriceView,GasPriceCreateView,GasPriceUpdateView,GasPriceDeleteView
 
 app_name = 'main_app'
 urlpatterns = [
@@ -9,8 +12,20 @@ urlpatterns = [
     path('electricity_unit_price/',ElectricPriceView.as_view(),name="electric_price"),        #電力単価
     path('electricity_unit_price/create/',ElectricPriceCreateView.as_view(),name="electric_price_create"),   #電力単価
     path('electricity_unit_price/update/<int:pk>',ElectricPriceUpdateView.as_view(),name="electric_price_update"),   #電力単価
-    path('electricity_unit_price/delete/<int:pk>',ElectricPriceDeleteView.as_view(),name="electric_price_delete"),   #電力単価
-    #path('water_price/',views.water_price,name="water_price"),    #水単価    
+    path('electricity_unit_price/delete/<int:pk>',ElectricPriceDeleteView.as_view(),name="electric_price_delete"),       #電力単価
+    path('water_unit_price/',WaterPriceView.as_view(),name="water_price"),        #水単価
+    path('water_unit_price/create/',WaterPriceCreateView.as_view(),name="water_price_create"),   #水単価
+    path('water_unit_price/update/<int:pk>',WaterPriceUpdateView.as_view(),name="water_price_update"),   #水単価
+    path('water_unit_price/delete/<int:pk>',WaterPriceDeleteView.as_view(),name="water_price_delete"),   #水単価
+    path('steam_unit_price/',SteamPriceView.as_view(),name="steam_price"),        #蒸気単価
+    path('steam_unit_price/create/',SteamPriceCreateView.as_view(),name="steam_price_create"),   #蒸気単価
+    path('steam_unit_price/update/<int:pk>',SteamPriceUpdateView.as_view(),name="steam_price_update"),   #蒸気単価
+    path('steam_unit_price/delete/<int:pk>',SteamPriceDeleteView.as_view(),name="steam_price_delete"),   #蒸気単価
+    path('gas_unit_price/',GasPriceView.as_view(),name="gas_price"),        #ガス単価
+    path('gas_unit_price/create/',GasPriceCreateView.as_view(),name="gas_price_create"),   #ガス単価
+    path('gas_unit_price/update/<int:pk>',GasPriceUpdateView.as_view(),name="gas_price_update"),   #ガス単価
+    path('gas_unit_price/delete/<int:pk>',GasPriceDeleteView.as_view(),name="gas_price_delete"),   #ガス単価
+   
     #path('steam_price/',views.steam_price,name="steam_price"),   #蒸気単価
     #path('gas_price/',views.gas_price,name="gas_price"),    #ガス単価
     #path('solvent_price/',views.solvent_price,name="solvent_price"),    #溶剤単価
