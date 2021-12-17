@@ -17,6 +17,8 @@ class ElectricPriceView(ListView):
     
     template_name = 'unit_price/electric_price.html'
     model = Unit_Price_Electric
+    paginate_by = 5
+
     
     def get_context_data(self):
         ctx = super().get_context_data()
