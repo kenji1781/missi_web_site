@@ -13,7 +13,7 @@ class GasPriceView(ListView):
     
     template_name = 'unit_price/gas_price.html'
     model = Unit_Price_Gas
-    paginate_by = 5
+    paginate_by = 10
 
     
     def get_context_data(self):

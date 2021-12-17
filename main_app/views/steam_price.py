@@ -13,7 +13,7 @@ class SteamPriceView(ListView):
     
     template_name = 'unit_price/steam_price.html'
     model = Unit_Price_Steam
-    paginate_by = 5
+    paginate_by = 10
 
     
     def get_context_data(self):

@@ -13,7 +13,7 @@ class WaterPriceView(ListView):
     
     template_name = 'unit_price/water_price.html'
     model = Unit_Price_Water
-    paginate_by = 5
+    paginate_by = 10
 
     
     def get_context_data(self):
