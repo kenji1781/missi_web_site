@@ -16,9 +16,12 @@ Data Monitoring System 電力単価
 {% block content %}
 <div style="padding: 20px">
     <form action="" method="get">
-        <input name="query" value="{{ request.GET.query }}" type="text">
+        <input name="query_text" value="{{ request.GET.query }}" type="text">
+        <input name="query_date" value="{{ request.GET.query }}" type="date">
         <button type="submit" class="btn btn-secondary">検索</button>
+    
     </form>
+    
     <a href="{% url 'main_app:electric_price_create' %}">登録</a>
     <table class="table" style="font-size : 12px;">
         <tr>
