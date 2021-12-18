@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator,MaxValueValidator,RegexVali
 from django.db.models.fields.related import ForeignKey
 
 
+
 #メーカー登録情報#####################################################################
 
 # 客先情報☆
@@ -35,7 +36,7 @@ class Customer_Infomation(models.Model):
 
 #装置カテゴリー☆
 class Equipment_Category(models.Model):
-    Equipment_category = CharField(verbose_name='装置カテゴリー',max_length=10,blank=False,null=False)
+    Equipment_category = CharField(verbose_name='装置カテゴリー',max_length=10,blank=False,null=False,unique=True)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
@@ -115,7 +116,7 @@ class Trouble_History(models.Model):
 
 #品種名
 class Recipe_Name(models.Model):
-    Recipe_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True)
+    Recipe_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True,unique=True)
     Racipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
     Racipe_name_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Racipe_name_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
@@ -288,11 +289,13 @@ class Unit_Price_Water(models.Model):
 
 #溶剤名
 class Solvent_Name(models.Model):
-    Solvent_name = models.CharField(verbose_name='溶剤名',max_length=20,blank=True,null=True)
+    Solvent_name = models.CharField(verbose_name='溶剤名',max_length=20,blank=True,null=True,unique=True)
+    Solvent_name_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 溶剤名 : ' + self.Solvent_name  + '>'
+		' 溶剤名 : ' + self.Solvent_name  + ' 登録日 : ' + str(self.Unit_price_water_input_date) + \
+        '>'
 
     class Meta:
         verbose_name_plural = ('溶剤名')
@@ -301,7 +304,7 @@ class Solvent_Name(models.Model):
 #溶剤メーカー
 class Solvent_Manufacturer(models.Model):
     Solvent_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤')
-    Solvent_manu = models.CharField(verbose_name='メーカー',max_length=20,blank=True,null=True)
+    Solvent_manu = models.CharField(verbose_name='メーカー',max_length=20,blank=True,null=True,unique=True)
     
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \

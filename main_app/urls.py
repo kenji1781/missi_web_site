@@ -5,6 +5,10 @@ from .views.electric_price import ElectricPriceView,ElectricPriceCreateView,Elec
 from .views.water_price import WaterPriceView,WaterPriceCreateView,WaterPriceUpdateView,WaterPriceDeleteView
 from .views.steam_price import SteamPriceView,SteamPriceCreateView,SteamPriceUpdateView,SteamPriceDeleteView
 from .views.gas_price import GasPriceView,GasPriceCreateView,GasPriceUpdateView,GasPriceDeleteView
+from .views.solvent_name import SolventNameView,SolventNameCreateView,SolventNameUpdateView,SolventNameDeleteView
+
+
+
 
 app_name = 'main_app'
 urlpatterns = [
@@ -25,7 +29,10 @@ urlpatterns = [
     path('gas_unit_price/create/',GasPriceCreateView.as_view(),name="gas_price_create"),   #ガス単価
     path('gas_unit_price/update/<int:pk>',GasPriceUpdateView.as_view(),name="gas_price_update"),   #ガス単価
     path('gas_unit_price/delete/<int:pk>',GasPriceDeleteView.as_view(),name="gas_price_delete"),   #ガス単価
-   
+    path('solvent_name/',SolventNameView.as_view(),name="solvent_name"),        #溶剤名
+    path('solvent_name/create/',SolventNameCreateView.as_view(),name="solvent_name_create"),   #溶剤名
+    path('solvent_name/update/<int:pk>',SolventNameUpdateView.as_view(),name="solvent_name_update"),   #溶剤名
+    path('solvent_name/delete/<int:pk>',SolventNameDeleteView.as_view(),name="solvent_name_delete"),   #溶剤名
     #path('steam_price/',views.steam_price,name="steam_price"),   #蒸気単価
     #path('gas_price/',views.gas_price,name="gas_price"),    #ガス単価
     #path('solvent_price/',views.solvent_price,name="solvent_price"),    #溶剤単価

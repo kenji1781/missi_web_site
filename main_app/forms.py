@@ -156,7 +156,6 @@ class GasPriceCreateForm(forms.ModelForm):
                 self.fields['Unit_price_gas_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
 
-
 class GasPriceUpdateForm(forms.ModelForm):
     class Meta:
         model = Unit_Price_Gas
@@ -176,6 +175,52 @@ class GasPriceUpdateForm(forms.ModelForm):
                 self.fields['Unit_price_gas'].widgets.attrs["class"] = "form-control"
                 self.fields['Unit_price_gas_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
+
+
+######################################################################################################
+class SolventNameCreateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent_Name
+        fields = ('Solvent_name','Solvent_name_input_date')
+        widgets = {
+            'Solvent_name_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent_name':'溶剤名',
+                    'Solvent_name_input_date':'登録日',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent_name_gas_input_date'].widgets.attrs["class"] = "form-control"
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
+
+
+class SolventNameUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent_Name
+        fields = ('Solvent_name','Solvent_name_input_date')
+        widgets = {
+            'Solvent_name_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent_name':'溶剤名',
+                    'Solvent_name_input_date':'登録日',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent_name_gas_input_date'].widgets.attrs["class"] = "form-control"
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
+                
+
+
+
+
 
 
 
