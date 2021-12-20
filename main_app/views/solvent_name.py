@@ -53,18 +53,7 @@ class SolventNameCreateView(CreateView):
         ctx['title'] = '溶剤名'
         ctx['msg'] = '溶剤名の登録が出来ます。'
         return ctx
-
-"""
-    def form_valid(self, form):
-        ''' バリデーションを通った時 '''
-        messages.success(self.request, "保存しました")
-        return super().form_valid(form)
- 
-    def form_invalid(self, form):
-        ''' バリデーションに失敗した時 '''
-        messages.warning(self.request, "保存できませんでした")
-        return super().form_invalid(form)
-"""    
+    
 ################################################################################
 class SolventNameUpdateView(UpdateView):
 
