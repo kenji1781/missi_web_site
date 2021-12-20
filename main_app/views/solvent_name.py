@@ -46,6 +46,7 @@ class SolventNameCreateView(CreateView):
     
     success_url = reverse_lazy("main_app:solvent_name") 
 
+#unique=True時**kwargs記述のこと
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
@@ -53,7 +54,7 @@ class SolventNameCreateView(CreateView):
         ctx['msg'] = '溶剤名の登録が出来ます。'
         return ctx
 
-
+"""
     def form_valid(self, form):
         ''' バリデーションを通った時 '''
         messages.success(self.request, "保存しました")
@@ -63,7 +64,7 @@ class SolventNameCreateView(CreateView):
         ''' バリデーションに失敗した時 '''
         messages.warning(self.request, "保存できませんでした")
         return super().form_invalid(form)
-    
+"""    
 ################################################################################
 class SolventNameUpdateView(UpdateView):
 
@@ -73,8 +74,9 @@ class SolventNameUpdateView(UpdateView):
     
     success_url = reverse_lazy("main_app:solvent_name") 
 
-    def get_context_data(self):
-        ctx = super().get_context_data()
+#unique=True時**kwargs記述のこと
+    def get_context_data(self,**kwargs):
+        ctx = super().get_context_data(**kwargs)
         # page_title を追加する
         ctx['title'] = '溶剤名'
         ctx['msg'] = '溶剤名の変更が出来ます。'
