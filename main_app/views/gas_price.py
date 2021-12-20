@@ -44,7 +44,7 @@ class GasPriceCreateView(CreateView):
     model = Unit_Price_Gas
     form_class = GasPriceCreateForm
     
-    success_url = '/gas_unit_price/'    #reverse_lazy("electric_price")     
+    success_url = reverse_lazy("main_app:gas_price") 
 
     def get_context_data(self):
         ctx = super().get_context_data()
@@ -60,8 +60,8 @@ class GasPriceUpdateView(UpdateView):
     model = Unit_Price_Gas
     form_class = GasPriceUpdateForm
     
-    success_url = '/gas_unit_price/'    #reverse_lazy("electric_price")     
-
+    success_url = reverse_lazy("main_app:gas_price") 
+    
     def get_context_data(self):
         ctx = super().get_context_data()
         # page_title を追加する
@@ -77,5 +77,5 @@ class GasPriceDeleteView(DeleteView):
     model = Unit_Price_Gas
     #form_class = ElectricPriceCreateForm
     
-    success_url = '/gas_unit_price/'    #reverse_lazy("electric_price")     
+    success_url = reverse_lazy("main_app:gas_price")     
   

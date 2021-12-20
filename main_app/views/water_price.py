@@ -44,7 +44,7 @@ class WaterPriceCreateView(CreateView):
     model = Unit_Price_Water
     form_class = WaterPriceCreateForm
     
-    success_url = '/water_unit_price/'    #reverse_lazy("electric_price")     
+    success_url = reverse_lazy("main_app:water_price")     
 
     def get_context_data(self):
         ctx = super().get_context_data()
@@ -60,7 +60,7 @@ class WaterPriceUpdateView(UpdateView):
     model = Unit_Price_Water
     form_class = WaterPriceUpdateForm
     
-    success_url = '/water_unit_price/'    #reverse_lazy("electric_price")     
+    success_url = reverse_lazy("main_app:water_price")
 
     def get_context_data(self):
         ctx = super().get_context_data()
@@ -77,5 +77,5 @@ class WaterPriceDeleteView(DeleteView):
     model = Unit_Price_Water
     #form_class = ElectricPriceCreateForm
     
-    success_url = '/water_unit_price/'    #reverse_lazy("electric_price")     
-  
+    success_url = reverse_lazy("main_app:water_price")
+    

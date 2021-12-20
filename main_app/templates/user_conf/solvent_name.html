@@ -38,7 +38,13 @@ Data Monitoring System 溶剤名
         </tr>
     {% endfor %}
     </table>
-
+        {% if messages %}   
+            <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
     <!--以下よりページネーション-->
     <nav aria-label="Page navigation example">
 

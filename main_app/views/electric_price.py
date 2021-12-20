@@ -44,7 +44,7 @@ class ElectricPriceCreateView(CreateView):
     model = Unit_Price_Electric
     form_class = ElectricPriceCreateForm
     
-    success_url = '/electricity_unit_price/'    #reverse_lazy("electric_price")     
+    success_url = reverse_lazy("main_app:electric_price") 
 
     def get_context_data(self):
         ctx = super().get_context_data()
@@ -60,7 +60,7 @@ class ElectricPriceUpdateView(UpdateView):
     model = Unit_Price_Electric
     form_class = ElectricPriceUpdateForm
     
-    success_url = '/electricity_unit_price/'    #reverse_lazy("electric_price")     
+    success_url = reverse_lazy("main_app:electric_price") 
 
     def get_context_data(self):
         ctx = super().get_context_data()
@@ -77,5 +77,5 @@ class ElectricPriceDeleteView(DeleteView):
     model = Unit_Price_Electric
     #form_class = ElectricPriceCreateForm
     
-    success_url = '/electricity_unit_price/'    #reverse_lazy("electric_price")     
+    success_url = reverse_lazy("main_app:electric_price")     
   

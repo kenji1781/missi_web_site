@@ -1,4 +1,4 @@
-from django.urls import path,include
+from django.urls import path,include,re_path
 from django.contrib import admin
 from .views.index import IndexView
 from .views.electric_price import ElectricPriceView,ElectricPriceCreateView,ElectricPriceUpdateView,ElectricPriceDeleteView
@@ -12,6 +12,7 @@ from .views.solvent_name import SolventNameView,SolventNameCreateView,SolventNam
 
 app_name = 'main_app'
 urlpatterns = [
+    
     path('',IndexView.as_view(),name="index"),  #ホーム
     path('electricity_unit_price/',ElectricPriceView.as_view(),name="electric_price"),        #電力単価
     path('electricity_unit_price/create/',ElectricPriceCreateView.as_view(),name="electric_price_create"),   #電力単価
@@ -33,6 +34,10 @@ urlpatterns = [
     path('solvent_name/create/',SolventNameCreateView.as_view(),name="solvent_name_create"),   #溶剤名
     path('solvent_name/update/<int:pk>',SolventNameUpdateView.as_view(),name="solvent_name_update"),   #溶剤名
     path('solvent_name/delete/<int:pk>',SolventNameDeleteView.as_view(),name="solvent_name_delete"),   #溶剤名
+    
+   
+    
+    
     #path('steam_price/',views.steam_price,name="steam_price"),   #蒸気単価
     #path('gas_price/',views.gas_price,name="gas_price"),    #ガス単価
     #path('solvent_price/',views.solvent_price,name="solvent_price"),    #溶剤単価

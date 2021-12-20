@@ -225,6 +225,12 @@ class SolventNameUpdateForm(forms.ModelForm):
 
 
 
+
+
+
+
+
+
 class customer_infomation(forms.ModelForm):
     class Meta:
         models = Customer_Infomation

@@ -4,14 +4,14 @@ from django.views.generic import TemplateView,CreateView,ListView,DeleteView,Upd
 from ..models import Solvent_Name
 from ..forms import SolventNameCreateForm,SolventNameUpdateForm
 from django.db .models import Q
-
+from django.contrib import messages
 
 
 
 ################################################################################
 class SolventNameView(ListView):
     
-    template_name = 'unit_price/solvent_name.html'
+    template_name = 'user_conf/solvent_name.html'
     model = Solvent_Name
     paginate_by = 10
 
@@ -40,27 +40,38 @@ class SolventNameView(ListView):
 class SolventNameCreateView(CreateView):
     
 
-    template_name = 'unit_price/solvent_name_create.html'
+    template_name = 'user_conf/solvent_name_create.html'
     model = Solvent_Name
     form_class = SolventNameCreateForm
     
-    success_url = '/solvent_name/'    #reverse_lazy("electric_price")     
+    success_url = reverse_lazy("main_app:solvent_name") 
 
-    def get_context_data(self):
-        ctx = super().get_context_data()
+    def get_context_data(self,**kwargs):
+        ctx = super().get_context_data(**kwargs)
         # page_title を追加する
         ctx['title'] = '溶剤名'
         ctx['msg'] = '溶剤名の登録が出来ます。'
         return ctx
+
+
+    def form_valid(self, form):
+        ''' バリデーションを通った時 '''
+        messages.success(self.request, "保存しました")
+        return super().form_valid(form)
+ 
+    def form_invalid(self, form):
+        ''' バリデーションに失敗した時 '''
+        messages.warning(self.request, "保存できませんでした")
+        return super().form_invalid(form)
     
 ################################################################################
 class SolventNameUpdateView(UpdateView):
 
-    template_name = 'unit_price/solvent_name_update.html'
+    template_name = 'user_conf/solvent_name_update.html'
     model = Solvent_Name
     form_class = SolventNameUpdateForm
     
-    success_url = '/solvent_name/'    #reverse_lazy("electric_price")     
+    success_url = reverse_lazy("main_app:solvent_name") 
 
     def get_context_data(self):
         ctx = super().get_context_data()
@@ -73,9 +84,9 @@ class SolventNameUpdateView(UpdateView):
 class SolventNameDeleteView(DeleteView):
     
 
-    template_name = 'unit_price/solvent_name_delete.html'
+    template_name = 'user_conf/solvent_name_delete.html'
     model = Solvent_Name
     #form_class = ElectricPriceCreateForm
     
-    success_url = '/solvent_name/'    #reverse_lazy("electric_price")     
-  
+    success_url = reverse_lazy("main_app:solvent_name") 
+ 

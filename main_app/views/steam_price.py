@@ -44,7 +44,7 @@ class SteamPriceCreateView(CreateView):
     model = Unit_Price_Steam
     form_class = SteamPriceCreateForm
     
-    success_url = '/steam_unit_price/'    #reverse_lazy("electric_price")     
+    success_url = reverse_lazy("main_app:steam_price")
 
     def get_context_data(self):
         ctx = super().get_context_data()
@@ -60,8 +60,8 @@ class SteamPriceUpdateView(UpdateView):
     model = Unit_Price_Steam
     form_class = SteamPriceUpdateForm
     
-    success_url = '/steam_unit_price/'    #reverse_lazy("electric_price")     
-
+    success_url = reverse_lazy("main_app:steam_price")
+    
     def get_context_data(self):
         ctx = super().get_context_data()
         # page_title を追加する
@@ -76,6 +76,7 @@ class SteamPriceDeleteView(DeleteView):
     template_name = 'unit_price/steam_price_delete.html'
     model = Unit_Price_Steam
     #form_class = ElectricPriceCreateForm
-    
-    success_url = '/steam_unit_price/'    #reverse_lazy("electric_price")     
+
+    success_url = reverse_lazy("main_app:steam_price")    
+         
   

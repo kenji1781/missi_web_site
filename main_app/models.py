@@ -301,6 +301,8 @@ class Solvent_Name(models.Model):
         verbose_name_plural = ('溶剤名')
 
 
+
+
 #溶剤メーカー
 class Solvent_Manufacturer(models.Model):
     Solvent_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤')
