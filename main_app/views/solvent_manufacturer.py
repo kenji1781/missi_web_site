@@ -28,13 +28,13 @@ class SolventManufacturerView(ListView):
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
-            object_list = Solvent_Manufacturer.objects.filter(Solvent_manu__icontains=q_word)
+            object_list = Solvent_Manufacturer.objects.select_related('Solvent_name').filter(Solvent_manu__icontains=q_word)
         
-            object_list = Solvent_Manufacturer.objects.filter(Solvent_name__Solvent_name=q_word)
+            object_list = Solvent_Manufacturer.objects.select_related('Solvent_name').filter(Solvent_name__Solvent_name=q_word)
         elif q_date:
-            object_list = Solvent_Manufacturer.objects.filter(Solvent_manu_input_date__icontains=q_date)
+            object_list = Solvent_Manufacturer.objects.select_related('Solvent_name').filter(Solvent_manu_input_date__icontains=q_date)
         else:
-            object_list = Solvent_Manufacturer.objects.order_by('-Solvent_manu_input_date')
+            object_list = Solvent_Manufacturer.objects.select_related('Solvent_name').order_by('-Solvent_manu_input_date')
 
 
         return object_list
