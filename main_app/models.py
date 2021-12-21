@@ -304,14 +304,11 @@ class Solvent_Name(models.Model):
 
 #溶剤メーカー
 class Solvent_Manufacturer(models.Model):
-    Solvent_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤')
     Solvent_manu = models.CharField(verbose_name='メーカー',max_length=20,blank=True,null=True,unique=True)
     Solvent_manu_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
 
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 溶剤名 : ' + str(self.Solvent_name) + \
-            ' メーカー : ' + self.Solvent_manu + '>'
+       return self.Solvent_manu
 
     class Meta:
         verbose_name_plural = ('溶剤メーカー')
@@ -319,7 +316,8 @@ class Solvent_Manufacturer(models.Model):
 
 #設定:溶剤
 class Solvent_Conf(models.Model):
-    Solvent_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='溶剤')
+    Solvent_manu = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名')
+    Solvent_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー')
     Solvent_unit_price = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Solvent_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
