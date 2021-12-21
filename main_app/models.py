@@ -293,9 +293,8 @@ class Solvent_Name(models.Model):
     Solvent_name_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 溶剤名 : ' + self.Solvent_name  + ' 登録日 : ' + str(self.Unit_price_water_input_date) + \
-        '>'
+       return self.Solvent_name
+    
 
     class Meta:
         verbose_name_plural = ('溶剤名')
@@ -307,7 +306,8 @@ class Solvent_Name(models.Model):
 class Solvent_Manufacturer(models.Model):
     Solvent_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤')
     Solvent_manu = models.CharField(verbose_name='メーカー',max_length=20,blank=True,null=True,unique=True)
-    
+    Solvent_manu_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
 		' 溶剤名 : ' + str(self.Solvent_name) + \

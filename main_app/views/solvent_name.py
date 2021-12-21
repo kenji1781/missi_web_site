@@ -16,8 +16,8 @@ class SolventNameView(ListView):
     paginate_by = 10
 
     
-    def get_context_data(self):
-        ctx = super().get_context_data()
+    def get_context_data(self,**kwargs):
+        ctx = super().get_context_data(**kwargs)
 
         # page_title を追加する
         ctx['title'] = '溶剤名'
