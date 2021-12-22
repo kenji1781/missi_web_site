@@ -7,6 +7,7 @@ from .views.steam_price import SteamPriceView,SteamPriceCreateView,SteamPriceUpd
 from .views.gas_price import GasPriceView,GasPriceCreateView,GasPriceUpdateView,GasPriceDeleteView
 from .views.solvent_name import SolventNameView,SolventNameCreateView,SolventNameUpdateView,SolventNameDeleteView
 from .views.solvent_manufacturer import SolventManufacturerView,SolventManufacturerCreateView,SolventManufacturerUpdateView,SolventManufacturerDeleteView
+from .views.solvent_conf import SolventConfView,SolventConfCreateView,SolventConfUpdateView,SolventConfDeleteView
 
 
 
@@ -39,7 +40,10 @@ urlpatterns = [
     path('solvent_manufacturer/create/',SolventManufacturerCreateView.as_view(),name="solvent_manufacturer_create"),   #溶剤メーカ
     path('solvent_manufacturer/update/<int:pk>',SolventManufacturerUpdateView.as_view(),name="solvent_manufacturer_update"),   #溶剤メーカ
     path('solvent_manufacturer/delete/<int:pk>',SolventManufacturerDeleteView.as_view(),name="solvent_manufacturer_delete"),   #溶剤メーカ
-    
+    path('solvent_conf/',SolventConfView.as_view(),name="solvent_conf"),        #溶剤設定
+    path('solvent_conf/create/',SolventConfCreateView.as_view(),name="solvent_conf_create"),   #溶剤設定
+    path('solvent_conf/update/<int:pk>',SolventConfUpdateView.as_view(),name="solvent_conf_update"),   #溶剤設定
+    path('solvent_conf/delete/<int:pk>',SolventConfDeleteView.as_view(),name="solvent_conf_delete"),   #溶剤設定
    
     
     
