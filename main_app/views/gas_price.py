@@ -28,9 +28,12 @@ class GasPriceView(ListView):
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
-            object_list = Unit_Price_Gas.objects.filter(Q(Unit_price_gas__icontains=q_word)|Q(Unit_price_gas_memo=q_word))
+            try:
+                object_list = Unit_Price_Gas.objects.filter(Unit_price_gas=q_word)
+            except:
+                object_list = Unit_Price_Gas.objects.filter(Q(Unit_price_gas_memo__contains=q_word)|Q(Unit_price_gas_memo__icontains=q_word))
         elif q_date:
-            object_list = Unit_Price_Gas.objects.filter(Q(Unit_price_gas_input_date__icontains=q_date))
+            object_list = Unit_Price_Gas.objects.filter(Unit_price_gas_input_date=q_date)
         else:
             object_list = Unit_Price_Gas.objects.order_by('-Unit_price_gas_input_date')
 

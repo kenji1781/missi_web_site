@@ -28,9 +28,13 @@ class ElectricPriceView(ListView):
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
-            object_list = Unit_Price_Electric.objects.filter(Q(Unit_price_electric__icontains=q_word)|Q(Unit_price_electric_memo=q_word))
+            #object_list = Unit_Price_Electric.objects.filter(Q(Unit_price_electric=q_word)|Q(Unit_price_electric_memo__contains=q_word))
+            try:
+                object_list = Unit_Price_Electric.objects.filter(Unit_price_electric=q_word)
+            except:
+                object_list = Unit_Price_Electric.objects.filter(Q(Unit_price_electric_memo__contains=q_word)|Q(Unit_price_electric_memo__icontains=q_word))
         elif q_date:
-            object_list = Unit_Price_Electric.objects.filter(Q(Unit_price_electric_input_date__icontains=q_date))
+            object_list = Unit_Price_Electric.objects.filter(Unit_price_electric_input_date=q_date)
         else:
             object_list = Unit_Price_Electric.objects.order_by('-Unit_price_electric_input_date')
 

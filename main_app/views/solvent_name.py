@@ -28,9 +28,9 @@ class SolventNameView(ListView):
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
-            object_list = Solvent_Name.objects.filter(Q(Solvent_name__icontains=q_word))
+            object_list = Solvent_Name.objects.filter(Q(Solvent_name__contains=q_word)|Q(Solvent_name__icontains=q_word))
         elif q_date:
-            object_list = Solvent_Name.objects.filter(Q(Solvent_name_input_date__icontains=q_date))
+            object_list = Solvent_Name.objects.filter(Solvent_name_input_date=q_date)
         else:
             object_list = Solvent_Name.objects.order_by('-Solvent_name_input_date')
 

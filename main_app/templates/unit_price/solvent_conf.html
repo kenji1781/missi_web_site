@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Data Monitoring System 溶剤単価
+Data Monitoring System {{ title }}
 {% endblock %}
 {% block header %}
 <div style="padding: 20px">
@@ -22,7 +22,7 @@ Data Monitoring System 溶剤単価
     
     </form>
     
-    <a href="{% url 'main_app:solvent_conf_create' %}">登録</a>
+    <a href="{% url 'main_app:solvent_conf_create' %}" class="btn btn-outline-primary">登録</a>
     <table class="table" style="font-size : 12px;">
         <tr>
             <th>溶剤名</th>
@@ -39,8 +39,8 @@ Data Monitoring System 溶剤単価
             <td>{{ item.Solvent_unit_price  }}</td>
             <td>{{ item.Solvent_input_date  }}</td>
             <td>{{ item.Solvent_memo }}</td>
-            <td><a href="{% url 'main_app:solvent_conf_update' item.pk %}">編集</a></td>
-            <td><a href="{% url 'main_app:solvent_conf_delete' item.pk %}">削除</a></td>
+            <td><a href="{% url 'main_app:solvent_conf_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
+            <td><a href="{% url 'main_app:solvent_conf_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
         </tr>
     {% endfor %}
     </table>

@@ -3492,6 +3492,12 @@ textarea.form-control-lg {
   border-radius: 0.2rem;
 }
 
+.btn-xs, .btn-group-xs > .btn {
+  padding: 0.1rem 0.3rem;
+  font-size: 0.375rem;
+  border-radius: 0.1rem;
+}
+
 .fade {
   transition: opacity 0.15s linear;
 }

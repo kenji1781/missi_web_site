@@ -28,10 +28,19 @@ class SolventConfView(ListView):
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
-            object_list = Solvent_Conf.objects.select_related('Solvent_name').filter(Solvent_name__Solvent_name=q_word)
-            object_list = Solvent_Conf.objects.select_related('Solvent_manu').filter(Solvent_manu__Solvent_manu=q_word)
-            object_list = Solvent_Conf.objects.filter(Solvent_unit_price__icontains=q_word)
-            object_list = Solvent_Conf.objects.filter(Solvent_memo__icontains=q_word)
+            try:
+                object_list = Solvent_Conf.objects.filter(Solvent_unit_price=q_word)
+                
+            except:
+                object_list = Solvent_Conf.objects.select_related('Solvent_name','Solvent_manu').filter(\
+                    Q(Solvent_memo__contains=q_word)|Q(Solvent_memo__icontains=q_word)|\
+                        Q(Solvent_name__Solvent_name__contains=q_word)|Q(Solvent_name__Solvent_name__icontains=q_word)|\
+                            Q(Solvent_manu__Solvent_manu__contains=q_word)|Q(Solvent_manu__Solvent_manu__icontains=q_word))
+
+
+            #object_list = Solvent_Conf.objects.select_related().filter(Solvent_manu__Solvent_manu=q_word)
+            
+            #object_list = Solvent_Conf.objects.filter(Solvent_memo__icontains=q_word)
         elif q_date:
             object_list = Solvent_Conf.objects.filter(Solvent_input_date__icontains=q_date)
         else:

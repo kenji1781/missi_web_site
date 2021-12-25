@@ -28,9 +28,12 @@ class SteamPriceView(ListView):
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
-            object_list = Unit_Price_Steam.objects.filter(Q(Unit_price_steam__icontains=q_word)|Q(Unit_price_steam_memo=q_word))
+            try:
+                object_list = Unit_Price_Steam.objects.filter(Unit_price_steam=q_word)
+            except:    
+                object_list = Unit_Price_Steam.objects.filter(Q(Unit_price_steam_memo__contains=q_word)|Q(Unit_price_steam_memo__icontains=q_word))
         elif q_date:
-            object_list = Unit_Price_Steam.objects.filter(Q(Unit_price_steam_input_date__icontains=q_date))
+            object_list = Unit_Price_Steam.objects.filter(Unit_price_steam_input_date=q_date)
         else:
             object_list = Unit_Price_Steam.objects.order_by('-Unit_price_steam_input_date')
 
