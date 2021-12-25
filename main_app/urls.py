@@ -8,7 +8,7 @@ from .views.gas_price import GasPriceView,GasPriceCreateView,GasPriceUpdateView,
 from .views.solvent_name import SolventNameView,SolventNameCreateView,SolventNameUpdateView,SolventNameDeleteView
 from .views.solvent_manufacturer import SolventManufacturerView,SolventManufacturerCreateView,SolventManufacturerUpdateView,SolventManufacturerDeleteView
 from .views.solvent_conf import SolventConfView,SolventConfCreateView,SolventConfUpdateView,SolventConfDeleteView
-
+from .views.equipment_category import EquipmentCategoryView,EquipmentCategoryCreateView,EquipmentCategoryUpdateView,EquipmentCategoryDeleteView
 
 
 
@@ -44,6 +44,10 @@ urlpatterns = [
     path('solvent_conf/create/',SolventConfCreateView.as_view(),name="solvent_conf_create"),   #溶剤設定
     path('solvent_conf/update/<int:pk>',SolventConfUpdateView.as_view(),name="solvent_conf_update"),   #溶剤設定
     path('solvent_conf/delete/<int:pk>',SolventConfDeleteView.as_view(),name="solvent_conf_delete"),   #溶剤設定
+    path('equipment_category/',EquipmentCategoryView.as_view(),name="equipment_category"),        #装置カテゴリー
+    path('equipment_category/create/',EquipmentCategoryCreateView.as_view(),name="equipment_category_create"),   #装置カテゴリー
+    path('equipment_category/update/<int:pk>',EquipmentCategoryUpdateView.as_view(),name="equipment_category_update"),   #装置カテゴリー
+    path('equipment_category/delete/<int:pk>',EquipmentCategoryDeleteView.as_view(),name="equipment_category_delete"),   #装置カテゴリー
    
     
     

@@ -37,10 +37,10 @@ class Customer_Infomation(models.Model):
 #装置カテゴリー☆
 class Equipment_Category(models.Model):
     Equipment_category = CharField(verbose_name='装置カテゴリー',max_length=10,blank=False,null=False,unique=True)
+    Equipment_category_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
 
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		        ' 装置カテゴリー : '+ self.Equipment_category + '>'
+       return self.Equipment_category
 
     class Meta:
         verbose_name_plural = ('装置カテゴリー')
