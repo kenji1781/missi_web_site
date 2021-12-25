@@ -9,6 +9,7 @@ from .views.solvent_name import SolventNameView,SolventNameCreateView,SolventNam
 from .views.solvent_manufacturer import SolventManufacturerView,SolventManufacturerCreateView,SolventManufacturerUpdateView,SolventManufacturerDeleteView
 from .views.solvent_conf import SolventConfView,SolventConfCreateView,SolventConfUpdateView,SolventConfDeleteView
 from .views.equipment_category import EquipmentCategoryView,EquipmentCategoryCreateView,EquipmentCategoryUpdateView,EquipmentCategoryDeleteView
+from .views.machine_model import MachineModelView,MachineModelCreateView,MachineModelUpdateView,MachineModelDeleteView
 
 
 
@@ -48,6 +49,10 @@ urlpatterns = [
     path('equipment_category/create/',EquipmentCategoryCreateView.as_view(),name="equipment_category_create"),   #装置カテゴリー
     path('equipment_category/update/<int:pk>',EquipmentCategoryUpdateView.as_view(),name="equipment_category_update"),   #装置カテゴリー
     path('equipment_category/delete/<int:pk>',EquipmentCategoryDeleteView.as_view(),name="equipment_category_delete"),   #装置カテゴリー
+    path('machine_model/',MachineModelView.as_view(),name="machine_model"),        #装置型式
+    path('machine_model/create/',MachineModelCreateView.as_view(),name="machine_model_create"),   #装置型式
+    path('machine_model/update/<int:pk>',MachineModelUpdateView.as_view(),name="machine_model_update"),   #装置型式
+    path('machine_model/delete/<int:pk>',MachineModelDeleteView.as_view(),name="machine_model_delete"),   #装置型式
    
     
     

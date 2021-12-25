@@ -48,7 +48,7 @@ class Equipment_Category(models.Model):
 
 #装置型式☆
 class Machine_Model(models.Model):
-    Machine_category = models.ForeignKey(Equipment_Category,on_delete=CASCADE,verbose_name='装置カテゴリー')
+    Machine_category = models.ForeignKey(Equipment_Category,on_delete=CASCADE,verbose_name='装置カテゴリー',related_name='machine_category')
     Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False)
     Machine_model_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Machine_model_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
@@ -317,7 +317,7 @@ class Solvent_Manufacturer(models.Model):
 #設定:溶剤
 class Solvent_Conf(models.Model):
     Solvent_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent_name')
-    Solvent_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー')
+    Solvent_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent_manu')
     Solvent_unit_price = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Solvent_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)

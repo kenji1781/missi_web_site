@@ -352,8 +352,58 @@ class EquipmentCategoryUpdateForm(forms.ModelForm):
                 #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
                 
 
+######################################################################################################
+class MachineModelCreateForm(forms.ModelForm):
+    class Meta:
+        model = Machine_Model
+        #fields = ('Equipment_category')
+        fields = ('Machine_category','Machine_model','Machine_model_input_date','Machine_model_memo')
+        
+        widgets = {
+            'Machine_model_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_category':'装置カテゴリー',
+                    'Machine_model':'装置型式',
+                    'Machine_model_input_date':'登録日',
+                    'Machine_model_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_category'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_model_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_model_memo'].widgets.attrs["class"] = "form-control"
+                
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
 
 
+class MachineModelUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Machine_Model
+        #fields = ('Equipment_category')
+        fields = ('Machine_category','Machine_model','Machine_model_input_date','Machine_model_memo')
+        
+        widgets = {
+            'Machine_model_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_category':'装置カテゴリー',
+                    'Machine_model':'装置型式',
+                    'Machine_model_input_date':'登録日',
+                    'Machine_model_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_category'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_model_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_model_memo'].widgets.attrs["class"] = "form-control"
+                
 
 
 
