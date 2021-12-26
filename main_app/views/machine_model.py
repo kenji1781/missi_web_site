@@ -31,7 +31,7 @@ class MachineModelView(ListView):
             object_list = Machine_Model.objects.select_related('Machine_category').filter(\
                 Q(Machine_model__contains=q_word)|Q(Machine_model__icontains=q_word)|\
                     Q(Machine_model_memo__contains=q_word)|Q(Machine_model_memo__icontains=q_word)|\
-                        Q(Equipment_category__Machine_category__contains=q_word)|Q(Equipment_category__Machine_category__icontains=q_word))
+                        Q(Machine_category__Equipment_category__contains=q_word)|Q(Machine_category__Equipment_category__icontains=q_word))
             #object_list = Solvent_Conf.objects.select_related().filter(Solvent_manu__Solvent_manu=q_word)
             
             #object_list = Solvent_Conf.objects.filter(Solvent_memo__icontains=q_word)

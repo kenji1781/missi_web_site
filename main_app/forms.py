@@ -405,6 +405,69 @@ class MachineModelUpdateForm(forms.ModelForm):
                 self.fields['Machine_model_memo'].widgets.attrs["class"] = "form-control"
                 
 
+######################################################################################################
+class CustomerMachineCreateForm(forms.ModelForm):
+    class Meta:
+        model = Customer_Machine
+        #fields = ('Equipment_category')
+        fields = ('Customer_machine_id','Machine_model','Customer_machine_unit_no','Customer_machine_inst_date','Customer_machine_input_date','Customer_machine_memo')
+        
+        widgets = {
+            'Customer_machine_inst_date':DateInput(),
+            'Customer_machine_input_date':DateInput(),
+                }
+        labels = {
+                    'Customer_machine_id':'装置ID',
+                    'Machine_model':'装置型式',
+                    'Customer_machine_unit_no':'号機',
+                    'Customer_machine_inst_date':'納入日',
+                    'Customer_machine_input_date':'登録日',
+                    'Customer_machine_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Customer_machine_id'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_unit_no'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_inst_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_memo'].widgets.attrs["class"] = "form-control"
+                
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
+
+
+class CustomerMachineUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Customer_Machine
+        #fields = ('Equipment_category')
+        fields = ('Customer_machine_id','Machine_model','Customer_machine_unit_no','Customer_machine_inst_date','Customer_machine_input_date','Customer_machine_memo')
+        
+        widgets = {
+            'Customer_machine_inst_date':DateInput(),
+            'Customer_machine_input_date':DateInput(),
+                }
+        labels = {
+                    'Customer_machine_id':'装置ID',
+                    'Machine_model':'装置型式',
+                    'Customer_machine_unit_no':'号機',
+                    'Customer_machine_inst_date':'納入日',
+                    'Customer_machine_input_date':'登録日',
+                    'Customer_machine_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Customer_machine_id'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_unit_no'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_inst_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_memo'].widgets.attrs["class"] = "form-control"
+                
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
 
 
 

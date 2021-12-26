@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Data Monitoring System {{ title }}
+{% endblock %}
+{% block header %}
+<div style="padding: 20px">
+    <br>
+    
+    <h3 class="display-6 text-light bg-primary d-inline p-3">客先装置</h3>
+            <p class="h5 mt-4">客先装置登録の削除が出来ます。</p>
+
+        <br>
+</div>    
+        
+{% endblock %}
+{% block content %}
+<div style="padding: 20px">
+    <form action="" method="POST">{% csrf_token %}
+     
+        <button type="submit" class="btn btn-secondary">削除</button>
+        <a href="{% url 'main_app:customer_machine' %}" class="btn btn-secondary">戻る</a>
+    </form>
+    
+</div>
+{% endblock %}

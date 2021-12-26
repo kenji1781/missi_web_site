@@ -10,7 +10,7 @@ from .views.solvent_manufacturer import SolventManufacturerView,SolventManufactu
 from .views.solvent_conf import SolventConfView,SolventConfCreateView,SolventConfUpdateView,SolventConfDeleteView
 from .views.equipment_category import EquipmentCategoryView,EquipmentCategoryCreateView,EquipmentCategoryUpdateView,EquipmentCategoryDeleteView
 from .views.machine_model import MachineModelView,MachineModelCreateView,MachineModelUpdateView,MachineModelDeleteView
-
+from .views.customer_machine import CustomerMachineView,CustomerMachineCreateView,CustomerMachineUpdateView,CustomerMachineDeleteView
 
 
 app_name = 'main_app'
@@ -53,7 +53,11 @@ urlpatterns = [
     path('machine_model/create/',MachineModelCreateView.as_view(),name="machine_model_create"),   #装置型式
     path('machine_model/update/<int:pk>',MachineModelUpdateView.as_view(),name="machine_model_update"),   #装置型式
     path('machine_model/delete/<int:pk>',MachineModelDeleteView.as_view(),name="machine_model_delete"),   #装置型式
-   
+    path('customer_machine/',CustomerMachineView.as_view(),name="customer_machine"),        #装置型式
+    path('customer_machine/create/',CustomerMachineCreateView.as_view(),name="customer_machine_create"),   #装置型式
+    path('customer_machine/update/<int:pk>',CustomerMachineUpdateView.as_view(),name="customer_machine_update"),   #装置型式
+    path('customer_machine/delete/<int:pk>',CustomerMachineDeleteView.as_view(),name="customer_machine_delete"),   #装置型式
+
     
     
     #path('steam_price/',views.steam_price,name="steam_price"),   #蒸気単価

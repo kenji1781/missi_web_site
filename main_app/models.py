@@ -48,22 +48,20 @@ class Equipment_Category(models.Model):
 
 #装置型式☆
 class Machine_Model(models.Model):
-    Machine_category = models.ForeignKey(Equipment_Category,on_delete=CASCADE,verbose_name='装置カテゴリー',related_name='machine_category')
+    Machine_category = models.ForeignKey(Equipment_Category,on_delete=CASCADE,verbose_name='装置カテゴリー')
     Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False)
     Machine_model_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Machine_model_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-           ' 型式: ' + self.Machine_model + \
-                ' 登録日 : ' + str(self.Machine_model_input_date) + '>'
+       return self.Machine_model
 
     class Meta:
         verbose_name_plural = ('装置型式')
 
 #客先装置
 class Customer_Machine(models.Model):
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False,unique=True)
     Machine_model = models.ForeignKey(Machine_Model,on_delete=CASCADE,verbose_name='装置')
     Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
     Customer_machine_inst_date = models.DateField(verbose_name='納入日',blank=True,null=True)
