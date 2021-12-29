@@ -50,7 +50,7 @@ class Equipment_Category(models.Model):
 #装置型式☆
 class Machine_Model(models.Model):
     Machine_category = models.ForeignKey(Equipment_Category,on_delete=CASCADE,verbose_name='装置カテゴリー')
-    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False)
+    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False,unique=True)
     Machine_model_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Machine_model_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
@@ -86,6 +86,20 @@ class Trouble_Contents(models.Model):
     Trouble_contents = models.CharField(verbose_name='異常',max_length=20,blank=False,null=False)
     Trouble_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Trouble_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['Machine_model','Trouble_no'],name='unique_trouble_no'),
+        ]
+
+#formで重複時、異常文を出す時に利用
+    @classmethod
+    def check_duplicte(cls, Machine_model:str,Trouble_no:int) ->bool:
+        """
+        同じ装置に同じ異常Ｎｏ．がすでに登録されているか判定します。
+        登録されていたらTrue、されていなかったらFalseを返します。
+        """
+        return cls.objects.filter(Machine_model=Machine_model,Trouble_no=Trouble_no).exists()
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
