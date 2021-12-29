@@ -12,6 +12,7 @@ from .views.equipment_category import EquipmentCategoryView,EquipmentCategoryCre
 from .views.machine_model import MachineModelView,MachineModelCreateView,MachineModelUpdateView,MachineModelDeleteView
 from .views.customer_machine import CustomerMachineView,CustomerMachineCreateView,CustomerMachineUpdateView,CustomerMachineDeleteView
 from .views.customer_infomation import CustomerInfomationView,CustomerInfomationCreateView,CustomerInfomationUpdateView,CustomerInfomationDeleteView
+from .views.trouble_contents import TroubleContentsView,TroubleContentsCreateView,TroubleContentsUpdateView,TroubleContentsDeleteView
 
 
 app_name = 'main_app'
@@ -62,6 +63,10 @@ urlpatterns = [
     path('customer_infomation/create/',CustomerInfomationCreateView.as_view(),name="customer_infomation_create"),   #客先情報
     path('customer_infomation/update/<int:pk>',CustomerInfomationUpdateView.as_view(),name="customer_infomation_update"),   #客先情報
     path('customer_infomation/delete/<int:pk>',CustomerInfomationDeleteView.as_view(),name="customer_infomation_delete"),   #客先情報
+    path('trouble_contents/',TroubleContentsView.as_view(),name="trouble_contents"),        #異常
+    path('trouble_contents/create/',TroubleContentsCreateView.as_view(),name="trouble_contents_create"),   #異常
+    path('trouble_contents/update/<int:pk>',TroubleContentsUpdateView.as_view(),name="trouble_contents_update"),   #異常
+    path('trouble_contents/delete/<int:pk>',TroubleContentsDeleteView.as_view(),name="trouble_contents_delete"),   #異常
 
     
     
