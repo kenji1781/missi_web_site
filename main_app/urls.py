@@ -11,6 +11,7 @@ from .views.solvent_conf import SolventConfView,SolventConfCreateView,SolventCon
 from .views.equipment_category import EquipmentCategoryView,EquipmentCategoryCreateView,EquipmentCategoryUpdateView,EquipmentCategoryDeleteView
 from .views.machine_model import MachineModelView,MachineModelCreateView,MachineModelUpdateView,MachineModelDeleteView
 from .views.customer_machine import CustomerMachineView,CustomerMachineCreateView,CustomerMachineUpdateView,CustomerMachineDeleteView
+from .views.customer_infomation import CustomerInfomationView,CustomerInfomationCreateView,CustomerInfomationUpdateView,CustomerInfomationDeleteView
 
 
 app_name = 'main_app'
@@ -57,6 +58,10 @@ urlpatterns = [
     path('customer_machine/create/',CustomerMachineCreateView.as_view(),name="customer_machine_create"),   #装置型式
     path('customer_machine/update/<int:pk>',CustomerMachineUpdateView.as_view(),name="customer_machine_update"),   #装置型式
     path('customer_machine/delete/<int:pk>',CustomerMachineDeleteView.as_view(),name="customer_machine_delete"),   #装置型式
+    path('customer_infomation/',CustomerInfomationView.as_view(),name="customer_infomation"),        #客先情報
+    path('customer_infomation/create/',CustomerInfomationCreateView.as_view(),name="customer_infomation_create"),   #客先情報
+    path('customer_infomation/update/<int:pk>',CustomerInfomationUpdateView.as_view(),name="customer_infomation_update"),   #客先情報
+    path('customer_infomation/delete/<int:pk>',CustomerInfomationDeleteView.as_view(),name="customer_infomation_delete"),   #客先情報
 
     
     

@@ -470,6 +470,75 @@ class CustomerMachineUpdateForm(forms.ModelForm):
                 #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
 
 
+######################################################################################################
+class CustomerInfomationCreateForm(forms.ModelForm):
+    class Meta:
+        model = Customer_Infomation
+        #fields = ('Equipment_category')
+        fields = ('Customer_name','Customer_tel_number','Customer_pastal_code','Customer_address1','Customer_address2','Customer_address3','Customer_input_date','Customer_memo')
+        
+        widgets = {
+            'Customer_input_date':DateInput(),
+                }
+        labels = {
+                    'Customer_name':'企業名',
+                    'Customer_tel_number':'Tel',
+                    'Customer_pastal_code':'〒',
+                    'Customer_address1':'住所１',
+                    'Customer_address2':'住所２',
+                    'Customer_address3':'住所３',
+                    'Customer_input_date':'登録日',
+                    'Customer_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Customer_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_tel_number'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_pastal_code'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_address1'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_address2'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_address3'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_memo'].widgets.attrs["class"] = "form-control"
+                
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
+
+
+class CustomerInfomationUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Customer_Infomation
+        #fields = ('Equipment_category')
+        fields = ('Customer_name','Customer_tel_number','Customer_pastal_code','Customer_address1','Customer_address2','Customer_address3','Customer_input_date','Customer_memo')
+        
+        widgets = {
+            'Customer_input_date':DateInput(),
+                }
+        labels = {
+                    'Customer_name':'企業名',
+                    'Customer_tel_number':'Tel',
+                    'Customer_pastal_code':'〒',
+                    'Customer_address1':'住所１',
+                    'Customer_address2':'住所２',
+                    'Customer_address3':'住所３',
+                    'Customer_input_date':'登録日',
+                    'Customer_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Customer_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_tel_number'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_pastal_code'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_address1'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_address2'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_address3'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_memo'].widgets.attrs["class"] = "form-control"
+                
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
 
 
 
