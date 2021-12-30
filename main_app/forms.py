@@ -553,7 +553,7 @@ class TroubleContentsCreateForm(forms.ModelForm):
         labels = {
                     'Machine_model':'装置型式',
                     'Trouble_no':'異常No.',
-                    'Trouble_contents':'異常',
+                    'Trouble_contents':'異常項目',
                     'Trouble_input_date':'登録日',
                     'Trouble_memo':'メモ',
                 }

@@ -81,33 +81,24 @@ class Customer_Machine(models.Model):
 class Trouble_Contents(models.Model):
     Machine_model = models.ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
     Trouble_no = models.IntegerField(verbose_name='異常No',validators=[MinValueValidator(0)],blank=False,null=False)
-    Trouble_contents = models.CharField(verbose_name='異常',max_length=20,blank=False,null=False)
+    Trouble_contents = models.CharField(verbose_name='異常項目',max_length=20,blank=False,null=False)
     Trouble_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Trouble_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['Machine_model','Trouble_no'],name='unique_trouble_no'),
-        ]
-
-#formで重複時、異常文を出す時に利用
-    @classmethod
-    def check_duplicte(cls, Machine_model:str,Trouble_no:int) ->bool:
-        """
-        同じ装置に同じ異常Ｎｏ．がすでに登録されているか判定します。
-        登録されていたらTrue、されていなかったらFalseを返します。
-        """
-        return cls.objects.filter(Machine_model=Machine_model,Trouble_no=Trouble_no).exists()
+    
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
 		    ' 異常No : '+ str(self.Trouble_no) + \
-                ' 異常 : ' + self.Trouble_contents + \
+                ' 異常項目 : ' + self.Trouble_contents + \
                     ' 異常内容 : ' + self.Trouble_memo + \
 			'>'
     
     class Meta:
         verbose_name_plural = ('異常内容')
+        constraints = [
+            models.UniqueConstraint(fields=['Machine_model','Trouble_no','Trouble_contents'],name='unique_trouble_no'),
+        ]
 
 #異常履歴
 class Trouble_History(models.Model):
