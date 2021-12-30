@@ -32,12 +32,12 @@ class TroubleContentsView(ListView):
                     Q(Trouble_no__contains=q_word)|Q(Trouble_no__icontains=q_word)|\
                         Q(Trouble_contents__contains=q_word)|Q(Trouble_contents__icontains=q_word)|\
                             Q(Trouble_memo__contains=q_word)|Q(Trouble_memo__icontains=q_word)|\
-                                Q(Machine_model__Machine_model__contains=q_word)|Q(Machine_model__Machine_model__icontains=q_word))
+                                Q(Machine_model__Machine_model__Machine_model__contains=q_word)|Q(Machine_model__Machine_model__Machine_model__icontains=q_word))
         elif q_date:
-            object_list = Customer_Machine.objects.select_related('Machine_model').filter(Q(Customer_machine_inst_date__icontains=q_date)|\
+            object_list = Trouble_Contents.objects.select_related('Machine_model').filter(Q(Trouble_input_date__icontains=q_date)|\
                 Q(Trouble_input_date__icontains=q_date))
         else:
-            object_list = Customer_Machine.objects.select_related('Machine_model').order_by('-Customer_machine_input_date')
+            object_list = Trouble_Contents.objects.select_related('Machine_model').order_by('-Trouble_input_date')
 
 
         return object_list

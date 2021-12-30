@@ -70,10 +70,8 @@ class Customer_Machine(models.Model):
     Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
 
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 装置 : ' + str(self.Machine_model) + \
-            '(' + str(self.Customer_machine_unit_no) + '),' +\
-			' 納入日 : ' + str(self.Customer_machine_inst_date) +'>'
+       return str(self.Machine_model) + ': #' +\
+            str(self.Customer_machine_unit_no)
 
     class Meta:
         verbose_name_plural = ('客先装置')
