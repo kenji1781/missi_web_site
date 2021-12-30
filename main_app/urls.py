@@ -13,6 +13,7 @@ from .views.machine_model import MachineModelView,MachineModelCreateView,Machine
 from .views.customer_machine import CustomerMachineView,CustomerMachineCreateView,CustomerMachineUpdateView,CustomerMachineDeleteView
 from .views.customer_infomation import CustomerInfomationView,CustomerInfomationCreateView,CustomerInfomationUpdateView,CustomerInfomationDeleteView
 from .views.trouble_contents import TroubleContentsView,TroubleContentsCreateView,TroubleContentsUpdateView,TroubleContentsDeleteView
+from .views.trouble_history import TroubleHistoryView,TroubleHistoryCreateView,TroubleHistoryUpdateView,TroubleHistoryDeleteView
 
 
 app_name = 'main_app'
@@ -67,6 +68,10 @@ urlpatterns = [
     path('trouble_contents/create/',TroubleContentsCreateView.as_view(),name="trouble_contents_create"),   #異常
     path('trouble_contents/update/<int:pk>',TroubleContentsUpdateView.as_view(),name="trouble_contents_update"),   #異常
     path('trouble_contents/delete/<int:pk>',TroubleContentsDeleteView.as_view(),name="trouble_contents_delete"),   #異常
+    path('trouble_history/',TroubleHistoryView.as_view(),name="trouble_history"),        #異常履歴
+    path('trouble_history/create/',TroubleHistoryCreateView.as_view(),name="trouble_history_create"),   #異常履歴
+    path('trouble_history/update/<int:pk>',TroubleHistoryUpdateView.as_view(),name="trouble_history_update"),   #異常履歴
+    path('trouble_history/delete/<int:pk>',TroubleHistoryDeleteView.as_view(),name="trouble_history_delete"),   #異常履歴
 
     
     

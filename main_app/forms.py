@@ -599,3 +599,60 @@ class TroubleContentsUpdateForm(forms.ModelForm):
                 #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
 
 
+######################################################################################################
+class TroubleHistoryCreateForm(forms.ModelForm):
+    class Meta:
+        model = Trouble_History
+        #fields = ('Equipment_category')
+        fields = ('Machine_model','Trouble_no','Trouble_contents','Trouble_input_date','Trouble_memo')
+        
+        widgets = {
+            'Trouble_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_model':'装置型式',
+                    'Trouble_no':'異常No.',
+                    'Trouble_contents':'異常項目',
+                    'Trouble_input_date':'登録日',
+                    'Trouble_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Trouble_no'].widgets.attrs["class"] = "form-control"
+                self.fields['Trouble_contents'].widgets.attrs["class"] = "form-control"
+                self.fields['Trouble_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Trouble_memo'].widgets.attrs["class"] = "form-control"
+                
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
+
+
+class TroubleHistoryUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Trouble_Contents
+        #fields = ('Equipment_category')
+        fields = ('Machine_model','Trouble_no','Trouble_contents','Trouble_input_date','Trouble_memo')
+        
+        widgets = {
+            'Trouble_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_model':'装置型式',
+                    'Trouble_no':'異常No.',
+                    'Trouble_contents':'異常',
+                    'Trouble_input_date':'登録日',
+                    'Trouble_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Trouble_no'].widgets.attrs["class"] = "form-control"
+                self.fields['Trouble_contents'].widgets.attrs["class"] = "form-control"
+                self.fields['Trouble_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Trouble_memo'].widgets.attrs["class"] = "form-control"
+                
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"

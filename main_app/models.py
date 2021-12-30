@@ -41,7 +41,7 @@ class Equipment_Category(models.Model):
     Equipment_category_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
 
     def __str__(self):
-       return self.Equipment_category
+       return str(self.Equipment_category)
 
     class Meta:
         verbose_name_plural = ('装置カテゴリー')
@@ -55,7 +55,7 @@ class Machine_Model(models.Model):
     Machine_model_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
-       return self.Machine_model
+       return str(self.Machine_model)
 
     class Meta:
         verbose_name_plural = ('装置型式')
@@ -88,11 +88,7 @@ class Trouble_Contents(models.Model):
     
 
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		    ' 異常No : '+ str(self.Trouble_no) + \
-                ' 異常項目 : ' + self.Trouble_contents + \
-                    ' 異常内容 : ' + self.Trouble_memo + \
-			'>'
+       return str(self.Trouble_contents)
     
     class Meta:
         verbose_name_plural = ('異常内容')
@@ -100,9 +96,14 @@ class Trouble_Contents(models.Model):
             models.UniqueConstraint(fields=['Machine_model','Trouble_no','Trouble_contents'],name='unique_trouble_no'),
         ]
 
-#異常履歴
+#異常履歴 PLCより装置ID・異常No・発生時刻・復帰時刻を書き込む。
+#装置ID・異常Noを基に型式・号機・異常項目を照合する。
 class Trouble_History(models.Model):
-    Trouble_contents = ForeignKey(Trouble_Contents,on_delete=CASCADE,verbose_name='異常')
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False,unique=True)
+    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False,unique=True)
+    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
+    Trouble_no = models.IntegerField(verbose_name='異常No',validators=[MinValueValidator(0)],blank=False,null=False)
+    Trouble_contents = models.CharField(verbose_name='異常項目',max_length=20,blank=False,null=False)
     Trouble_occurrence_time = models.DateTimeField(verbose_name='発生時刻',blank=True,null=True)   
     Trouble_recovery_time = models.DateTimeField(verbose_name='復帰時刻',blank=True,null=True)
 
@@ -295,7 +296,7 @@ class Solvent_Name(models.Model):
     Solvent_name_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     
     def __str__(self):
-       return self.Solvent_name
+       return str(self.Solvent_name)
     
 
     class Meta:
@@ -310,7 +311,7 @@ class Solvent_Manufacturer(models.Model):
     Solvent_manu_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
 
     def __str__(self):
-       return self.Solvent_manu
+       return str(self.Solvent_manu)
 
     class Meta:
         verbose_name_plural = ('溶剤メーカー')
