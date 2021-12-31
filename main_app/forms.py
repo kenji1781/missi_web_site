@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import fields, models,widgets
+
 from .models import Customer_Infomation,Equipment_Category,Machine_Model,Trouble_Contents,\
     Unit_Price_Electric,Unit_Price_Steam,Unit_Price_Gas,Unit_Price_Water,Solvent_Name,Solvent_Manufacturer,Solvent_Conf,\
         Customer_Machine,Trouble_History,Customer_Machine_Recipe,Machine_Drive_History,\
@@ -609,11 +610,10 @@ class TroubleHistoryCreateForm(forms.ModelForm):
             'Trouble_input_date_0':DateInput(),
         }
         #fields = ('Equipment_category')
-        fields = ('Customer_machine_id','Machine_model','Customer_machine_unit_no','Trouble_no','Trouble_contents','Trouble_occurrence_time','Trouble_recovery_time')
+        fields = ('Customer_machine_id','Machine_model','Trouble_no','Trouble_contents','Trouble_occurrence_time','Trouble_recovery_time')
         labels = {
                     'Customer_machine_id':'装置ID',
                     'Machine_model':'装置型式',
-                    'Customer_machine_unit_no':'号機',
                     'Trouble_no':'異常No.',
                     'Trouble_contents':'異常項目',
                     'Trouble_occurrence_time':'発生時刻',
@@ -626,7 +626,6 @@ class TroubleHistoryCreateForm(forms.ModelForm):
             for field in self.fields.values():
                 self.fields['Customer_machine_id'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
-                self.fields['Customer_machine_unit_no'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_no'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_contents'].widgets.attrs["class"] = "form-control"
                                 
@@ -638,15 +637,19 @@ class TroubleHistoryUpdateForm(forms.ModelForm):
     Trouble_recovery_time = forms.SplitDateTimeField(label='復帰時刻')
     class Meta:
         model = Trouble_History
-        widgets = {
-            'Trouble_occurrence_time':DateInput(),
+        """
+        dateTimeOptions = {
+            'format':'yyyy-mm-dd HH:II:ss'
         }
-        #fields = ('Equipment_category')
-        fields = ('Customer_machine_id','Machine_model','Customer_machine_unit_no','Trouble_no','Trouble_contents','Trouble_occurrence_time','Trouble_recovery_time')
+        widgets = {
+            'Trouble_occurrence_time':datetimewidget(options=dateTimeOptions),
+            'Trouble_recovery_time':datetimewidget(options=dateTimeOptions),
+        }
+        """        
+        fields = ('Customer_machine_id','Machine_model','Trouble_no','Trouble_contents','Trouble_occurrence_time','Trouble_recovery_time')
         labels = {
                     'Customer_machine_id':'装置ID',
                     'Machine_model':'装置型式',
-                    'Customer_machine_unit_no':'号機',
                     'Trouble_no':'異常No.',
                     'Trouble_contents':'異常項目',
                                         
@@ -657,7 +660,6 @@ class TroubleHistoryUpdateForm(forms.ModelForm):
             for field in self.fields.values():
                 self.fields['Customer_machine_id'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
-                self.fields['Customer_machine_unit_no'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_no'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_contents'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_occurrence_time'].widgets.attrs["class"] = "form-control"

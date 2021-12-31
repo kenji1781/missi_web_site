@@ -39,11 +39,10 @@ Data Monitoring System {{ title }}
         <tr>
             <td>{{ item.Customer_machine_id }}</td>
             <td>{{ item.Machine_model }}</td>
-            <td>{{ item.Customer_machine_unit_no }}</td>
             <td>{{ item.Trouble_no }}</td>
             <td>{{ item.Trouble_contents }}</td>
-            <td>{{ item.Trouble_occurrence_time }}</td>
-            <td>{{ item.Trouble_recovery_time }}</td>
+            <td>{{ item.Trouble_occurrence_time|date:"20y年m月d日 H:i:s" }}</td>
+            <td>{{ item.Trouble_recovery_time|date:"20y年m月d日 H:i:s" }}</td>
             <td>{{ item.Trouble_loss_time }}</td>
             <td><a href="{% url 'main_app:trouble_history_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
             <td><a href="{% url 'main_app:trouble_history_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>

@@ -1,7 +1,7 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Trouble_History
+from ..models import Trouble_History,Customer_Machine,Trouble_Contents
 from ..forms import TroubleHistoryCreateForm,TroubleHistoryUpdateForm
 from django.db .models import Q
 from django.contrib import messages
@@ -15,15 +15,7 @@ class TroubleHistoryView(ListView):
     model = Trouble_History
     paginate_by = 10
 
-    for history in Trouble_History.objects.all():
-        if history.Signal_plc_to_sys == True:
-            date1 = history.Trouble_recovery_time    
-            date2 = history.Trouble_occurrence_time
-            loss_time = date1-date2
-            print(loss_time)
-            history.Trouble_loss_time = loss_time
-            #history.save()
-
+    
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
 
@@ -41,7 +33,7 @@ class TroubleHistoryView(ListView):
                         Q(Machine_model__contains=q_word)|Q(Machine_model__icontains=q_word)|\
                             Q(Customer_machine_unit_no__contains=q_word)|Q(Customer_machine_unit_no__icontains=q_word)|\
                                 Q(Trouble_no__contains=q_word)|Q(Trouble_no__icontains=q_word)|\
-                                Q(Trouble_contents__contains=q_word)|Q(Trouble_contents__icontains=q_word))
+                                    Q(Trouble_contents__contains=q_word)|Q(Trouble_contents__icontains=q_word))
         elif q_date:
             object_list = Trouble_History.objects.filter(\
                 Q(Trouble_occurrence_time__contains=q_date)|\
@@ -51,6 +43,23 @@ class TroubleHistoryView(ListView):
         else:
             object_list = Trouble_History.objects.order_by('-Trouble_occurrence_time')
 
+            for history in object_list:
+                if history.Signal_plc_to_sys == True:
+                    date1 = history.Trouble_recovery_time    
+                    date2 = history.Trouble_occurrence_time
+                    loss_time = date1-date2
+                    history.time_calc = loss_time.total_seconds()
+                    history.Trouble_loss_time = str(loss_time)
+                    
+                    for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
+                        for t_contents in Trouble_Contents.objects.select_related('Machine_model').all():
+                            if history.Customer_machine_id == c_machine.Customer_machine_id:
+                                history.Machine_model = str(c_machine.Machine_model)+ ': #' +str(c_machine.Customer_machine_unit_no)                   
+                            if history.Trouble_no == t_contents.Trouble_no:
+                                history.Trouble_contents = t_contents.Trouble_contents                   
+                                        
+                    history.Signal_plc_to_sys = False
+                    history.save()
 
         return object_list
 ################################################################################
