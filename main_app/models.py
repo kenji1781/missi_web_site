@@ -99,13 +99,16 @@ class Trouble_Contents(models.Model):
 #異常履歴 PLCより装置ID・異常No・発生時刻・復帰時刻を書き込む。
 #装置ID・異常Noを基に型式・号機・異常項目を照合する。
 class Trouble_History(models.Model):
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False,unique=True)
-    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False,unique=True)
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False,unique=False)
+    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False,unique=False)
     Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
     Trouble_no = models.IntegerField(verbose_name='異常No',validators=[MinValueValidator(0)],blank=False,null=False)
     Trouble_contents = models.CharField(verbose_name='異常項目',max_length=20,blank=False,null=False)
     Trouble_occurrence_time = models.DateTimeField(verbose_name='発生時刻',blank=True,null=True)   
     Trouble_recovery_time = models.DateTimeField(verbose_name='復帰時刻',blank=True,null=True)
+    Trouble_loss_time = models.DateTimeField(verbose_name='ロスタイム',blank=True,null=True)
+    Signal_sys_to_plc = models.BooleanField(default=False)
+    Signal_plc_to_sys = models.BooleanField(default=False)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
