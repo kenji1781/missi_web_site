@@ -111,12 +111,8 @@ class Trouble_History(models.Model):
     Signal_plc_to_sys = models.BooleanField(default=False)
 
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		    ' 異常 : ' + str(self.Trouble_contents) + \
-                ' 発生時刻 : ' + str(self.Trouble_occurrence_time) + \
-                    ' 復帰時刻 : ' + str(self.Trouble_recovery_time) + \
-                 + '>'
-
+       return str(self.Trouble_contents)
+                
     class Meta:
         verbose_name_plural = ('異常履歴')
 

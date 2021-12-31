@@ -15,7 +15,15 @@ class TroubleHistoryView(ListView):
     model = Trouble_History
     paginate_by = 10
 
-    
+    for history in Trouble_History.objects.all():
+        if history.Signal_plc_to_sys == True:
+            date1 = history.Trouble_recovery_time    
+            date2 = history.Trouble_occurrence_time
+            loss_time = date1-date2
+            print(loss_time)
+            history.Trouble_loss_time = loss_time
+            #history.save()
+
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
 
@@ -30,8 +38,9 @@ class TroubleHistoryView(ListView):
         if q_word:
             object_list = Trouble_History.objects.filter(\
                     Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word)|\
-                        Q(machine_model__contains=q_word)|Q(machine_model__icontains=q_word)|\
+                        Q(Machine_model__contains=q_word)|Q(Machine_model__icontains=q_word)|\
                             Q(Customer_machine_unit_no__contains=q_word)|Q(Customer_machine_unit_no__icontains=q_word)|\
+                                Q(Trouble_no__contains=q_word)|Q(Trouble_no__icontains=q_word)|\
                                 Q(Trouble_contents__contains=q_word)|Q(Trouble_contents__icontains=q_word))
         elif q_date:
             object_list = Trouble_History.objects.filter(\
