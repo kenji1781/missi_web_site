@@ -118,7 +118,7 @@ class Trouble_History(models.Model):
 
 #品種名
 class Recipe_Name(models.Model):
-    Recipe_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True,unique=True)
+    Recipe_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True)
     Racipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
     Racipe_name_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Racipe_name_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
@@ -131,12 +131,34 @@ class Recipe_Name(models.Model):
 
     class Meta:
         verbose_name_plural = ('レシピ情報')
+        constraints = [
+            models.UniqueConstraint(fields=['Recipe_id','Racipe_name'],name='unique_recipe_name'),
+        ]
 
+class Setting_Item(models.Model):
+    Setting_item_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True)
+    Setting_item_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
+    Setting_item_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Setting_item_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 設定項目ID : ' + str(self.Setting_item_id) + \
+            ' 設定項目 : ' + str(self.Setting_item_name) + \
+        '>'
+
+    class Meta:
+        verbose_name_plural = ('設定項目')
+        constraints = [
+            models.UniqueConstraint(fields=['Setting_item_id','Setting_item_name'],name='unique_setting_item'),
+        ]
 
 #レシピ
 class Customer_Machine_Recipe(models.Model):
-    Customer_racipe_name = ForeignKey(Recipe_Name,on_delete=CASCADE,verbose_name='品種')
-    Customer_machine = ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',default=0,blank=True,null=True)
+    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
+    Recipe_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True)
+    Racipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
     Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
     Customer_recipe_time0 = models.FloatField(verbose_name='運転時間設定0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Customer_recipe_time1 = models.FloatField(verbose_name='運転時間設定1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -155,6 +177,26 @@ class Customer_Machine_Recipe(models.Model):
     Customer_recipe_temp9 = models.FloatField(verbose_name='温度設定9',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Customer_recipe_temp10 = models.FloatField(verbose_name='温度設定10',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Customer_recipe_temp11 = models.FloatField(verbose_name='温度設定11',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_setting_item_id0 = models.IntegerField(verbose_name='設定ID0',blank=True,null=True)
+    Customer_recipe_setting_item_id1 = models.IntegerField(verbose_name='設定ID1',blank=True,null=True)
+    Customer_recipe_setting_item_id2 = models.IntegerField(verbose_name='設定ID2',blank=True,null=True)
+    Customer_recipe_setting_item_id3 = models.IntegerField(verbose_name='設定ID3',blank=True,null=True)
+    Customer_recipe_setting_item_id4 = models.IntegerField(verbose_name='設定ID4',blank=True,null=True)
+    Customer_recipe_setting_item_id5 = models.IntegerField(verbose_name='設定ID5',blank=True,null=True)
+    Customer_recipe_setting_item_id6 = models.IntegerField(verbose_name='設定ID6',blank=True,null=True)
+    Customer_recipe_setting_item_id7 = models.IntegerField(verbose_name='設定ID7',blank=True,null=True)
+    Customer_recipe_setting_item_id8 = models.IntegerField(verbose_name='設定ID8',blank=True,null=True)
+    Customer_recipe_setting_item_id9 = models.IntegerField(verbose_name='設定ID9',blank=True,null=True)
+    Customer_recipe_setting_item_id10 = models.IntegerField(verbose_name='設定ID10',blank=True,null=True)
+    Customer_recipe_setting_item_id11 = models.IntegerField(verbose_name='設定ID11',blank=True,null=True)
+    Customer_recipe_setting_item_id12 = models.IntegerField(verbose_name='設定ID12',blank=True,null=True)
+    Customer_recipe_setting_item_id13 = models.IntegerField(verbose_name='設定ID13',blank=True,null=True)
+    Customer_recipe_setting_item_id14 = models.IntegerField(verbose_name='設定ID14',blank=True,null=True)
+    Customer_recipe_setting_item_id15 = models.IntegerField(verbose_name='設定ID15',blank=True,null=True)
+    Customer_recipe_setting_item_id16 = models.IntegerField(verbose_name='設定ID16',blank=True,null=True)
+    Customer_recipe_setting_item_id17 = models.IntegerField(verbose_name='設定ID17',blank=True,null=True)
+    Customer_recipe_setting_item_id18 = models.IntegerField(verbose_name='設定ID18',blank=True,null=True)
+    Customer_recipe_setting_item_id19 = models.IntegerField(verbose_name='設定ID19',blank=True,null=True)
     Customer_recipe_conf0 = models.CharField(verbose_name='設定0',max_length=20,blank=True,null=True)
     Customer_recipe_conf1 = models.CharField(verbose_name='設定1',max_length=20,blank=True,null=True)
     Customer_recipe_conf2 = models.CharField(verbose_name='設定2',max_length=20,blank=True,null=True)
@@ -175,13 +217,37 @@ class Customer_Machine_Recipe(models.Model):
     Customer_recipe_conf17 = models.CharField(verbose_name='設定17',max_length=20,blank=True,null=True)
     Customer_recipe_conf18 = models.CharField(verbose_name='設定18',max_length=20,blank=True,null=True)
     Customer_recipe_conf19 = models.CharField(verbose_name='設定19',max_length=20,blank=True,null=True)
+    Customer_recipe_set_value0 = models.FloatField(verbose_name='設定値0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value1 = models.FloatField(verbose_name='設定値1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value2 = models.FloatField(verbose_name='設定値2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value3 = models.FloatField(verbose_name='設定値3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value4 = models.FloatField(verbose_name='設定値4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value5 = models.FloatField(verbose_name='設定値5',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value6 = models.FloatField(verbose_name='設定値6',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value7 = models.FloatField(verbose_name='設定値7',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value8 = models.FloatField(verbose_name='設定値8',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value9 = models.FloatField(verbose_name='設定値9',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value10 = models.FloatField(verbose_name='設定値10',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value11 = models.FloatField(verbose_name='設定値11',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value12 = models.FloatField(verbose_name='設定値12',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value13 = models.FloatField(verbose_name='設定値13',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value14 = models.FloatField(verbose_name='設定値14',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value15 = models.FloatField(verbose_name='設定値15',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value16 = models.FloatField(verbose_name='設定値16',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value17 = models.FloatField(verbose_name='設定値17',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value18 = models.FloatField(verbose_name='設定値18',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Customer_recipe_set_value19 = models.FloatField(verbose_name='設定値19',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+    Signal_sys_to_plc = models.BooleanField(default=False)
+    Signal_plc_to_sys = models.BooleanField(default=False)
+
+
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 品種No : ' + str(self.Customer_recipe_no) + \
-            ' 品種名 : ' + str(self.Customer_racipe_name)+ \
+		' 品種No : ' + str(self.Recipe_id) + \
+            ' 品種名 : ' + str(self.Recipe_name)+ \
         '>'
 
     class Meta:
@@ -216,6 +282,10 @@ class Machine_Drive_History(models.Model):
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
     Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+    Signal_sys_to_plc = models.BooleanField(default=False)
+    Signal_plc_to_sys = models.BooleanField(default=False)
+
+
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
