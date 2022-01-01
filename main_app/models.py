@@ -99,9 +99,9 @@ class Trouble_Contents(models.Model):
 #異常履歴 PLCより装置ID・異常No・発生時刻・復帰時刻を書き込む。
 #装置ID・異常Noを基に型式・号機・異常項目を照合する。
 class Trouble_History(models.Model):
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',default=0,blank=True,null=True)
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
-    Trouble_no = models.IntegerField(verbose_name='異常No',blank=True,null=True)
+    Trouble_no = models.IntegerField(verbose_name='異常No',validators=[MinValueValidator(0)],blank=True,null=True)
     Trouble_contents = models.CharField(verbose_name='異常項目',max_length=20,blank=True,null=True)
     Trouble_occurrence_time = models.DateTimeField(verbose_name='発生時刻',blank=True,null=True)   
     Trouble_recovery_time = models.DateTimeField(verbose_name='復帰時刻',blank=True,null=True)
@@ -118,7 +118,7 @@ class Trouble_History(models.Model):
 
 #品種名
 class Recipe_Name(models.Model):
-    Recipe_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True)
+    Recipe_id = models.IntegerField(verbose_name='品種ID',validators=[MinValueValidator(0)],default=1,blank=True,null=True)
     Racipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
     Racipe_name_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Racipe_name_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
@@ -136,8 +136,8 @@ class Recipe_Name(models.Model):
         ]
 
 class Setting_Item(models.Model):
-    Setting_item_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True)
-    Setting_item_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
+    Setting_item_id = models.IntegerField(verbose_name='品種ID',validators=[MinValueValidator(0)],blank=True,null=True,unique=True)
+    Setting_item_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True,unique=True)
     Setting_item_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Setting_item_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
@@ -149,9 +149,7 @@ class Setting_Item(models.Model):
 
     class Meta:
         verbose_name_plural = ('設定項目')
-        constraints = [
-            models.UniqueConstraint(fields=['Setting_item_id','Setting_item_name'],name='unique_setting_item'),
-        ]
+        
 
 #レシピ
 class Customer_Machine_Recipe(models.Model):

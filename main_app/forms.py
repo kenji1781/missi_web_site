@@ -4,7 +4,7 @@ from django.forms import fields, models,widgets
 from .models import Customer_Infomation,Equipment_Category,Machine_Model,Trouble_Contents,\
     Unit_Price_Electric,Unit_Price_Steam,Unit_Price_Gas,Unit_Price_Water,Solvent_Name,Solvent_Manufacturer,Solvent_Conf,\
         Customer_Machine,Trouble_History,Customer_Machine_Recipe,Machine_Drive_History,\
-            Cost_Electric,Cost_Steam,Cost_Gas,Cost_Water,Cost_Solvent,Cost_Total
+            Cost_Electric,Cost_Steam,Cost_Gas,Cost_Water,Cost_Solvent,Cost_Total,Setting_Item
 
 
 class DateInput(forms.DateInput):
@@ -666,3 +666,59 @@ class TroubleHistoryUpdateForm(forms.ModelForm):
                 self.fields['Trouble_recovery_time'].widgets.attrs["class"] = "form-control"
                 
                 #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
+
+
+######################################################################################################
+class SettingItemCreateForm(forms.ModelForm):
+    class Meta:
+        model = Setting_Item
+        widgets = {
+            'Setting_item_input_date':DateInput(),
+        }
+        #fields = ('Equipment_category')
+        fields = ('Setting_item_id','Setting_item_name','Setting_item_input_date','Setting_item_memo')
+        labels = {
+                    'Setting_item_id':'品種ID',
+                    'Setting_item_name':'品種名',
+                    'Setting_item_input_date':'登録日',
+                    'Setting_item_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Setting_item_id'].widgets.attrs["class"] = "form-control"
+                self.fields['Setting_item_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Setting_item_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Setting_item_memo'].widgets.attrs["class"] = "form-control"
+                                
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
+
+
+class SettingItemUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Setting_Item
+        widgets = {
+            'Setting_item_input_date':DateInput(),
+        }
+        #fields = ('Equipment_category')
+        fields = ('Setting_item_id','Setting_item_name','Setting_item_input_date','Setting_item_memo')
+        labels = {
+                    'Setting_item_id':'品種ID',
+                    'Setting_item_name':'品種名',
+                    'Setting_item_input_date':'登録日',
+                    'Setting_item_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Setting_item_id'].widgets.attrs["class"] = "form-control"
+                self.fields['Setting_item_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Setting_item_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Setting_item_memo'].widgets.attrs["class"] = "form-control"
+                                
+                #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
+
+
+

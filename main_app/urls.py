@@ -14,6 +14,7 @@ from .views.customer_machine import CustomerMachineView,CustomerMachineCreateVie
 from .views.customer_infomation import CustomerInfomationView,CustomerInfomationCreateView,CustomerInfomationUpdateView,CustomerInfomationDeleteView
 from .views.trouble_contents import TroubleContentsView,TroubleContentsCreateView,TroubleContentsUpdateView,TroubleContentsDeleteView
 from .views.trouble_history import TroubleHistoryView,TroubleHistoryCreateView,TroubleHistoryUpdateView,TroubleHistoryDeleteView
+from .views.setting_item import SettingItemView,SettingItemCreateView,SettingItemUpdateView,SettingItemDeleteView
 
 
 app_name = 'main_app'
@@ -72,6 +73,10 @@ urlpatterns = [
     path('trouble_history/create/',TroubleHistoryCreateView.as_view(),name="trouble_history_create"),   #異常履歴
     path('trouble_history/update/<int:pk>',TroubleHistoryUpdateView.as_view(),name="trouble_history_update"),   #異常履歴
     path('trouble_history/delete/<int:pk>',TroubleHistoryDeleteView.as_view(),name="trouble_history_delete"),   #異常履歴
+    path('setting_item/',SettingItemView.as_view(),name="setting_item"),        #品種
+    path('setting_item/create/',SettingItemCreateView.as_view(),name="setting_item_create"),   #品種
+    path('setting_item/update/<int:pk>',SettingItemUpdateView.as_view(),name="setting_item_update"),   #品種
+    path('setting_item/delete/<int:pk>',SettingItemDeleteView.as_view(),name="setting_item_delete"),   #品種
 
     
     
