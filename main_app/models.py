@@ -156,7 +156,7 @@ class Customer_Machine_Recipe(models.Model):
     Customer_machine_id = models.IntegerField(verbose_name='装置ID',default=0,blank=True,null=True)
     Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
     Recipe_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True)
-    Racipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
+    Recipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
     Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
     Customer_recipe_time0 = models.FloatField(verbose_name='運転時間設定0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Customer_recipe_time1 = models.FloatField(verbose_name='運転時間設定1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)

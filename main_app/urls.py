@@ -15,6 +15,7 @@ from .views.customer_infomation import CustomerInfomationView,CustomerInfomation
 from .views.trouble_contents import TroubleContentsView,TroubleContentsCreateView,TroubleContentsUpdateView,TroubleContentsDeleteView
 from .views.trouble_history import TroubleHistoryView,TroubleHistoryCreateView,TroubleHistoryUpdateView,TroubleHistoryDeleteView
 from .views.setting_item import SettingItemView,SettingItemCreateView,SettingItemUpdateView,SettingItemDeleteView
+from .views.customer_machine_recipe import CustomerMachineRecipeView,CustomerMachineRecipeCreateView,CustomerMachineRecipeUpdateView,CustomerMachineRecipeDeleteView
 
 
 app_name = 'main_app'
@@ -77,6 +78,10 @@ urlpatterns = [
     path('setting_item/create/',SettingItemCreateView.as_view(),name="setting_item_create"),   #品種
     path('setting_item/update/<int:pk>',SettingItemUpdateView.as_view(),name="setting_item_update"),   #品種
     path('setting_item/delete/<int:pk>',SettingItemDeleteView.as_view(),name="setting_item_delete"),   #品種
+    path('customer_machine_recipe/',CustomerMachineRecipeView.as_view(),name="customer_machine_recipe"),        #レシピ
+    path('customer_machine_recipe/create/',CustomerMachineRecipeCreateView.as_view(),name="customer_machine_recipe_create"),   #レシピ
+    path('customer_machine_recipe/update/<int:pk>',CustomerMachineRecipeUpdateView.as_view(),name="customer_machine_recipe_update"),   #レシピ
+    path('customer_machine_recipe/delete/<int:pk>',CustomerMachineRecipeDeleteView.as_view(),name="customer_machine_recipe_delete"),   #レシピ
 
     
     

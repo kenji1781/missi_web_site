@@ -720,5 +720,296 @@ class SettingItemUpdateForm(forms.ModelForm):
                                 
                 #self.fields['Unit_price_gas_memo'].widgets.attrs["class"] = "form-control"
 
+######################################################################################################
+Customer__recipe_fields = (
+                    'Customer_machine_id',
+                    'Machine_model',
+                    'Recipe_id',
+                    'Recipe_name',
+                    'Customer_recipe_no',
+                    'Customer_recipe_time0',
+                    'Customer_recipe_time1',
+                    'Customer_recipe_time2',
+                    'Customer_recipe_time3',
+                    'Customer_recipe_time4',
+                    'Customer_recipe_temp0',
+                    'Customer_recipe_temp1',
+                    'Customer_recipe_temp2',
+                    'Customer_recipe_temp3',
+                    'Customer_recipe_temp4',
+                    'Customer_recipe_temp5',
+                    'Customer_recipe_temp6',
+                    'Customer_recipe_temp7',
+                    'Customer_recipe_temp8',
+                    'Customer_recipe_temp9',
+                    'Customer_recipe_temp10',
+                    'Customer_recipe_temp11',
+                    'Customer_recipe_conf0',
+                    'Customer_recipe_conf1',
+                    'Customer_recipe_conf2',
+                    'Customer_recipe_conf3',
+                    'Customer_recipe_conf4',
+                    'Customer_recipe_conf5',
+                    'Customer_recipe_conf6',
+                    'Customer_recipe_conf7',
+                    'Customer_recipe_conf8',
+                    'Customer_recipe_conf9',
+                    'Customer_recipe_conf10',
+                    'Customer_recipe_conf11',
+                    'Customer_recipe_conf12',
+                    'Customer_recipe_conf13',
+                    'Customer_recipe_conf14',
+                    'Customer_recipe_conf15',
+                    'Customer_recipe_conf16',
+                    'Customer_recipe_conf17',
+                    'Customer_recipe_conf18',
+                    'Customer_recipe_conf19',
+                    'Customer_recipe_set_value0',
+                    'Customer_recipe_set_value1',
+                    'Customer_recipe_set_value2',
+                    'Customer_recipe_set_value3',
+                    'Customer_recipe_set_value4',
+                    'Customer_recipe_set_value5',
+                    'Customer_recipe_set_value6',
+                    'Customer_recipe_set_value7',
+                    'Customer_recipe_set_value8',
+                    'Customer_recipe_set_value9',
+                    'Customer_recipe_set_value10',
+                    'Customer_recipe_set_value11',
+                    'Customer_recipe_set_value12',
+                    'Customer_recipe_set_value13',
+                    'Customer_recipe_set_value14',
+                    'Customer_recipe_set_value15',
+                    'Customer_recipe_set_value16',
+                    'Customer_recipe_set_value17',
+                    'Customer_recipe_set_value18',
+                    'Customer_recipe_set_value19',
+                    'Customer_machine_input_date',
+                    'Customer_machine_memo')
+
+Customer__recipe_labels = {
+                    'Customer_machine_id':'装置ID',
+                    'Machine_model':'装置',
+                    'Recipe_id':'品種ID',
+                    'Recipe_name':'品種名',
+                    'Customer_recipe_no':'品種No',
+                    'Customer_recipe_time0':'運転時間設定0',
+                    'Customer_recipe_time1':'運転時間設定1',
+                    'Customer_recipe_time2':'運転時間設定2',
+                    'Customer_recipe_time3':'運転時間設定3',
+                    'Customer_recipe_time4':'運転時間設定4',
+                    'Customer_recipe_temp0':'温度設定0',
+                    'Customer_recipe_temp1':'温度設定1',
+                    'Customer_recipe_temp2':'温度設定2',
+                    'Customer_recipe_temp3':'温度設定3',
+                    'Customer_recipe_temp4':'温度設定4',
+                    'Customer_recipe_temp5':'温度設定5',
+                    'Customer_recipe_temp6':'温度設定6',
+                    'Customer_recipe_temp7':'温度設定7',
+                    'Customer_recipe_temp8':'温度設定8',
+                    'Customer_recipe_temp9':'温度設定9',
+                    'Customer_recipe_temp10':'温度設定10',
+                    'Customer_recipe_temp11':'温度設定11',
+                    'Customer_recipe_conf0':'設定0',
+                    'Customer_recipe_conf1':'設定1',
+                    'Customer_recipe_conf2':'設定2',
+                    'Customer_recipe_conf3':'設定3',
+                    'Customer_recipe_conf4':'設定4',
+                    'Customer_recipe_conf5':'設定5',
+                    'Customer_recipe_conf6':'設定6',
+                    'Customer_recipe_conf7':'設定7',
+                    'Customer_recipe_conf8':'設定8',
+                    'Customer_recipe_conf9':'設定9',
+                    'Customer_recipe_conf10':'設定10',
+                    'Customer_recipe_conf11':'設定11',
+                    'Customer_recipe_conf12':'設定12',
+                    'Customer_recipe_conf13':'設定13',
+                    'Customer_recipe_conf14':'設定14',
+                    'Customer_recipe_conf15':'設定15',
+                    'Customer_recipe_conf16':'設定16',
+                    'Customer_recipe_conf17':'設定17',
+                    'Customer_recipe_conf18':'設定18',
+                    'Customer_recipe_conf19':'設定19',
+                    'Customer_recipe_set_value0':'設定値0',
+                    'Customer_recipe_set_value1':'設定値1',
+                    'Customer_recipe_set_value2':'設定値2',
+                    'Customer_recipe_set_value3':'設定値3',
+                    'Customer_recipe_set_value4':'設定値4',
+                    'Customer_recipe_set_value5':'設定値5',
+                    'Customer_recipe_set_value6':'設定値6',
+                    'Customer_recipe_set_value7':'設定値7',
+                    'Customer_recipe_set_value8':'設定値8',
+                    'Customer_recipe_set_value9':'設定値9',
+                    'Customer_recipe_set_value10':'設定値10',
+                    'Customer_recipe_set_value11':'設定値11',
+                    'Customer_recipe_set_value12':'設定値12',
+                    'Customer_recipe_set_value13':'設定値13',
+                    'Customer_recipe_set_value14':'設定値14',
+                    'Customer_recipe_set_value15':'設定値15',
+                    'Customer_recipe_set_value16':'設定値16',
+                    'Customer_recipe_set_value17':'設定値17',
+                    'Customer_recipe_set_value18':'設定値18',
+                    'Customer_recipe_set_value19':'設定値19',
+                    'Customer_machine_input_date':'登録日',
+                    'Customer_machine_memo':'メモ',
+                }
 
 
+class CustomerMachineRecipeCreateForm(forms.ModelForm):
+    class Meta:
+        model = Customer_Machine_Recipe
+        widgets = {
+            'Customer_machine_input_date':DateInput(),
+        }
+        #fields = ('Equipment_category')
+        
+        fields = Customer__recipe_fields
+        labels = Customer__recipe_labels
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Customer_machine_id'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Recipe_id'].widgets.attrs["class"] = "form-control"
+                self.fields['Recipe_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_no'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_time0'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_time1'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_time2'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_time3'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_time4'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp0'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp1'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp2'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp3'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp4'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp5'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp6'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp7'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp8'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp9'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp10'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp11'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf0'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf1'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf2'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf3'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf4'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf5'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf6'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf7'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf8'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf9'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf10'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf11'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf12'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf13'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf14'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf15'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf16'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf17'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf18'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf19'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value0'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value1'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value2'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value3'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value4'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value5'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value6'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value7'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value8'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value9'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value10'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value11'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value12'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value13'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value14'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value15'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value16'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value17'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value18'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value19'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_memo'].widgets.attrs["class"] = "form-control"
+        
+
+ 
+class CustomerMachineRecipeUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Customer_Machine_Recipe
+        widgets = {
+            'Customer_machine_input_date':DateInput(),
+        }
+        
+        fields = Customer__recipe_fields
+        labels = Customer__recipe_labels
+       
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Customer_machine_id'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Recipe_id'].widgets.attrs["class"] = "form-control"
+                self.fields['Recipe_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_no'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_time0'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_time1'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_time2'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_time3'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_time4'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp0'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp1'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp2'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp3'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp4'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp5'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp6'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp7'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp8'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp9'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp10'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_temp11'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf0'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf1'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf2'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf3'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf4'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf5'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf6'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf7'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf8'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf9'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf10'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf11'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf12'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf13'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf14'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf15'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf16'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf17'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf18'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_conf19'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value0'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value1'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value2'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value3'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value4'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value5'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value6'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value7'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value8'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value9'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value10'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value11'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value12'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value13'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value14'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value15'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value16'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value17'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value18'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_recipe_set_value19'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_memo'].widgets.attrs["class"] = "form-control"
