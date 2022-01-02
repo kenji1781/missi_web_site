@@ -35,6 +35,7 @@
                                       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                         <li><a class="dropdown-item" href="{% url 'main_app:customer_machine' %}">装置</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:setting_item' %}">品種名登録</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:customer_machine_recipe' %}">レシピ</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:solvent_name' %}">溶剤名</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:solvent_manufacturer' %}">溶剤メーカー</a></li>
                                         <li><hr class="dropdown-divider"></li>
@@ -56,7 +57,7 @@
                                         　モニター
                                       </a>
                                       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">レシピ</a></li>
+                                        
                                         <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">稼働履歴</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:trouble_history' %}">異常履歴</a></li>
                                         <li><hr class="dropdown-divider"></li>
