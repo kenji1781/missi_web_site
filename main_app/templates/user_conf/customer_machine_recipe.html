@@ -9,8 +9,12 @@ Data Monitoring System {{ title }}
     <br>
     <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
             <p class="h5 mt-4">{{msg|safe}}</p>
-        <br>
-</div>    
+    <br>
+</div>
+<style>
+    th{white-space: nowrap;}
+    td{white-space: nowrap;}
+</style>    
         
 {% endblock %}
 {% block content %}
@@ -28,70 +32,70 @@ Data Monitoring System {{ title }}
     <table class="table" style="font-size : 12px;">
         <tr>
        
-            <th nowrap>装置ID</th>
-            <th nowrap>装置</th>
-            <th nowrap>品種ID</th>
-            <th nowrap>品種名</th>
-            <th nowrap>品種No</th>
-            <th nowrap>時間0</th>
-            <th nowrap>時間1</th>
-            <th nowrap>時間2</th>
-            <th nowrap>時間3</th>
-            <th nowrap>時間4</th>
-            <th nowrap>温度0</th>
-            <th nowrap>温度1</th>
-            <th nowrap>温度2</th>
-            <th nowrap>温度3</th>
-            <th nowrap>温度4</th>
-            <th nowrap>温度5</th>
-            <th nowrap>温度6</th>
-            <th nowrap>温度7</th>
-            <th nowrap>温度8</th>
-            <th nowrap>温度9</th>
-            <th nowrap>温度10</th>
-            <th nowrap>温度11</th>
-            <th nowrap>設定0</th>
-            <th nowrap>設定1</th>
-            <th nowrap>設定2</th>
-            <th nowrap>設定3</th>
-            <th nowrap>設定4</th>
-            <th nowrap>設定5</th>
-            <th nowrap>設定6</th>
-            <th nowrap>設定7</th>
-            <th nowrap>設定8</th>
-            <th nowrap>設定9</th>
-            <th nowrap>設定10</th>
-            <th nowrap>設定11</th>
-            <th nowrap>設定12</th>
-            <th nowrap>設定13</th>
-            <th nowrap>設定14</th>
-            <th nowrap>設定15</th>
-            <th nowrap>設定16</th>
-            <th nowrap>設定17</th>
-            <th nowrap>設定18</th>
-            <th nowrap>設定19</th>
-            <th nowrap>設定値0</th>
-            <th nowrap>設定値1</th>
-            <th nowrap>設定値2</th>
-            <th nowrap>設定値3</th>
-            <th nowrap>設定値4</th>
-            <th nowrap>設定値5</th>
-            <th nowrap>設定値6</th>
-            <th nowrap>設定値7</th>
-            <th nowrap>設定値8</th>
-            <th nowrap>設定値9</th>
-            <th nowrap>設定値10</th>
-            <th nowrap>設定値11</th>
-            <th nowrap>設定値12</th>
-            <th nowrap>設定値13</th>
-            <th nowrap>設定値14</th>
-            <th nowrap>設定値15</th>
-            <th nowrap>設定値16</th>
-            <th nowrap>設定値17</th>
-            <th nowrap>設定値18</th>
-            <th nowrap>設定値19</th>
-            <th nowrap>登録日</th>
-            <th nowrap>メモ</th>
+            <th>装置ID</th>
+            <th>装置</th>
+            <th>品種ID</th>
+            <th>品種名</th>
+            <th>品種No</th>
+            <th>時間0</th>
+            <th>時間1</th>
+            <th>時間2</th>
+            <th>時間3</th>
+            <th>時間4</th>
+            <th>温度0</th>
+            <th>温度1</th>
+            <th>温度2</th>
+            <th>温度3</th>
+            <th>温度4</th>
+            <th>温度5</th>
+            <th>温度6</th>
+            <th>温度7</th>
+            <th>温度8</th>
+            <th>温度9</th>
+            <th>温度10</th>
+            <th>温度11</th>
+            <th>設定0</th>
+            <th>設定1</th>
+            <th>設定2</th>
+            <th>設定3</th>
+            <th>設定4</th>
+            <th>設定5</th>
+            <th>設定6</th>
+            <th>設定7</th>
+            <th>設定8</th>
+            <th>設定9</th>
+            <th>設定10</th>
+            <th>設定11</th>
+            <th>設定12</th>
+            <th>設定13</th>
+            <th>設定14</th>
+            <th>設定15</th>
+            <th>設定16</th>
+            <th>設定17</th>
+            <th>設定18</th>
+            <th>設定19</th>
+            <th>設定値0</th>
+            <th>設定値1</th>
+            <th>設定値2</th>
+            <th>設定値3</th>
+            <th>設定値4</th>
+            <th>設定値5</th>
+            <th>設定値6</th>
+            <th>設定値7</th>
+            <th>設定値8</th>
+            <th>設定値9</th>
+            <th>設定値10</th>
+            <th>設定値11</th>
+            <th>設定値12</th>
+            <th>設定値13</th>
+            <th>設定値14</th>
+            <th>設定値15</th>
+            <th>設定値16</th>
+            <th>設定値17</th>
+            <th>設定値18</th>
+            <th>設定値19</th>
+            <th>登録日</th>
+            <th>メモ</th>
        
         </tr>
 <!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->

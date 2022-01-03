@@ -255,6 +255,7 @@ class Customer_Machine_Recipe(models.Model):
 #装置稼働履歴
 class Machine_Drive_History(models.Model):
     Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
     Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
     Machine_drive_time0 = models.IntegerField(verbose_name='運転時間0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_time1 = models.IntegerField(verbose_name='運転時間1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -417,6 +418,7 @@ class Cost_Electric(models.Model):
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
     Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+  
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
