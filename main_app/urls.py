@@ -16,6 +16,7 @@ from .views.trouble_contents import TroubleContentsView,TroubleContentsCreateVie
 from .views.trouble_history import TroubleHistoryView,TroubleHistoryCreateView,TroubleHistoryUpdateView,TroubleHistoryDeleteView
 from .views.setting_item import SettingItemView,SettingItemCreateView,SettingItemUpdateView,SettingItemDeleteView
 from .views.customer_machine_recipe import CustomerMachineRecipeView,CustomerMachineRecipeCreateView,CustomerMachineRecipeUpdateView,CustomerMachineRecipeDeleteView
+from .views.machine_drive_history import MachineDriveHistoryView,MachineDriveHistoryCreateView,MachineDriveHistoryUpdateView,MachineDriveHistoryDeleteView
 
 
 app_name = 'main_app'
@@ -82,6 +83,10 @@ urlpatterns = [
     path('customer_machine_recipe/create/',CustomerMachineRecipeCreateView.as_view(),name="customer_machine_recipe_create"),   #レシピ
     path('customer_machine_recipe/update/<int:pk>',CustomerMachineRecipeUpdateView.as_view(),name="customer_machine_recipe_update"),   #レシピ
     path('customer_machine_recipe/delete/<int:pk>',CustomerMachineRecipeDeleteView.as_view(),name="customer_machine_recipe_delete"),   #レシピ
+    path('machine_drive_history/',MachineDriveHistoryView.as_view(),name="machine_drive_history"),        #稼働履歴
+    path('machine_drive_history/create/',MachineDriveHistoryCreateView.as_view(),name="machine_drive_history_create"),   ##稼働履歴
+    path('machine_drive_history/update/<int:pk>',MachineDriveHistoryUpdateView.as_view(),name="machine_drive_history_update"),   ##稼働履歴
+    path('machine_drive_history/delete/<int:pk>',MachineDriveHistoryDeleteView.as_view(),name="machine_drive_history_delete"),   ##稼働履歴
 
     
     
