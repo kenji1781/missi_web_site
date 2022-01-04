@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Data Monitoring System {{ title }}
+{% endblock %}
+{% block header %}
+<div style="padding: 20px">
+    <br>
+    
+    <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
+            <p class="h5 mt-4">{{msg|safe}}</p>
+
+        <br>
+</div>    
+        
+{% endblock %}
+{% block content %}
+<div style="padding: 20px">
+    <form action="" method="POST">
+        {{form.as_p}}
+        <button type="submit" class="btn btn-secondary">登録</button>{% csrf_token %}
+        <a href="{% url 'main_app:machine_drive_history' %}" class="btn btn-secondary">戻る</a>
+    </form>
+    
+</div>
+{% endblock %}
