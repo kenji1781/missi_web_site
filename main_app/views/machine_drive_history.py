@@ -15,18 +15,18 @@ class MachineDriveHistoryView(ListView):
     model = Machine_Drive_History
     paginate_by = 10
 
-    for history_i in Machine_Drive_History.objects.all():
-        for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
-            if (history_i.Signal_plc_to_sys == True)or\
-                    ((history_i.Machine_model==None) and (history_i.Customer_machine_id != None))or\
-                        ((history_i.Customer_machine_id == c_machine.Customer_machine_id)and(history_i.Machine_model != c_machine.Machine_model)):
-                for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
-                    if history_i.Customer_machine_id == c_machine.Customer_machine_id:
-                        history_i.Machine_model = str(c_machine.Machine_model)+ ': #' +str(c_machine.Customer_machine_unit_no)                   
+    #for history_i in Machine_Drive_History.objects.all():
+    #    for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
+    #        if (history_i.Signal_plc_to_sys == True)or\
+    #                ((history_i.Machine_model==None) and (history_i.Customer_machine_id != None))or\
+    #                    ((history_i.Customer_machine_id == c_machine.Customer_machine_id)and(history_i.Machine_model != c_machine.Machine_model)):
+    #            for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
+    #                if history_i.Customer_machine_id == c_machine.Customer_machine_id:
+    #                    history_i.Machine_model = str(c_machine.Machine_model)+ ': #' +str(c_machine.Customer_machine_unit_no)                   
                                                
                                         
-            history_i.Signal_plc_to_sys = False
-            history_i.save()
+    #        history_i.Signal_plc_to_sys = False
+    #        history_i.save()
 
 
 
