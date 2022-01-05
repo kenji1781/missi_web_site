@@ -60,17 +60,17 @@ class CustomerMachineRecipeView(ListView):
         else:
             object_list = Customer_Machine_Recipe.objects.order_by('-Customer_machine_input_date')
      
-        #for recipe_i in object_list:
-         #       if (recipe_i.Signal_plc_to_sys == True)or((recipe_i.Machine_model==None) and (recipe_i.Customer_machine_id != None)):
+        for recipe_i in object_list:
+                if (recipe_i.Signal_plc_to_sys == True)or((recipe_i.Machine_model==None) and (recipe_i.Customer_machine_id != None)):
                     
                     
-          #          for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
-           #             if recipe_i.Customer_machine_id == c_machine.Customer_machine_id:
-            #                recipe_i.Machine_model = str(c_machine.Machine_model)+ ': #' +str(c_machine.Customer_machine_unit_no)                   
+                    for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
+                        if recipe_i.Customer_machine_id == c_machine.Customer_machine_id:
+                            recipe_i.Machine_model = str(c_machine.Machine_model)+ ': #' +str(c_machine.Customer_machine_unit_no)                   
                                                
                                         
-             #       recipe_i.Signal_plc_to_sys = False
-              #      recipe_i.save()
+                    recipe_i.Signal_plc_to_sys = False
+                    recipe_i.save()
 
 
         
