@@ -93,7 +93,7 @@ class Trouble_Contents(models.Model):
     class Meta:
         verbose_name_plural = ('異常内容')
         constraints = [
-            models.UniqueConstraint(fields=['Machine_model','Trouble_no','Trouble_contents'],name='unique_trouble_no'),
+            models.UniqueConstraint(fields=['Machine_model','Trouble_no'],name='unique_trouble_no'),
         ]
 
 #異常履歴 PLCより装置ID・異常No・発生時刻・復帰時刻を書き込む。
