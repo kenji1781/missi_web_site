@@ -44,18 +44,21 @@ class TroubleHistoryView(ListView):
             object_list = Trouble_History.objects.order_by('-Trouble_occurrence_time')
 
             for history in object_list:
-                if history.Signal_plc_to_sys == True:
+                if (history.Signal_plc_to_sys == True)or((history.Trouble_occurrence_time != None)and(history.Trouble_recovery_time != None)):
                     date1 = history.Trouble_recovery_time    
                     date2 = history.Trouble_occurrence_time
                     loss_time = date1-date2
                     history.time_calc = loss_time.total_seconds()
                     history.Trouble_loss_time = str(loss_time)
-                    
+                
+                if (history.Signal_plc_to_sys == True)or((history.Customer_machine_id != None)and(history.Machine_model == None)):
                     for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
-                        for t_contents in Trouble_Contents.objects.select_related('Machine_model').all():
-                            if history.Customer_machine_id == c_machine.Customer_machine_id:
+                        #for t_contents in Trouble_Contents.objects.select_related('Machine_model').all():
+                        if history.Customer_machine_id == history.Customer_machine_id:
                                 history.Machine_model = str(c_machine.Machine_model)+ ': #' +str(c_machine.Customer_machine_unit_no)                   
-                            if history.Trouble_no == t_contents.Trouble_no:
+                if (history.Signal_plc_to_sys == True)or((history.Trouble_no != None)and(history.Trouble_contents == None)):
+                    for t_contents in Trouble_Contents.objects.select_related('Machine_model').all():
+                         if history.Trouble_no == t_contents.Trouble_no:
                                 history.Trouble_contents = t_contents.Trouble_contents                   
                                         
                     history.Signal_plc_to_sys = False
