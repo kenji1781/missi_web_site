@@ -1,3 +1,4 @@
-マイグレーションする際は、view（customer_machine_recipe.pyとmachine_drive_history.py）
+１・マイグレーションする際は、view（customer_machine_recipe.pyとmachine_drive_history.py）
 にあるfor文をコメントアウトすること。しないとdjango.db.utils.OperationalError: no such table
-エラーとなる。
+エラーとなる。trouble_historyにもfor文使っているので怪しい。
+
