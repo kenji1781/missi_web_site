@@ -254,6 +254,7 @@ class Customer_Machine_Recipe(models.Model):
 
 #装置稼働履歴
 class Machine_Drive_History(models.Model):
+    His_id = models.AutoField(verbose_name='履歴ID',primary_key=True)
     Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
     Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
@@ -425,6 +426,7 @@ class Solvent_Conf(models.Model):
 
 #電気コスト
 class Cost_Electric(models.Model):
+    Cost_id = models.IntegerField(verbose_name='電力コストID',default=0,blank=True,null=True)
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Unit_price_electric = ForeignKey(Unit_Price_Electric,on_delete=CASCADE,verbose_name='単価')
     Cost_electric = models.FloatField(verbose_name='電力費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -451,6 +453,7 @@ class Cost_Electric(models.Model):
 
 #蒸気コスト
 class Cost_Steam(models.Model):
+    Cost_id = models.IntegerField(verbose_name='蒸気コストID',default=0,blank=True,null=True)
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Unit_price_steam = ForeignKey(Unit_Price_Steam,on_delete=CASCADE,verbose_name='単価')
     Cost_steam = models.FloatField(verbose_name='蒸気費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -476,6 +479,7 @@ class Cost_Steam(models.Model):
 
 #ガスコスト
 class Cost_Gas(models.Model):
+    Cost_id = models.IntegerField(verbose_name='ガスコストID',default=0,blank=True,null=True)
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Unit_price_gas = ForeignKey(Unit_Price_Gas,on_delete=CASCADE,verbose_name='単価')
     Cost_gas = models.FloatField(verbose_name='ガス費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -501,6 +505,7 @@ class Cost_Gas(models.Model):
 
 #水コスト
 class Cost_Water(models.Model):
+    Cost_id = models.IntegerField(verbose_name='水コストID',default=0,blank=True,null=True)
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Unit_price_water = ForeignKey(Unit_Price_Water,on_delete=CASCADE,verbose_name='単価')
     Cost_water = models.FloatField(verbose_name='水費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -526,6 +531,7 @@ class Cost_Water(models.Model):
 
 #溶剤コスト
 class Cost_Solvent(models.Model):
+    Cost_id = models.IntegerField(verbose_name='溶剤コストID',default=0,blank=True,null=True)
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
     Solvent_conf = ForeignKey(Solvent_Conf,on_delete=CASCADE,verbose_name='単価')
     Cost_solvent = models.FloatField(verbose_name='溶剤費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -551,6 +557,7 @@ class Cost_Solvent(models.Model):
 
 #トータルコスト
 class Cost_Total(models.Model):
+    Cost_id = models.IntegerField(verbose_name='トータルコストID',default=0,blank=True,null=True)
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=models.SET_NULL,null=True,verbose_name='稼働履歴')
     Cost_electric = ForeignKey(Cost_Electric,on_delete=models.SET_NULL,null=True,verbose_name='電力費用')
     Cost_steam = ForeignKey(Cost_Steam,on_delete=models.SET_NULL,null=True,verbose_name='蒸気費用')
