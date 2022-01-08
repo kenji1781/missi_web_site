@@ -16,7 +16,12 @@
         <!-- ナビゲーションバーの設定　-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top p-3">
             <div class="container">
-                <a class="navbar-brand" href="#!">mishima works.</a>
+                <a class="navbar-brand" href="{% url 'main_app:index' %}">mishima works.</a>
+                
+
+
+
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -61,7 +66,7 @@
                                         <li><a class="dropdown-item" href="{% url 'main_app:machine_drive_history' %}">稼働履歴</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:trouble_history' %}">異常履歴</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">電力コスト</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:cost_electric' %}">電力コスト</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">蒸気コスト</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">ガスコスト</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">トータルコスト</a></li>

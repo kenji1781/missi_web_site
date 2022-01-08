@@ -14,15 +14,6 @@ class MachineDriveHistoryView(ListView):
     template_name = 'monitoring/machine_drive_history.html'
     model = Machine_Drive_History
     paginate_by = 10
-
-    
-                                               
-                                        
-            
-
-
-
-
     
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)

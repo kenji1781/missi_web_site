@@ -1206,3 +1206,255 @@ class MachineDriveHistoryUpdateForm(forms.ModelForm):
                 self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class CostElectricCreateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Electric
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+                
+
+class CostElectricUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Electric
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class CostSteamCreateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Steam
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+                
+
+class CostSteamUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Steam
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class CostGasCreateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Gas
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+                
+
+class CostGasUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Gas
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class CostWaterCreateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Water
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+                
+
+class CostWaterUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Water
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class CostSolventCreateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Solvent
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+                
+
+class CostSolventUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Solvent
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class CostTotalCreateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Total
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+                
+
+class CostTotalUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Cost_Total
+        #fields = ('Equipment_category')
+        fields = ('Machine_history_input_date','Machine_history_memo')
+        
+        widgets = {
+            'Machine_history_input_date':DateInput(),
+        }
+        labels = {
+                    'Machine_history_input_date':'登録日',
+                    'Machine_history_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"

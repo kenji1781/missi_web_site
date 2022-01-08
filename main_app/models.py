@@ -304,8 +304,7 @@ class Machine_Drive_History(models.Model):
 
 
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 装置 : ' + str(self.Customer_machine_id) + \
+       return str(self.Customer_machine_id) + str(self.Machine_model)+\
             ' データ取得日 : ' + str(self.Data_datetime) + \
                 ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
@@ -433,7 +432,7 @@ class Cost_Electric(models.Model):
     Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
     Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
   
 

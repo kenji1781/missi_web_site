@@ -17,6 +17,11 @@ from .views.trouble_history import TroubleHistoryView,TroubleHistoryCreateView,T
 from .views.setting_item import SettingItemView,SettingItemCreateView,SettingItemUpdateView,SettingItemDeleteView
 from .views.customer_machine_recipe import CustomerMachineRecipeView,CustomerMachineRecipeCreateView,CustomerMachineRecipeUpdateView,CustomerMachineRecipeDeleteView
 from .views.machine_drive_history import MachineDriveHistoryView,MachineDriveHistoryCreateView,MachineDriveHistoryUpdateView,MachineDriveHistoryDeleteView
+from .views.cost_electric import CostElectricView,CostElectricCreateView,CostElectricUpdateView,CostElectricDeleteView
+from .views.cost_electric import CostElectricView,CostElectricCreateView,CostElectricUpdateView,CostElectricDeleteView
+from .views.cost_electric import CostElectricView,CostElectricCreateView,CostElectricUpdateView,CostElectricDeleteView
+from .views.cost_electric import CostElectricView,CostElectricCreateView,CostElectricUpdateView,CostElectricDeleteView
+from .views.cost_electric import CostElectricView,CostElectricCreateView,CostElectricUpdateView,CostElectricDeleteView
 
 
 app_name = 'main_app'
@@ -84,10 +89,33 @@ urlpatterns = [
     path('customer_machine_recipe/update/<int:pk>',CustomerMachineRecipeUpdateView.as_view(),name="customer_machine_recipe_update"),   #レシピ
     path('customer_machine_recipe/delete/<int:pk>',CustomerMachineRecipeDeleteView.as_view(),name="customer_machine_recipe_delete"),   #レシピ
     path('machine_drive_history/',MachineDriveHistoryView.as_view(),name="machine_drive_history"),        #稼働履歴
-    path('machine_drive_history/create/',MachineDriveHistoryCreateView.as_view(),name="machine_drive_history_create"),   ##稼働履歴
-    path('machine_drive_history/update/<int:pk>',MachineDriveHistoryUpdateView.as_view(),name="machine_drive_history_update"),   ##稼働履歴
-    path('machine_drive_history/delete/<int:pk>',MachineDriveHistoryDeleteView.as_view(),name="machine_drive_history_delete"),   ##稼働履歴
-
+    path('machine_drive_history/create/',MachineDriveHistoryCreateView.as_view(),name="machine_drive_history_create"),   #稼働履歴
+    path('machine_drive_history/update/<int:pk>',MachineDriveHistoryUpdateView.as_view(),name="machine_drive_history_update"),   #稼働履歴
+    path('machine_drive_history/delete/<int:pk>',MachineDriveHistoryDeleteView.as_view(),name="machine_drive_history_delete"),   #稼働履歴
+    path('cost_electric/',CostElectricView.as_view(),name="cost_electric"),        #電力コスト
+    path('cost_electric/create/',CostElectricCreateView.as_view(),name="cost_electric_create"),   #電力コスト
+    path('cost_electric/update/<int:pk>',CostElectricUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
+    path('cost_electric/delete/<int:pk>',CostElectricDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
+    #path('cost_steam/',CostSteamView.as_view(),name="cost_electric"),        #電力コスト
+    #path('cost_steam/create/',CostSteamCreateView.as_view(),name="cost_electric_create"),   #電力コスト
+    #path('cost_steam/update/<int:pk>',CostSteamUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
+    #path('cost_steam/delete/<int:pk>',CostSteamDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
+    #path('cost_gas/',CostGasView.as_view(),name="cost_electric"),        #電力コスト
+    #path('cost_gas/create/',CostGasCreateView.as_view(),name="cost_electric_create"),   #電力コスト
+    #path('cost_gas/update/<int:pk>',CostGasUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
+    #path('cost_gas/delete/<int:pk>',CostGasDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
+    #path('cost_water/',CostWaterView.as_view(),name="cost_electric"),        #電力コスト
+    #path('cost_water/create/',CostWaterCreateView.as_view(),name="cost_electric_create"),   #電力コスト
+    #path('cost_water/update/<int:pk>',CostWaterUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
+    #path('cost_water/delete/<int:pk>',CostWaterDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
+    #path('cost_solvent/',CostSolventView.as_view(),name="cost_electric"),        #電力コスト
+    #path('cost_solvent/create/',CostSolventCreateView.as_view(),name="cost_electric_create"),   #電力コスト
+    #path('cost_solvent/update/<int:pk>',CostSolventUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
+    #path('cost_solvent/delete/<int:pk>',CostSolventDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
+    #path('cost_total/',CostTotalView.as_view(),name="cost_electric"),        #電力コスト
+    #path('cost_total/create/',CostTotalCreateView.as_view(),name="cost_electric_create"),   #電力コスト
+    #path('cost_total/update/<int:pk>',CostTotalUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
+    #path('cost_total/delete/<int:pk>',CostTotalDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
     
     
     #path('steam_price/',views.steam_price,name="steam_price"),   #蒸気単価

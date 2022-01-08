@@ -19,33 +19,37 @@ Data Monitoring System {{ title }}
 {% block content %}
 <div style="padding: 20px">
     <form action="" method="get">
-        <input name="query_text" value="{{ request.GET.query }}" type="text">
-        <input name="query_date" value="{{ request.GET.query }}" type="date">
+        <label for="mchn_id">装置ID</label>
+            <input name="query_text" value="{{ request.GET.query }}" type="text" id="mchn_id">
+        <label for="date_f">期間</label>
+            <input name="query_date_f" value="{{ request.GET.query }}" type="date" id="date_f">
+        <label for="date_l">から</label>
+            <input name="query_date_l" value="{{ request.GET.query }}" type="date" id="date_l">
         <button type="submit" class="btn btn-secondary">検索</button>
     
     </form>
     
-    <a href="{% url 'main_app:trouble_contents_create' %}" class="btn btn-outline-primary">登録</a>
+    <a href="{% url 'main_app:cost_electric_create' %}" class="btn btn-outline-primary">登録</a>
     <table class="table" style="font-size : 12px;">
         <tr>
-            <th>型式</th>
-            <th>号機</th>
-            <th>異常No.</th>
-            <th>異常項目</th>
-            <th>登録日</th>
-            <th>メモ</th>
+            <th>装置ID</th>
+            <th>装置</th>
+            <th>単価（￥）</th>
+            <th>電力費用</th>
+            <th>データ取得日</th>
+            
         </tr>
 <!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
     {% for item in object_list %}
         <tr>
-            <td>{{ item.Machine_model.Machine_model }}</td>
-            <td>{{ item.Machine_model.Customer_machine_unit_no }}</td>
-            <td>{{ item.Trouble_no }}</td>
-            <td>{{ item.Trouble_contents }}</td>
-            <td>{{ item.Trouble_input_date  }}</td>
-            <td>{{ item.Trouble_memo  }}</td>
-            <td><a href="{% url 'main_app:trouble_contents_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
-            <td><a href="{% url 'main_app:trouble_contents_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
+            <td>{{ item.Machine_drive_history.Customer_machine_id }}</td>
+            <td>{{ item.Machine_drive_history.Machine_model }}</td>
+            <td>{{ item.Unit_price_electric.Unit_price_electric }}</td>
+            <td>{{ item.Cost_electric }}</td>
+            <td>{{ item.Datadatetime }}</td>
+            
+            <td><a href="{% url 'main_app:cost_electric_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
+            <td><a href="{% url 'main_app:cost_electric_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
         </tr>
     {% endfor %}
     </table>
