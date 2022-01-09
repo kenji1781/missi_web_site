@@ -28,6 +28,7 @@ class CostElectricView(ListView):
         q_word = self.request.GET.get('query_text')
         q_date_f = self.request.GET.get('query_date_f')
         q_date_l = self.request.GET.get('query_date_l')
+
         if q_word and q_date_f and q_date_l:
             object_list = Cost_Electric.objects.filter(\
                 Q(Machine_drive_history__Machine_model__contains=q_word)|Q(Machine_drive_history__Machine_model__icontains=q_word))
@@ -36,12 +37,9 @@ class CostElectricView(ListView):
             drive_history_list= Machine_Drive_History.objects.order_by('-Data_datetime')
             for o_list in object_list:
                 for d_list in drive_history_list:
-                    if (o_list.Machine_drive_history==None) and (d_list.Customer_machine_id != None):
-                    for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
-                        if recipe_i.Customer_machine_id == c_machine.Customer_machine_id:
-                            recipe_i.Machine_model = str(c_machine.Machine_model)+ ': #' +str(c_machine.Customer_machine_unit_no)                   
+                    if o_list.His_id != d_list.Cost_id:
+                        recipe_i.Machine_model = str(c_machine.Machine_model)+ ': #' +str(c_machine.Customer_machine_unit_no)                   
                             recipe_i.save()
-
 
 
 
