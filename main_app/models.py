@@ -23,7 +23,7 @@ class Customer_Infomation(models.Model):
     Customer_address1 = models.CharField(verbose_name='都道府県',max_length=40,blank=True,null=True)
     Customer_address2 = models.CharField(verbose_name='市町村番地',max_length=40,blank=True,null=True)
     Customer_address3 = models.CharField(verbose_name='建物名',max_length=40,blank=True,null=True)
-    Customer_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Customer_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Customer_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -37,8 +37,8 @@ class Customer_Infomation(models.Model):
 
 #装置カテゴリー☆
 class Equipment_Category(models.Model):
-    Equipment_category = CharField(verbose_name='装置カテゴリー',max_length=10,blank=False,null=False,unique=True)
-    Equipment_category_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Equipment_category = CharField(verbose_name='装置カテゴリー',max_length=10,blank=True,null=True,unique=True)
+    Equipment_category_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
 
     def __str__(self):
        return str(self.Equipment_category)
@@ -50,8 +50,8 @@ class Equipment_Category(models.Model):
 #装置型式☆
 class Machine_Model(models.Model):
     Machine_category = models.ForeignKey(Equipment_Category,on_delete=CASCADE,verbose_name='装置カテゴリー')
-    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False,unique=True)
-    Machine_model_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True,unique=True)
+    Machine_model_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Machine_model_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -62,11 +62,11 @@ class Machine_Model(models.Model):
 
 #客先装置
 class Customer_Machine(models.Model):
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False,unique=True)
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True,unique=True)
     Machine_model = models.ForeignKey(Machine_Model,on_delete=CASCADE,verbose_name='装置')
     Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
     Customer_machine_inst_date = models.DateField(verbose_name='納入日',blank=True,null=True)
-    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
 
     def __str__(self):
@@ -80,9 +80,9 @@ class Customer_Machine(models.Model):
 #異常内容
 class Trouble_Contents(models.Model):
     Machine_model = models.ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
-    Trouble_no = models.IntegerField(verbose_name='異常No',validators=[MinValueValidator(0)],blank=False,null=False)
-    Trouble_contents = models.CharField(verbose_name='異常項目',max_length=20,blank=False,null=False)
-    Trouble_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Trouble_no = models.IntegerField(verbose_name='異常No',validators=[MinValueValidator(0)],blank=True,null=True)
+    Trouble_contents = models.CharField(verbose_name='異常項目',max_length=20,blank=True,null=True)
+    Trouble_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Trouble_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     
@@ -237,7 +237,7 @@ class Customer_Machine_Recipe(models.Model):
     Customer_recipe_set_value17 = models.FloatField(verbose_name='設定値17',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Customer_recipe_set_value18 = models.FloatField(verbose_name='設定値18',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Customer_recipe_set_value19 = models.FloatField(verbose_name='設定値19',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
     Signal_sys_to_plc = models.BooleanField(default=False)
     Signal_plc_to_sys = models.BooleanField(default=False)
@@ -256,7 +256,7 @@ class Customer_Machine_Recipe(models.Model):
 #電気単価
 class Unit_Price_Electric(models.Model):
     Unit_price_electric = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
-    Unit_price_electric_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Unit_price_electric_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Unit_price_electric_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -271,7 +271,7 @@ class Unit_Price_Electric(models.Model):
 #蒸気単価
 class Unit_Price_Steam(models.Model):
     Unit_price_steam = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
-    Unit_price_steam_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Unit_price_steam_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Unit_price_steam_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -286,7 +286,7 @@ class Unit_Price_Steam(models.Model):
 #ガス単価
 class Unit_Price_Gas(models.Model):
     Unit_price_gas = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
-    Unit_price_gas_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Unit_price_gas_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Unit_price_gas_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -301,7 +301,7 @@ class Unit_Price_Gas(models.Model):
 #水単価
 class Unit_Price_Water(models.Model):
     Unit_price_water = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
-    Unit_price_water_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Unit_price_water_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Unit_price_water_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -316,7 +316,7 @@ class Unit_Price_Water(models.Model):
 #溶剤名
 class Solvent_Name(models.Model):
     Solvent_name = models.CharField(verbose_name='溶剤名',max_length=20,blank=True,null=True,unique=True)
-    Solvent_name_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Solvent_name_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     
     def __str__(self):
        return str(self.Solvent_name)
@@ -331,7 +331,7 @@ class Solvent_Name(models.Model):
 #溶剤メーカー
 class Solvent_Manufacturer(models.Model):
     Solvent_manu = models.CharField(verbose_name='メーカー',max_length=20,blank=True,null=True,unique=True)
-    Solvent_manu_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Solvent_manu_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
 
     def __str__(self):
        return str(self.Solvent_manu)
@@ -340,33 +340,193 @@ class Solvent_Manufacturer(models.Model):
         verbose_name_plural = ('溶剤メーカー')
 
 
-#設定:溶剤
-class Solvent_Conf(models.Model):
-    Solvent_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent_name')
-    Solvent_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent_manu')
-    Solvent_unit_price = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
-    Solvent_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+#設定:溶剤0
+class Solvent0_Conf(models.Model):
+    Solvent0_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent0_name')
+    Solvent0_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent0_manu')
+    Unit_price_solvent0 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Solvent0_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent0_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
-		' 溶剤名 : ' + str(self.Solvent_manu) + \
-            ' 単価 : ' + str(self.Solvent_unit_price) + \
-                ' 登録日 : ' + str(self.Solvent_input_date) + \
-                ' メモ : ' + self.Solvent_memo + '>'
+		' 溶剤名 : ' + str(self.Solvent0_manu) + \
+            ' 単価 : ' + str(self.Unit_price_solvent0) + \
+                ' 登録日 : ' + str(self.Solvent0_input_date) + \
+                ' メモ : ' + self.Solvent0_memo + '>'
 
     class Meta:
-        verbose_name_plural = ('溶剤設定')
+        verbose_name_plural = ('溶剤0設定')
 
+#設定:溶剤1
+class Solvent1_Conf(models.Model):
+    Solvent1_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent1_name')
+    Solvent1_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent1_manu')
+    Unit_price_solvent1 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Solvent1_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent1_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 溶剤名 : ' + str(self.Solvent1_manu) + \
+            ' 単価 : ' + str(self.Unit_price_solvent1) + \
+                ' 登録日 : ' + str(self.Solvent1_input_date) + \
+                ' メモ : ' + self.Solvent1_memo + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤1設定')
+
+#設定:溶剤2
+class Solvent2_Conf(models.Model):
+    Solvent2_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent2_name')
+    Solvent2_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent2_manu')
+    Unit_price_solvent2 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Solvent2_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent2_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 溶剤名 : ' + str(self.Solvent2_manu) + \
+            ' 単価 : ' + str(self.Unit_price_solvent2) + \
+                ' 登録日 : ' + str(self.Solvent2_input_date) + \
+                ' メモ : ' + self.Solvent2_memo + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤2設定')
+
+#設定:溶剤3
+class Solvent3_Conf(models.Model):
+    Solvent3_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent3_name')
+    Solvent3_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent3_manu')
+    Unit_price_solvent3 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Solvent3_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent3_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 溶剤名 : ' + str(self.Solvent3_manu) + \
+            ' 単価 : ' + str(self.Unit_price_solvent3) + \
+                ' 登録日 : ' + str(self.Solvent3_input_date) + \
+                ' メモ : ' + self.Solvent3_memo + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤3設定')
+
+#設定:溶剤4
+class Solvent4_Conf(models.Model):
+    Solvent4_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent4_name')
+    Solvent4_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent4_manu')
+    Unit_price_solvent4 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Solvent4_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent4_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 溶剤名 : ' + str(self.Solvent4_manu) + \
+            ' 単価 : ' + str(self.Unit_price_solvent4) + \
+                ' 登録日 : ' + str(self.Solvent4_input_date) + \
+                ' メモ : ' + self.Solvent4_memo + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤4設定')
+
+#設定:溶剤5
+class Solvent5_Conf(models.Model):
+    Solvent5_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent5_name')
+    Solvent5_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent5_manu')
+    Unit_price_solvent5 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Solvent5_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent5_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 溶剤名 : ' + str(self.Solvent5_manu) + \
+            ' 単価 : ' + str(self.Unit_price_solvent5) + \
+                ' 登録日 : ' + str(self.Solvent5_input_date) + \
+                ' メモ : ' + self.Solvent5_memo + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤5設定')
+
+#設定:溶剤6
+class Solvent6_Conf(models.Model):
+    Solvent6_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent6_name')
+    Solvent6_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent6_manu')
+    Unit_price_solvent6 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Solvent6_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent6_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 溶剤名 : ' + str(self.Solvent6_manu) + \
+            ' 単価 : ' + str(self.Unit_price_solvent6) + \
+                ' 登録日 : ' + str(self.Solvent6_input_date) + \
+                ' メモ : ' + self.Solvent6_memo + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤6設定')
+
+#設定:溶剤7
+class Solvent7_Conf(models.Model):
+    Solvent7_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent7_name')
+    Solvent7_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent7_manu')
+    Unit_price_solvent7 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Solvent7_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent7_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 溶剤名 : ' + str(self.Solvent7_manu) + \
+            ' 単価 : ' + str(self.Unit_price_solvent7) + \
+                ' 登録日 : ' + str(self.Solvent7_input_date) + \
+                ' メモ : ' + self.Solvent7_memo + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤7設定')
+
+#設定:溶剤8
+class Solvent8_Conf(models.Model):
+    Solvent8_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent8_name')
+    Solvent8_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent8_manu')
+    Unit_price_solvent8 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Solvent8_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent8_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 溶剤名 : ' + str(self.Solvent8_manu) + \
+            ' 単価 : ' + str(self.Unit_price_solvent8) + \
+                ' 登録日 : ' + str(self.Solvent8_input_date) + \
+                ' メモ : ' + self.Solvent8_memo + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤8設定')
+
+#設定:溶剤9
+class Solvent9_Conf(models.Model):
+    Solvent9_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent9_name')
+    Solvent9_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent9_manu')
+    Unit_price_solvent9 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Solvent9_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent9_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+
+    def __str__(self):
+       return '<id=' + str(self.id) + ', ' + \
+		' 溶剤名 : ' + str(self.Solvent9_manu) + \
+            ' 単価 : ' + str(self.Unit_price_solvent9) + \
+                ' 登録日 : ' + str(self.Solvent9_input_date) + \
+                ' メモ : ' + self.Solvent9_memo + '>'
+
+    class Meta:
+        verbose_name_plural = ('溶剤9設定')
 
 #装置稼働履歴
 class Machine_Drive_History(models.Model):
     His_id = models.AutoField(verbose_name='履歴ID',primary_key=True)
     Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
-    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
-    Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
+    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=True,null=True)
+    Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=True,null=True)
     Machine_drive_time0 = models.IntegerField(verbose_name='運転時間0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_time1 = models.IntegerField(verbose_name='運転時間1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_time2 = models.IntegerField(verbose_name='運転時間2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -399,11 +559,21 @@ class Machine_Drive_History(models.Model):
     Machine_solvent7_used = models.FloatField(verbose_name='溶剤7使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_solvent8_used = models.FloatField(verbose_name='溶剤8使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_solvent9_used = models.FloatField(verbose_name='溶剤9使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Unit_price_electric = ForeignKey(Unit_Price_Electric,on_delete=CASCADE,verbose_name='電力単価')
-    Unit_price_steam = ForeignKey(Unit_Price_Steam,on_delete=CASCADE,verbose_name='蒸気単価')
-    Unit_price_gas = ForeignKey(Unit_Price_Gas,on_delete=CASCADE,verbose_name='ガス単価')
-    Unit_price_water = ForeignKey(Unit_Price_Water,on_delete=CASCADE,verbose_name='水単価')
-    Solvent_conf = ForeignKey(Solvent_Conf,on_delete=CASCADE,verbose_name='溶剤単価')
+    Unit_price_electric = models.FloatField(verbose_name='電力単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_steam = models.FloatField(verbose_name='蒸気単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_gas = models.FloatField(verbose_name='ガス単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_water = models.FloatField(verbose_name='水単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_solvent0 = models.FloatField(verbose_name='溶剤0単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_solvent1 = models.FloatField(verbose_name='溶剤1単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_solvent2 = models.FloatField(verbose_name='溶剤2単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_solvent3 = models.FloatField(verbose_name='溶剤3単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_solvent4 = models.FloatField(verbose_name='溶剤4単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_solvent5 = models.FloatField(verbose_name='溶剤5単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_solvent6 = models.FloatField(verbose_name='溶剤6単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_solvent7 = models.FloatField(verbose_name='溶剤7単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_solvent8 = models.FloatField(verbose_name='溶剤8単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_solvent9 = models.FloatField(verbose_name='溶剤9単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    
     Cost_electric = models.FloatField(verbose_name='電力費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Cost_steam = models.FloatField(verbose_name='蒸気費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Cost_gas = models.FloatField(verbose_name='ガス費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -440,7 +610,7 @@ class Machine_Drive_History(models.Model):
     Data_date_min = models.IntegerField(verbose_name='分',validators=[MinValueValidator(0),MaxValueValidator(59)],default=0,blank=True,null=True)
     Data_date_sec = models.IntegerField(verbose_name='秒',validators=[MinValueValidator(0),MaxValueValidator(59)],default=0,blank=True,null=True)
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
     Signal_sys_to_plc = models.BooleanField(default=False)
     Signal_plc_to_sys = models.BooleanField(default=False)
@@ -607,7 +777,7 @@ class Cost_Solvent(models.Model):
     Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
     Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
     Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
-    Solvent_conf = ForeignKey(Solvent_Conf,on_delete=CASCADE,verbose_name='単価')
+    Solvent0_conf = ForeignKey(Solvent0_Conf,on_delete=CASCADE,verbose_name='単価')
     Machine_electric_used = models.FloatField(verbose_name='電力使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_steam_used = models.FloatField(verbose_name='蒸気使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_gas_used = models.FloatField(verbose_name='ガス使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -623,7 +793,7 @@ class Cost_Solvent(models.Model):
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
 		' 稼働履歴 : ' + str(self.Machine_drive_history) + \
-            ' 単価 : ' + str(self.Solvent_conf) + \
+            ' 単価 : ' + str(self.Solvent0_conf) + \
                 ' 溶剤費用 : ' + str(self.Cost_solvent) + \
                     ' データ取得日 : ' + str(self.Data_datetime) + \
                         ' 登録日 : ' + str(self.Machine_history_input_date) + \

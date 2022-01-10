@@ -29,7 +29,6 @@ Data Monitoring System {{ title }}
     
     </form>
     
-    <a href="{% url 'main_app:cost_electric_create' %}" class="btn btn-outline-primary">登録</a>
     <table class="table" style="font-size : 12px;">
         <tr>
             <th>装置ID</th>
@@ -51,8 +50,6 @@ Data Monitoring System {{ title }}
             <td>{{ item.Cost_electric }}</td>
             <td>{{ item.Datadatetime }}</td>
             
-            <td><a href="{% url 'main_app:cost_electric_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
-            <td><a href="{% url 'main_app:cost_electric_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
         </tr>
     {% endfor %}
     </table>

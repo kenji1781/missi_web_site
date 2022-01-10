@@ -7,7 +7,9 @@ from .views.steam_price import SteamPriceView,SteamPriceCreateView,SteamPriceUpd
 from .views.gas_price import GasPriceView,GasPriceCreateView,GasPriceUpdateView,GasPriceDeleteView
 from .views.solvent_name import SolventNameView,SolventNameCreateView,SolventNameUpdateView,SolventNameDeleteView
 from .views.solvent_manufacturer import SolventManufacturerView,SolventManufacturerCreateView,SolventManufacturerUpdateView,SolventManufacturerDeleteView
-from .views.solvent_conf import SolventConfView,SolventConfCreateView,SolventConfUpdateView,SolventConfDeleteView
+from .views.solvent0_conf import Solvent0ConfView,Solvent0ConfCreateView,Solvent0ConfUpdateView,Solvent0ConfDeleteView
+from .views.solvent1_conf import Solvent1ConfView,Solvent1ConfCreateView,Solvent1ConfUpdateView,Solvent1ConfDeleteView
+
 from .views.equipment_category import EquipmentCategoryView,EquipmentCategoryCreateView,EquipmentCategoryUpdateView,EquipmentCategoryDeleteView
 from .views.machine_model import MachineModelView,MachineModelCreateView,MachineModelUpdateView,MachineModelDeleteView
 from .views.customer_machine import CustomerMachineView,CustomerMachineCreateView,CustomerMachineUpdateView,CustomerMachineDeleteView
@@ -17,11 +19,7 @@ from .views.trouble_history import TroubleHistoryView,TroubleHistoryCreateView,T
 from .views.setting_item import SettingItemView,SettingItemCreateView,SettingItemUpdateView,SettingItemDeleteView
 from .views.customer_machine_recipe import CustomerMachineRecipeView,CustomerMachineRecipeCreateView,CustomerMachineRecipeUpdateView,CustomerMachineRecipeDeleteView
 from .views.machine_drive_history import MachineDriveHistoryView,MachineDriveHistoryCreateView,MachineDriveHistoryUpdateView,MachineDriveHistoryDeleteView
-from .views.cost_electric import CostElectricView,CostElectricCreateView,CostElectricUpdateView,CostElectricDeleteView
-from .views.cost_electric import CostElectricView,CostElectricCreateView,CostElectricUpdateView,CostElectricDeleteView
-from .views.cost_electric import CostElectricView,CostElectricCreateView,CostElectricUpdateView,CostElectricDeleteView
-from .views.cost_electric import CostElectricView,CostElectricCreateView,CostElectricUpdateView,CostElectricDeleteView
-from .views.cost_electric import CostElectricView,CostElectricCreateView,CostElectricUpdateView,CostElectricDeleteView
+from .views.cost_electric import CostElectricView
 
 
 app_name = 'main_app'
@@ -52,10 +50,14 @@ urlpatterns = [
     path('solvent_manufacturer/create/',SolventManufacturerCreateView.as_view(),name="solvent_manufacturer_create"),   #溶剤メーカ
     path('solvent_manufacturer/update/<int:pk>',SolventManufacturerUpdateView.as_view(),name="solvent_manufacturer_update"),   #溶剤メーカ
     path('solvent_manufacturer/delete/<int:pk>',SolventManufacturerDeleteView.as_view(),name="solvent_manufacturer_delete"),   #溶剤メーカ
-    path('solvent_conf/',SolventConfView.as_view(),name="solvent_conf"),        #溶剤設定
-    path('solvent_conf/create/',SolventConfCreateView.as_view(),name="solvent_conf_create"),   #溶剤設定
-    path('solvent_conf/update/<int:pk>',SolventConfUpdateView.as_view(),name="solvent_conf_update"),   #溶剤設定
-    path('solvent_conf/delete/<int:pk>',SolventConfDeleteView.as_view(),name="solvent_conf_delete"),   #溶剤設定
+    path('solvent0_conf/',Solvent0ConfView.as_view(),name="solvent0_conf"),        #溶剤0設定
+    path('solvent0_conf/create/',Solvent0ConfCreateView.as_view(),name="solvent0_conf_create"),   #溶剤0設定
+    path('solvent0_conf/update/<int:pk>',Solvent0ConfUpdateView.as_view(),name="solvent0_conf_update"),   #溶剤0設定
+    path('solvent0_conf/delete/<int:pk>',Solvent0ConfDeleteView.as_view(),name="solvent0_conf_delete"),   #溶剤0設定
+    path('solvent1_conf/',Solvent1ConfView.as_view(),name="solvent1_conf"),        #溶剤1設定
+    path('solvent1_conf/create/',Solvent1ConfCreateView.as_view(),name="solvent1_conf_create"),   #溶剤1設定
+    path('solvent1_conf/update/<int:pk>',Solvent1ConfUpdateView.as_view(),name="solvent1_conf_update"),   #溶剤1設定
+    path('solvent1_conf/delete/<int:pk>',Solvent1ConfDeleteView.as_view(),name="solvent1_conf_delete"),   #溶剤1設定
     path('equipment_category/',EquipmentCategoryView.as_view(),name="equipment_category"),        #装置カテゴリー
     path('equipment_category/create/',EquipmentCategoryCreateView.as_view(),name="equipment_category_create"),   #装置カテゴリー
     path('equipment_category/update/<int:pk>',EquipmentCategoryUpdateView.as_view(),name="equipment_category_update"),   #装置カテゴリー
@@ -93,9 +95,9 @@ urlpatterns = [
     path('machine_drive_history/update/<int:pk>',MachineDriveHistoryUpdateView.as_view(),name="machine_drive_history_update"),   #稼働履歴
     path('machine_drive_history/delete/<int:pk>',MachineDriveHistoryDeleteView.as_view(),name="machine_drive_history_delete"),   #稼働履歴
     path('cost_electric/',CostElectricView.as_view(),name="cost_electric"),        #電力コスト
-    path('cost_electric/create/',CostElectricCreateView.as_view(),name="cost_electric_create"),   #電力コスト
-    path('cost_electric/update/<int:pk>',CostElectricUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
-    path('cost_electric/delete/<int:pk>',CostElectricDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
+    #path('cost_electric/create/',CostElectricCreateView.as_view(),name="cost_electric_create"),   #電力コスト
+    #path('cost_electric/update/<int:pk>',CostElectricUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
+    #path('cost_electric/delete/<int:pk>',CostElectricDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
     #path('cost_steam/',CostSteamView.as_view(),name="cost_electric"),        #電力コスト
     #path('cost_steam/create/',CostSteamCreateView.as_view(),name="cost_electric_create"),   #電力コスト
     #path('cost_steam/update/<int:pk>',CostSteamUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
