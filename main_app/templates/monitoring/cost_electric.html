@@ -34,6 +34,7 @@ Data Monitoring System {{ title }}
         <tr>
             <th>装置ID</th>
             <th>装置</th>
+            <th>号機</th>
             <th>単価（￥）</th>
             <th>電力費用</th>
             <th>データ取得日</th>
@@ -42,7 +43,9 @@ Data Monitoring System {{ title }}
 <!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
     {% for item in object_list %}
         <tr>
-            <td>{{ item.Machine_drive_history.Customer_machine_id }}</td>
+            <td>{{ item.Customer_machine_id }}</td>
+            <td>{{ item.Machine_model }}</td>
+            <td>{{ item.Customer_machine_unit_no }}</td>
             <td>{{ item.Machine_drive_history.Machine_model }}</td>
             <td>{{ item.Unit_price_electric.Unit_price_electric }}</td>
             <td>{{ item.Cost_electric }}</td>

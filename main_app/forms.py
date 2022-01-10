@@ -1212,12 +1212,14 @@ class CostElectricCreateForm(forms.ModelForm):
     class Meta:
         model = Cost_Electric
         #fields = ('Equipment_category')
-        fields = ('Machine_history_input_date','Machine_history_memo')
+        fields = ('Machine_drive_history','Unit_price_electric','Machine_history_input_date','Machine_history_memo')
         
         widgets = {
             'Machine_history_input_date':DateInput(),
         }
         labels = {
+                    'Machine_drive_history':'',
+                    'Unit_price_electric':'',
                     'Machine_history_input_date':'登録日',
                     'Machine_history_memo':'メモ',
                 }
@@ -1225,6 +1227,8 @@ class CostElectricCreateForm(forms.ModelForm):
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
+                self.fields['Machine_drive_history'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_electric'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
                 

@@ -28,25 +28,34 @@ class CostElectricView(ListView):
         q_word = self.request.GET.get('query_text')
         q_date_f = self.request.GET.get('query_date_f')
         q_date_l = self.request.GET.get('query_date_l')
-"""
+
         if q_word and q_date_f and q_date_l:
             object_list = Cost_Electric.objects.filter(\
                 Q(Machine_drive_history__Machine_model__contains=q_word)|Q(Machine_drive_history__Machine_model__icontains=q_word))
         else:
-            object_list = Cost_Electric.objects.select_related('Machine_drive_history','Unit_price_electric').order_by('-Data_datetime')
-            drive_history_list= Machine_Drive_History.objects.order_by('-Data_datetime')
-            for o_list in object_list:
-                for d_list in drive_history_list:
-                    if o_list.His_id != d_list.Cost_id:
-                        d_list.Machine_model = o_list.Machine_model                  
-                        
-                        o_list.save()
+            
+            object_list = Cost_Electric.objects.all().order_by('-Data_datetime')
+            
+        
+            for d_list in Machine_Drive_History.objects.all():
+                print("test") 
+                for o_list in Cost_Electric.objects.all():
+                    
+                      
+                    o_list.Machine_model = d_list.Machine_model                  
+                    o_list.Customer_machine_unit_no = d_list.Customer_machine_unit_no
+                    o_list.Machine_electric_used = d_list.Machine_electric_used
+                
+
+
+
+                    o_list.save()
 
 
 
 
         return object_list
-"""
+
 ################################################################################
 class CostElectricCreateView(CreateView):
     
