@@ -253,100 +253,6 @@ class Customer_Machine_Recipe(models.Model):
     class Meta:
         verbose_name_plural = ('レシピ情報')
 
-
-#装置稼働履歴
-class Machine_Drive_History(models.Model):
-    His_id = models.AutoField(verbose_name='履歴ID',primary_key=True)
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
-    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
-    Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
-    Machine_drive_time0 = models.IntegerField(verbose_name='運転時間0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_time1 = models.IntegerField(verbose_name='運転時間1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_time2 = models.IntegerField(verbose_name='運転時間2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_time3 = models.IntegerField(verbose_name='運転時間3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_time4 = models.IntegerField(verbose_name='運転時間4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp0 = models.IntegerField(verbose_name='温度0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp1 = models.IntegerField(verbose_name='温度1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp2 = models.IntegerField(verbose_name='温度2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp3 = models.IntegerField(verbose_name='温度3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp4 = models.IntegerField(verbose_name='温度4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp5 = models.IntegerField(verbose_name='温度5',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp6 = models.IntegerField(verbose_name='温度6',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp7 = models.IntegerField(verbose_name='温度7',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp8 = models.IntegerField(verbose_name='温度8',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp9 = models.IntegerField(verbose_name='温度9',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp10 = models.IntegerField(verbose_name='温度10',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_temp11 = models.IntegerField(verbose_name='温度11',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_drive_count = models.IntegerField(verbose_name='稼働回数',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_electric_used = models.FloatField(verbose_name='電力使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_steam_used = models.FloatField(verbose_name='蒸気使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_gas_used = models.FloatField(verbose_name='ガス使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_water_used = models.FloatField(verbose_name='水使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_solvent0_used = models.FloatField(verbose_name='溶剤0使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_solvent1_used = models.FloatField(verbose_name='溶剤1使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_solvent2_used = models.FloatField(verbose_name='溶剤2使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_solvent3_used = models.FloatField(verbose_name='溶剤3使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_solvent4_used = models.FloatField(verbose_name='溶剤4使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_solvent5_used = models.FloatField(verbose_name='溶剤5使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_solvent6_used = models.FloatField(verbose_name='溶剤6使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_solvent7_used = models.FloatField(verbose_name='溶剤7使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_solvent8_used = models.FloatField(verbose_name='溶剤8使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_solvent9_used = models.FloatField(verbose_name='溶剤9使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_electric = models.FloatField(verbose_name='電力費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_steam = models.FloatField(verbose_name='蒸気費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_gas = models.FloatField(verbose_name='ガス費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_water = models.FloatField(verbose_name='水費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_solvent0 = models.FloatField(verbose_name='溶剤費用0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_solvent1 = models.FloatField(verbose_name='溶剤費用1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_solvent2 = models.FloatField(verbose_name='溶剤費用2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_solvent3 = models.FloatField(verbose_name='溶剤費用3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_solvent4 = models.FloatField(verbose_name='溶剤費用4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_solvent5 = models.FloatField(verbose_name='溶剤費用5',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_solvent6 = models.FloatField(verbose_name='溶剤費用6',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_solvent7 = models.FloatField(verbose_name='溶剤費用7',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_solvent8 = models.FloatField(verbose_name='溶剤費用8',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_solvent9 = models.FloatField(verbose_name='溶剤費用9',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_electric = models.FloatField(verbose_name='合計費用（電力）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_steam = models.FloatField(verbose_name='合計費用（蒸気）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_gas = models.FloatField(verbose_name='合計費用（ガス）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_water = models.FloatField(verbose_name='合計費用（水）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_solvent0 = models.FloatField(verbose_name='合計費用（溶剤0）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_solvent1 = models.FloatField(verbose_name='合計費用（溶剤1）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_solvent2 = models.FloatField(verbose_name='合計費用（溶剤2）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_solvent3 = models.FloatField(verbose_name='合計費用（溶剤3）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_solvent4 = models.FloatField(verbose_name='合計費用（溶剤4）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_solvent5 = models.FloatField(verbose_name='合計費用（溶剤5）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_solvent6 = models.FloatField(verbose_name='合計費用（溶剤6）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_solvent7 = models.FloatField(verbose_name='合計費用（溶剤7）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_solvent8 = models.FloatField(verbose_name='合計費用（溶剤8）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_solvent9 = models.FloatField(verbose_name='合計費用（溶剤9）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Cost_total_all = models.FloatField(verbose_name='合計費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
-    Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
-    Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
-    Data_date_hour = models.IntegerField(verbose_name='時',validators=[MinValueValidator(0),MaxValueValidator(24)],default=0,blank=True,null=True)
-    Data_date_min = models.IntegerField(verbose_name='分',validators=[MinValueValidator(0),MaxValueValidator(59)],default=0,blank=True,null=True)
-    Data_date_sec = models.IntegerField(verbose_name='秒',validators=[MinValueValidator(0),MaxValueValidator(59)],default=0,blank=True,null=True)
-    Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
-    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
-    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
-    Signal_sys_to_plc = models.BooleanField(default=False)
-    Signal_plc_to_sys = models.BooleanField(default=False)
-
-
-
-    def __str__(self):
-       return str(self.Customer_machine_id) + str(self.Machine_model)+\
-            ' データ取得日 : ' + str(self.Data_datetime) + \
-                ' 登録日 : ' + str(self.Machine_history_input_date) + \
-        '>'
-
-    class Meta:
-        verbose_name_plural = ('稼働履歴')
-
-
-
 #電気単価
 class Unit_Price_Electric(models.Model):
     Unit_price_electric = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
@@ -451,6 +357,106 @@ class Solvent_Conf(models.Model):
 
     class Meta:
         verbose_name_plural = ('溶剤設定')
+
+
+
+#装置稼働履歴
+class Machine_Drive_History(models.Model):
+    His_id = models.AutoField(verbose_name='履歴ID',primary_key=True)
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
+    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
+    Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
+    Machine_drive_time0 = models.IntegerField(verbose_name='運転時間0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_time1 = models.IntegerField(verbose_name='運転時間1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_time2 = models.IntegerField(verbose_name='運転時間2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_time3 = models.IntegerField(verbose_name='運転時間3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_time4 = models.IntegerField(verbose_name='運転時間4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp0 = models.IntegerField(verbose_name='温度0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp1 = models.IntegerField(verbose_name='温度1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp2 = models.IntegerField(verbose_name='温度2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp3 = models.IntegerField(verbose_name='温度3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp4 = models.IntegerField(verbose_name='温度4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp5 = models.IntegerField(verbose_name='温度5',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp6 = models.IntegerField(verbose_name='温度6',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp7 = models.IntegerField(verbose_name='温度7',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp8 = models.IntegerField(verbose_name='温度8',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp9 = models.IntegerField(verbose_name='温度9',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp10 = models.IntegerField(verbose_name='温度10',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_temp11 = models.IntegerField(verbose_name='温度11',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_drive_count = models.IntegerField(verbose_name='稼働回数',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_electric_used = models.FloatField(verbose_name='電力使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_steam_used = models.FloatField(verbose_name='蒸気使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_gas_used = models.FloatField(verbose_name='ガス使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_water_used = models.FloatField(verbose_name='水使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_solvent0_used = models.FloatField(verbose_name='溶剤0使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_solvent1_used = models.FloatField(verbose_name='溶剤1使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_solvent2_used = models.FloatField(verbose_name='溶剤2使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_solvent3_used = models.FloatField(verbose_name='溶剤3使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_solvent4_used = models.FloatField(verbose_name='溶剤4使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_solvent5_used = models.FloatField(verbose_name='溶剤5使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_solvent6_used = models.FloatField(verbose_name='溶剤6使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_solvent7_used = models.FloatField(verbose_name='溶剤7使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_solvent8_used = models.FloatField(verbose_name='溶剤8使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Machine_solvent9_used = models.FloatField(verbose_name='溶剤9使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Unit_price_electric = ForeignKey(Unit_Price_Electric,on_delete=CASCADE,verbose_name='電力単価')
+    Unit_price_steam = ForeignKey(Unit_Price_Steam,on_delete=CASCADE,verbose_name='蒸気単価')
+    Unit_price_gas = ForeignKey(Unit_Price_Gas,on_delete=CASCADE,verbose_name='ガス単価')
+    Unit_price_water = ForeignKey(Unit_Price_Water,on_delete=CASCADE,verbose_name='水単価')
+    Solvent_conf = ForeignKey(Solvent_Conf,on_delete=CASCADE,verbose_name='溶剤単価')
+    Cost_electric = models.FloatField(verbose_name='電力費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_steam = models.FloatField(verbose_name='蒸気費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_gas = models.FloatField(verbose_name='ガス費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_water = models.FloatField(verbose_name='水費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_solvent0 = models.FloatField(verbose_name='溶剤費用0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_solvent1 = models.FloatField(verbose_name='溶剤費用1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_solvent2 = models.FloatField(verbose_name='溶剤費用2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_solvent3 = models.FloatField(verbose_name='溶剤費用3',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_solvent4 = models.FloatField(verbose_name='溶剤費用4',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_solvent5 = models.FloatField(verbose_name='溶剤費用5',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_solvent6 = models.FloatField(verbose_name='溶剤費用6',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_solvent7 = models.FloatField(verbose_name='溶剤費用7',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_solvent8 = models.FloatField(verbose_name='溶剤費用8',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_solvent9 = models.FloatField(verbose_name='溶剤費用9',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_electric = models.FloatField(verbose_name='合計費用（電力）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_steam = models.FloatField(verbose_name='合計費用（蒸気）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_gas = models.FloatField(verbose_name='合計費用（ガス）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_water = models.FloatField(verbose_name='合計費用（水）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_solvent0 = models.FloatField(verbose_name='合計費用（溶剤0）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_solvent1 = models.FloatField(verbose_name='合計費用（溶剤1）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_solvent2 = models.FloatField(verbose_name='合計費用（溶剤2）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_solvent3 = models.FloatField(verbose_name='合計費用（溶剤3）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_solvent4 = models.FloatField(verbose_name='合計費用（溶剤4）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_solvent5 = models.FloatField(verbose_name='合計費用（溶剤5）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_solvent6 = models.FloatField(verbose_name='合計費用（溶剤6）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_solvent7 = models.FloatField(verbose_name='合計費用（溶剤7）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_solvent8 = models.FloatField(verbose_name='合計費用（溶剤8）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_solvent9 = models.FloatField(verbose_name='合計費用（溶剤9）',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Cost_total_all = models.FloatField(verbose_name='合計費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
+    Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
+    Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
+    Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
+    Data_date_hour = models.IntegerField(verbose_name='時',validators=[MinValueValidator(0),MaxValueValidator(24)],default=0,blank=True,null=True)
+    Data_date_min = models.IntegerField(verbose_name='分',validators=[MinValueValidator(0),MaxValueValidator(59)],default=0,blank=True,null=True)
+    Data_date_sec = models.IntegerField(verbose_name='秒',validators=[MinValueValidator(0),MaxValueValidator(59)],default=0,blank=True,null=True)
+    Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
+    Machine_history_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
+    Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
+    Signal_sys_to_plc = models.BooleanField(default=False)
+    Signal_plc_to_sys = models.BooleanField(default=False)
+
+
+
+    def __str__(self):
+       return str(self.Customer_machine_id) + str(self.Machine_model)+\
+            ' データ取得日 : ' + str(self.Data_datetime) + \
+                ' 登録日 : ' + str(self.Machine_history_input_date) + \
+        '>'
+
+    class Meta:
+        verbose_name_plural = ('稼働履歴')
+
+
 
 
 
