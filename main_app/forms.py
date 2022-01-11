@@ -3,7 +3,8 @@ from django.forms import fields, models,widgets
 
 from .models import Customer_Infomation,Equipment_Category,Machine_Model,Trouble_Contents,\
     Unit_Price_Electric,Unit_Price_Steam,Unit_Price_Gas,Unit_Price_Water,Solvent_Name,Solvent_Manufacturer,\
-        Solvent0_Conf,Solvent1_Conf,Customer_Machine,Trouble_History,Customer_Machine_Recipe,Machine_Drive_History,\
+        Solvent0_Conf,Solvent1_Conf,Solvent2_Conf,Solvent3_Conf,Solvent4_Conf,Solvent5_Conf,Solvent6_Conf,Solvent7_Conf,Solvent8_Conf,Solvent9_Conf,\
+            Customer_Machine,Trouble_History,Customer_Machine_Recipe,Machine_Drive_History,\
                 Cost_Electric,Cost_Steam,Cost_Gas,Cost_Water,Cost_Solvent,Cost_Total,Setting_Item
 
 
@@ -357,6 +358,411 @@ class Solvent1ConfUpdateForm(forms.ModelForm):
                 self.fields['Unit_price_solvent1'].widgets.attrs["class"] = "form-control"
                 self.fields['Solvent1_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Solvent1_memo'].widgets.attrs["class"] = "form-control"
+
+
+######################################################################################################
+class Solvent2ConfCreateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent2_Conf
+        fields = ('Solvent2_name','Solvent2_manu','Unit_price_solvent2','Solvent2_input_date','Solvent2_memo')
+        widgets = {
+            'Solvent2_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent2_name':'溶剤名',
+                    'Solvent2_manu':'溶剤メーカー',
+                    'Unit_price_solvent2':'単価：（￥）',
+                    'Solvent2_input_date':'登録日',
+                    'Solvent2_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent2_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent2_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent2'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent2_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent2_memo'].widgets.attrs["class"] = "form-control"
+
+
+class Solvent2ConfUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent2_Conf
+        fields = ('Solvent2_name','Solvent2_manu','Unit_price_solvent2','Solvent2_input_date','Solvent2_memo')
+        widgets = {
+            'Solvent2_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent2_name':'溶剤名',
+                    'Solvent2_manu':'溶剤メーカー',
+                    'Unit_price_solvent2':'単価：（￥）',
+                    'Solvent2_input_date':'登録日',
+                    'Solvent2_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent2_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent2_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent2'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent2_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent2_memo'].widgets.attrs["class"] = "form-control"
+
+
+######################################################################################################
+class Solvent3ConfCreateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent3_Conf
+        fields = ('Solvent3_name','Solvent3_manu','Unit_price_solvent3','Solvent3_input_date','Solvent3_memo')
+        widgets = {
+            'Solvent3_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent3_name':'溶剤名',
+                    'Solvent3_manu':'溶剤メーカー',
+                    'Unit_price_solvent3':'単価：（￥）',
+                    'Solvent3_input_date':'登録日',
+                    'Solvent3_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent3_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent3_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent3'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent3_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent3_memo'].widgets.attrs["class"] = "form-control"
+
+
+class Solvent3ConfUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent3_Conf
+        fields = ('Solvent3_name','Solvent3_manu','Unit_price_solvent3','Solvent3_input_date','Solvent3_memo')
+        widgets = {
+            'Solvent3_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent3_name':'溶剤名',
+                    'Solvent3_manu':'溶剤メーカー',
+                    'Unit_price_solvent3':'単価：（￥）',
+                    'Solvent3_input_date':'登録日',
+                    'Solvent3_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent3_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent3_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent3'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent3_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent3_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class Solvent4ConfCreateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent4_Conf
+        fields = ('Solvent4_name','Solvent4_manu','Unit_price_solvent4','Solvent4_input_date','Solvent4_memo')
+        widgets = {
+            'Solvent4_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent4_name':'溶剤名',
+                    'Solvent4_manu':'溶剤メーカー',
+                    'Unit_price_solvent4':'単価：（￥）',
+                    'Solvent4_input_date':'登録日',
+                    'Solvent4_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent4_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent4_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent4'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent4_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent4_memo'].widgets.attrs["class"] = "form-control"
+
+
+class Solvent4ConfUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent4_Conf
+        fields = ('Solvent4_name','Solvent4_manu','Unit_price_solvent4','Solvent4_input_date','Solvent4_memo')
+        widgets = {
+            'Solvent4_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent4_name':'溶剤名',
+                    'Solvent4_manu':'溶剤メーカー',
+                    'Unit_price_solvent4':'単価：（￥）',
+                    'Solvent4_input_date':'登録日',
+                    'Solvent4_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent4_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent4_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent4'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent4_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent4_memo'].widgets.attrs["class"] = "form-control"
+
+
+######################################################################################################
+class Solvent5ConfCreateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent5_Conf
+        fields = ('Solvent5_name','Solvent5_manu','Unit_price_solvent5','Solvent5_input_date','Solvent5_memo')
+        widgets = {
+            'Solvent5_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent5_name':'溶剤名',
+                    'Solvent5_manu':'溶剤メーカー',
+                    'Unit_price_solvent5':'単価：（￥）',
+                    'Solvent5_input_date':'登録日',
+                    'Solvent5_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent5_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent5_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent5'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent5_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent5_memo'].widgets.attrs["class"] = "form-control"
+
+
+class Solvent5ConfUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent5_Conf
+        fields = ('Solvent5_name','Solvent5_manu','Unit_price_solvent5','Solvent5_input_date','Solvent5_memo')
+        widgets = {
+            'Solvent5_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent5_name':'溶剤名',
+                    'Solvent5_manu':'溶剤メーカー',
+                    'Unit_price_solvent5':'単価：（￥）',
+                    'Solvent5_input_date':'登録日',
+                    'Solvent5_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent5_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent5_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent5'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent5_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent5_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class Solvent6ConfCreateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent6_Conf
+        fields = ('Solvent6_name','Solvent6_manu','Unit_price_solvent6','Solvent6_input_date','Solvent6_memo')
+        widgets = {
+            'Solvent6_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent6_name':'溶剤名',
+                    'Solvent6_manu':'溶剤メーカー',
+                    'Unit_price_solvent6':'単価：（￥）',
+                    'Solvent6_input_date':'登録日',
+                    'Solvent6_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent6_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent6_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent6'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent6_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent6_memo'].widgets.attrs["class"] = "form-control"
+
+
+class Solvent6ConfUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent6_Conf
+        fields = ('Solvent6_name','Solvent6_manu','Unit_price_solvent6','Solvent6_input_date','Solvent6_memo')
+        widgets = {
+            'Solvent6_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent6_name':'溶剤名',
+                    'Solvent6_manu':'溶剤メーカー',
+                    'Unit_price_solvent6':'単価：（￥）',
+                    'Solvent6_input_date':'登録日',
+                    'Solvent6_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent6_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent6_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent6'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent6_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent6_memo'].widgets.attrs["class"] = "form-control"
+
+
+######################################################################################################
+class Solvent7ConfCreateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent7_Conf
+        fields = ('Solvent7_name','Solvent7_manu','Unit_price_solvent7','Solvent7_input_date','Solvent7_memo')
+        widgets = {
+            'Solvent7_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent7_name':'溶剤名',
+                    'Solvent7_manu':'溶剤メーカー',
+                    'Unit_price_solvent7':'単価：（￥）',
+                    'Solvent7_input_date':'登録日',
+                    'Solvent7_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent7_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent7_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent7'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent7_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent7_memo'].widgets.attrs["class"] = "form-control"
+
+
+class Solvent7ConfUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent7_Conf
+        fields = ('Solvent7_name','Solvent7_manu','Unit_price_solvent7','Solvent7_input_date','Solvent7_memo')
+        widgets = {
+            'Solvent7_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent7_name':'溶剤名',
+                    'Solvent7_manu':'溶剤メーカー',
+                    'Unit_price_solvent7':'単価：（￥）',
+                    'Solvent7_input_date':'登録日',
+                    'Solvent7_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent7_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent7_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent7'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent7_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent7_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+class Solvent8ConfCreateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent8_Conf
+        fields = ('Solvent8_name','Solvent8_manu','Unit_price_solvent8','Solvent8_input_date','Solvent8_memo')
+        widgets = {
+            'Solvent8_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent8_name':'溶剤名',
+                    'Solvent8_manu':'溶剤メーカー',
+                    'Unit_price_solvent8':'単価：（￥）',
+                    'Solvent8_input_date':'登録日',
+                    'Solvent8_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent8_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent8_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent8'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent8_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent8_memo'].widgets.attrs["class"] = "form-control"
+
+
+class Solvent8ConfUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent8_Conf
+        fields = ('Solvent8_name','Solvent8_manu','Unit_price_solvent8','Solvent8_input_date','Solvent8_memo')
+        widgets = {
+            'Solvent8_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent8_name':'溶剤名',
+                    'Solvent8_manu':'溶剤メーカー',
+                    'Unit_price_solvent8':'単価：（￥）',
+                    'Solvent8_input_date':'登録日',
+                    'Solvent8_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent8_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent8_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent8'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent8_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent8_memo'].widgets.attrs["class"] = "form-control"
+
+
+######################################################################################################
+class Solvent9ConfCreateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent9_Conf
+        fields = ('Solvent9_name','Solvent9_manu','Unit_price_solvent9','Solvent9_input_date','Solvent9_memo')
+        widgets = {
+            'Solvent9_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent9_name':'溶剤名',
+                    'Solvent9_manu':'溶剤メーカー',
+                    'Unit_price_solvent9':'単価：（￥）',
+                    'Solvent9_input_date':'登録日',
+                    'Solvent9_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent9_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent9_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent9'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent9_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent9_memo'].widgets.attrs["class"] = "form-control"
+
+
+class Solvent9ConfUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Solvent9_Conf
+        fields = ('Solvent9_name','Solvent9_manu','Unit_price_solvent9','Solvent9_input_date','Solvent9_memo')
+        widgets = {
+            'Solvent9_input_date':DateInput(),
+        }
+        labels = {
+                    'Solvent9_name':'溶剤名',
+                    'Solvent9_manu':'溶剤メーカー',
+                    'Unit_price_solvent9':'単価：（￥）',
+                    'Solvent9_input_date':'登録日',
+                    'Solvent9_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Solvent9_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent9_manu'].widgets.attrs["class"] = "form-control"
+                self.fields['Unit_price_solvent9'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent9_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Solvent9_memo'].widgets.attrs["class"] = "form-control"
 
 ######################################################################################################
 class EquipmentCategoryCreateForm(forms.ModelForm):

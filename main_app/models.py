@@ -11,7 +11,7 @@ from django.db.models.fields.related import ForeignKey
 
 # 客先情報☆
 class Customer_Infomation(models.Model):
-    Customer_name = models.CharField(verbose_name='企業名',max_length=20,blank=True,null=False)
+    Customer_name = models.CharField(verbose_name='企業名',max_length=20,blank=False,null=False)
     #tel_number_regex = RegexValidator(regex=r'^[0-9]+$', message = ("Tel Number must be entered in the format: '09012345678'. Up to 15 digits allowed."))
     
     tel_number_regex = RegexValidator(regex=r'^[0-9]+$', message = ("半角数字 11桁で入力して下さい。 例:'09012345678'"))
@@ -23,7 +23,7 @@ class Customer_Infomation(models.Model):
     Customer_address1 = models.CharField(verbose_name='都道府県',max_length=40,blank=True,null=True)
     Customer_address2 = models.CharField(verbose_name='市町村番地',max_length=40,blank=True,null=True)
     Customer_address3 = models.CharField(verbose_name='建物名',max_length=40,blank=True,null=True)
-    Customer_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Customer_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Customer_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -37,8 +37,8 @@ class Customer_Infomation(models.Model):
 
 #装置カテゴリー☆
 class Equipment_Category(models.Model):
-    Equipment_category = CharField(verbose_name='装置カテゴリー',max_length=10,blank=True,null=True,unique=True)
-    Equipment_category_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Equipment_category = CharField(verbose_name='装置カテゴリー',max_length=10,blank=False,null=False,unique=True)
+    Equipment_category_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
 
     def __str__(self):
        return str(self.Equipment_category)
@@ -50,8 +50,8 @@ class Equipment_Category(models.Model):
 #装置型式☆
 class Machine_Model(models.Model):
     Machine_category = models.ForeignKey(Equipment_Category,on_delete=CASCADE,verbose_name='装置カテゴリー')
-    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True,unique=True)
-    Machine_model_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=False,null=False,unique=True)
+    Machine_model_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Machine_model_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -62,11 +62,11 @@ class Machine_Model(models.Model):
 
 #客先装置
 class Customer_Machine(models.Model):
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True,unique=True)
+    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=False,null=False,unique=True)
     Machine_model = models.ForeignKey(Machine_Model,on_delete=CASCADE,verbose_name='装置')
     Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
     Customer_machine_inst_date = models.DateField(verbose_name='納入日',blank=True,null=True)
-    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Customer_machine_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
 
     def __str__(self):
@@ -82,7 +82,7 @@ class Trouble_Contents(models.Model):
     Machine_model = models.ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
     Trouble_no = models.IntegerField(verbose_name='異常No',validators=[MinValueValidator(0)],blank=True,null=True)
     Trouble_contents = models.CharField(verbose_name='異常項目',max_length=20,blank=True,null=True)
-    Trouble_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Trouble_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Trouble_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     
@@ -121,7 +121,7 @@ class Trouble_History(models.Model):
 class Recipe_Name(models.Model):
     Recipe_id = models.IntegerField(verbose_name='品種ID',validators=[MinValueValidator(0)],default=1,blank=True,null=True)
     Racipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
-    Racipe_name_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Racipe_name_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Racipe_name_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -139,7 +139,7 @@ class Recipe_Name(models.Model):
 class Setting_Item(models.Model):
     Setting_item_id = models.IntegerField(verbose_name='品種ID',validators=[MinValueValidator(0)],blank=True,null=True,unique=True)
     Setting_item_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True,unique=True)
-    Setting_item_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Setting_item_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Setting_item_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -256,7 +256,7 @@ class Customer_Machine_Recipe(models.Model):
 #電気単価
 class Unit_Price_Electric(models.Model):
     Unit_price_electric = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
-    Unit_price_electric_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Unit_price_electric_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Unit_price_electric_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -271,7 +271,7 @@ class Unit_Price_Electric(models.Model):
 #蒸気単価
 class Unit_Price_Steam(models.Model):
     Unit_price_steam = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
-    Unit_price_steam_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Unit_price_steam_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Unit_price_steam_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -286,7 +286,7 @@ class Unit_Price_Steam(models.Model):
 #ガス単価
 class Unit_Price_Gas(models.Model):
     Unit_price_gas = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
-    Unit_price_gas_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Unit_price_gas_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Unit_price_gas_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -301,7 +301,7 @@ class Unit_Price_Gas(models.Model):
 #水単価
 class Unit_Price_Water(models.Model):
     Unit_price_water = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=False,null=False)
-    Unit_price_water_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Unit_price_water_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Unit_price_water_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -316,7 +316,7 @@ class Unit_Price_Water(models.Model):
 #溶剤名
 class Solvent_Name(models.Model):
     Solvent_name = models.CharField(verbose_name='溶剤名',max_length=20,blank=True,null=True,unique=True)
-    Solvent_name_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent_name_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     
     def __str__(self):
        return str(self.Solvent_name)
@@ -331,7 +331,7 @@ class Solvent_Name(models.Model):
 #溶剤メーカー
 class Solvent_Manufacturer(models.Model):
     Solvent_manu = models.CharField(verbose_name='メーカー',max_length=20,blank=True,null=True,unique=True)
-    Solvent_manu_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent_manu_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
 
     def __str__(self):
        return str(self.Solvent_manu)
@@ -345,7 +345,7 @@ class Solvent0_Conf(models.Model):
     Solvent0_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent0_name')
     Solvent0_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent0_manu')
     Unit_price_solvent0 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent0_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent0_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent0_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -363,7 +363,7 @@ class Solvent1_Conf(models.Model):
     Solvent1_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent1_name')
     Solvent1_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent1_manu')
     Unit_price_solvent1 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent1_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent1_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent1_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -381,7 +381,7 @@ class Solvent2_Conf(models.Model):
     Solvent2_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent2_name')
     Solvent2_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent2_manu')
     Unit_price_solvent2 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent2_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent2_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent2_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -399,7 +399,7 @@ class Solvent3_Conf(models.Model):
     Solvent3_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent3_name')
     Solvent3_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent3_manu')
     Unit_price_solvent3 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent3_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent3_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent3_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -417,7 +417,7 @@ class Solvent4_Conf(models.Model):
     Solvent4_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent4_name')
     Solvent4_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent4_manu')
     Unit_price_solvent4 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent4_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent4_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent4_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -435,7 +435,7 @@ class Solvent5_Conf(models.Model):
     Solvent5_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent5_name')
     Solvent5_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent5_manu')
     Unit_price_solvent5 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent5_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent5_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent5_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -453,7 +453,7 @@ class Solvent6_Conf(models.Model):
     Solvent6_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent6_name')
     Solvent6_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent6_manu')
     Unit_price_solvent6 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent6_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent6_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent6_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -471,7 +471,7 @@ class Solvent7_Conf(models.Model):
     Solvent7_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent7_name')
     Solvent7_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent7_manu')
     Unit_price_solvent7 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent7_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent7_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent7_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -489,7 +489,7 @@ class Solvent8_Conf(models.Model):
     Solvent8_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent8_name')
     Solvent8_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent8_manu')
     Unit_price_solvent8 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent8_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent8_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent8_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -507,7 +507,7 @@ class Solvent9_Conf(models.Model):
     Solvent9_name = models.ForeignKey(Solvent_Name,on_delete=CASCADE,verbose_name='溶剤名',related_name='solvent9_name')
     Solvent9_manu = models.ForeignKey(Solvent_Manufacturer,on_delete=CASCADE,verbose_name='メーカー',related_name='solvent9_manu')
     Unit_price_solvent9 = models.FloatField(verbose_name='単価',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Solvent9_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Solvent9_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Solvent9_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -839,7 +839,7 @@ class Mail_Notification(models.Model):
     Mail_name = models.CharField(verbose_name='氏名',max_length=20,blank=True,null=True)
     Mail_department = models.CharField(verbose_name='部署',max_length=20,blank=True,null=True)
     Mail_address = models.EmailField(max_length=240)
-    Mail_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Mail_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Mail_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
@@ -858,7 +858,7 @@ class Trouble_Mail_Setting(models.Model):
     Trouble_contents = ForeignKey(Trouble_Contents,on_delete=CASCADE,verbose_name='異常')
     Trouble_mail_notification = ForeignKey(Mail_Notification,on_delete=CASCADE,verbose_name='メール設定')
     Trouble_mail_send_setting = models.BooleanField(verbose_name='送信設定')
-    Trouble_mail_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Trouble_mail_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Trouble_mail_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
   
     def __str__(self):
@@ -877,7 +877,7 @@ class Maintenance_Mail_Setting(models.Model):
     Maintenance_mail_notification = ForeignKey(Mail_Notification,on_delete=CASCADE,verbose_name='メール設定')
     Maintenance_threshold = models.IntegerField(verbose_name='閾値',validators=[MinValueValidator(1)],default=1,blank=True,null=True)
     Maintenance_send_setting = models.BooleanField(verbose_name='送信設定')
-    Maintenance_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
+    Maintenance_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Maintenance_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
   
     def __str__(self):
