@@ -2,7 +2,8 @@ from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
 from ..models import Customer_Machine_Recipe,Customer_Machine,Machine_Drive_History,\
-    Unit_Price_Electric,Unit_Price_Steam,Unit_Price_Gas,Unit_Price_Water,Solvent0_Conf
+    Unit_Price_Electric,Unit_Price_Steam,Unit_Price_Gas,Unit_Price_Water,\
+        Solvent0_Conf,Solvent1_Conf,Solvent2_Conf,Solvent3_Conf,Solvent4_Conf,Solvent5_Conf,Solvent6_Conf,Solvent7_Conf,Solvent8_Conf,Solvent9_Conf
 from ..forms import MachineDriveHistoryCreateForm,MachineDriveHistoryUpdateForm
 from django.db .models import Q
 from django.contrib import messages
@@ -47,6 +48,15 @@ class MachineDriveHistoryView(ListView):
             g_price = Unit_Price_Gas.objects.all().order_by('-Unit_price_gas_input_date').first()
             w_price = Unit_Price_Water.objects.all().order_by('-Unit_price_water_input_date').first()
             s0_price = Solvent0_Conf.objects.all().order_by('-Solvent0_input_date').first()
+            s1_price = Solvent1_Conf.objects.all().order_by('-Solvent1_input_date').first()
+            s2_price = Solvent2_Conf.objects.all().order_by('-Solvent2_input_date').first()
+            s3_price = Solvent3_Conf.objects.all().order_by('-Solvent3_input_date').first()
+            s4_price = Solvent4_Conf.objects.all().order_by('-Solvent4_input_date').first()
+            s5_price = Solvent5_Conf.objects.all().order_by('-Solvent5_input_date').first()
+            s6_price = Solvent6_Conf.objects.all().order_by('-Solvent6_input_date').first()
+            s7_price = Solvent7_Conf.objects.all().order_by('-Solvent7_input_date').first()
+            s8_price = Solvent8_Conf.objects.all().order_by('-Solvent8_input_date').first()
+            s9_price = Solvent9_Conf.objects.all().order_by('-Solvent9_input_date').first()
             
             for history_i in object_list:
                 #機種型式書き込み
@@ -87,6 +97,69 @@ class MachineDriveHistoryView(ListView):
                 if (history_i.Unit_price_solvent0==None)or(history_i.Unit_price_solvent0==0):
                     try:
                         history_i.Unit_price_solvent0 = s0_price.Unit_price_solvent0
+                        history_i.save()
+                    except:
+                        pass
+                #溶剤1単価書き込み
+                if (history_i.Unit_price_solvent1==None)or(history_i.Unit_price_solvent1==0):
+                    try:
+                        history_i.Unit_price_solvent1 = s1_price.Unit_price_solvent1
+                        history_i.save()
+                    except:
+                        pass
+                #溶剤2単価書き込み
+                if (history_i.Unit_price_solvent2==None)or(history_i.Unit_price_solvent2==0):
+                    try:
+                        history_i.Unit_price_solvent2 = s2_price.Unit_price_solvent2
+                        history_i.save()
+                    except:
+                        pass
+                #溶剤3単価書き込み
+                if (history_i.Unit_price_solvent3==None)or(history_i.Unit_price_solvent3==0):
+                    try:
+                        history_i.Unit_price_solvent3 = s3_price.Unit_price_solvent3
+                        history_i.save()
+                    except:
+                        pass
+                #溶剤4単価書き込み
+                if (history_i.Unit_price_solvent4==None)or(history_i.Unit_price_solvent4==0):
+                    try:
+                        history_i.Unit_price_solvent4 = s4_price.Unit_price_solvent4
+                        history_i.save()
+                    except:
+                        pass
+                #溶剤5単価書き込み
+                if (history_i.Unit_price_solvent5==None)or(history_i.Unit_price_solvent5==0):
+                    try:
+                        history_i.Unit_price_solvent5 = s5_price.Unit_price_solvent5
+                        history_i.save()
+                    except:
+                        pass
+                #溶剤6単価書き込み
+                if (history_i.Unit_price_solvent6==None)or(history_i.Unit_price_solvent6==0):
+                    try:
+                        history_i.Unit_price_solvent6 = s6_price.Unit_price_solvent6
+                        history_i.save()
+                    except:
+                        pass
+                #溶剤7単価書き込み
+                if (history_i.Unit_price_solvent7==None)or(history_i.Unit_price_solvent7==0):
+                    try:
+                        history_i.Unit_price_solvent7 = s7_price.Unit_price_solvent7
+                        history_i.save()
+                    except:
+                        pass
+                #溶剤8単価書き込み
+                if (history_i.Unit_price_solvent8==None)or(history_i.Unit_price_solvent8==0):
+                    try:
+                        history_i.Unit_price_solvent8 = s8_price.Unit_price_solvent8
+                        history_i.save()
+                    except:
+                        pass
+                #溶剤9単価書き込み
+                if (history_i.Unit_price_solvent9==None)or(history_i.Unit_price_solvent9==0):
+                    try:
+                        history_i.Unit_price_solvent9 = s9_price.Unit_price_solvent9
                         history_i.save()
                     except:
                         pass

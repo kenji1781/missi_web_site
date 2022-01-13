@@ -29,30 +29,7 @@
                         <!-- パーミッション　-->
                         {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <!-- コスト管理ドロップダウン -->
-                            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                              <ul class="navbar-nav">
-                                  <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                      　コスト
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                      <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">電力単価</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:steam_price' %}">蒸気単価</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:gas_price' %}">ガス単価</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:water_price' %}">水単価</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:solvent0_conf' %}">溶剤0単価</a></li>
-                                      
-                                      <li><hr class="dropdown-divider"></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:cost_electric' %}">電力コスト</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">蒸気コスト</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">ガスコスト</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">トータルコスト</a></li>
-                                      
-                                    </ul>
-                                  </li>
-                                </ul>
-                          </div>
+                            
                             <!-- 設定ドロップダウン -->
                             <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                                 <ul class="navbar-nav">
@@ -66,6 +43,22 @@
                                         <li><a class="dropdown-item" href="{% url 'main_app:customer_machine_recipe' %}">レシピ</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:solvent_name' %}">溶剤名</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:solvent_manufacturer' %}">溶剤メーカー</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">電力単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:steam_price' %}">蒸気単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:gas_price' %}">ガス単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:water_price' %}">水単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent0_conf' %}">溶剤0単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent1_conf' %}">溶剤1単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent2_conf' %}">溶剤2単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent3_conf' %}">溶剤3単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent4_conf' %}">溶剤4単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent5_conf' %}">溶剤5単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent6_conf' %}">溶剤6単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent7_conf' %}">溶剤7単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent8_conf' %}">溶剤8単価</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent9_conf' %}">溶剤9単価</a></li>
+                                      
                                       </ul>
                                     </li>
                                   </ul>
@@ -85,7 +78,26 @@
                                     </li>
                                   </ul>
                             </div>
-                                 
+                            
+                            <!-- コスト管理ドロップダウン -->
+                            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                              <ul class="navbar-nav">
+                                  <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      　コスト
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                      
+                                      <li><a class="dropdown-item" href="{% url 'main_app:cost_electric' %}">電力コスト</a></li>
+                                      <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">蒸気コスト</a></li>
+                                      <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">ガスコスト</a></li>
+                                      <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">トータルコスト</a></li>
+                                      
+                                    </ul>
+                                  </li>
+                                </ul>
+                          </div>
+
                             <!-- メーカー設定ドロップダウン -->
                             <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                                 <ul class="navbar-nav">

@@ -25,7 +25,7 @@ Data Monitoring System {{ title }}
     
     </form>
     
-    <a href="{% url 'main_app:solvent0_conf_create' %}" class="btn btn-outline-primary">登録</a>
+    <a href="{% url 'main_app:solvent3_conf_create' %}" class="btn btn-outline-primary">登録</a>
     <table class="table" style="font-size : 12px;">
         <tr>
             <th>溶剤名</th>
@@ -37,13 +37,13 @@ Data Monitoring System {{ title }}
 <!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
     {% for item in object_list %}
         <tr>
-            <td>{{ item.Solvent0_name }}</td>
-            <td>{{ item.Solvent0_manu }}</td>
-            <td>{{ item.Unit_price_solvent0  }}</td>
-            <td>{{ item.Solvent0_input_date  }}</td>
-            <td>{{ item.Solvent0_memo }}</td>
-            <td><a href="{% url 'main_app:solvent0_conf_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
-            <td><a href="{% url 'main_app:solvent0_conf_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
+            <td>{{ item.Solvent3_name }}</td>
+            <td>{{ item.Solvent3_manu }}</td>
+            <td>{{ item.Unit_price_solvent3  }}</td>
+            <td>{{ item.Solvent3_input_date  }}</td>
+            <td>{{ item.Solvent3_memo }}</td>
+            <td><a href="{% url 'main_app:solvent3_conf_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
+            <td><a href="{% url 'main_app:solvent3_conf_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
         </tr>
     {% endfor %}
     </table>
