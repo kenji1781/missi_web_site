@@ -634,21 +634,12 @@ class Machine_Drive_History(models.Model):
 
 #電気コスト
 class Cost_Electric(models.Model):
-    Cost_id = models.IntegerField(verbose_name='電力コストID',default=0,blank=True,null=True)
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
-    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=True,null=True)
-    Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=True,null=True)
-    Machine_drive_history = ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴')
-    Unit_price_electric = ForeignKey(Unit_Price_Electric,on_delete=CASCADE,verbose_name='単価')
+    Machine_drive_history = models.ForeignKey(Machine_Drive_History,on_delete=CASCADE,verbose_name='稼働履歴',related_name='cost_history_electric')
     Machine_electric_used = models.FloatField(verbose_name='電力使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_steam_used = models.FloatField(verbose_name='蒸気使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_gas_used = models.FloatField(verbose_name='ガス使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_water_used = models.FloatField(verbose_name='水使用量',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Cost_electric = models.FloatField(verbose_name='電力費用',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Data_date_year = models.IntegerField(verbose_name='年',validators=[MinValueValidator(2021)],default=2021,blank=True,null=True)
-    Data_date_month = models.IntegerField(verbose_name='月',validators=[MinValueValidator(1),MaxValueValidator(12)],default=1,blank=True,null=True)
-    Data_date_day = models.IntegerField(verbose_name='日',validators=[MinValueValidator(1),MaxValueValidator(31)],default=1,blank=True,null=True)
     Data_datetime =  models.DateTimeField(verbose_name='データ取得日',blank=True,null=True)
     Machine_history_input_date = models.DateField(verbose_name='登録日',blank=True,null=True)
     Machine_history_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
@@ -657,10 +648,9 @@ class Cost_Electric(models.Model):
     def __str__(self):
        return '<id=' + str(self.id) + ', ' + \
 		' 稼働履歴 : ' + str(self.Machine_drive_history) + \
-            ' 単価 : ' + str(self.Unit_price_electric) + \
-                ' 電力費用 : ' + str(self.Cost_electric) + \
-                    ' データ取得日 : ' + str(self.Data_datetime) + \
-                        ' 登録日 : ' + str(self.Machine_history_input_date) + \
+            ' 電力費用 : ' + str(self.Cost_electric) + \
+                ' データ取得日 : ' + str(self.Data_datetime) + \
+                    ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
 
     class Meta:
