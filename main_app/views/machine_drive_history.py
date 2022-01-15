@@ -7,6 +7,8 @@ from ..models import Customer_Machine_Recipe,Customer_Machine,Machine_Drive_Hist
 from ..forms import MachineDriveHistoryCreateForm,MachineDriveHistoryUpdateForm
 from django.db .models import Q
 from django.contrib import messages
+from datetime import datetime,date,time
+#from django.utils.timezone import localdate,localtime
 
 
 
@@ -15,7 +17,7 @@ class MachineDriveHistoryView(ListView):
     
     template_name = 'monitoring/machine_drive_history.html'
     model = Machine_Drive_History
-    paginate_by = 10
+    paginate_by = 50
     
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -163,6 +165,31 @@ class MachineDriveHistoryView(ListView):
                         history_i.save()
                     except:
                         pass
+
+                #データ取得日　datetimeからdateを書込み
+                if history_i.Data_datetime != None:
+                    date_r = history_i.Data_datetime.date()
+                    print(date_r)
+                
+                    if ((history_i.Data_datetime != None) and (history_i.Data_date == None))\
+                            or (date_r != history_i.Data_date):
+                        try:
+                            history_i.Data_date = date_r
+                            history_i.save()
+                        except:
+                            pass
+                #データ取得日　datetimeからtimeを書込み
+                if history_i.Data_datetime != None:
+                    time_r = history_i.Data_datetime.time()
+                    print(time_r)
+                
+                    if ((history_i.Data_datetime != None) and (history_i.Data_time == None))\
+                            or (time_r != history_i.Data_time):
+                        try:
+                            history_i.Data_time = time_r
+                            history_i.save()
+                        except:
+                            pass
 
 
         return object_list

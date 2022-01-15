@@ -139,8 +139,8 @@ TIME_ZONE = 'Asia/Tokyo'
 USE_I18N = True
 
 USE_L10N = True
-
-USE_TZ = True
+#DB時刻がUTCで登録される対策でUSE_TZ = TrueからFalseに変更。
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

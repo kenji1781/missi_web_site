@@ -1178,6 +1178,7 @@ class SettingItemUpdateForm(forms.ModelForm):
 
 ######################################################################################################
 Customer__recipe_fields = (
+                    #'His_id',
                     'Customer_machine_id',
                     'Machine_model',
                     'Recipe_id',
@@ -1244,6 +1245,7 @@ Customer__recipe_fields = (
                     'Customer_machine_memo')
 
 Customer__recipe_labels = {
+                    #'His_id':'履歴ID',
                     'Customer_machine_id':'装置ID',
                     'Machine_model':'装置',
                     'Recipe_id':'品種ID',
@@ -1509,6 +1511,8 @@ Machine_drive_history_fields = (
                     'Machine_solvent7_used',
                     'Machine_solvent8_used',
                     'Machine_solvent9_used',
+                    #'Data_date',
+                    #'Data_time',
                     'Data_datetime',
                     'Machine_history_input_date',
                     'Machine_history_memo')
@@ -1549,6 +1553,8 @@ Machine_drive_history_labels = {
                     'Machine_solvent7_used':'溶剤7使用量',
                     'Machine_solvent8_used':'溶剤8使用量',
                     'Machine_solvent9_used':'溶剤9使用量',
+                    #'Data_date':'データ取得日',
+                    #'Data_time':'データ取得時刻',
                     'Data_datetime':'データ取得時刻',
                     'Machine_history_input_date':'登録日',
                     'Machine_history_memo':'メモ',
