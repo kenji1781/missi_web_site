@@ -7,3 +7,6 @@ psycopg2
 pytz
 psycopg2-binary
 django-allauth
+numpy
+plotly
+django-pandas

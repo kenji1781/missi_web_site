@@ -92,7 +92,8 @@
                                       <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">蒸気コスト</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">ガスコスト</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:electric_price' %}">トータルコスト</a></li>
-                                      
+                                      <li><hr class="dropdown-divider"></li>
+                                      <li><a class="dropdown-item" href="{% url 'main_app:cost_electric_graph' now_year now_month %}" onclick="window.open('{% url 'main_app:cost_electric_graph' now_year now_month %}','グラフ:電力','width=1200,height=700,noopener');return false;">グラフ:電力</a></li>
                                     </ul>
                                   </li>
                                 </ul>

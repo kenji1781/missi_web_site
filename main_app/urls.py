@@ -28,7 +28,7 @@ from .views.setting_item import SettingItemView,SettingItemCreateView,SettingIte
 from .views.customer_machine_recipe import CustomerMachineRecipeView,CustomerMachineRecipeCreateView,CustomerMachineRecipeUpdateView,CustomerMachineRecipeDeleteView
 from .views.machine_drive_history import MachineDriveHistoryView,MachineDriveHistoryCreateView,MachineDriveHistoryUpdateView,MachineDriveHistoryDeleteView
 from .views.cost_electric import CostElectricView
-
+from .views.cost_electric_graph import CostElectricGraphView
 
 app_name = 'main_app'
 urlpatterns = [
@@ -135,7 +135,7 @@ urlpatterns = [
     path('machine_drive_history/update/<int:pk>',MachineDriveHistoryUpdateView.as_view(),name="machine_drive_history_update"),   #稼働履歴
     path('machine_drive_history/delete/<int:pk>',MachineDriveHistoryDeleteView.as_view(),name="machine_drive_history_delete"),   #稼働履歴
     path('cost_electric/',CostElectricView.as_view(),name="cost_electric"),        #電力コスト
-    #path('cost_electric/create/',CostElectricCreateView.as_view(),name="cost_electric_create"),   #電力コスト
+    path('cost_electric_graph/<int:year>/<int:month>/',CostElectricGraphView.as_view(),name="cost_electric_graph"),   #電力コストグラフ
     #path('cost_electric/update/<int:pk>',CostElectricUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
     #path('cost_electric/delete/<int:pk>',CostElectricDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
     #path('cost_steam/',CostSteamView.as_view(),name="cost_electric"),        #電力コスト
