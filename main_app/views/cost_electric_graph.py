@@ -22,8 +22,8 @@ class CostElectricGraphView(TemplateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         
-        ctx['title'] = 'グラフ：電力'
-        ctx['msg'] = 'グラフ：電力確認が出来ます。'
+        ctx['title'] = '電力コスト詳細'
+        ctx['msg'] = '電力コスト詳細確認が出来ます。'
         
 
         year = int(self.kwargs.get('year'))
