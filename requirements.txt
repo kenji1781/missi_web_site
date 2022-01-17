@@ -10,3 +10,4 @@ django-allauth
 numpy
 plotly
 django-pandas
+pandas

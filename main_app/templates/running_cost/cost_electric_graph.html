@@ -5,6 +5,7 @@
 Data Monitoring System {{ title }}
 {% endblock %}
 {% block header %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <div style="padding: 20px">
     <br>
     <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
@@ -14,6 +15,41 @@ Data Monitoring System {{ title }}
 <style>
     th{white-space: nowrap;}
     td{white-space: nowrap;}
+.month-pager {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.month-dash-page-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.left {
+  width: 40%;
+  padding: 0 5%;
+}
+
+.right {
+  width: 60%;
+  padding: 0 5%;
+}
+
+.card {
+  margin-top: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.3rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  padding: 10px;
+}
+
 </style>        
 {% endblock %}
 {% block content %}
@@ -26,8 +62,49 @@ Data Monitoring System {{ title }}
 
 <span class="ml-4 ml-4">{{ year_month }}</span>
     
-    <a href="{% url 'main_app:cost_electric_graph' prev_year prev_month %}">
+    <a href="{% url 'main_app:cost_electric_graph' next_year next_month %}">
         次月
     </a>
 </div>
+
+<!-- ここからグラフ -->
+{% autoescape off %}
+<div class="month-dash-page-top mt-4">
+  <div class="left card">
+    <table class="table">
+      <tr>
+        <th>装置</th>
+        <th>金額</th>
+      </tr>
+      {% for key,value in table_set.items %}
+      <tr>
+        <td>{{ key }}</td>
+        <td>{{ value }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>Total</td>
+        <td>{{ total_payment }}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="right ml-4">
+    {{ plot_pie }}
+  </div>
+</div>
+<div class="month-dash-bottom">
+  <div>
+    {{ plot_bar }}
+  </div>
+</div>
+{% endautoescape %}
+
 {% endblock %}
+<!--{% block extrajs %} -->
+<!-- plotlyのjs -->
+<!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+<!-- {% endblock %} -->
+
+
+
+

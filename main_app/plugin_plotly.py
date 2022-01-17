@@ -9,7 +9,7 @@ class GraphGenerator:
         fig = go.Figure()
         fig.add_trace(go.Pie(labels=labels,
                              values=values))
-
+        print("Pie実行")
         return fig.to_html(include_plotlyjs=False)
 
     def month_daily_bar(self, x_list, y_list):
@@ -19,5 +19,5 @@ class GraphGenerator:
             x=x_list,
             y=y_list,
         ))
-
+        print("Bar実行")
         return fig.to_html(include_plotlyjs=False)
