@@ -1,12 +1,12 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Customer_Machine_Recipe,Customer_Machine,Machine_Drive_History,\
-    Unit_Price_Electric
+from ..models import Machine_Drive_History
 from django.db .models import Q
 from django.contrib import messages
 from django.db.models import Count,Sum,Avg,Min,Max
 from datetime import datetime,date,time
+from ..machine_drive_history_model_comp import ModelComplement
 #from django.utils.timezone import localdate,localtime
 
 ################################################################################
@@ -51,69 +51,27 @@ class CostElectricView(ListView):
         q_date_f = self.request.GET.get('query_date_f')
         q_date_l = self.request.GET.get('query_date_l')
 
-        if q_date_f and q_date_l:
-            object_list = Machine_Drive_History.objects.filter(Data_datetime__range=(q_date_f, q_date_l))
+        if q_word and q_date_f and q_date_l:
+            object_list = Machine_Drive_History.objects.filter(Customer_machine_id=q_word).filter(Data_datetime__range=(q_date_f, q_date_l))
                 
             
         else:
-            
-        
-            e_cost_total = Machine_Drive_History.objects.all().aggregate(Sum('Cost_electric'))
-        
             object_list = Machine_Drive_History.objects.all().order_by('-Data_datetime')    #.values('Customer_machine_id','Machine_model','Customer_machine_unit_no','Cost_electric','Data_datetime')
-            #各単価読み込み
-            e_price = Unit_Price_Electric.objects.all().order_by('-Unit_price_electric_input_date').first()
             
-            for history_i in object_list:
-                #機種型式書き込み
-                if (history_i.Machine_model==None) and (history_i.Customer_machine_id != None):
-                    for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
-                        if history_i.Customer_machine_id == c_machine.Customer_machine_id:
-                            history_i.Machine_model = str(c_machine.Machine_model)                   
-                            history_i.save()
-                #電力単価書き込み         
-                if (history_i.Unit_price_electric==None)or(history_i.Unit_price_electric==0):
-                    try:
-                        history_i.Unit_price_electric = e_price.Unit_price_electric
-                        history_i.save()
-                    except:
-                        pass
-                #電力費用書き込み         
-                try:
-                    history_i.Cost_electric = history_i.Unit_price_electric * history_i.Machine_electric_used
-                    history_i.save()
-                except:
-                    pass
-
-
-                #データ取得日　datetimeからdateを書込み
-                if history_i.Data_datetime != None:
-                    date_r = history_i.Data_datetime.date()
-                    print(date_r)
-                
-                    if ((history_i.Data_datetime != None) and (history_i.Data_date == None))\
-                            or (date_r != history_i.Data_date):
-                        try:
-                            history_i.Data_date = date_r
-                            history_i.save()
-                        except:
-                            pass
-                #データ取得日　datetimeからtimeを書込み
-                if history_i.Data_datetime != None:
-                    time_r = history_i.Data_datetime.time()
-                    print(time_r)
-                
-                    if ((history_i.Data_datetime != None) and (history_i.Data_time == None))\
-                            or (time_r != history_i.Data_time):
-                        try:
-                            history_i.Data_time = time_r
-                            history_i.save()
-                        except:
-                            pass
-
-        
-        
+            modelcomp = ModelComplement()
+            #datetimeをdateとtimeに分割
+            modelcomp.datetime_complement(object_list)
+            #idから機種を書込み
+            modelcomp.machine_model_complement(object_list)
+            #各最新単価を書込み
+            modelcomp.unit_cost_complement(object_list)
+           
+            
         return object_list
+            
+            
+        
+       
 
 
         

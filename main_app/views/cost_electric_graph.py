@@ -1,18 +1,15 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Customer_Machine_Recipe,Customer_Machine,Machine_Drive_History,\
-    Unit_Price_Electric
-from django.db .models import Q
+from ..models import Machine_Drive_History
 from django.contrib import messages
-from django.db.models import Count,Sum,Avg,Min,Max
 from datetime import datetime,date,time
 #from django.utils.timezone import localdate,localtime
 from ..plugin_plotly import GraphGenerator
 import numpy as np
 import pandas as pd
 from django_pandas.io import read_frame
-
+from ..machine_drive_history_model_comp import ModelComplement
 
 
 
@@ -53,10 +50,19 @@ class CostElectricGraphView(TemplateView):
 
         queryset = Machine_Drive_History.objects.filter(Data_datetime__year=year)
         queryset = queryset.filter(Data_datetime__month=month)
-
+           
         if not queryset:
             return ctx
         
+        #稼働履歴モデルの補完を行う##########################
+        modelcomp = ModelComplement()
+        #datetimeをdateとtimeに分割
+        modelcomp.datetime_complement(queryset)
+        #idから機種を書込み
+        modelcomp.machine_model_complement(queryset)
+        #各最新単価を書込み
+        modelcomp.unit_cost_complement(queryset)
+        #################################################
         df = read_frame(queryset,fieldnames=['Data_date','Cost_electric','Machine_model'])
         
         gen = GraphGenerator()
