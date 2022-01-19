@@ -143,8 +143,111 @@ class ModelComplement:
                     history_i.save()
                 except:
                     pass
+            
+            #蒸気費用書き込み         
+            if (history_i.Cost_steam==None)and(history_i.Unit_price_steam!=None)and(history_i.Machine_steam_used!=None):
+                try:
+                    history_i.Cost_steam = history_i.Unit_price_steam * history_i.Machine_steam_used
+                    history_i.save()
+                except:
+                    pass
+            
+            #ガス費用書き込み         
+            if (history_i.Cost_gas==None)and(history_i.Unit_price_gas!=None)and(history_i.Machine_gas_used!=None):
+                try:
+                    history_i.Cost_gas = history_i.Unit_price_gas * history_i.Machine_gas_used
+                    history_i.save()
+                except:
+                    pass
+            
+            #水費用書き込み         
+            if (history_i.Cost_water==None)and(history_i.Unit_price_water!=None)and(history_i.Machine_water_used!=None):
+                try:
+                    history_i.Cost_water = history_i.Unit_price_water * history_i.Machine_water_used
+                    history_i.save()
+                except:
+                    pass
     
-    
+            #溶剤0費用書き込み         
+            if (history_i.Cost_solvent0==None)and(history_i.Unit_price_solvent0!=None)and(history_i.Machine_solvent0_used!=None):
+                try:
+                    history_i.Cost_solvent0 = history_i.Unit_price_solvent0 * history_i.Machine_solvent0_used
+                    history_i.save()
+                except:
+                    pass
+
+            #溶剤1費用書き込み         
+            if (history_i.Cost_solvent1==None)and(history_i.Unit_price_solvent1!=None)and(history_i.Machine_solvent1_used!=None):
+                try:
+                    history_i.Cost_solvent1 = history_i.Unit_price_solvent1 * history_i.Machine_solvent1_used
+                    history_i.save()
+                except:
+                    pass
+
+            #溶剤2費用書き込み         
+            if (history_i.Cost_solvent2==None)and(history_i.Unit_price_solvent2!=None)and(history_i.Machine_solvent2_used!=None):
+                try:
+                    history_i.Cost_solvent2 = history_i.Unit_price_solvent2 * history_i.Machine_solvent2_used
+                    history_i.save()
+                except:
+                    pass
+
+            #溶剤3費用書き込み         
+            if (history_i.Cost_solvent3==None)and(history_i.Unit_price_solvent3!=None)and(history_i.Machine_solvent3_used!=None):
+                try:
+                    history_i.Cost_solvent3 = history_i.Unit_price_solvent3 * history_i.Machine_solvent3_used
+                    history_i.save()
+                except:
+                    pass
+
+            #溶剤4費用書き込み         
+            if (history_i.Cost_solvent4==None)and(history_i.Unit_price_solvent4!=None)and(history_i.Machine_solvent4_used!=None):
+                try:
+                    history_i.Cost_solvent4 = history_i.Unit_price_solvent4 * history_i.Machine_solvent4_used
+                    history_i.save()
+                except:
+                    pass
+
+            #溶剤5費用書き込み         
+            if (history_i.Cost_solvent5==None)and(history_i.Unit_price_solvent5!=None)and(history_i.Machine_solvent5_used!=None):
+                try:
+                    history_i.Cost_solvent5 = history_i.Unit_price_solvent5 * history_i.Machine_solvent5_used
+                    history_i.save()
+                except:
+                    pass
+
+            #溶剤6費用書き込み         
+            if (history_i.Cost_solvent6==None)and(history_i.Unit_price_solvent6!=None)and(history_i.Machine_solvent6_used!=None):
+                try:
+                    history_i.Cost_solvent6 = history_i.Unit_price_solvent6 * history_i.Machine_solvent6_used
+                    history_i.save()
+                except:
+                    pass
+
+            #溶剤7費用書き込み         
+            if (history_i.Cost_solvent7==None)and(history_i.Unit_price_solvent7!=None)and(history_i.Machine_solvent7_used!=None):
+                try:
+                    history_i.Cost_solvent7 = history_i.Unit_price_solvent7 * history_i.Machine_solvent7_used
+                    history_i.save()
+                except:
+                    pass
+
+            #溶剤8費用書き込み         
+            if (history_i.Cost_solvent8==None)and(history_i.Unit_price_solvent8!=None)and(history_i.Machine_solvent8_used!=None):
+                try:
+                    history_i.Cost_solvent8 = history_i.Unit_price_solvent8 * history_i.Machine_solvent8_used
+                    history_i.save()
+                except:
+                    pass
+
+            #溶剤9費用書き込み         
+            if (history_i.Cost_solvent9==None)and(history_i.Unit_price_solvent9!=None)and(history_i.Machine_solvent9_used!=None):
+                try:
+                    history_i.Cost_solvent9 = history_i.Unit_price_solvent9 * history_i.Machine_solvent9_used
+                    history_i.save()
+                except:
+                    pass
+
     def datetime_complement(self,object):
         
         for history_i in object:

@@ -13,14 +13,14 @@ from ..machine_drive_history_model_comp import ModelComplement
 
 
 
-class CostElectricGraphView(TemplateView):
-    template_name = 'cost_graph/cost_electric_graph.html'
+class CostSolvent0GraphView(TemplateView):
+    template_name = 'cost_graph/cost_solvent0_graph.html'
 
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         
-        ctx['title'] = '電力コスト詳細'
-        ctx['msg'] = '電力コスト詳細確認が出来ます。'
+        ctx['title'] = '溶剤0コスト詳細'
+        ctx['msg'] = '溶剤0コスト詳細確認が出来ます。'
         
 
         year = int(self.kwargs.get('year'))
@@ -63,12 +63,12 @@ class CostElectricGraphView(TemplateView):
         #各最新単価を書込み
         modelcomp.unit_cost_complement(queryset)
         #################################################
-        df = read_frame(queryset,fieldnames=['Data_date','Cost_electric','Machine_model'])
+        df = read_frame(queryset,fieldnames=['Data_date','Cost_solvent0','Machine_model'])
         
         gen = GraphGenerator()
 
         # pieチャートの素材を作成
-        df_pie = pd.pivot_table(df,index='Machine_model',values='Cost_electric',aggfunc=np.sum)
+        df_pie = pd.pivot_table(df,index='Machine_model',values='Cost_solvent0',aggfunc=np.sum)
         
         pie_labels = list(df_pie.index.values)
         pie_values = [val[0] for val in df_pie.values]
@@ -77,13 +77,13 @@ class CostElectricGraphView(TemplateView):
 
         # テーブルでのカテゴリと金額の表示用。
         # {カテゴリ:金額,カテゴリ:金額…}の辞書を作る
-        ctx['table_set'] = df_pie.to_dict()['Cost_electric']
+        ctx['table_set'] = df_pie.to_dict()['Cost_solvent0']
 
         # totalの数字を計算して渡す
-        ctx['total_payment'] = df['Cost_electric'].sum()
+        ctx['total_payment'] = df['Cost_solvent0'].sum()
 
         # 日別の棒グラフの素材を渡す
-        df_bar = pd.pivot_table(df, index='Data_date', values='Cost_electric', aggfunc=np.sum)
+        df_bar = pd.pivot_table(df, index='Data_date', values='Cost_solvent0', aggfunc=np.sum)
         dates = list(df_bar.index.values)
         heights = [val[0] for val in df_bar.values]
         plot_bar = gen.month_daily_bar(x_list=dates, y_list=heights)

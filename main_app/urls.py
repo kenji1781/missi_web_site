@@ -28,7 +28,34 @@ from .views.setting_item import SettingItemView,SettingItemCreateView,SettingIte
 from .views.customer_machine_recipe import CustomerMachineRecipeView,CustomerMachineRecipeCreateView,CustomerMachineRecipeUpdateView,CustomerMachineRecipeDeleteView
 from .views.machine_drive_history import MachineDriveHistoryView,MachineDriveHistoryCreateView,MachineDriveHistoryUpdateView,MachineDriveHistoryDeleteView
 from .views.cost_electric import CostElectricView
+from .views.cost_steam import CostSteamView
+from .views.cost_gas import CostGasView
+from .views.cost_water import CostWaterView
+from .views.cost_solvent0 import CostSolvent0View
+from .views.cost_solvent1 import CostSolvent1View
+from .views.cost_solvent2 import CostSolvent2View
+from .views.cost_solvent3 import CostSolvent3View
+from .views.cost_solvent4 import CostSolvent4View
+from .views.cost_solvent5 import CostSolvent5View
+from .views.cost_solvent6 import CostSolvent6View
+from .views.cost_solvent7 import CostSolvent7View
+from .views.cost_solvent8 import CostSolvent8View
+from .views.cost_solvent9 import CostSolvent9View
+
 from .views.cost_electric_graph import CostElectricGraphView
+from .views.cost_steam_graph import CostSteamGraphView
+from .views.cost_gas_graph import CostGasGraphView
+from .views.cost_water_graph import CostWaterGraphView
+from .views.cost_solvent0_graph import CostSolvent0GraphView
+from .views.cost_solvent1_graph import CostSolvent1GraphView
+from .views.cost_solvent2_graph import CostSolvent2GraphView
+from .views.cost_solvent3_graph import CostSolvent3GraphView
+from .views.cost_solvent4_graph import CostSolvent4GraphView
+from .views.cost_solvent5_graph import CostSolvent5GraphView
+from .views.cost_solvent6_graph import CostSolvent6GraphView
+from .views.cost_solvent7_graph import CostSolvent7GraphView
+from .views.cost_solvent8_graph import CostSolvent8GraphView
+from .views.cost_solvent9_graph import CostSolvent9GraphView
 
 app_name = 'main_app'
 urlpatterns = [
@@ -135,49 +162,33 @@ urlpatterns = [
     path('machine_drive_history/update/<int:pk>',MachineDriveHistoryUpdateView.as_view(),name="machine_drive_history_update"),   #稼働履歴
     path('machine_drive_history/delete/<int:pk>',MachineDriveHistoryDeleteView.as_view(),name="machine_drive_history_delete"),   #稼働履歴
     path('cost_electric/',CostElectricView.as_view(),name="cost_electric"),        #電力コスト
+    path('cost_steam/',CostGasView.as_view(),name="cost_steam"),        #蒸気コスト
+    path('cost_gas/',CostGasView.as_view(),name="cost_gas"),        #ガスコスト
+    path('cost_water/',CostWaterView.as_view(),name="cost_water"),        #水コスト
+    path('cost_solvent0/',CostSolvent0View.as_view(),name="cost_solvent0"),        #溶剤＊コスト
+    path('cost_solvent1/',CostSolvent1View.as_view(),name="cost_solvent1"),        #溶剤＊コスト
+    path('cost_solvent2/',CostSolvent2View.as_view(),name="cost_solvent2"),        #溶剤＊コスト
+    path('cost_solvent3/',CostSolvent3View.as_view(),name="cost_solvent3"),        #溶剤＊コスト
+    path('cost_solvent4/',CostSolvent4View.as_view(),name="cost_solvent4"),        #溶剤＊コスト
+    path('cost_solvent5/',CostSolvent5View.as_view(),name="cost_solvent5"),        #溶剤＊コスト
+    path('cost_solvent6/',CostSolvent6View.as_view(),name="cost_solvent6"),        #溶剤＊コスト
+    path('cost_solvent7/',CostSolvent7View.as_view(),name="cost_solvent7"),        #溶剤＊コスト
+    path('cost_solvent8/',CostSolvent8View.as_view(),name="cost_solvent8"),        #溶剤＊コスト
+    path('cost_solvent9/',CostSolvent9View.as_view(),name="cost_solvent9"),        #溶剤＊コスト
+    
     path('cost_electric_graph/<int:year>/<int:month>/',CostElectricGraphView.as_view(),name="cost_electric_graph"),   #電力コストグラフ
-    #path('cost_electric/update/<int:pk>',CostElectricUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
-    #path('cost_electric/delete/<int:pk>',CostElectricDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
-    #path('cost_steam/',CostSteamView.as_view(),name="cost_electric"),        #電力コスト
-    #path('cost_steam/create/',CostSteamCreateView.as_view(),name="cost_electric_create"),   #電力コスト
-    #path('cost_steam/update/<int:pk>',CostSteamUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
-    #path('cost_steam/delete/<int:pk>',CostSteamDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
-    #path('cost_gas/',CostGasView.as_view(),name="cost_electric"),        #電力コスト
-    #path('cost_gas/create/',CostGasCreateView.as_view(),name="cost_electric_create"),   #電力コスト
-    #path('cost_gas/update/<int:pk>',CostGasUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
-    #path('cost_gas/delete/<int:pk>',CostGasDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
-    #path('cost_water/',CostWaterView.as_view(),name="cost_electric"),        #電力コスト
-    #path('cost_water/create/',CostWaterCreateView.as_view(),name="cost_electric_create"),   #電力コスト
-    #path('cost_water/update/<int:pk>',CostWaterUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
-    #path('cost_water/delete/<int:pk>',CostWaterDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
-    #path('cost_solvent/',CostSolventView.as_view(),name="cost_electric"),        #電力コスト
-    #path('cost_solvent/create/',CostSolventCreateView.as_view(),name="cost_electric_create"),   #電力コスト
-    #path('cost_solvent/update/<int:pk>',CostSolventUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
-    #path('cost_solvent/delete/<int:pk>',CostSolventDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
-    #path('cost_total/',CostTotalView.as_view(),name="cost_electric"),        #電力コスト
-    #path('cost_total/create/',CostTotalCreateView.as_view(),name="cost_electric_create"),   #電力コスト
-    #path('cost_total/update/<int:pk>',CostTotalUpdateView.as_view(),name="cost_electric_update"),   #電力コスト
-    #path('cost_total/delete/<int:pk>',CostTotalDeleteView.as_view(),name="cost_electric_delete"),   #電力コスト
+    path('cost_steam_graph/<int:year>/<int:month>/',CostSteamGraphView.as_view(),name="cost_steam_graph"),   #蒸気コストグラフ
+    path('cost_gas_graph/<int:year>/<int:month>/',CostGasGraphView.as_view(),name="cost_gas_graph"),   #ガスコストグラフ
+    path('cost_water_graph/<int:year>/<int:month>/',CostWaterGraphView.as_view(),name="cost_water_graph"),   #水コストグラフ
+    path('cost_solvent0_graph/<int:year>/<int:month>/',CostSolvent0GraphView.as_view(),name="cost_solvent0_graph"),   #溶剤0コストグラフ
+    path('cost_solvent1_graph/<int:year>/<int:month>/',CostSolvent1GraphView.as_view(),name="cost_solvent1_graph"),   #溶剤0コストグラフ
+    path('cost_solvent2_graph/<int:year>/<int:month>/',CostSolvent2GraphView.as_view(),name="cost_solvent2_graph"),   #溶剤0コストグラフ
+    path('cost_solvent3_graph/<int:year>/<int:month>/',CostSolvent3GraphView.as_view(),name="cost_solvent3_graph"),   #溶剤0コストグラフ
+    path('cost_solvent4_graph/<int:year>/<int:month>/',CostSolvent4GraphView.as_view(),name="cost_solvent4_graph"),   #溶剤0コストグラフ
+    path('cost_solvent5_graph/<int:year>/<int:month>/',CostSolvent5GraphView.as_view(),name="cost_solvent5_graph"),   #溶剤0コストグラフ
+    path('cost_solvent6_graph/<int:year>/<int:month>/',CostSolvent6GraphView.as_view(),name="cost_solvent6_graph"),   #溶剤0コストグラフ
+    path('cost_solvent7_graph/<int:year>/<int:month>/',CostSolvent7GraphView.as_view(),name="cost_solvent7_graph"),   #溶剤0コストグラフ
+    path('cost_solvent8_graph/<int:year>/<int:month>/',CostSolvent8GraphView.as_view(),name="cost_solvent8_graph"),   #溶剤0コストグラフ
+    path('cost_solvent9_graph/<int:year>/<int:month>/',CostSolvent9GraphView.as_view(),name="cost_solvent9_graph"),   #溶剤0コストグラフ
     
-    
-    #path('steam_price/',views.steam_price,name="steam_price"),   #蒸気単価
-    #path('gas_price/',views.gas_price,name="gas_price"),    #ガス単価
-    #path('solvent_price/',views.solvent_price,name="solvent_price"),    #溶剤単価
-    #path('device/',views.device,name="device"),    #装置
-    #path('recipe_setting/',views.recipe_setting,name="recipe_setting"),    #品種設定
-    #path('registering_email/',views.registering_email,name="registering_email"),    #通知メール登録
-    #path('trouble_email/',views.trouble_email,name="trouble_email"),    #異常メール設定
-    #path('maintenance_email/',views.maintenance_email,name="maintenance_email"),    #メンテナンスメール設定
-    #path('recipe_infomation/',views.recipe_infomation,name="recipe_infomation"),    #レシピ情報
-    #path('drive_history/',views.drive_history,name="drive_history"),    #稼働履歴
-    #path('trouble_history/',views.trouble_history,name="trouble_history"),    #異常履歴
-    #path('electric_cost/',views.electric_cost,name="electric_cost"),    #電力コスト
-    #path('water_cost/',views.water_cost,name="water_cost"),    #水コスト
-    #path('steam_cost/',views.steam_cost,name="steam_cost"),    #蒸気コスト
-    #path('gas_cost/',views.gas_cost,name="gas_cost"),    #ガスコスト
-    #path('solvent_cost/',views.solvent_cost,name="solvent_cost"),    #溶剤コスト
-    #path('total_cost/',views.total_cost,name="total_cost"),    #トータルコスト
-    #path('customer_infomation/',views.customer_infomation,name="customer_infomation"),    #客先情報
-    #path('machine_category/',views.machine_category,name="machine_category"),    #装置カテゴリー
-    #path('machine_model/',views.machine_model,name="machine_model"),    #装置型式
-]
+    ]

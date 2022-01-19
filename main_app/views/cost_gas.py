@@ -1,87 +1,72 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Machine_Drive_History,Cost_Gas,Unit_Price_Gas
-from ..forms import CostSteamCreateForm,CostSteamUpdateForm
+from ..models import Machine_Drive_History
 from django.db .models import Q
 from django.contrib import messages
-
-
+from django.db.models import Count,Sum,Avg,Min,Max
+from datetime import datetime,date,time
+from ..machine_drive_history_model_comp import ModelComplement
+#from django.utils.timezone import localdate,localtime
 
 ################################################################################
-class CostSteamView(ListView):
+class CostGasView(ListView):
     
-    template_name = 'monitoring/cost_steam.html'
-    model = Cost_Steam
-    paginate_by = 10
-
+    template_name = 'running_cost/cost_gas.html'
+    model = Machine_Drive_History
+    paginate_by = 50
+    
     
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
 
         # page_title を追加する
-        ctx['title'] = '蒸気コスト'
-        ctx['msg'] = '蒸気コスト確認が出来ます。'
+        ctx['title'] = 'ガスコスト'
+        ctx['msg'] = 'ガスコスト確認が出来ます。'
+        q_word = self.request.GET.get('query_text')
+        q_date_f = self.request.GET.get('query_date_f')
+        q_date_l = self.request.GET.get('query_date_l')
+        if q_word and q_date_f and q_date_l:
+            e_cost_total = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Sum('Cost_gas'))    #Q(Machine_drive_history__Machine_model__contains=q_word)|Q(Machine_drive_history__Machine_model__icontains=q_word))
+            e_cost_avg = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Avg('Cost_gas'))
+            e_cost_max = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Max('Cost_gas'))
+            e_cost_min = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Min('Cost_gas'))
+        
+        
+        else:
+            e_cost_total = Machine_Drive_History.objects.all().aggregate(Sum('Cost_gas'))
+            e_cost_avg = Machine_Drive_History.objects.all().aggregate(Avg('Cost_gas'))
+            e_cost_max = Machine_Drive_History.objects.all().aggregate(Max('Cost_gas'))
+            e_cost_min = Machine_Drive_History.objects.all().aggregate(Min('Cost_gas'))
+        
+        ctx.update(**e_cost_total)
+        ctx.update(**e_cost_avg)
+        ctx.update(**e_cost_max)
+        ctx.update(**e_cost_min)
+        
         return ctx
 
     def get_queryset(self):
         q_word = self.request.GET.get('query_text')
-        q_date = self.request.GET.get('query_date')
-        if q_word:
-            object_list = Cost_Steam.objects.select_related('Machine_model').filter(\
-                Q(Machine_drive_history__Machine_model__contains=q_word)|Q(Machine_drive_history__Machine_model__icontains=q_word))
-            #object_list = Solvent_Conf.objects.select_related().filter(Solvent_manu__Solvent_manu=q_word)
+        q_date_f = self.request.GET.get('query_date_f')
+        q_date_l = self.request.GET.get('query_date_l')
+
+        if q_word and q_date_f and q_date_l:
+            object_list = Machine_Drive_History.objects.filter(Customer_machine_id=q_word).filter(Data_datetime__range=(q_date_f, q_date_l))
+                
             
-            #object_list = Solvent_Conf.objects.filter(Solvent_memo__icontains=q_word)
-        elif q_date:
-            object_list = Cost_Steam.objects.filter(Data_datetime__icontains=q_date)
         else:
-            object_list = Cost_Steam.objects.select_related('Machine_model').order_by('-Machine_model_input_date')
-
-
+            object_list = Machine_Drive_History.objects.all().order_by('-Data_datetime')    #.values('Customer_machine_id','Machine_model','Customer_machine_unit_no','Cost_electric','Data_datetime')
+            
+            modelcomp = ModelComplement()
+            #datetimeをdateとtimeに分割
+            modelcomp.datetime_complement(object_list)
+            #idから機種を書込み
+            modelcomp.machine_model_complement(object_list)
+            #各最新単価を書込み
+            modelcomp.unit_cost_complement(object_list)
+           
+            
         return object_list
-################################################################################
-class CostSteamCreateView(CreateView):
-    
-
-    template_name = 'monitoring/cost_steam_create.html'
-    model = Cost_Steam
-    form_class = CostSteamCreateForm
-    
-    success_url = reverse_lazy("main_app:cost_steam") 
-
-#unique=True時**kwargs記述のこと
-    def get_context_data(self,**kwargs):
-        ctx = super().get_context_data(**kwargs)
-        # page_title を追加する
-        ctx['title'] = '蒸気コスト'
-        ctx['msg'] = '蒸気コストの登録が出来ます。'
-        return ctx
-    
-################################################################################
-class CostSteamUpdateView(UpdateView):
-
-    template_name = 'monitoring/cost_steam_update.html'
-    model = Cost_Steam
-    form_class = CostSteamUpdateForm
-    
-    success_url = reverse_lazy("main_app:cost_steam") 
-
-#unique=True時**kwargs記述のこと
-    def get_context_data(self,**kwargs):
-        ctx = super().get_context_data(**kwargs)
-        # page_title を追加する
-        ctx['title'] = '蒸気コスト'
-        ctx['msg'] = '蒸気コスト登録の変更が出来ます。'
-        return ctx
-
-################################################################################
-class CostSteamDeleteView(DeleteView):
-    
-
-    template_name = 'monitoring/cost_steam_delete.html'
-    model = Cost_Steam
-    #form_class = ElectricPriceCreateForm
-    
-    success_url = reverse_lazy("main_app:cost_steam") 
- 
+            
+      

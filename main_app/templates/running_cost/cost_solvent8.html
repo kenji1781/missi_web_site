@@ -10,10 +10,10 @@ Data Monitoring System {{ title }}
     <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
             <p class="h5 mt-4">{{msg|safe}}</p>
 
-            <p class="h6 mt-3">合計：{{Cost_electric__sum}}</p>
-            <p class="h6 mt-1">平均：{{Cost_electric__avg}}</p>
-            <p class="h6 mt-2">最大：{{Cost_electric__max}}</p>
-            <p class="h6 mt-1">最小：{{Cost_electric__min}}</p>
+            <p class="h6 mt-3">合計：{{Cost_solvent8__sum}}</p>
+            <p class="h6 mt-1">平均：{{Cost_solvent8__avg}}</p>
+            <p class="h6 mt-2">最大：{{Cost_solvent8__max}}</p>
+            <p class="h6 mt-1">最小：{{Cost_solvent8__min}}</p>
 </div>    
 <style>
     th{white-space: nowrap;}
@@ -30,7 +30,7 @@ Data Monitoring System {{ title }}
         <label for="date_l">から</label>
             <input name="query_date_l" value="{{ request.GET.query }}" type="date" id="date_l">
         <button type="submit" class="btn btn-secondary">検索</button>
-        <a class="btn btn-outline-success btn" href="{% url 'main_app:cost_electric_graph' now_year now_month %}" onclick="window.open('{% url 'main_app:cost_electric_graph' now_year now_month %}','graph','width=1200,height=700,noopener');return false;">graph</a>
+        <a class="btn btn-outline-success btn" href="{% url 'main_app:cost_solvent8_graph' now_year now_month %}" onclick="window.open('{% url 'main_app:cost_solvent8_graph' now_year now_month %}','graph','width=1200,height=700,noopener');return false;">graph</a>
     
     </form>
     
@@ -39,9 +39,9 @@ Data Monitoring System {{ title }}
             <th>装置ID</th>
             <th>装置</th>
             <th>号機</th>
-            <th>電力使用量</th>
+            <th>溶剤8使用量</th>
             <th>単価（￥）</th>
-            <th>電力費用（￥）</th>
+            <th>溶剤8費用（￥）</th>
             <th>データ取得日</th>
             
         </tr>
@@ -52,9 +52,9 @@ Data Monitoring System {{ title }}
             <td>{{ item.Customer_machine_id }}</td>
             <td>{{ item.Machine_model }}</td>
             <td>{{ item.Customer_machine_unit_no }}</td>
-            <td>{{ item.Machine_electric_used }}</td>
-            <td>{{ item.Unit_price_electric }}</td>
-            <td>{{ item.Cost_electric }}</td>
+            <td>{{ item.Machine_solvent8_used }}</td>
+            <td>{{ item.Unit_price_solvent8 }}</td>
+            <td>{{ item.Cost_solvent8 }}</td>
             <td>{{ item.Data_date }}</td>
             
             

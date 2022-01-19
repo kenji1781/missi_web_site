@@ -10,9 +10,9 @@ from ..machine_drive_history_model_comp import ModelComplement
 #from django.utils.timezone import localdate,localtime
 
 ################################################################################
-class CostSteamView(ListView):
+class CostSolvent2View(ListView):
     
-    template_name = 'running_cost/cost_steam.html'
+    template_name = 'running_cost/cost_solvent2.html'
     model = Machine_Drive_History
     paginate_by = 50
     
@@ -21,23 +21,23 @@ class CostSteamView(ListView):
         ctx = super().get_context_data(**kwargs)
 
         # page_title を追加する
-        ctx['title'] = '蒸気コスト'
-        ctx['msg'] = '蒸気コスト確認が出来ます。'
+        ctx['title'] = '溶剤2コスト'
+        ctx['msg'] = '溶剤2コスト確認が出来ます。'
         q_word = self.request.GET.get('query_text')
         q_date_f = self.request.GET.get('query_date_f')
         q_date_l = self.request.GET.get('query_date_l')
         if q_word and q_date_f and q_date_l:
-            e_cost_total = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Sum('Cost_steam'))    #Q(Machine_drive_history__Machine_model__contains=q_word)|Q(Machine_drive_history__Machine_model__icontains=q_word))
-            e_cost_avg = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Avg('Cost_steam'))
-            e_cost_max = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Max('Cost_steam'))
-            e_cost_min = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Min('Cost_steam'))
+            e_cost_total = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Sum('Cost_solvent2'))    #Q(Machine_drive_history__Machine_model__contains=q_word)|Q(Machine_drive_history__Machine_model__icontains=q_word))
+            e_cost_avg = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Avg('Cost_solvent2'))
+            e_cost_max = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Max('Cost_solvent2'))
+            e_cost_min = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Min('Cost_solvent2'))
         
         
         else:
-            e_cost_total = Machine_Drive_History.objects.all().aggregate(Sum('Cost_steam'))
-            e_cost_avg = Machine_Drive_History.objects.all().aggregate(Avg('Cost_steam'))
-            e_cost_max = Machine_Drive_History.objects.all().aggregate(Max('Cost_steam'))
-            e_cost_min = Machine_Drive_History.objects.all().aggregate(Min('Cost_steam'))
+            e_cost_total = Machine_Drive_History.objects.all().aggregate(Sum('Cost_solvent2'))
+            e_cost_avg = Machine_Drive_History.objects.all().aggregate(Avg('Cost_solvent2'))
+            e_cost_max = Machine_Drive_History.objects.all().aggregate(Max('Cost_solvent2'))
+            e_cost_min = Machine_Drive_History.objects.all().aggregate(Min('Cost_solvent2'))
         
         ctx.update(**e_cost_total)
         ctx.update(**e_cost_avg)
@@ -69,4 +69,6 @@ class CostSteamView(ListView):
             
         return object_list
             
-      
+            
+        
+   
