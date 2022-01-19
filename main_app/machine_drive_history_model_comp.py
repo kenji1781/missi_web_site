@@ -169,7 +169,7 @@ class ModelComplement:
                     pass
     
             #溶剤0費用書き込み         
-            if (history_i.Cost_solvent0==None)and(history_i.Unit_price_solvent0!=None)and(history_i.Machine_solvent0_used!=None):
+            if (history_i.Cost_solvent0==None)or(history_i.Cost_solvent0==0)and((history_i.Unit_price_solvent0>0)and(history_i.Machine_solvent0_used>0)):
                 try:
                     history_i.Cost_solvent0 = history_i.Unit_price_solvent0 * history_i.Machine_solvent0_used
                     history_i.save()
@@ -177,7 +177,7 @@ class ModelComplement:
                     pass
 
             #溶剤1費用書き込み         
-            if (history_i.Cost_solvent1==None)and(history_i.Unit_price_solvent1!=None)and(history_i.Machine_solvent1_used!=None):
+            if (history_i.Cost_solvent1==None)or(history_i.Cost_solvent1==0)and((history_i.Unit_price_solvent1>0)and(history_i.Machine_solvent1_used>0)):
                 try:
                     history_i.Cost_solvent1 = history_i.Unit_price_solvent1 * history_i.Machine_solvent1_used
                     history_i.save()
@@ -185,7 +185,7 @@ class ModelComplement:
                     pass
 
             #溶剤2費用書き込み         
-            if (history_i.Cost_solvent2==None)and(history_i.Unit_price_solvent2!=None)and(history_i.Machine_solvent2_used!=None):
+            if (history_i.Cost_solvent2==None)or(history_i.Cost_solvent2==0)and((history_i.Unit_price_solvent2>0)and(history_i.Machine_solvent2_used>0)):
                 try:
                     history_i.Cost_solvent2 = history_i.Unit_price_solvent2 * history_i.Machine_solvent2_used
                     history_i.save()
@@ -193,7 +193,7 @@ class ModelComplement:
                     pass
 
             #溶剤3費用書き込み         
-            if (history_i.Cost_solvent3==None)and(history_i.Unit_price_solvent3!=None)and(history_i.Machine_solvent3_used!=None):
+            if (history_i.Cost_solvent3==None)or(history_i.Cost_solvent3==0)and((history_i.Unit_price_solvent3>0)and(history_i.Machine_solvent3_used>0)):
                 try:
                     history_i.Cost_solvent3 = history_i.Unit_price_solvent3 * history_i.Machine_solvent3_used
                     history_i.save()
@@ -201,7 +201,7 @@ class ModelComplement:
                     pass
 
             #溶剤4費用書き込み         
-            if (history_i.Cost_solvent4==None)and(history_i.Unit_price_solvent4!=None)and(history_i.Machine_solvent4_used!=None):
+            if (history_i.Cost_solvent4==None)or(history_i.Cost_solvent4==0)and((history_i.Unit_price_solvent4>0)and(history_i.Machine_solvent4_used>0)):
                 try:
                     history_i.Cost_solvent4 = history_i.Unit_price_solvent4 * history_i.Machine_solvent4_used
                     history_i.save()
@@ -209,7 +209,7 @@ class ModelComplement:
                     pass
 
             #溶剤5費用書き込み         
-            if (history_i.Cost_solvent5==None)and(history_i.Unit_price_solvent5!=None)and(history_i.Machine_solvent5_used!=None):
+            if (history_i.Cost_solvent5==None)or(history_i.Cost_solvent5==0)and((history_i.Unit_price_solvent5>0)and(history_i.Machine_solvent5_used>0)):
                 try:
                     history_i.Cost_solvent5 = history_i.Unit_price_solvent5 * history_i.Machine_solvent5_used
                     history_i.save()
@@ -217,7 +217,7 @@ class ModelComplement:
                     pass
 
             #溶剤6費用書き込み         
-            if (history_i.Cost_solvent6==None)and(history_i.Unit_price_solvent6!=None)and(history_i.Machine_solvent6_used!=None):
+            if (history_i.Cost_solvent6==None)or(history_i.Cost_solvent6==0)and((history_i.Unit_price_solvent6>0)and(history_i.Machine_solvent6_used>0)):
                 try:
                     history_i.Cost_solvent6 = history_i.Unit_price_solvent6 * history_i.Machine_solvent6_used
                     history_i.save()
@@ -225,7 +225,7 @@ class ModelComplement:
                     pass
 
             #溶剤7費用書き込み         
-            if (history_i.Cost_solvent7==None)and(history_i.Unit_price_solvent7!=None)and(history_i.Machine_solvent7_used!=None):
+            if (history_i.Cost_solvent7==None)or(history_i.Cost_solvent7==0)and((history_i.Unit_price_solvent7>0)and(history_i.Machine_solvent7_used>0)):
                 try:
                     history_i.Cost_solvent7 = history_i.Unit_price_solvent7 * history_i.Machine_solvent7_used
                     history_i.save()
@@ -233,7 +233,7 @@ class ModelComplement:
                     pass
 
             #溶剤8費用書き込み         
-            if (history_i.Cost_solvent8==None)and(history_i.Unit_price_solvent8!=None)and(history_i.Machine_solvent8_used!=None):
+            if (history_i.Cost_solvent8==None)or(history_i.Cost_solvent8==0)and((history_i.Unit_price_solvent8>0)and(history_i.Machine_solvent8_used>0)):
                 try:
                     history_i.Cost_solvent8 = history_i.Unit_price_solvent8 * history_i.Machine_solvent8_used
                     history_i.save()
@@ -241,7 +241,7 @@ class ModelComplement:
                     pass
 
             #溶剤9費用書き込み         
-            if (history_i.Cost_solvent9==None)and(history_i.Unit_price_solvent9!=None)and(history_i.Machine_solvent9_used!=None):
+            if (history_i.Cost_solvent9==None)or(history_i.Cost_solvent9==0)and((history_i.Unit_price_solvent9>0)and(history_i.Machine_solvent9_used>0)):
                 try:
                     history_i.Cost_solvent9 = history_i.Unit_price_solvent9 * history_i.Machine_solvent9_used
                     history_i.save()
