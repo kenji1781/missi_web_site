@@ -137,7 +137,7 @@ class ModelComplement:
                     pass
             
             #電力費用書き込み         
-            if (history_i.Cost_electric==None)and(history_i.Unit_price_electric!=None)and(history_i.Machine_electric_used!=None):
+            if (history_i.Cost_electric==None)or(history_i.Cost_electric==0)and((history_i.Unit_price_electric>0)and(history_i.Machine_electric_used>0)):
                 try:
                     history_i.Cost_electric = history_i.Unit_price_electric * history_i.Machine_electric_used
                     history_i.save()
@@ -145,7 +145,7 @@ class ModelComplement:
                     pass
             
             #蒸気費用書き込み         
-            if (history_i.Cost_steam==None)and(history_i.Unit_price_steam!=None)and(history_i.Machine_steam_used!=None):
+            if (history_i.Cost_steam==None)or(history_i.Cost_steam==0)and((history_i.Unit_price_steam>0)and(history_i.Machine_steam_used>0)):
                 try:
                     history_i.Cost_steam = history_i.Unit_price_steam * history_i.Machine_steam_used
                     history_i.save()
@@ -153,7 +153,7 @@ class ModelComplement:
                     pass
             
             #ガス費用書き込み         
-            if (history_i.Cost_gas==None)and(history_i.Unit_price_gas!=None)and(history_i.Machine_gas_used!=None):
+            if (history_i.Cost_gas==None)or(history_i.Cost_gas==0)and((history_i.Unit_price_gas>0)and(history_i.Machine_gas_used>0)):
                 try:
                     history_i.Cost_gas = history_i.Unit_price_gas * history_i.Machine_gas_used
                     history_i.save()
@@ -161,7 +161,7 @@ class ModelComplement:
                     pass
             
             #水費用書き込み         
-            if (history_i.Cost_water==None)and(history_i.Unit_price_water!=None)and(history_i.Machine_water_used!=None):
+            if (history_i.Cost_water==None)or(history_i.Cost_water==0)and((history_i.Unit_price_water>0)and(history_i.Machine_water_used>0)):
                 try:
                     history_i.Cost_water = history_i.Unit_price_water * history_i.Machine_water_used
                     history_i.save()
