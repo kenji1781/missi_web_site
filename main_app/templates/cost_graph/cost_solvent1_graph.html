@@ -1,7 +1,7 @@
 
 {% extends 'base.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block title %}
 Data Monitoring System {{ title }}
 {% endblock %}
@@ -84,12 +84,12 @@ Data Monitoring System {{ title }}
       {% for key,value in table_set.items %}
       <tr>
         <td>{{ key }}</td>
-        <td>{{ value }}</td>
+        <td>{{ value | intcomma  }}</td>
       </tr>
       {% endfor %}
       <tr>
         <td>Total</td>
-        <td>{{ total_payment }}</td>
+        <td>{{ total_payment | intcomma  }}</td>
       </tr>
     </table>
   </div>

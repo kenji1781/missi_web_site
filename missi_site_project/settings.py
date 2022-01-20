@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'django.contrib.sites',
+    'django.contrib.humanize',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -50,7 +51,7 @@ INSTALLED_APPS = [
     #'accounts',
 ]
 
-
+NUMBER_GROUPING = 3
 
 
 MIDDLEWARE = [

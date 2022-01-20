@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block title %}
 Data Monitoring System {{ title }}
 {% endblock %}
@@ -10,10 +10,10 @@ Data Monitoring System {{ title }}
     <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
             <p class="h5 mt-4">{{msg|safe}}</p>
 
-            <p class="h6 mt-3">合計：{{Cost_steam__sum}}</p>
-            <p class="h6 mt-1">平均：{{Cost_steam__avg}}</p>
-            <p class="h6 mt-2">最大：{{Cost_steam__max}}</p>
-            <p class="h6 mt-1">最小：{{Cost_steam__min}}</p>
+            <p class="h6 mt-3">合計：{{Cost_steam__sum | intcomma}}</p>
+            <p class="h6 mt-1">平均：{{Cost_steam__avg | intcomma}}</p>
+            <p class="h6 mt-2">最大：{{Cost_steam__max | intcomma}}</p>
+            <p class="h6 mt-1">最小：{{Cost_steam__min | intcomma}}</p>
 </div>    
 <style>
     th{white-space: nowrap;}
@@ -53,8 +53,8 @@ Data Monitoring System {{ title }}
             <td>{{ item.Machine_model }}</td>
             <td>{{ item.Customer_machine_unit_no }}</td>
             <td>{{ item.Machine_steam_used }}</td>
-            <td>{{ item.Unit_price_steam }}</td>
-            <td>{{ item.Cost_steam }}</td>
+            <td>{{ item.Unit_price_steam | intcomma }}</td>
+            <td>{{ item.Cost_steam | intcomma }}</td>
             <td>{{ item.Data_date }}</td>
             
             

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block title %}
 Data Monitoring System {{ title }}
 {% endblock %}
@@ -39,7 +39,7 @@ Data Monitoring System {{ title }}
         <tr>
             <td>{{ item.Solvent1_name }}</td>
             <td>{{ item.Solvent1_manu }}</td>
-            <td>{{ item.Unit_price_solvent1  }}</td>
+            <td>{{ item.Unit_price_solvent1 | intcomma }}</td>
             <td>{{ item.Solvent1_input_date  }}</td>
             <td>{{ item.Solvent1_memo }}</td>
             <td><a href="{% url 'main_app:solvent1_conf_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block title %}
 Data Monitoring System {{ title }}
 {% endblock %}
@@ -35,7 +35,7 @@ Data Monitoring System {{ title }}
 <!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
     {% for item in object_list %}
         <tr>
-            <td>{{ item.Unit_price_electric }}</td>
+            <td>{{ item.Unit_price_electric | intcomma }}</td>
             <td>{{ item.Unit_price_electric_input_date }}</td>
             <td>{{ item.Unit_price_electric_memo }}</td>
             <td><a href="{% url 'main_app:electric_price_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
