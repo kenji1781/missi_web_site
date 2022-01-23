@@ -56,6 +56,9 @@ from .views.cost_solvent6_graph import CostSolvent6GraphView
 from .views.cost_solvent7_graph import CostSolvent7GraphView
 from .views.cost_solvent8_graph import CostSolvent8GraphView
 from .views.cost_solvent9_graph import CostSolvent9GraphView
+from .views.cost_solvent9_graph import CostSolvent9GraphView
+#from .views.cost_solvent9_graph import CostSolvent9GraphView
+
 
 app_name = 'main_app'
 urlpatterns = [
@@ -190,5 +193,6 @@ urlpatterns = [
     path('cost_solvent7_graph/<int:year>/<int:month>/',CostSolvent7GraphView.as_view(),name="cost_solvent7_graph"),   #溶剤0コストグラフ
     path('cost_solvent8_graph/<int:year>/<int:month>/',CostSolvent8GraphView.as_view(),name="cost_solvent8_graph"),   #溶剤0コストグラフ
     path('cost_solvent9_graph/<int:year>/<int:month>/',CostSolvent9GraphView.as_view(),name="cost_solvent9_graph"),   #溶剤0コストグラフ
+    #path('trouble_history_graph/<int:year>/<int:month>/',TroubleHistoryGraphView.as_view(),name="trouble_history_graph"),   #異常グラフ
     
     ]

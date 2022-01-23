@@ -527,6 +527,7 @@ class Machine_Drive_History(models.Model):
     Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
     Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=True,null=True)
     Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=True,null=True)
+    Customer_recipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
     Machine_drive_time0 = models.IntegerField(verbose_name='運転時間0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_time1 = models.IntegerField(verbose_name='運転時間1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_time2 = models.IntegerField(verbose_name='運転時間2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)

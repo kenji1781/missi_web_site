@@ -1,7 +1,7 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Machine_Drive_History
+from ..models import Trouble_History
 from django.contrib import messages
 from datetime import datetime,date,time
 #from django.utils.timezone import localdate,localtime
@@ -9,18 +9,18 @@ from ..plugin_plotly import GraphGenerator
 import numpy as np
 import pandas as pd
 from django_pandas.io import read_frame
-from ..machine_drive_history_model_comp import ModelComplement
 
 
 
-class CostElectricGraphView(TemplateView):
-    template_name = 'cost_graph/cost_electric_graph.html'
+
+class TroubleHistoryGraphView(TemplateView):
+    template_name = 'monitoring_graph/trouble_history_graph.html'
 
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         
-        ctx['title'] = '電力コスト詳細'
-        ctx['msg'] = '電力コスト詳細確認が出来ます。'
+        ctx['title'] = '異常詳細'
+        ctx['msg'] = '異常詳細確認が出来ます。'
         
 
         year = int(self.kwargs.get('year'))
@@ -48,7 +48,7 @@ class CostElectricGraphView(TemplateView):
         ctx['next_year'] = next_year
         ctx['next_month'] = next_month
 
-        queryset = Machine_Drive_History.objects.filter(Data_datetime__year=year)
+        queryset = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
         queryset = queryset.filter(Data_datetime__month=month)
            
         if not queryset:
@@ -63,12 +63,12 @@ class CostElectricGraphView(TemplateView):
         #各最新単価を書込み
         modelcomp.unit_cost_complement(queryset)
         #################################################
-        df = read_frame(queryset,fieldnames=['Data_date','Cost_electric','Machine_model'])
+        df = read_frame(queryset,fieldnames=['Data_date','Cost_gas','Machine_model'])
         
         gen = GraphGenerator()
 
         # pieチャートの素材を作成
-        df_pie = pd.pivot_table(df,index='Machine_model',values='Cost_electric',aggfunc=np.sum)
+        df_pie = pd.pivot_table(df,index='Machine_model',values='Cost_gas',aggfunc=np.sum)
         
         pie_labels = list(df_pie.index.values)
         pie_values = [val[0] for val in df_pie.values]
@@ -77,21 +77,16 @@ class CostElectricGraphView(TemplateView):
 
         # テーブルでのカテゴリと金額の表示用。
         # {カテゴリ:金額,カテゴリ:金額…}の辞書を作る
-        ctx['table_set'] = df_pie.to_dict()['Cost_electric']
+        ctx['table_set'] = df_pie.to_dict()['Cost_gas']
 
         # totalの数字を計算して渡す
-        ctx['total_payment'] = df['Cost_electric'].sum()
+        ctx['total_payment'] = df['Cost_gas'].sum()
 
         # 日別の棒グラフの素材を渡す
-        df_bar = pd.pivot_table(df, index='Data_date', values='Cost_electric', aggfunc=np.sum)
+        df_bar = pd.pivot_table(df, index='Data_date', values='Cost_gas', aggfunc=np.sum)
         dates = list(df_bar.index.values)
         heights = [val[0] for val in df_bar.values]
-        #plot_bar = gen.month_daily_bar(x_list=dates, y_list=heights)
-        #ctx['plot_bar'] = plot_bar
-        ctx['transition_plot'] = gen.transition_plot(x_list_payment=dates,
-                                                   y_list_payment=heights)
-                                                   #x_list_income=0,
-                                                   #y_list_income=0)
-
-
+        plot_bar = gen.month_daily_bar(x_list=dates, y_list=heights)
+        ctx['plot_bar'] = plot_bar
+        
         return ctx

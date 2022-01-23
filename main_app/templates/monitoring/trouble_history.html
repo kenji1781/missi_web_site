@@ -5,6 +5,7 @@
 Data Monitoring System {{ title }}
 {% endblock %}
 {% block header %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <div style="padding: 20px">
     <br>
     <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
@@ -12,19 +13,92 @@ Data Monitoring System {{ title }}
         <br>
 </div>    
 <style>
+
     th{white-space: nowrap;}
     td{white-space: nowrap;}
+
+.month-pager {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.month-dash-page-top {
+  display: flex;
+  flex-direction: row;
+}
+.container{
+    display: flex;
+    align-items: center;
+}
+.left {
+  display: flex;
+  margin: 5 1 1;  
+  width: 40%;
+  
+  padding: 0 5%;
+}
+
+.right {
+  flex-direction: row;
+  justify-content: space-around; 
+  margin: 0 0 0 auto;
+  width: 40%;
+  padding: 0 5%;
+}
+
+.vertical-middle{
+  display: inline-block;
+  vertical-align: middle;
+
+}
+
+.card {
+  margin-top: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.3rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  padding: 10px;
+}
+/* plotlyのツールバー非表示用 */
+.hidden_toolbar .modebar {
+  display: none !important;
+}
+
 </style>        
 {% endblock %}
 {% block content %}
+
 <div style="padding: 20px">
+    {% autoescape off %}
+        <div class="container">
+            <div class="left ml-4 hidden_toolbar">
+                {{ plot_bar }}
+            </div>
+        
+        <!-- </div> -->
+        
+            <div class="right ml-4 hidden_toolbar">
+                {{ plot_pie }}
+            </div>
+        </div>
+        
+        
+    {% endautoescape %} 
+    <br>
     <form action="" method="get">
         <input name="query_text" value="{{ request.GET.query }}" type="text">
         <input name="query_date" value="{{ request.GET.query }}" type="date">
         <button type="submit" class="btn btn-secondary">検索</button>
-    
+
     </form>
-    
+
     <a href="{% url 'main_app:trouble_history_create' %}" class="btn btn-outline-primary">登録</a>
     <table class="table" style="font-size : 12px;">
         <tr>
