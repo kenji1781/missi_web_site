@@ -5,6 +5,7 @@ from ..models import Trouble_History,Customer_Machine,Trouble_Contents
 from ..forms import TroubleHistoryCreateForm,TroubleHistoryUpdateForm
 from django.db .models import Q
 from django.contrib import messages
+from datetime import datetime,date,time
 from ..plugin_plotly import GraphGenerator
 import numpy as np
 import pandas as pd
@@ -28,25 +29,44 @@ class TroubleHistoryView(ListView):
         ctx['msg'] = '異常履歴の確認／変更が出来ます。'
 
         object_list = []
+
+        year = int(self.kwargs.get('year'))
+        month = int(self.kwargs.get('month'))
+
+        ctx['year_month'] = f'{year}年{month}月'
+
+        #前月と次月をコンテキストに入れて渡す。
+        if month == 1:
+            prev_year = year - 1
+            prev_month = 12
+        else:
+            prev_year = year
+            prev_month = month - 1
+
+        if month == 12:
+            next_year = year + 1
+            next_month = 1
+        else:
+            next_year = year
+            next_month = month + 1
+
+        ctx['prev_year'] = prev_year
+        ctx['prev_month'] = prev_month
+        ctx['next_year'] = next_year
+        ctx['next_month'] = next_month
         
+
         #グラフ処理
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
             object_list = Trouble_History.objects.filter(\
-                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word)|\
-                        Q(Machine_model__contains=q_word)|Q(Machine_model__icontains=q_word)|\
-                            Q(Customer_machine_unit_no__contains=q_word)|Q(Customer_machine_unit_no__icontains=q_word)|\
-                                Q(Trouble_no__contains=q_word)|Q(Trouble_no__icontains=q_word)|\
-                                    Q(Trouble_contents__contains=q_word)|Q(Trouble_contents__icontains=q_word))
-        elif q_date:
-            object_list = Trouble_History.objects.filter(\
-                Q(Trouble_occurrence_time__contains=q_date)|\
-                    Q(Trouble_occurrence_time__icontains=q_date)|\
-                        Q(Trouble_recovery_time__contains=q_date)|\
-                            Q(Trouble_recovery_time__icontains=q_date))
+                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word))
+                        
         else:
-            object_list = Trouble_History.objects.order_by('-Trouble_occurrence_time')
+            object_list = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
+            object_list = object_list.filter(Trouble_occurrence_time__month=month).order_by('-Trouble_occurrence_time')
+            
 
         if not object_list:
             return ctx
@@ -74,23 +94,19 @@ class TroubleHistoryView(ListView):
         
 
     def get_queryset(self):
+
+        year = int(self.kwargs.get('year'))
+        month = int(self.kwargs.get('month'))
+
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
             object_list = Trouble_History.objects.filter(\
-                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word)|\
-                        Q(Machine_model__contains=q_word)|Q(Machine_model__icontains=q_word)|\
-                            Q(Customer_machine_unit_no__contains=q_word)|Q(Customer_machine_unit_no__icontains=q_word)|\
-                                Q(Trouble_no__contains=q_word)|Q(Trouble_no__icontains=q_word)|\
-                                    Q(Trouble_contents__contains=q_word)|Q(Trouble_contents__icontains=q_word))
-        elif q_date:
-            object_list = Trouble_History.objects.filter(\
-                Q(Trouble_occurrence_time__contains=q_date)|\
-                    Q(Trouble_occurrence_time__icontains=q_date)|\
-                        Q(Trouble_recovery_time__contains=q_date)|\
-                            Q(Trouble_recovery_time__icontains=q_date))
+                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word))
+                        
         else:
-            object_list = Trouble_History.objects.order_by('-Trouble_occurrence_time')
+            object_list = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
+            object_list = object_list.filter(Trouble_occurrence_time__month=month).order_by('-Trouble_occurrence_time')
 
             for history in object_list:
                 if (history.Trouble_occurrence_time != None)and(history.Trouble_recovery_time != None):

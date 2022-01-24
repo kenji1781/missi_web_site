@@ -75,6 +75,22 @@ Data Monitoring System {{ title }}
 {% endblock %}
 {% block content %}
 
+<div class="month-pager" style="padding: 20px">
+    <a href="{% url 'main_app:trouble_history' prev_year prev_month %}">
+        前月
+    </a>
+
+<span class="ml-4 ml-4">{{ year_month }}</span>
+    
+    <a href="{% url 'main_app:trouble_history' next_year next_month %}">
+        次月
+    </a>
+</div>
+
+
+
+
+
 <div style="padding: 20px">
     {% autoescape off %}
         <div class="container">
@@ -93,8 +109,8 @@ Data Monitoring System {{ title }}
     {% endautoescape %} 
     <br>
     <form action="" method="get">
-        <input name="query_text" value="{{ request.GET.query }}" type="text">
-        <input name="query_date" value="{{ request.GET.query }}" type="date">
+        <label for="mhn_id">装置ID</label>
+        <input name="query_text" value="{{ request.GET.query }}" type="text" id="mhn_id">
         <button type="submit" class="btn btn-secondary">検索</button>
 
     </form>
