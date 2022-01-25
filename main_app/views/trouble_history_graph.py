@@ -14,9 +14,9 @@ from django_pandas.io import read_frame
 
 
 ################################################################################
-class TroubleHistoryView(ListView):
+class TroubleHistoryGraphView(ListView):
     
-    template_name = 'monitoring/trouble_history.html'
+    template_name = 'monitoring/trouble_history_graph.html'
     model = Trouble_History
     paginate_by = 10
 
@@ -25,8 +25,8 @@ class TroubleHistoryView(ListView):
         ctx = super().get_context_data(**kwargs)
 
         # page_title を追加する
-        ctx['title'] = '異常履歴'
-        ctx['msg'] = '異常履歴の確認／変更が出来ます。'
+        ctx['title'] = '異常グラフ'
+        ctx['msg'] = '異常発生詳細をグラフ確認出来ます。'
 
         object_list = []
 
@@ -132,48 +132,3 @@ class TroubleHistoryView(ListView):
                 
 
         return object_list
-################################################################################
-class TroubleHistoryCreateView(CreateView):
-    
-
-    template_name = 'monitoring/trouble_history_create.html'
-    model = Trouble_History
-    form_class = TroubleHistoryCreateForm
-    
-    success_url = reverse_lazy("main_app:trouble_history") 
-
-#unique=True時**kwargs記述のこと
-    def get_context_data(self,**kwargs):
-        ctx = super().get_context_data(**kwargs)
-        # page_title を追加する
-        ctx['title'] = '異常履歴'
-        ctx['msg'] = '異常履歴の登録が出来ます。'
-        return ctx
-    
-################################################################################
-class TroubleHistoryUpdateView(UpdateView):
-
-    template_name = 'monitoring/trouble_history_update.html'
-    model = Trouble_History
-    form_class = TroubleHistoryUpdateForm
-    
-    success_url = reverse_lazy("main_app:trouble_history") 
-
-#unique=True時**kwargs記述のこと
-    def get_context_data(self,**kwargs):
-        ctx = super().get_context_data(**kwargs)
-        # page_title を追加する
-        ctx['title'] = '異常履歴'
-        ctx['msg'] = '異常履歴の変更が出来ます。'
-        return ctx
-
-################################################################################
-class TroubleHistoryDeleteView(DeleteView):
-    
-
-    template_name = 'monitoring/trouble_history_delete.html'
-    model = Trouble_History
-    #form_class = ElectricPriceCreateForm
-    
-    success_url = reverse_lazy("main_app:trouble_history") 
- 

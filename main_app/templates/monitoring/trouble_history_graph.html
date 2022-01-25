@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Data Monitoring System {{ title }}
+{% endblock %}
+{% block header %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<div style="padding: 20px">
+    <br>
+    <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
+            <p class="h5 mt-4">{{msg|safe}}</p>
+        <br>
+</div>    
+<style>
+
+    th{white-space: nowrap;}
+    td{white-space: nowrap;}
+
+.month-pager {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.month-dash-page-top {
+  display: flex;
+  flex-direction: row;
+}
+.container{
+    display: flex;
+    align-items: center;
+}
+.left {
+  display: flex;
+  margin: 5 1 1;  
+  width: 40%;
+  
+  padding: 0 5%;
+}
+
+.right {
+  flex-direction: row;
+  justify-content: space-around; 
+  margin: 0 0 0 auto;
+  width: 40%;
+  padding: 0 5%;
+}
+
+.vertical-middle{
+  display: inline-block;
+  vertical-align: middle;
+
+}
+
+.card {
+  margin-top: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.3rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  padding: 10px;
+}
+/* plotlyのツールバー非表示用 */
+.hidden_toolbar .modebar {
+  display: none !important;
+}
+
+</style>        
+{% endblock %}
+{% block content %}
+
+<div style="padding: 20px">
+    <div class="month-pager" style="padding: 20px">
+        <a href="{% url 'main_app:trouble_history_graph' prev_year prev_month %}">
+            前月
+        </a>
+    
+    <span class="ml-4 ml-4">{{ year_month }}</span>
+        
+        <a href="{% url 'main_app:trouble_history_graph' next_year next_month %}">
+            次月
+        </a>
+    </div>
+    
+    {% autoescape off %}
+        <div class="container">
+            <div class="left ml-4 hidden_toolbar">
+                {{ plot_bar }}
+            </div>
+        
+        <!-- </div> -->
+        
+            <div class="right ml-4 hidden_toolbar">
+                {{ plot_pie }}
+            </div>
+        </div>
+        
+        
+    {% endautoescape %} 
+    <br>
+    <form action="" method="get">
+        <input name="query_text" value="{{ request.GET.query }}" type="text">
+        <input name="query_date" value="{{ request.GET.query }}" type="date">
+        <button type="submit" class="btn btn-secondary">検索</button>
+
+    </form>
+
+    <table class="table" style="font-size : 12px;">
+        <tr>
+            <th>装置ID</th>
+            <th>型式</th>
+            <th>異常No</th>
+            <th>異常項目</th>
+            <th>発生時刻</th>            
+            <th>復帰時刻</th>
+            <th>ロスタイム</th>
+        </tr>
+<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.Customer_machine_id }}</td>
+            <td>{{ item.Machine_model }}</td>
+            <td>{{ item.Trouble_no }}</td>
+            <td>{{ item.Trouble_contents }}</td>
+            <td>{{ item.Trouble_occurrence_time|date:"20y年m月d日 H:i:s" }}</td>
+            <td>{{ item.Trouble_recovery_time|date:"20y年m月d日 H:i:s" }}</td>
+            <td>{{ item.Trouble_loss_time }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <!--以下よりページネーション-->
+    <nav aria-label="Page navigation example">
+
+        <ul class="pagination justify-content-center pagination g-mt-28 g-mb-28">
+            <!-- 前へ の部分 -->
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+    
+            <!-- 数字の部分 -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if num <= page_obj.number|add:5 and num >= page_obj.number|add:-5 %}
+    
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+    
+            <!-- 次へ の部分 -->
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    
+    </nav>
+</div>
+{% endblock %}
