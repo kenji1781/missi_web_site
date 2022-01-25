@@ -1,10 +1,11 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Trouble_History
+from ..models import Trouble_History,Customer_Machine,Trouble_Contents
+from ..forms import TroubleHistoryCreateForm,TroubleHistoryUpdateForm
+from django.db .models import Q
 from django.contrib import messages
 from datetime import datetime,date,time
-#from django.utils.timezone import localdate,localtime
 from ..plugin_plotly import GraphGenerator
 import numpy as np
 import pandas as pd
@@ -12,16 +13,22 @@ from django_pandas.io import read_frame
 
 
 
+################################################################################
+class TroubleHistoryView(ListView):
+    
+    template_name = 'monitoring/trouble_history.html'
+    model = Trouble_History
+    paginate_by = 10
 
-class TroubleHistoryGraphView(TemplateView):
-    template_name = 'monitoring_graph/trouble_history_graph.html'
-
+    
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
-        
-        ctx['title'] = '異常詳細'
-        ctx['msg'] = '異常詳細確認が出来ます。'
-        
+
+        # page_title を追加する
+        ctx['title'] = '異常履歴'
+        ctx['msg'] = '異常履歴の確認／変更が出来ます。'
+
+        object_list = []
 
         year = int(self.kwargs.get('year'))
         month = int(self.kwargs.get('month'))
@@ -47,46 +54,126 @@ class TroubleHistoryGraphView(TemplateView):
         ctx['prev_month'] = prev_month
         ctx['next_year'] = next_year
         ctx['next_month'] = next_month
+        
 
-        queryset = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
-        queryset = queryset.filter(Data_datetime__month=month)
-           
-        if not queryset:
+        #グラフ処理
+        q_word = self.request.GET.get('query_text')
+        q_date = self.request.GET.get('query_date')
+        if q_word:
+            object_list = Trouble_History.objects.filter(\
+                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word))
+                        
+        else:
+            object_list = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
+            object_list = object_list.filter(Trouble_occurrence_time__month=month).order_by('-Trouble_occurrence_time')
+            
+
+        if not object_list:
             return ctx
         
-        #稼働履歴モデルの補完を行う##########################
-        modelcomp = ModelComplement()
-        #datetimeをdateとtimeに分割
-        modelcomp.datetime_complement(queryset)
-        #idから機種を書込み
-        modelcomp.machine_model_complement(queryset)
-        #各最新単価を書込み
-        modelcomp.unit_cost_complement(queryset)
-        #################################################
-        df = read_frame(queryset,fieldnames=['Data_date','Cost_gas','Machine_model'])
+        
+        
+        df = read_frame(object_list,fieldnames=['Trouble_contents','Trouble_occurrence_time'])
         
         gen = GraphGenerator()
 
-        # pieチャートの素材を作成
-        df_pie = pd.pivot_table(df,index='Machine_model',values='Cost_gas',aggfunc=np.sum)
-        
-        pie_labels = list(df_pie.index.values)
-        pie_values = [val[0] for val in df_pie.values]
+        #円グラフ
+        pie_labels = df['Trouble_contents']#トラブル名を渡す
+        pie_values = df['Trouble_contents'].value_counts()#件数を渡す
         plot_pie = gen.month_pie(labels=pie_labels, values=pie_values)
         ctx['plot_pie'] = plot_pie
-
-        # テーブルでのカテゴリと金額の表示用。
-        # {カテゴリ:金額,カテゴリ:金額…}の辞書を作る
-        ctx['table_set'] = df_pie.to_dict()['Cost_gas']
-
-        # totalの数字を計算して渡す
-        ctx['total_payment'] = df['Cost_gas'].sum()
-
+        
+        #棒グラフ
         # 日別の棒グラフの素材を渡す
-        df_bar = pd.pivot_table(df, index='Data_date', values='Cost_gas', aggfunc=np.sum)
-        dates = list(df_bar.index.values)
-        heights = [val[0] for val in df_bar.values]
+        dates = df['Trouble_occurrence_time']
+        heights = df['Trouble_contents'].value_counts()#件数を渡す
         plot_bar = gen.month_daily_bar(x_list=dates, y_list=heights)
         ctx['plot_bar'] = plot_bar
         
         return ctx
+        
+
+    def get_queryset(self):
+
+        year = int(self.kwargs.get('year'))
+        month = int(self.kwargs.get('month'))
+
+        q_word = self.request.GET.get('query_text')
+        q_date = self.request.GET.get('query_date')
+        if q_word:
+            object_list = Trouble_History.objects.filter(\
+                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word))
+                        
+        else:
+            object_list = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
+            object_list = object_list.filter(Trouble_occurrence_time__month=month).order_by('-Trouble_occurrence_time')
+
+            for history in object_list:
+                if (history.Trouble_occurrence_time != None)and(history.Trouble_recovery_time != None):
+                    date1 = history.Trouble_recovery_time    
+                    date2 = history.Trouble_occurrence_time
+                    loss_time = date1-date2
+                    history.time_calc = loss_time.total_seconds()
+                    history.Trouble_loss_time = str(loss_time)
+                    history.save()
+
+                if (history.Customer_machine_id != None)and(history.Machine_model == None):
+                    for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
+                        #for t_contents in Trouble_Contents.objects.select_related('Machine_model').all():
+                        if history.Customer_machine_id == history.Customer_machine_id:
+                                history.Machine_model = str(c_machine.Machine_model)+ ': #' +str(c_machine.Customer_machine_unit_no)                   
+                                history.save()
+                
+                if (history.Trouble_no != None)and(history.Trouble_contents == None):
+                    for t_contents in Trouble_Contents.objects.select_related('Machine_model').all():
+                         if history.Trouble_no == t_contents.Trouble_no:
+                                history.Trouble_contents = t_contents.Trouble_contents                   
+                                history.save()        
+                
+
+        return object_list
+################################################################################
+class TroubleHistoryCreateView(CreateView):
+    
+
+    template_name = 'monitoring/trouble_history_create.html'
+    model = Trouble_History
+    form_class = TroubleHistoryCreateForm
+    
+    success_url = reverse_lazy("main_app:trouble_history") 
+
+#unique=True時**kwargs記述のこと
+    def get_context_data(self,**kwargs):
+        ctx = super().get_context_data(**kwargs)
+        # page_title を追加する
+        ctx['title'] = '異常履歴'
+        ctx['msg'] = '異常履歴の登録が出来ます。'
+        return ctx
+    
+################################################################################
+class TroubleHistoryUpdateView(UpdateView):
+
+    template_name = 'monitoring/trouble_history_update.html'
+    model = Trouble_History
+    form_class = TroubleHistoryUpdateForm
+    
+    success_url = reverse_lazy("main_app:trouble_history") 
+
+#unique=True時**kwargs記述のこと
+    def get_context_data(self,**kwargs):
+        ctx = super().get_context_data(**kwargs)
+        # page_title を追加する
+        ctx['title'] = '異常履歴'
+        ctx['msg'] = '異常履歴の変更が出来ます。'
+        return ctx
+
+################################################################################
+class TroubleHistoryDeleteView(DeleteView):
+    
+
+    template_name = 'monitoring/trouble_history_delete.html'
+    model = Trouble_History
+    #form_class = ElectricPriceCreateForm
+    
+    success_url = reverse_lazy("main_app:trouble_history") 
+ 

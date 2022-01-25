@@ -18,7 +18,7 @@ class TroubleHistoryView(ListView):
     
     template_name = 'monitoring/trouble_history.html'
     model = Trouble_History
-    paginate_by = 10
+    paginate_by = 50
 
     
     def get_context_data(self,**kwargs):
@@ -27,86 +27,21 @@ class TroubleHistoryView(ListView):
         # page_title を追加する
         ctx['title'] = '異常履歴'
         ctx['msg'] = '異常履歴の確認／変更が出来ます。'
-
-        object_list = []
-
-        year = int(self.kwargs.get('year'))
-        month = int(self.kwargs.get('month'))
-
-        ctx['year_month'] = f'{year}年{month}月'
-
-        #前月と次月をコンテキストに入れて渡す。
-        if month == 1:
-            prev_year = year - 1
-            prev_month = 12
-        else:
-            prev_year = year
-            prev_month = month - 1
-
-        if month == 12:
-            next_year = year + 1
-            next_month = 1
-        else:
-            next_year = year
-            next_month = month + 1
-
-        ctx['prev_year'] = prev_year
-        ctx['prev_month'] = prev_month
-        ctx['next_year'] = next_year
-        ctx['next_month'] = next_month
-        
-
-        #グラフ処理
-        q_word = self.request.GET.get('query_text')
-        q_date = self.request.GET.get('query_date')
-        if q_word:
-            object_list = Trouble_History.objects.filter(\
-                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word))
-                        
-        else:
-            object_list = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
-            object_list = object_list.filter(Trouble_occurrence_time__month=month).order_by('-Trouble_occurrence_time')
-            
-
-        if not object_list:
-            return ctx
-        
-        
-        
-        df = read_frame(object_list,fieldnames=['Trouble_contents','Trouble_occurrence_time'])
-        
-        gen = GraphGenerator()
-
-        #円グラフ
-        pie_labels = df['Trouble_contents']#トラブル名を渡す
-        pie_values = df['Trouble_contents'].value_counts()#件数を渡す
-        plot_pie = gen.month_pie(labels=pie_labels, values=pie_values)
-        ctx['plot_pie'] = plot_pie
-        
-        #棒グラフ
-        # 日別の棒グラフの素材を渡す
-        dates = df['Trouble_occurrence_time']
-        heights = df['Trouble_contents'].value_counts()#件数を渡す
-        plot_bar = gen.month_daily_bar(x_list=dates, y_list=heights)
-        ctx['plot_bar'] = plot_bar
-        
+               
         return ctx
         
 
     def get_queryset(self):
-
-        year = int(self.kwargs.get('year'))
-        month = int(self.kwargs.get('month'))
-
         q_word = self.request.GET.get('query_text')
-        q_date = self.request.GET.get('query_date')
-        if q_word:
-            object_list = Trouble_History.objects.filter(\
-                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word))
-                        
+        q_date_f = self.request.GET.get('query_date_f')
+        q_date_l = self.request.GET.get('query_date_l')
+
+        if q_word and q_date_f and q_date_l:
+            object_list = Trouble_History.objects.filter(Customer_machine_id=q_word).filter(Trouble_occurrence_time__range=(q_date_f, q_date_l))
+                
+            
         else:
-            object_list = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
-            object_list = object_list.filter(Trouble_occurrence_time__month=month).order_by('-Trouble_occurrence_time')
+            object_list = Trouble_History.objects.all().order_by('-Trouble_occurrence_time')    #.values('Customer_machine_id','Machine_model','Customer_machine_unit_no','Cost_electric','Data_datetime')
 
             for history in object_list:
                 if (history.Trouble_occurrence_time != None)and(history.Trouble_recovery_time != None):

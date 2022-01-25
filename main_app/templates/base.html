@@ -90,7 +90,9 @@
                                       </a>
                                       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                         <li><a class="dropdown-item" href="{% url 'main_app:machine_drive_history' %}">稼働履歴</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:trouble_history' now_year now_month %}">異常履歴</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:trouble_history'%}">異常履歴</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:losstime_graph' now_year now_month %}">ロスタイム集計</a></li>
+                                        
                                         </ul>
                                     </li>
                                   </ul>
@@ -209,7 +211,7 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                       <li><a class="dropdown-item" href="{% url 'main_app:machine_drive_history' %}">稼働履歴</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:trouble_history' now_year now_month %}">異常履歴</a></li>
+                                      <li><a class="dropdown-item" href="{% url 'main_app:trouble_history'%}">異常履歴</a></li>
                                       </ul>
                                   </li>
                                 </ul>
@@ -330,7 +332,7 @@
                                   </a>
                                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" href="{% url 'main_app:machine_drive_history' %}">稼働履歴</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'main_app:trouble_history' now_year now_month %}">異常履歴</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'main_app:trouble_history'%}">異常履歴</a></li>
                                     </ul>
                                 </li>
                               </ul>

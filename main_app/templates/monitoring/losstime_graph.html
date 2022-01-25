@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+Data Monitoring System {{ title }}
+{% endblock %}
+{% block header %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<div style="padding: 20px">
+    <br>
+    <h3 class="display-6 text-light bg-secondary d-inline p-3">{{title}}</h3>
+            <p class="h5 mt-4">{{msg|safe}}</p>
+        <br>
+</div>    
+<style>
+    th{white-space: nowrap;}
+    td{white-space: nowrap;}
+.month-pager {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.month-dash-page-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.left {
+  width: 40%;
+  padding: 0 5%;
+}
+
+.right {
+  width: 60%;
+  padding: 0 5%;
+}
+
+.card {
+  margin-top: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.3rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  padding: 10px;
+}
+/* plotlyのツールバー非表示用 */
+.hidden_toolbar .modebar {
+  display: none !important;
+}
+
+</style>        
+{% endblock %}
+{% block content %}
+
+
+<div class="month-pager" style="padding: 20px">
+    <a href="{% url 'main_app:losstime_graph' prev_year prev_month %}">
+        前月
+    </a>
+
+<span class="ml-4 ml-4">{{ year_month }}</span>
+    
+    <a href="{% url 'main_app:losstime_graph' next_year next_month %}">
+        次月
+    </a>
+</div>
+
+<!-- ここからグラフ -->
+{% autoescape off %}
+<div class="month-dash-page-top mt-4">
+  <div class="left card">
+    <table class="table">
+      <tr>
+        <th>装置</th>
+        <th>金額</th>
+      </tr>
+      {% for key,value in table_set.items %}
+      <tr>
+        <td>{{ key }}</td>
+        <td>{{ value | intcomma  }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>Total</td>
+        <td>{{ total_payment | intcomma  }}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="right ml-4 hidden_toolbar">
+    {{ plot_pie }}
+  </div>
+</div>
+<div class="month-dash-bottom">
+  <div class="hidden_toolbar">
+    {{ plot_bar }}
+  </div>
+</div>
+{% endautoescape %}
+
+{% endblock %}
+<!--{% block extrajs %} -->
+<!-- plotlyのjs -->
+<!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+<!-- {% endblock %} -->
+
+
+
+

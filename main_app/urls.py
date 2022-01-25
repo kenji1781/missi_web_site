@@ -57,7 +57,7 @@ from .views.cost_solvent7_graph import CostSolvent7GraphView
 from .views.cost_solvent8_graph import CostSolvent8GraphView
 from .views.cost_solvent9_graph import CostSolvent9GraphView
 from .views.cost_solvent9_graph import CostSolvent9GraphView
-#from .views.cost_solvent9_graph import CostSolvent9GraphView
+from .views.losstime_graph import LossTimeGraphView
 
 
 app_name = 'main_app'
@@ -148,7 +148,7 @@ urlpatterns = [
     path('trouble_contents/create/',TroubleContentsCreateView.as_view(),name="trouble_contents_create"),   #異常
     path('trouble_contents/update/<int:pk>',TroubleContentsUpdateView.as_view(),name="trouble_contents_update"),   #異常
     path('trouble_contents/delete/<int:pk>',TroubleContentsDeleteView.as_view(),name="trouble_contents_delete"),   #異常
-    path('trouble_history/<int:year>/<int:month>/',TroubleHistoryView.as_view(),name="trouble_history"),        #異常履歴
+    path('trouble_history/',TroubleHistoryView.as_view(),name="trouble_history"),        #異常履歴
     path('trouble_history/create/',TroubleHistoryCreateView.as_view(),name="trouble_history_create"),   #異常履歴
     path('trouble_history/update/<int:pk>',TroubleHistoryUpdateView.as_view(),name="trouble_history_update"),   #異常履歴
     path('trouble_history/delete/<int:pk>',TroubleHistoryDeleteView.as_view(),name="trouble_history_delete"),   #異常履歴
@@ -183,16 +183,17 @@ urlpatterns = [
     path('cost_steam_graph/<int:year>/<int:month>/',CostSteamGraphView.as_view(),name="cost_steam_graph"),   #蒸気コストグラフ
     path('cost_gas_graph/<int:year>/<int:month>/',CostGasGraphView.as_view(),name="cost_gas_graph"),   #ガスコストグラフ
     path('cost_water_graph/<int:year>/<int:month>/',CostWaterGraphView.as_view(),name="cost_water_graph"),   #水コストグラフ
-    path('cost_solvent0_graph/<int:year>/<int:month>/',CostSolvent0GraphView.as_view(),name="cost_solvent0_graph"),   #溶剤0コストグラフ
-    path('cost_solvent1_graph/<int:year>/<int:month>/',CostSolvent1GraphView.as_view(),name="cost_solvent1_graph"),   #溶剤0コストグラフ
-    path('cost_solvent2_graph/<int:year>/<int:month>/',CostSolvent2GraphView.as_view(),name="cost_solvent2_graph"),   #溶剤0コストグラフ
-    path('cost_solvent3_graph/<int:year>/<int:month>/',CostSolvent3GraphView.as_view(),name="cost_solvent3_graph"),   #溶剤0コストグラフ
-    path('cost_solvent4_graph/<int:year>/<int:month>/',CostSolvent4GraphView.as_view(),name="cost_solvent4_graph"),   #溶剤0コストグラフ
-    path('cost_solvent5_graph/<int:year>/<int:month>/',CostSolvent5GraphView.as_view(),name="cost_solvent5_graph"),   #溶剤0コストグラフ
-    path('cost_solvent6_graph/<int:year>/<int:month>/',CostSolvent6GraphView.as_view(),name="cost_solvent6_graph"),   #溶剤0コストグラフ
-    path('cost_solvent7_graph/<int:year>/<int:month>/',CostSolvent7GraphView.as_view(),name="cost_solvent7_graph"),   #溶剤0コストグラフ
-    path('cost_solvent8_graph/<int:year>/<int:month>/',CostSolvent8GraphView.as_view(),name="cost_solvent8_graph"),   #溶剤0コストグラフ
-    path('cost_solvent9_graph/<int:year>/<int:month>/',CostSolvent9GraphView.as_view(),name="cost_solvent9_graph"),   #溶剤0コストグラフ
-    #path('trouble_history_graph/<int:year>/<int:month>/',TroubleHistoryGraphView.as_view(),name="trouble_history_graph"),   #異常グラフ
+    path('cost_solvent0_graph/<int:year>/<int:month>/',CostSolvent0GraphView.as_view(),name="cost_solvent0_graph"),   #溶剤コストグラフ
+    path('cost_solvent1_graph/<int:year>/<int:month>/',CostSolvent1GraphView.as_view(),name="cost_solvent1_graph"),   #溶剤コストグラフ
+    path('cost_solvent2_graph/<int:year>/<int:month>/',CostSolvent2GraphView.as_view(),name="cost_solvent2_graph"),   #溶剤コストグラフ
+    path('cost_solvent3_graph/<int:year>/<int:month>/',CostSolvent3GraphView.as_view(),name="cost_solvent3_graph"),   #溶剤コストグラフ
+    path('cost_solvent4_graph/<int:year>/<int:month>/',CostSolvent4GraphView.as_view(),name="cost_solvent4_graph"),   #溶剤コストグラフ
+    path('cost_solvent5_graph/<int:year>/<int:month>/',CostSolvent5GraphView.as_view(),name="cost_solvent5_graph"),   #溶剤コストグラフ
+    path('cost_solvent6_graph/<int:year>/<int:month>/',CostSolvent6GraphView.as_view(),name="cost_solvent6_graph"),   #溶剤コストグラフ
+    path('cost_solvent7_graph/<int:year>/<int:month>/',CostSolvent7GraphView.as_view(),name="cost_solvent7_graph"),   #溶剤コストグラフ
+    path('cost_solvent8_graph/<int:year>/<int:month>/',CostSolvent8GraphView.as_view(),name="cost_solvent8_graph"),   #溶剤コストグラフ
+    path('cost_solvent9_graph/<int:year>/<int:month>/',CostSolvent9GraphView.as_view(),name="cost_solvent9_graph"),   #溶剤コストグラフ
+    
+    path('losstime_graph/<int:year>/<int:month>/',LossTimeGraphView.as_view(),name="losstime_graph"),   #ロスタイムグラフ
     
     ]

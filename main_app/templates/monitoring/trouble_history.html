@@ -17,105 +17,25 @@ Data Monitoring System {{ title }}
     th{white-space: nowrap;}
     td{white-space: nowrap;}
 
-.month-pager {
-  text-align: center;
-  font-size: 1.6rem;
-}
-
-.month-dash-page-top {
-  display: flex;
-  flex-direction: row;
-}
-.container{
-    display: flex;
-    align-items: center;
-}
-.left {
-  display: flex;
-  margin: 5 1 1;  
-  width: 40%;
-  
-  padding: 0 5%;
-}
-
-.right {
-  flex-direction: row;
-  justify-content: space-around; 
-  margin: 0 0 0 auto;
-  width: 40%;
-  padding: 0 5%;
-}
-
-.vertical-middle{
-  display: inline-block;
-  vertical-align: middle;
-
-}
-
-.card {
-  margin-top: 2rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.3rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
-  padding: 10px;
-}
-/* plotlyのツールバー非表示用 */
-.hidden_toolbar .modebar {
-  display: none !important;
-}
 
 </style>        
 {% endblock %}
 {% block content %}
-
-<div class="month-pager" style="padding: 20px">
-    <a href="{% url 'main_app:trouble_history' prev_year prev_month %}">
-        前月
-    </a>
-
-<span class="ml-4 ml-4">{{ year_month }}</span>
-    
-    <a href="{% url 'main_app:trouble_history' next_year next_month %}">
-        次月
-    </a>
-</div>
-
-
-
-
-
 <div style="padding: 20px">
-    {% autoescape off %}
-        <div class="container">
-            <div class="left ml-4 hidden_toolbar">
-                {{ plot_bar }}
-            </div>
-        
-        <!-- </div> -->
-        
-            <div class="right ml-4 hidden_toolbar">
-                {{ plot_pie }}
-            </div>
-        </div>
-        
-        
-    {% endautoescape %} 
     <br>
     <form action="" method="get">
-        <label for="mhn_id">装置ID</label>
-        <input name="query_text" value="{{ request.GET.query }}" type="text" id="mhn_id">
+        <label for="mchn_id">装置ID</label>
+            <input name="query_text" value="{{ request.GET.query }}" type="text" id="mchn_id">
+        <label for="date_f">期間</label>
+            <input name="query_date_f" value="{{ request.GET.query }}" type="date" id="date_f">
+        <label for="date_l">から</label>
+            <input name="query_date_l" value="{{ request.GET.query }}" type="date" id="date_l">
         <button type="submit" class="btn btn-secondary">検索</button>
-
+        
     </form>
-
-    <a href="{% url 'main_app:trouble_history_create' %}" class="btn btn-outline-primary">登録</a>
+    
+    <a href="{% url 'main_app:trouble_history_create'%}" class="btn btn-outline-primary">登録</a>
+    
     <table class="table" style="font-size : 12px;">
         <tr>
             <th>装置ID</th>
