@@ -13,7 +13,7 @@ class ModelComplement:
                     for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
                        if history_i.Customer_machine_id == c_machine.Customer_machine_id:
                             try:
-                                history_i.Machine_model = str(c_machine.Machine_model)                   
+                                history_i.Machine_model = str(c_machine.Machine_model) + ': #' +str(c_machine.Customer_machine_unit_no)                  
                                 history_i.save()
                             except:
                                 pass

@@ -54,12 +54,13 @@ class LossTimeGraphView(TemplateView):
             return ctx
         
         
-        df = read_frame(queryset,fieldnames=['Trouble_occurrence_time','Trouble_loss_time','Machine_model'])
-        
+        df = read_frame(queryset,fieldnames=['Trouble_occurrence_time','Trouble_recovery_time','Machine_model'])
+        df['loss_time'] = df['Trouble_recovery_time']-df['Trouble_occurrence_time']
+        print(df['loss_time'])
         gen = GraphGenerator()
 
-        # pieチャートの素材を作成
-        df_pie = pd.pivot_table(df,index='Machine_model',values='Trouble_loss_time',aggfunc=np.sum)
+            # pieチャートの素材を作成
+        df_pie = pd.pivot_table(df,index='Machine_model',values='loss_time',aggfunc=np.sum)
         
         pie_labels = list(df_pie.index.values)
         pie_values = [val[0] for val in df_pie.values]
@@ -68,16 +69,11 @@ class LossTimeGraphView(TemplateView):
 
         # テーブルでのカテゴリと金額の表示用。
         # {カテゴリ:金額,カテゴリ:金額…}の辞書を作る
-        ctx['table_set'] = df_pie.to_dict()['Trouble_loss_time']
+        ctx['table_set'] = df_pie.to_dict()['loss_time']
 
         # totalの数字を計算して渡す
-        ctx['total_payment'] = df['Trouble_loss_time'].sum()
+        ctx['total_payment'] = df['loss_time'].sum()
 
-        # 日別の棒グラフの素材を渡す
-        df_bar = pd.pivot_table(df, index='Trouble_occurrence_time', values='Trouble_loss_time', aggfunc=np.sum)
-        dates = list(df_bar.index.values)
-        heights = [val[0] for val in df_bar.values]
-        plot_bar = gen.month_daily_bar(x_list=dates, y_list=heights)
-        ctx['plot_bar'] = plot_bar
+        
         
         return ctx

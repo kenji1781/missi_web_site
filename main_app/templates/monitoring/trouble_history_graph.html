@@ -105,8 +105,9 @@ Data Monitoring System {{ title }}
     {% endautoescape %} 
     <br>
     <form action="" method="get">
-        <input name="query_text" value="{{ request.GET.query }}" type="text">
-        <input name="query_date" value="{{ request.GET.query }}" type="date">
+        <label for="mchn_id">装置ID</label>
+        <input name="query_text" value="{{ request.GET.query }}" type="text" id="mchn_id">
+        
         <button type="submit" class="btn btn-secondary">検索</button>
 
     </form>
