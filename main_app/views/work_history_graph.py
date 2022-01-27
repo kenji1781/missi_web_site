@@ -85,10 +85,13 @@ class WorkHistoryGraphView(TemplateView):
         # totalの数字を計算して渡す
         ctx['total_payment'] = pie_values.sum()
 
+        df['count'] = len(df)
         # 日別の棒グラフの素材を渡す
-        dates = df['Trouble_occurrence_time']
-        heights = df['Trouble_contents'].value_counts()#件数を渡す
-    
+        df_bar = pd.pivot_table(df, index='Data_date', values='count')
+        dates = list(df_bar.index.values)
+        heights = [val[0] for val in df_bar.values]
+        
+          
         ctx['transition_plot'] = gen.transition_plot(x_list_payment=dates,
                                                    y_list_payment=heights)
         

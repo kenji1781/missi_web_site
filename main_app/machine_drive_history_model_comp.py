@@ -266,7 +266,7 @@ class ModelComplement:
             #データ取得日　datetimeからtimeを書込み
             if history_i.Data_datetime != None:
                 time_r = history_i.Data_datetime.time()
-                print(time_r)
+                
                 
                 if ((history_i.Data_datetime != None) and (history_i.Data_time == None))\
                         or (time_r != history_i.Data_time):
