@@ -1,7 +1,8 @@
 from django.contrib.auth import login as auth_login
+from django.http import request
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Trouble_History,Customer_Machine,Trouble_Contents
+from django.views.generic import TemplateView
+from ..models import Trouble_History
 from django.contrib import messages
 from datetime import datetime,date,time
 #from django.utils.timezone import localdate,localtime
@@ -14,7 +15,7 @@ from django_pandas.io import read_frame
 
 class LossTimeGraphView(TemplateView):
     template_name = 'monitoring/losstime_graph.html'
-
+    
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         
