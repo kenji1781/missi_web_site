@@ -26,6 +26,7 @@ Data Monitoring System {{ title }}
     </form>
     
     <a href="{% url 'main_app:machine_drive_history_create' %}" class="btn btn-outline-primary">登録</a>
+<div class="table-responsive">    
     <table class="table" style="font-size : 12px;">
         <tr>
             <th>装置ID</th>
@@ -114,7 +115,7 @@ Data Monitoring System {{ title }}
         </tr>
     {% endfor %}
     </table>
-
+</div>
     <!--以下よりページネーション-->
     <nav aria-label="Page navigation example">
 
