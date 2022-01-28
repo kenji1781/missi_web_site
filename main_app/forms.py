@@ -1160,7 +1160,7 @@ class SettingItemUpdateForm(forms.ModelForm):
         #fields = ('Equipment_category')
         fields = ('Setting_item_id','Setting_item_name','Setting_item_input_date','Setting_item_memo')
         labels = {
-                    'Setting_item_id':'品種ID',
+                    'Setting_item_id':'品種名ID',
                     'Setting_item_name':'品種名',
                     'Setting_item_input_date':'登録日',
                     'Setting_item_memo':'メモ',
@@ -1179,11 +1179,12 @@ class SettingItemUpdateForm(forms.ModelForm):
 ######################################################################################################
 Customer__recipe_fields = (
                     #'His_id',
+                    'Customer_recipe_no',
                     'Customer_machine_id',
                     'Machine_model',
                     'Recipe_id',
                     'Recipe_name',
-                    'Customer_recipe_no',
+                    
                     'Customer_recipe_time0',
                     'Customer_recipe_time1',
                     'Customer_recipe_time2',
@@ -1246,11 +1247,12 @@ Customer__recipe_fields = (
 
 Customer__recipe_labels = {
                     #'His_id':'履歴ID',
+                    'Customer_recipe_no':'品種No',
                     'Customer_machine_id':'装置ID',
                     'Machine_model':'装置',
-                    'Recipe_id':'品種ID',
+                    'Recipe_id':'品種名ID',
                     'Recipe_name':'品種名',
-                    'Customer_recipe_no':'品種No',
+                    
                     'Customer_recipe_time0':'運転時間設定0',
                     'Customer_recipe_time1':'運転時間設定1',
                     'Customer_recipe_time2':'運転時間設定2',

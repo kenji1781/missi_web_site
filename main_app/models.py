@@ -137,7 +137,7 @@ class Recipe_Name(models.Model):
         ]
 
 class Setting_Item(models.Model):
-    Setting_item_id = models.IntegerField(verbose_name='品種ID',validators=[MinValueValidator(0)],blank=True,null=True,unique=True)
+    Setting_item_id = models.IntegerField(verbose_name='品種名ID',validators=[MinValueValidator(0)],blank=True,null=True,unique=True)
     Setting_item_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True,unique=True)
     Setting_item_input_date = models.DateField(verbose_name='登録日',blank=False,null=False)
     Setting_item_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)

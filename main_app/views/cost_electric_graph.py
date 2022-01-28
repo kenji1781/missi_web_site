@@ -87,10 +87,10 @@ class CostElectricGraphView(LoginRequiredMixin,TemplateView):
         df_bar = pd.pivot_table(df, index='Data_date', values='Cost_electric', aggfunc=np.sum)
         dates = list(df_bar.index.values)
         heights = [val[0] for val in df_bar.values]
-        #plot_bar = gen.month_daily_bar(x_list=dates, y_list=heights)
-        #ctx['plot_bar'] = plot_bar
-        ctx['transition_plot'] = gen.transition_plot(x_list_payment=dates,
-                                                   y_list_payment=heights)
+        plot_bar = gen.month_daily_bar(x_list=dates, y_list=heights)
+        ctx['plot_bar'] = plot_bar
+        #ctx['transition_plot'] = gen.transition_plot(x_list_payment=dates,
+        #                                           y_list_payment=heights)
                                                    #x_list_income=0,
                                                    #y_list_income=0)
 
