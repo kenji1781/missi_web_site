@@ -7,10 +7,11 @@ from django.contrib import messages
 from django.db.models import Count,Sum,Avg,Min,Max
 from datetime import datetime,date,time
 from ..machine_drive_history_model_comp import ModelComplement
+from django.contrib.auth.mixins import LoginRequiredMixin
 #from django.utils.timezone import localdate,localtime
 
 ################################################################################
-class CostSolvent4View(ListView):
+class CostSolvent4View(LoginRequiredMixin,ListView):
     
     template_name = 'running_cost/cost_solvent4.html'
     model = Machine_Drive_History

@@ -5,11 +5,12 @@ from ..models import Machine_Model
 from ..forms import MachineModelCreateForm,MachineModelUpdateForm
 from django.db .models import Q
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 ################################################################################
-class MachineModelView(ListView):
+class MachineModelView(LoginRequiredMixin,ListView):
     
     template_name = 'manufacturer_setting/machine_model.html'
     model = Machine_Model

@@ -4,12 +4,13 @@ from django.views.generic import TemplateView,CreateView,ListView,DeleteView,Upd
 from ..models import Unit_Price_Gas
 from ..forms import GasPriceCreateForm,GasPriceUpdateForm
 from django.db .models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 
 ################################################################################
-class GasPriceView(ListView):
+class GasPriceView(LoginRequiredMixin,ListView):
     
     template_name = 'unit_price/gas_price.html'
     model = Unit_Price_Gas

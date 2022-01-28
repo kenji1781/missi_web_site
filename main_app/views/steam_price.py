@@ -4,12 +4,12 @@ from django.views.generic import TemplateView,CreateView,ListView,DeleteView,Upd
 from ..models import Unit_Price_Steam
 from ..forms import SteamPriceCreateForm,SteamPriceUpdateForm
 from django.db .models import Q
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 ################################################################################
-class SteamPriceView(ListView):
+class SteamPriceView(LoginRequiredMixin,ListView):
     
     template_name = 'unit_price/steam_price.html'
     model = Unit_Price_Steam

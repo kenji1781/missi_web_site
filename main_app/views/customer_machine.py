@@ -5,11 +5,12 @@ from ..models import Customer_Machine
 from ..forms import CustomerMachineCreateForm,CustomerMachineUpdateForm
 from django.db .models import Q
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 ################################################################################
-class CustomerMachineView(ListView):
+class CustomerMachineView(LoginRequiredMixin,ListView):
     
     template_name = 'user_conf/customer_machine.html'
     model = Customer_Machine

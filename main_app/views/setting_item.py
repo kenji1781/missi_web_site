@@ -5,11 +5,12 @@ from ..models import Setting_Item
 from ..forms import SettingItemCreateForm,SettingItemUpdateForm
 from django.db .models import Q
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 ################################################################################
-class SettingItemView(ListView):
+class SettingItemView(LoginRequiredMixin,ListView):
     
     template_name = 'user_conf/setting_item.html'
     model = Setting_Item

@@ -5,11 +5,12 @@ from ..models import Solvent_Manufacturer
 from ..forms import SolventManufacturerCreateForm,SolventManufacturerUpdateForm
 from django.db .models import Q
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 ################################################################################
-class SolventManufacturerView(ListView):
+class SolventManufacturerView(LoginRequiredMixin,ListView):
     
     template_name = 'user_conf/solvent_manufacturer.html'
     model = Solvent_Manufacturer

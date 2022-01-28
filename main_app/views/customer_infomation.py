@@ -5,11 +5,12 @@ from ..models import Customer_Infomation
 from ..forms import CustomerInfomationCreateForm,CustomerInfomationUpdateForm
 from django.db .models import Q
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 ################################################################################
-class CustomerInfomationView(ListView):
+class CustomerInfomationView(LoginRequiredMixin,ListView):
     
     template_name = 'manufacturer_setting/customer_infomation.html'
     model = Customer_Infomation

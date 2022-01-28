@@ -10,10 +10,11 @@ import numpy as np
 import pandas as pd
 from django_pandas.io import read_frame
 from ..machine_drive_history_model_comp import ModelComplement
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
-class CostSolvent0GraphView(TemplateView):
+class CostSolvent0GraphView(LoginRequiredMixin,TemplateView):
     template_name = 'cost_graph/cost_solvent0_graph.html'
 
     def get_context_data(self,**kwargs):

@@ -5,11 +5,12 @@ from ..models import Equipment_Category
 from ..forms import EquipmentCategoryCreateForm,EquipmentCategoryUpdateForm
 from django.db .models import Q
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 ################################################################################
-class EquipmentCategoryView(ListView):
+class EquipmentCategoryView(LoginRequiredMixin,ListView):
     
     template_name = 'manufacturer_setting/equipment_category.html'
     model = Equipment_Category

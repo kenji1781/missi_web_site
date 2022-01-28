@@ -7,12 +7,13 @@ from django.db .models import Q
 from django.contrib import messages
 from datetime import datetime,date,time
 from ..machine_drive_history_model_comp import ModelComplement
+from django.contrib.auth.mixins import LoginRequiredMixin
 #from django.utils.timezone import localdate,localtime
 
 
 
 ################################################################################
-class MachineDriveHistoryView(ListView):
+class MachineDriveHistoryView(LoginRequiredMixin,ListView):
     
     template_name = 'monitoring/machine_drive_history.html'
     model = Machine_Drive_History

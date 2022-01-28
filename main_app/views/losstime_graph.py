@@ -10,10 +10,10 @@ from ..plugin_plotly import GraphGenerator
 import numpy as np
 import pandas as pd
 from django_pandas.io import read_frame
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
-class LossTimeGraphView(TemplateView):
+class LossTimeGraphView(LoginRequiredMixin,TemplateView):
     template_name = 'monitoring/losstime_graph.html'
     
     def get_context_data(self,**kwargs):

@@ -5,11 +5,12 @@ from ..models import Customer_Machine_Recipe,Customer_Machine,Trouble_Contents
 from ..forms import CustomerMachineRecipeCreateForm,CustomerMachineRecipeUpdateForm
 from django.db .models import Q
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 ################################################################################
-class CustomerMachineRecipeView(ListView):
+class CustomerMachineRecipeView(LoginRequiredMixin,ListView):
     
     template_name = 'user_conf/customer_machine_recipe.html'
     model = Customer_Machine_Recipe

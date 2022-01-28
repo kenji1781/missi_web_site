@@ -7,10 +7,10 @@ from django.db .models import Q
 from django.contrib import messages
 from datetime import datetime,date,time
 from ..trouble_history_model_comp import ModelComplement
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 ################################################################################
-class TroubleHistoryView(ListView):
+class TroubleHistoryView(LoginRequiredMixin,ListView):
     
     template_name = 'monitoring/trouble_history.html'
     model = Trouble_History

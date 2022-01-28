@@ -5,11 +5,11 @@ from ..models import Trouble_Contents
 from ..forms import TroubleContentsCreateForm,TroubleContentsUpdateForm
 from django.db .models import Q
 from django.contrib import messages
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 ################################################################################
-class TroubleContentsView(ListView):
+class TroubleContentsView(LoginRequiredMixin,ListView):
     
     template_name = 'manufacturer_setting/trouble_contents.html'
     model = Trouble_Contents

@@ -5,11 +5,11 @@ from ..models import Solvent8_Conf
 from ..forms import Solvent8ConfCreateForm,Solvent8ConfUpdateForm
 from django.db .models import Q
 from django.contrib import messages
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 ################################################################################
-class Solvent8ConfView(ListView):
+class Solvent8ConfView(LoginRequiredMixin,ListView):
     
     template_name = 'unit_price/solvent8_conf.html'
     model = Solvent8_Conf

@@ -11,11 +11,11 @@ import numpy as np
 import pandas as pd
 from django_pandas.io import read_frame
 from ..trouble_history_model_comp import ModelComplement
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 ################################################################################
-class TroubleHistoryGraphView(ListView):
+class TroubleHistoryGraphView(LoginRequiredMixin,ListView):
     
     template_name = 'monitoring/trouble_history_graph.html'
     model = Trouble_History

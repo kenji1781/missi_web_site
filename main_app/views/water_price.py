@@ -4,12 +4,12 @@ from django.views.generic import TemplateView,CreateView,ListView,DeleteView,Upd
 from ..models import Unit_Price_Water
 from ..forms import WaterPriceCreateForm,WaterPriceUpdateForm
 from django.db .models import Q
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 ################################################################################
-class WaterPriceView(ListView):
+class WaterPriceView(LoginRequiredMixin,ListView):
     
     template_name = 'unit_price/water_price.html'
     model = Unit_Price_Water
