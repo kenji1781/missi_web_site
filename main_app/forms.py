@@ -1247,7 +1247,7 @@ Customer__recipe_fields = (
 
 Customer__recipe_labels = {
                     #'His_id':'履歴ID',
-                    'Customer_recipe_no':'品種No',
+                    'Customer_recipe_no':'コースNo',
                     'Customer_machine_id':'装置ID',
                     'Machine_model':'装置',
                     'Recipe_id':'品種名ID',
@@ -1522,7 +1522,7 @@ Machine_drive_history_fields = (
 Machine_drive_history_labels = {
                     'Customer_machine_id':'装置ID',
                     'Machine_model':'装置',
-                    'Customer_recipe_no':'品種No',
+                    'Customer_recipe_no':'コースNo',
                     'Machine_drive_time0':'運転時間0',
                     'Machine_drive_time1':'運転時間1',
                     'Machine_drive_time2':'運転時間2',

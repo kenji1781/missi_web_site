@@ -59,13 +59,17 @@ class CostSolvent6View(LoginRequiredMixin,ListView):
         else:
             object_list = Machine_Drive_History.objects.all().order_by('-Data_datetime')    #.values('Customer_machine_id','Machine_model','Customer_machine_unit_no','Cost_electric','Data_datetime')
             
+            #稼働履歴モデルの補完を行う##########################
             modelcomp = ModelComplement()
             #datetimeをdateとtimeに分割
             modelcomp.datetime_complement(object_list)
             #idから機種を書込み
             modelcomp.machine_model_complement(object_list)
+            #品種No.から品種名を書込み
+            modelcomp.recipe_model_complement(object_list)
             #各最新単価を書込み
             modelcomp.unit_cost_complement(object_list)
+            #################################################
            
             
         return object_list

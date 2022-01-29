@@ -5,6 +5,7 @@ from ..models import Customer_Machine_Recipe,Customer_Machine,Trouble_Contents
 from ..forms import CustomerMachineRecipeCreateForm,CustomerMachineRecipeUpdateForm
 from django.db .models import Q
 from django.contrib import messages
+from ..customer_machine_recipe_model_comp import RecipeModelComplement
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -44,20 +45,14 @@ class CustomerMachineRecipeView(LoginRequiredMixin,ListView):
         else:
             object_list = Customer_Machine_Recipe.objects.order_by('-Customer_machine_input_date')
      
-        for recipe_i in object_list:
-                if (recipe_i.Machine_model==None) and (recipe_i.Customer_machine_id != None):
-                    for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
-                        if recipe_i.Customer_machine_id == c_machine.Customer_machine_id:
-                            recipe_i.Machine_model = str(c_machine.Machine_model)+ ': #' +str(c_machine.Customer_machine_unit_no)                   
-                            recipe_i.save()
-
-
         
-        
-        
-        
-        
-        
+            #レシピモデルの補完を行う##########################
+            modelcomp = RecipeModelComplement()
+            #idから機種を書込み
+            modelcomp.machine_model_complement(object_list)
+            #品種No.から品種名を書込み
+            modelcomp.recipe_model_complement(object_list)
+                     
         return object_list
 ################################################################################
 class CustomerMachineRecipeCreateView(CreateView):

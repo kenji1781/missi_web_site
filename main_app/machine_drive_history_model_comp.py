@@ -1,4 +1,4 @@
-from .models import Customer_Machine,\
+from .models import Customer_Machine,Customer_Machine_Recipe,\
     Unit_Price_Electric,Unit_Price_Steam,Unit_Price_Gas,Unit_Price_Water,\
         Solvent0_Conf,Solvent1_Conf,Solvent2_Conf,Solvent3_Conf,Solvent4_Conf,Solvent5_Conf,Solvent6_Conf,Solvent7_Conf,Solvent8_Conf,Solvent9_Conf
 
@@ -18,6 +18,20 @@ class ModelComplement:
                             except:
                                 pass
     
+    def recipe_model_complement(self,object):
+        #品種No.から品種名を書込み
+        for history_i in object:
+            if (history_i.Customer_recipe_name==None) and (history_i.Customer_recipe_no != None):
+                for re_m in Customer_Machine_Recipe.objects.all():
+                    print(re_m)
+                    if (history_i.Customer_recipe_no == re_m.Customer_recipe_no) and (history_i.Customer_machine_id == re_m.Customer_machine_id):
+                        try:
+                            history_i.Customer_recipe_name = re_m.Recipe_name
+                            print('bbbbbb')      
+                            history_i.save()
+                        except:
+                            pass
+
     def unit_cost_complement(self,object):
         #各単価読み込み
         e_price = Unit_Price_Electric.objects.all().order_by('-Unit_price_electric_input_date').first()

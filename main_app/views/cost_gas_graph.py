@@ -60,6 +60,8 @@ class CostGasGraphView(LoginRequiredMixin,TemplateView):
         modelcomp.datetime_complement(queryset)
         #idから機種を書込み
         modelcomp.machine_model_complement(queryset)
+        #品種No.から品種名を書込み
+        modelcomp.recipe_model_complement(queryset)
         #各最新単価を書込み
         modelcomp.unit_cost_complement(queryset)
         #################################################

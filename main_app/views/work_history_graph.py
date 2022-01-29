@@ -1,7 +1,7 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Machine_Drive_History
+from ..models import Machine_Drive_History,Customer_Machine_Recipe
 from django.contrib import messages
 from datetime import datetime,date,time
 #from django.utils.timezone import localdate,localtime
@@ -9,6 +9,7 @@ from ..plugin_plotly import GraphGenerator
 import numpy as np
 import pandas as pd
 from django_pandas.io import read_frame
+from ..customer_machine_recipe_model_comp import RecipeModelComplement
 from ..machine_drive_history_model_comp import ModelComplement
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -54,24 +55,36 @@ class WorkHistoryGraphView(LoginRequiredMixin,TemplateView):
         if not queryset:
             return ctx
         
+        object_list_recipe = Customer_Machine_Recipe.objects.order_by('-Customer_machine_input_date')
+        #レシピモデルの補完を行う##########################
+        recipemodelcomp = RecipeModelComplement()
+        #idから機種を書込み
+        recipemodelcomp.machine_model_complement(object_list_recipe)
+        #品種No.から品種名を書込み
+        recipemodelcomp.recipe_model_complement(object_list_recipe)
+
+
+
         #稼働履歴モデルの補完を行う##########################
         modelcomp = ModelComplement()
         #datetimeをdateとtimeに分割
         modelcomp.datetime_complement(queryset)
         #idから機種を書込み
         modelcomp.machine_model_complement(queryset)
+        #品種No.から品種名を書込み
+        modelcomp.recipe_model_complement(queryset)
         #各最新単価を書込み
         modelcomp.unit_cost_complement(queryset)
         #################################################
-        df = read_frame(queryset,fieldnames=['Data_date','Customer_recipe_no','Machine_model'])
+        df = read_frame(queryset,fieldnames=['Data_date','Customer_recipe_name','Machine_model'])
         
         gen = GraphGenerator()
 
         # pieチャートの素材を作成
                 
         #円グラフ
-        pie_labels = df['Customer_recipe_no']#トラブル名を渡す
-        pie_values = df['Customer_recipe_no'].value_counts()#件数を渡す
+        pie_labels = df['Customer_recipe_name']#名を渡す
+        pie_values = df['Customer_recipe_name'].value_counts()#件数を渡す
         plot_pie = gen.month_pie(labels=pie_labels, values=pie_values)
         ctx['plot_pie'] = plot_pie
 
