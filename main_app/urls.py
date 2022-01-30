@@ -61,6 +61,8 @@ from .views.losstime_graph import LossTimeGraphView
 from .views.trouble_history_graph import TroubleHistoryGraphView
 from .views.work_history_graph import WorkHistoryGraphView
 
+from .views.mail_notification import MailNotificationView,MailNotificationCreateView,MailNotificationUpdateView,MailNotificationDeleteView
+from .views.maintenance_email import MaintenanceEmailView,MaintenanceEmailCreateView,MaintenanceEmailUpdateView,MaintenanceEmailDeleteView
 
 app_name = 'main_app'
 urlpatterns = [
@@ -199,5 +201,15 @@ urlpatterns = [
     path('losstime_graph/<int:year>/<int:month>/',LossTimeGraphView.as_view(),name="losstime_graph"),   #ロスタイムグラフ
     path('trouble_history_graph/<int:year>/<int:month>/',TroubleHistoryGraphView.as_view(),name="trouble_history_graph"),        #異常履歴グラフ
     path('work_history_graph/<int:year>/<int:month>/',WorkHistoryGraphView.as_view(),name="work_history_graph"),        #ワーク履歴グラフ
+
+    path('mail_notification/',MailNotificationView.as_view(),name="mail_notification"),        #メール登録
+    path('mail_notification/create/',MailNotificationCreateView.as_view(),name="mail_notification_create"),   #メール登録
+    path('mail_notification/update/<int:pk>',MailNotificationUpdateView.as_view(),name="mail_notification_update"),   #メール登録
+    path('mail_notification/delete/<int:pk>',MailNotificationDeleteView.as_view(),name="mail_notification_delete"),   #メール登録
+
+    path('maintenance_email/',MaintenanceEmailView.as_view(),name="maintenance_email"),        #メンテナンスメール
+    path('maintenance_email/create/',MaintenanceEmailCreateView.as_view(),name="maintenance_email_create"),   #メンテナンスメール
+    path('maintenance_email/update/<int:pk>',MaintenanceEmailUpdateView.as_view(),name="maintenance_email_update"),   #メンテナンスメール
+    path('maintenance_email/delete/<int:pk>',MaintenanceEmailDeleteView.as_view(),name="maintenance_email_delete"),   #メンテナンスメール
 
     ]

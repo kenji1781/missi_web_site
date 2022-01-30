@@ -5,7 +5,8 @@ from .models import Customer_Infomation,Equipment_Category,Machine_Model,Trouble
     Unit_Price_Electric,Unit_Price_Steam,Unit_Price_Gas,Unit_Price_Water,Solvent_Name,Solvent_Manufacturer,\
         Solvent0_Conf,Solvent1_Conf,Solvent2_Conf,Solvent3_Conf,Solvent4_Conf,Solvent5_Conf,Solvent6_Conf,Solvent7_Conf,Solvent8_Conf,Solvent9_Conf,\
             Customer_Machine,Trouble_History,Customer_Machine_Recipe,Machine_Drive_History,\
-                Cost_Electric,Cost_Steam,Cost_Gas,Cost_Water,Cost_Solvent,Cost_Total,Setting_Item
+                Cost_Electric,Cost_Steam,Cost_Gas,Cost_Water,Cost_Solvent,Cost_Total,Setting_Item,\
+                    Mail_Notification,Maintenance_Mail_Setting
 
 
 class DateInput(forms.DateInput):
@@ -1672,50 +1673,115 @@ class MachineDriveHistoryUpdateForm(forms.ModelForm):
                 self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
 
 ######################################################################################################
-"""
-class CostElectricCreateForm(forms.ModelForm):
+
+class MailNotificationCreateForm(forms.ModelForm):
     class Meta:
-        model = Machine_Drive_History
+        model = Mail_Notification
         #fields = ('Equipment_category')
-        fields = ('Machine_drive_history','Unit_price_electric','Machine_history_input_date','Machine_history_memo')
+        fields = ('Mail_name','Mail_department','Mail_address','Mail_input_date','Mail_memo')
         
         widgets = {
-            'Machine_history_input_date':DateInput(),
+            'Mail_input_date':DateInput(),
         }
         labels = {
-                    'Machine_drive_history':'',
-                    'Unit_price_electric':'',
-                    'Machine_history_input_date':'登録日',
-                    'Machine_history_memo':'メモ',
+                    'Mail_name':'氏名',
+                    'Mail_department':'',
+                    'Mail_address':'Emailアドレス',
+                    'Mail_input_date':'登録日',
+                    'Mail_memo':'メモ',
                 }
 
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
-                self.fields['Machine_drive_history'].widgets.attrs["class"] = "form-control"
-                self.fields['Unit_price_electric'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
+                self.fields['Mail_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Mail_department'].widgets.attrs["class"] = "form-control"
+                self.fields['Mail_address'].widgets.attrs["class"] = "form-control"
+                self.fields['Mail_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Mail_memo'].widgets.attrs["class"] = "form-control"
                 
 
-class CostElectricUpdateForm(forms.ModelForm):
+class MailNotificationUpdateForm(forms.ModelForm):
     class Meta:
-        model = Cost_Electric
+        model = Mail_Notification
         #fields = ('Equipment_category')
-        fields = ('Machine_history_input_date','Machine_history_memo')
+        fields = ('Mail_name','Mail_department','Mail_address','Mail_input_date','Mail_memo')
         
         widgets = {
-            'Machine_history_input_date':DateInput(),
+            'Mail_input_date':DateInput(),
         }
         labels = {
-                    'Machine_history_input_date':'登録日',
-                    'Machine_history_memo':'メモ',
+                    'Mail_name':'氏名',
+                    'Mail_department':'',
+                    'Mail_address':'Emailアドレス',
+                    'Mail_input_date':'登録日',
+                    'Mail_memo':'メモ',
                 }
 
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
-                self.fields['Machine_history_input_date'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_history_memo'].widgets.attrs["class"] = "form-control"
-"""
+                self.fields['Mail_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Mail_department'].widgets.attrs["class"] = "form-control"
+                self.fields['Mail_address'].widgets.attrs["class"] = "form-control"
+                self.fields['Mail_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Mail_memo'].widgets.attrs["class"] = "form-control"
 
+######################################################################################################
+
+class MaintenanceEmailCreateForm(forms.ModelForm):
+    class Meta:
+        model = Maintenance_Mail_Setting
+        #fields = ('Equipment_category')
+        fields = ('Maintenance_machine_history','Maintenance_mail_notification','Maintenance_threshold','Maintenance_send_setting','Maintenance_input_date','Maintenance_memo')
+        
+        widgets = {
+            'Maintenance_input_date':DateInput(),
+        }
+        labels = {
+                    'Maintenance_machine_history':'装置',
+                    'Maintenance_mail_notification':'メール発信者',
+                    'Maintenance_threshold':'閾値',
+                    'Maintenance_send_setting':'送信設定',
+                    'Maintenance_input_date':'登録日',
+                    'Maintenance_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Maintenance_machine_history'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_mail_notification'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_threshold'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_send_setting'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_memo'].widgets.attrs["class"] = "form-control"
+                
+
+class MaintenanceEmailUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Maintenance_Mail_Setting
+        #fields = ('Equipment_category')
+        fields = ('Maintenance_machine_history','Maintenance_mail_notification','Maintenance_threshold','Maintenance_send_setting','Maintenance_input_date','Maintenance_memo')
+        
+        widgets = {
+            'Maintenance_input_date':DateInput(),
+        }
+        labels = {
+                    'Maintenance_machine_history':'装置',
+                    'Maintenance_mail_notification':'メール発信者',
+                    'Maintenance_threshold':'閾値',
+                    'Maintenance_send_setting':'送信設定',
+                    'Maintenance_input_date':'登録日',
+                    'Maintenance_memo':'メモ',
+                }
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Maintenance_machine_history'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_mail_notification'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_threshold'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_send_setting'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_memo'].widgets.attrs["class"] = "form-control"
