@@ -44,6 +44,7 @@ class GraphGenerator:
         fig.add_trace(go.Bar(
             x=x_list,
             y=y_list,
+            marker_color=self.month_bar_color,
         ))
 
         fig.update_layout(

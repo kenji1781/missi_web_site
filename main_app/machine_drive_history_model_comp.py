@@ -27,7 +27,6 @@ class ModelComplement:
                     if (history_i.Customer_recipe_no == re_m.Customer_recipe_no) and (history_i.Customer_machine_id == re_m.Customer_machine_id):
                         try:
                             history_i.Customer_recipe_name = re_m.Recipe_name
-                            print('bbbbbb')      
                             history_i.save()
                         except:
                             pass

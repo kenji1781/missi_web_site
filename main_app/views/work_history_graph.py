@@ -79,12 +79,12 @@ class WorkHistoryGraphView(LoginRequiredMixin,TemplateView):
         df = read_frame(queryset,fieldnames=['Data_date','Customer_recipe_name','Machine_model'])
         
         gen = GraphGenerator()
-
-        # pieチャートの素材を作成
-                
-        #円グラフ
-        pie_labels = df['Customer_recipe_name']#名を渡す
+        
+        
+        pie_labels = df['Customer_recipe_name'].unique()
         pie_values = df['Customer_recipe_name'].value_counts()#件数を渡す
+        
+        
         plot_pie = gen.month_pie(labels=pie_labels, values=pie_values)
         ctx['plot_pie'] = plot_pie
 
@@ -93,20 +93,23 @@ class WorkHistoryGraphView(LoginRequiredMixin,TemplateView):
         
         # テーブルでのカテゴリと金額の表示用。
         # {カテゴリ:金額,カテゴリ:金額…}の辞書を作る
-        ctx['table_set'] = pie_values
+        ctx['table_set'] = df['Customer_recipe_name'].value_counts()#件数を渡す
 
         # totalの数字を計算して渡す
-        ctx['total_payment'] = pie_values.sum()
+        ctx['total_payment'] = df['Customer_recipe_name'].value_counts().sum()
 
-        df['count'] = len(df)
-        # 日別の棒グラフの素材を渡す
-        df_bar = pd.pivot_table(df, index='Data_date', values='count')
-        dates = list(df_bar.index.values)
-        heights = [val[0] for val in df_bar.values]
         
-          
-        ctx['transition_plot'] = gen.transition_plot(x_list_payment=dates,
-                                                   y_list_payment=heights)
+        # 日別の棒グラフの素材を渡す
+        #df_bar = pd.pivot_table(df, index='Data_date', values='count')
+        #dates = list(df_bar.index.values)
+        #heights = [val[0] for val in df_bar.values]
+        dates = df['Data_date']
+        heights = df['Data_date'].value_counts()
+
+        plot_bar = gen.month_daily_bar(x_list=dates, y_list=heights)
+        ctx['plot_bar'] = plot_bar
+        #ctx['transition_plot'] = gen.transition_plot(x_list_payment=dates,
+        #                                           y_list_payment=heights)
         
         return ctx
 
