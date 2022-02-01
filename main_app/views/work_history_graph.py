@@ -76,7 +76,7 @@ class WorkHistoryGraphView(LoginRequiredMixin,TemplateView):
         #各最新単価を書込み
         modelcomp.unit_cost_complement(queryset)
         #################################################
-        df = read_frame(queryset,fieldnames=['Data_date','Customer_recipe_name','Machine_model'])
+        df = read_frame(queryset,fieldnames=['Data_datetime','Customer_recipe_name','Machine_model'])
         
         gen = GraphGenerator()
         
@@ -100,11 +100,11 @@ class WorkHistoryGraphView(LoginRequiredMixin,TemplateView):
 
         
         # 日別の棒グラフの素材を渡す
-        #df_bar = pd.pivot_table(df, index='Data_date', values='count')
+        #df_bar = pd.pivot_table(df, index='Data_datetime', values='count')
         #dates = list(df_bar.index.values)
         #heights = [val[0] for val in df_bar.values]
-        dates = df['Data_date']
-        heights = df['Data_date'].value_counts()
+        dates = df['Data_datetime']
+        heights = df['Data_datetime'].value_counts()
 
         plot_bar = gen.month_daily_bar(x_list=dates, y_list=heights)
         ctx['plot_bar'] = plot_bar
