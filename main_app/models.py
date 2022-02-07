@@ -96,14 +96,11 @@ class Trouble_Contents(models.Model):
             models.UniqueConstraint(fields=['Machine_model','Trouble_no'],name='unique_trouble_no'),
         ]
 
-#異常履歴 PLCより装置ID・異常No・発生時刻・復帰時刻を書き込む。
-#装置ID・異常Noを基に型式・号機・異常項目を照合する。
+
+
 class Trouble_History(models.Model):
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
-    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
-    Trouble_no = models.IntegerField(verbose_name='異常No',validators=[MinValueValidator(0)],blank=True,null=True)
-    Trouble_contents = models.CharField(verbose_name='異常項目',max_length=20,blank=True,null=True)
+    Customer_machine = models.ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
+    Trouble_contents = models.ForeignKey(Trouble_Contents,on_delete=CASCADE,verbose_name='異常')
     Trouble_occurrence_time = models.DateTimeField(verbose_name='発生時刻',blank=True,null=True)   
     Trouble_recovery_time = models.DateTimeField(verbose_name='復帰時刻',blank=True,null=True)
     time_calc = models.IntegerField(verbose_name='ロスタイム計算用',blank=True,null=True)
@@ -117,7 +114,7 @@ class Trouble_History(models.Model):
     class Meta:
         verbose_name_plural = ('異常履歴')
 
-#品種名
+#コース名
 class Recipe_Name(models.Model):
     Recipe_id = models.IntegerField(verbose_name='品種ID',validators=[MinValueValidator(0)],default=1,blank=True,null=True)
     Racipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
@@ -830,11 +827,8 @@ class Mail_Notification(models.Model):
     Mail_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
-        return '<id=' + str(self.id) + ', ' + \
-            ' 氏名 : ' + self.Mail_name + \
-                ' Email : ' + str(self.Mail_address) + \
-                    ' 登録日 : ' + str(self.Mail_input_date) + \
-                '>'
+        return ' 氏名 : ' + self.Mail_name + \
+                ' Email : ' + str(self.Mail_address)
 
     class Meta:
         verbose_name_plural = ('通知メール登録')

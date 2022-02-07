@@ -31,7 +31,8 @@ Data Monitoring System {{ title }}
             <th>装置</th>
             <th>号機</th>
             <th>稼働回数</th>
-            <th>メール設定</th>
+            <th>メール受信者</th>
+            <th>Email</th>
             <th>閾値</th>
             <th>送信設定</th>
             <th>登録日</th>
@@ -43,7 +44,8 @@ Data Monitoring System {{ title }}
             <td>{{ item.Maintenance_machine_history.Machine_model }}</td>
             <td>{{ item.Maintenance_machine_history.Customer_machine_unit_no }}</td>
             <td>{{ item.Maintenance_machine_history.Machine_drive_count }}</td>
-            <td>{{ item.Maintenance_mail_notification }}</td>
+            <td>{{ item.Maintenance_mail_notification.Mail_name }}</td>
+            <td>{{ item.Maintenance_mail_notification.Mail_address }}</td>
             <td>{{ item.Maintenance_threshold }}</td>
             <td>{{ item.Maintenance_send_setting }}</td>
             <td>{{ item.Maintenance_input_date }}</td>

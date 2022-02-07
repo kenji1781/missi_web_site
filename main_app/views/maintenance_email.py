@@ -21,8 +21,8 @@ class MaintenanceEmailView(LoginRequiredMixin,ListView):
         ctx = super().get_context_data(**kwargs)
 
         # page_title を追加する
-        ctx['title'] = 'メンテナンスメール通知設定'
-        ctx['msg'] = 'メンテナンス通知メール登録の確認／変更が出来ます。'
+        ctx['title'] = 'メール通知設定'
+        ctx['msg'] = 'メール通知登録の確認／変更が出来ます。'
         return ctx
 
     def get_queryset(self):
@@ -59,8 +59,8 @@ class MaintenanceEmailCreateView(CreateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
-        ctx['title'] = 'メンテナンスメール通知設定'
-        ctx['msg'] = 'メンテナンスメール通知設定の登録が出来ます。'
+        ctx['title'] = 'メール通知設定'
+        ctx['msg'] = 'メール通知設定の登録が出来ます。'
         return ctx
     
 ################################################################################
@@ -76,8 +76,8 @@ class MaintenanceEmailUpdateView(UpdateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
-        ctx['title'] = 'メンテナンスメール通知設定'
-        ctx['msg'] = 'メンテナンスメール通知設定登録の変更が出来ます。'
+        ctx['title'] = 'メール通知設定'
+        ctx['msg'] = 'メール通知設定登録の変更が出来ます。'
         return ctx
 
 ################################################################################

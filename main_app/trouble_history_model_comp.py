@@ -18,7 +18,7 @@ class ModelComplement:
                     history.save()
                 except:
                     pass
-
+"""    
             if (history.Customer_machine_id != None)and(history.Machine_model == None):
                 for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
                     #for t_contents in Trouble_Contents.objects.select_related('Machine_model').all():
@@ -28,7 +28,7 @@ class ModelComplement:
                             history.save()
                         except:
                             pass
-                
+            
             if (history.Trouble_no != None)and(history.Trouble_contents == None):
                 for t_contents in Trouble_Contents.objects.select_related('Machine_model').all():
                     if history.Trouble_no == t_contents.Trouble_no:
@@ -37,4 +37,4 @@ class ModelComplement:
                             history.save() 
                         except:
                             pass
-      
+"""      

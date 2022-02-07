@@ -1,7 +1,7 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Trouble_History,Customer_Machine,Trouble_Contents
+from ..models import Trouble_History
 from ..forms import TroubleHistoryCreateForm,TroubleHistoryUpdateForm
 from django.db .models import Q
 from django.contrib import messages
@@ -33,7 +33,7 @@ class TroubleHistoryView(LoginRequiredMixin,ListView):
         q_date_l = self.request.GET.get('query_date_l')
 
         if q_word and q_date_f and q_date_l:
-            object_list = Trouble_History.objects.filter(Customer_machine_id=q_word).filter(Trouble_occurrence_time__range=(q_date_f, q_date_l))
+            object_list = Trouble_History.objects.filter(Customer_machine__Customer_machine_id=q_word).filter(Trouble_occurrence_time__range=(q_date_f, q_date_l))
                 
             
         else:
