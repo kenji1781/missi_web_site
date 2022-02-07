@@ -88,7 +88,8 @@ class Trouble_Contents(models.Model):
     
 
     def __str__(self):
-       return str(self.Trouble_contents)
+       return str(self.Machine_model) + ' '+\
+            str(self.Trouble_contents)
     
     class Meta:
         verbose_name_plural = ('異常内容')
@@ -99,7 +100,6 @@ class Trouble_Contents(models.Model):
 
 
 class Trouble_History(models.Model):
-    Customer_machine = models.ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
     Trouble_contents = models.ForeignKey(Trouble_Contents,on_delete=CASCADE,verbose_name='異常')
     Trouble_occurrence_time = models.DateTimeField(verbose_name='発生時刻',blank=True,null=True)   
     Trouble_recovery_time = models.DateTimeField(verbose_name='復帰時刻',blank=True,null=True)

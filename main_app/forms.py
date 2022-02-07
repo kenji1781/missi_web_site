@@ -1067,9 +1067,8 @@ class TroubleHistoryCreateForm(forms.ModelForm):
             'Trouble_input_date_0':DateInput(),
         }
         #fields = ('Equipment_category')
-        fields = ('Customer_machine','Trouble_contents','Trouble_occurrence_time','Trouble_recovery_time')
+        fields = ('Trouble_contents','Trouble_occurrence_time','Trouble_recovery_time')
         labels = {
-                    'Customer_machine':'装置',
                     'Trouble_contents':'異常項目',
                     'Trouble_occurrence_time':'発生時刻',
                     'Trouble_recovery_time':'復帰時刻',
@@ -1079,7 +1078,6 @@ class TroubleHistoryCreateForm(forms.ModelForm):
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
-                self.fields['Customer_machine'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_contents'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_occurrence_time'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_recovery_time'].widgets.attrs["class"] = "form-control"
@@ -1101,19 +1099,17 @@ class TroubleHistoryUpdateForm(forms.ModelForm):
             'Trouble_recovery_time':datetimewidget(options=dateTimeOptions),
         }
         """        
-        fields = ('Customer_machine','Trouble_contents','Trouble_occurrence_time','Trouble_recovery_time')
+        fields = ('Trouble_contents','Trouble_occurrence_time','Trouble_recovery_time')
         labels = {
-                    'Customer_machine':'装置',
-                    'Trouble_no':'異常No.',
                     'Trouble_contents':'異常項目',
+                    'Trouble_occurrence_time':'発生時刻',
+                    'Trouble_recovery_time':'復帰時刻',
                                         
                 }
 
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
-                self.fields['Customer_machine'].widgets.attrs["class"] = "form-control"
-                self.fields['Trouble_no'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_contents'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_occurrence_time'].widgets.attrs["class"] = "form-control"
                 self.fields['Trouble_recovery_time'].widgets.attrs["class"] = "form-control"

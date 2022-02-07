@@ -114,8 +114,7 @@ Data Monitoring System {{ title }}
 
     <table class="table" style="font-size : 12px;">
         <tr>
-            <th>装置ID</th>
-            <th>型式</th>
+            <th>装置</th>
             <th>異常No</th>
             <th>異常項目</th>
             <th>発生時刻</th>            
@@ -125,10 +124,9 @@ Data Monitoring System {{ title }}
 <!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
     {% for item in object_list %}
         <tr>
-            <td>{{ item.Customer_machine_id }}</td>
-            <td>{{ item.Machine_model }}</td>
-            <td>{{ item.Trouble_no }}</td>
-            <td>{{ item.Trouble_contents }}</td>
+            <td>{{ item.Trouble_contents.Machine_model }}</td>
+            <td>{{ item.Trouble_contents.Trouble_no }}</td>
+            <td>{{ item.Trouble_contents.Trouble_contents }}</td>
             <td>{{ item.Trouble_occurrence_time|date:"20y年m月d日 H:i:s" }}</td>
             <td>{{ item.Trouble_recovery_time|date:"20y年m月d日 H:i:s" }}</td>
             <td>{{ item.Trouble_loss_time }}</td>
