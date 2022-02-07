@@ -70,7 +70,7 @@ class Customer_Machine(models.Model):
     Customer_machine_memo = models.TextField(verbose_name='メモ',blank=True,max_length=50)
 
     def __str__(self):
-       return str(self.Machine_model) + ': #' +\
+       return 'ID:' + str(self.Customer_machine_id) + '  ' + str(self.Machine_model) + ': #' +\
             str(self.Customer_machine_unit_no)
 
     class Meta:

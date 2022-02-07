@@ -26,7 +26,7 @@ class TroubleHistoryGraphView(LoginRequiredMixin,ListView):
         ctx = super().get_context_data(**kwargs)
 
         # page_title を追加する
-        ctx['title'] = '異常グラフ'
+        ctx['title'] = '異常詳細'
         ctx['msg'] = '異常発生詳細をグラフ確認出来ます。'
 
         object_list = []
@@ -61,11 +61,11 @@ class TroubleHistoryGraphView(LoginRequiredMixin,ListView):
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
-            object_list = Trouble_History.objects.filter(\
-                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word))
+            object_list = Trouble_History.objects.select_related('Trouble_contents').filter(\
+                    Q(Trouble_contents__Machine_model__Customer_machine_id__contains=q_word)|Q(Trouble_contents__Machine_model__Customer_machine_id__icontains=q_word))
                         
         else:
-            object_list = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
+            object_list = Trouble_History.objects.select_related('Trouble_contents').filter(Trouble_occurrence_time__year=year)
             object_list = object_list.filter(Trouble_occurrence_time__month=month).order_by('-Trouble_occurrence_time')
             
 
@@ -102,11 +102,11 @@ class TroubleHistoryGraphView(LoginRequiredMixin,ListView):
         q_word = self.request.GET.get('query_text')
         
         if q_word:
-            object_list = Trouble_History.objects.filter(\
-                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word))
+            object_list = Trouble_History.objects.select_related('Trouble_contents').filter(\
+                    Q(Trouble_contents__Machine_model__Customer_machine_id__contains=q_word)|Q(Trouble_contents__Machine_model__Customer_machine_id__icontains=q_word))
                         
         else:
-            object_list = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
+            object_list = Trouble_History.objects.select_related('Trouble_contents').filter(Trouble_occurrence_time__year=year)
             object_list = object_list.filter(Trouble_occurrence_time__month=month).order_by('-Trouble_occurrence_time')
             
             modelcomp = ModelComplement()
