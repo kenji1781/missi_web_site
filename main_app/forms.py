@@ -1685,7 +1685,7 @@ class MailNotificationCreateForm(forms.ModelForm):
         }
         labels = {
                     'Mail_name':'氏名',
-                    'Mail_department':'',
+                    'Mail_department':'所属',
                     'Mail_address':'Emailアドレス',
                     'Mail_input_date':'登録日',
                     'Mail_memo':'メモ',
@@ -1712,7 +1712,7 @@ class MailNotificationUpdateForm(forms.ModelForm):
         }
         labels = {
                     'Mail_name':'氏名',
-                    'Mail_department':'',
+                    'Mail_department':'所属',
                     'Mail_address':'Emailアドレス',
                     'Mail_input_date':'登録日',
                     'Mail_memo':'メモ',

@@ -28,7 +28,9 @@ Data Monitoring System {{ title }}
     <a href="{% url 'main_app:maintenance_email_create' %}" class="btn btn-outline-primary">登録</a>
     <table class="table" style="font-size : 12px;">
         <tr>
-            <th>稼働履歴</th>
+            <th>装置</th>
+            <th>号機</th>
+            <th>稼働回数</th>
             <th>メール設定</th>
             <th>閾値</th>
             <th>送信設定</th>
@@ -38,7 +40,9 @@ Data Monitoring System {{ title }}
 <!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
     {% for item in object_list %}
         <tr>
-            <td>{{ item.Maintenance_machine_history }}</td>
+            <td>{{ item.Machine_model.Machine_model }}</td>
+            <td>{{ item.Machine_model.Customer_machine_unit_no }}</td>
+            <td>{{ item.Machine_model.Machine_drive_count }}</td>
             <td>{{ item.Maintenance_mail_notification }}</td>
             <td>{{ item.Maintenance_threshold }}</td>
             <td>{{ item.Maintenance_send_setting }}</td>
