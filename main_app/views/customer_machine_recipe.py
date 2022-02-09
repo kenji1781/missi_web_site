@@ -5,7 +5,6 @@ from ..models import Customer_Machine_Recipe,Customer_Machine,Trouble_Contents
 from ..forms import CustomerMachineRecipeCreateForm,CustomerMachineRecipeUpdateForm
 from django.db .models import Q
 from django.contrib import messages
-from ..customer_machine_recipe_model_comp import RecipeModelComplement
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -22,37 +21,32 @@ class CustomerMachineRecipeView(LoginRequiredMixin,ListView):
         ctx = super().get_context_data(**kwargs)
 
         # page_title を追加する
-        ctx['title'] = 'レシピ'
-        ctx['msg'] = 'レシピの確認／変更が出来ます。'
+        ctx['title'] = 'コース設定'
+        ctx['msg'] = '装置運転コースの設定確認／変更が出来ます。'
         return ctx
 
     def get_queryset(self):
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
-            object_list = Customer_Machine_Recipe.objects.filter(\
-                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word)|\
-                        Q(Machine_model__contains=q_word)|Q(Machine_model__icontains=q_word)|\
-                            Q(Recipe_id__contains=q_word)|Q(Recipe_id__icontains=q_word)|\
-                                Q(Recipe_name__contains=q_word)|Q(Recipe_name__icontains=q_word)|\
-                                    Q(Customer_recipe_no__contains=q_word)|Q(Customer_recipe_no__icontains=q_word))        
+            object_list = Customer_Machine_Recipe.objects.select_related('Machine_model','Setting_item').filter(\
+                    Q(Machine_model__Customer_machine_id__contains=q_word)|Q(Machine_model__Customer_machine_id__icontains=q_word)|\
+                        Q(Machine_model__Machine_model__contains=q_word)|Q(Machine_model__Machine_model__icontains=q_word)|\
+                            Q(Machine_model__Customer_machine_unit_no__contains=q_word)|Q(Machine_model__Customer_machine_unit_no__icontains=q_word)|\
+                                Q(Setting_item__Setting_item_id__contains=q_word)|Q(Setting_item__Setting_item_id__icontains=q_word)|\
+                                    Q(Setting_item__Setting_item_name__contains=q_word)|Q(Setting_item__Setting_item_name__icontains=q_word)|\
+                                        Q(Recipe_name__contains=q_word)|Q(Recipe_name__icontains=q_word)|\
+                                            Q(Customer_recipe_no__contains=q_word)|Q(Customer_recipe_no__icontains=q_word))        
        
         elif q_date:
-            object_list = Customer_Machine_Recipe.objects.filter(\
+            object_list = Customer_Machine_Recipe.objects.select_related('Machine_model','Setting_item').filter(\
                 Q(Customer_machine_input_date__contains=q_date)|\
                     Q(Customer_machine_input_date__icontains=q_date))
                        
         else:
-            object_list = Customer_Machine_Recipe.objects.order_by('-Customer_machine_input_date')
+            object_list = Customer_Machine_Recipe.objects.select_related('Machine_model','Setting_item').order_by('-Customer_machine_input_date')
      
-        
-            #レシピモデルの補完を行う##########################
-            modelcomp = RecipeModelComplement()
-            #idから機種を書込み
-            modelcomp.machine_model_complement(object_list)
-            #品種No.から品種名を書込み
-            modelcomp.recipe_model_complement(object_list)
-                     
+                    
         return object_list
 ################################################################################
 class CustomerMachineRecipeCreateView(CreateView):
@@ -68,8 +62,8 @@ class CustomerMachineRecipeCreateView(CreateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
-        ctx['title'] = 'レシピ'
-        ctx['msg'] = 'レシピの登録が出来ます。'
+        ctx['title'] = 'コース設定'
+        ctx['msg'] = '装置運転コースの登録が出来ます。'
         return ctx
     
 ################################################################################
@@ -85,8 +79,8 @@ class CustomerMachineRecipeUpdateView(UpdateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
-        ctx['title'] = 'レシピ'
-        ctx['msg'] = 'レシピの変更が出来ます。'
+        ctx['title'] = 'コース設定'
+        ctx['msg'] = '装置運転コースの変更が出来ます。'
         return ctx
 
 ################################################################################

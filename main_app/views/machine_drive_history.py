@@ -1,12 +1,11 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Machine_Drive_History,Customer_Machine_Recipe
+from ..models import Machine_Drive_History
 from ..forms import MachineDriveHistoryCreateForm,MachineDriveHistoryUpdateForm
 from django.db .models import Q
 from django.contrib import messages
 from datetime import datetime,date,time
-from ..customer_machine_recipe_model_comp import RecipeModelComplement
 from ..machine_drive_history_model_comp import ModelComplement
 from django.contrib.auth.mixins import LoginRequiredMixin
 #from django.utils.timezone import localdate,localtime
@@ -33,8 +32,8 @@ class MachineDriveHistoryView(LoginRequiredMixin,ListView):
         q_date = self.request.GET.get('query_date')
         if q_word:
             object_list = Machine_Drive_History.objects.filter(\
-                    Q(Customer_machine_id__contains=q_word)|Q(Customer_machine_id__icontains=q_word)|\
-                        Q(Machine_model__contains=q_word)|Q(Machine_model__icontains=q_word))        
+                    Q(Customer_machine_recipe__Machine_model__Customer_machine_id__contains=q_word)|Q(Customer_Machine_recipe__Machine_model__Customer_machine_id__icontains=q_word)|\
+                        Q(Customer_machine_recipe__Machine_model__Machine_model__contains=q_word)|Q(Customer_Machine_recipe__Machine_model__Machine_model__icontains=q_word))        
        
         elif q_date:
             object_list = Machine_Drive_History.objects.filter(\
@@ -44,34 +43,21 @@ class MachineDriveHistoryView(LoginRequiredMixin,ListView):
                             Q(Machine_history_input_date__icontains=q_date))
                        
         else:
-            object_list_recipe = Customer_Machine_Recipe.objects.order_by('-Customer_machine_input_date')
-            #レシピモデルの補完を行う##########################
-            recipemodelcomp = RecipeModelComplement()
-            #idから機種を書込み
-            recipemodelcomp.machine_model_complement(object_list_recipe)
-            #品種No.から品種名を書込み
-            recipemodelcomp.recipe_model_complement(object_list_recipe)
-            
-            
             object_list = Machine_Drive_History.objects.order_by('-Machine_history_input_date')
         
             #稼働履歴モデルの補完を行う##########################
             modelcomp = ModelComplement()
             #datetimeをdateとtimeに分割
-            modelcomp.datetime_complement(object_list)
+            #modelcomp.datetime_complement(object_list)
             #idから機種を書込み
-            modelcomp.machine_model_complement(object_list)
+            #modelcomp.machine_model_complement(object_list)
             #品種No.から品種名を書込み
-            modelcomp.recipe_model_complement(object_list)
+            #modelcomp.recipe_model_complement(object_list)
+            
             #各最新単価を書込み
             modelcomp.unit_cost_complement(object_list)
             #################################################
 
-            
-
-        
-        
-        
         return object_list
 
         

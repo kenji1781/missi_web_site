@@ -73,10 +73,10 @@ Data Monitoring System {{ title }}
 <!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
     {% for item in object_list %}
         <tr>
-            <td>{{ item.Customer_machine_id }}</td>
-            <td>{{ item.Machine_model }}</td>
-            <td>{{ item.Customer_recipe_no }}</td>
-            <td>{{ item.Customer_recipe_name }}</td>
+            <td>{{ item.Customer_machine_recipe.Machine_model.Customer_machine_id }}</td>
+            <td>{{ item.Customer_machine_recipe.Machine_model.Machine_model }}</td>
+            <td>{{ item.Customer_machine_recipe.Setting_item.Setting_item_id }}</td>
+            <td>{{ item.Customer_machine_recipe.Setting_item.Setting_item_name }}</td>
             <td>{{ item.Machine_drive_time0 }}</td>
             <td>{{ item.Machine_drive_time1 }}</td>
             <td>{{ item.Machine_drive_time2 }}</td>

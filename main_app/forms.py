@@ -1173,10 +1173,8 @@ class SettingItemUpdateForm(forms.ModelForm):
 Customer__recipe_fields = (
                     #'His_id',
                     'Customer_recipe_no',
-                    'Customer_machine_id',
                     'Machine_model',
-                    'Recipe_id',
-                    'Recipe_name',
+                    'Setting_item',
                     
                     'Customer_recipe_time0',
                     'Customer_recipe_time1',
@@ -1241,10 +1239,8 @@ Customer__recipe_fields = (
 Customer__recipe_labels = {
                     #'His_id':'履歴ID',
                     'Customer_recipe_no':'コースNo',
-                    'Customer_machine_id':'装置ID',
                     'Machine_model':'装置',
-                    'Recipe_id':'品種名ID',
-                    'Recipe_name':'品種名',
+                    'Setting_item':'品種名',
                     
                     'Customer_recipe_time0':'運転時間設定0',
                     'Customer_recipe_time1':'運転時間設定1',
@@ -1322,10 +1318,8 @@ class CustomerMachineRecipeCreateForm(forms.ModelForm):
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
-                self.fields['Customer_machine_id'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
-                self.fields['Recipe_id'].widgets.attrs["class"] = "form-control"
-                self.fields['Recipe_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Setting_item'].widgets.attrs["class"] = "form-control"
                 self.fields['Customer_recipe_no'].widgets.attrs["class"] = "form-control"
                 self.fields['Customer_recipe_time0'].widgets.attrs["class"] = "form-control"
                 self.fields['Customer_recipe_time1'].widgets.attrs["class"] = "form-control"
@@ -1402,10 +1396,8 @@ class CustomerMachineRecipeUpdateForm(forms.ModelForm):
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
-                self.fields['Customer_machine_id'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
-                self.fields['Recipe_id'].widgets.attrs["class"] = "form-control"
-                self.fields['Recipe_name'].widgets.attrs["class"] = "form-control"
+                self.fields['Setting_item'].widgets.attrs["class"] = "form-control"
                 self.fields['Customer_recipe_no'].widgets.attrs["class"] = "form-control"
                 self.fields['Customer_recipe_time0'].widgets.attrs["class"] = "form-control"
                 self.fields['Customer_recipe_time1'].widgets.attrs["class"] = "form-control"
@@ -1471,9 +1463,7 @@ class CustomerMachineRecipeUpdateForm(forms.ModelForm):
 ######################################################################################################
 
 Machine_drive_history_fields = (
-                    'Customer_machine_id',
-                    'Machine_model',
-                    'Customer_recipe_no',
+                    'Customer_machine_recipe',
                     'Machine_drive_time0',
                     'Machine_drive_time1',
                     'Machine_drive_time2',
@@ -1513,9 +1503,7 @@ Machine_drive_history_fields = (
                     'Machine_history_memo')
 
 Machine_drive_history_labels = {
-                    'Customer_machine_id':'装置ID',
-                    'Machine_model':'装置',
-                    'Customer_recipe_no':'コースNo',
+                    'Customer_machine_recipe':'装置:コースNo.',
                     'Machine_drive_time0':'運転時間0',
                     'Machine_drive_time1':'運転時間1',
                     'Machine_drive_time2':'運転時間2',
@@ -1570,9 +1558,7 @@ class MachineDriveHistoryCreateForm(forms.ModelForm):
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
-                self.fields['Customer_machine_id'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
-                self.fields['Customer_recipe_no'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_recipe'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_drive_time0'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_drive_time1'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_drive_time2'].widgets.attrs["class"] = "form-control"
@@ -1625,9 +1611,7 @@ class MachineDriveHistoryUpdateForm(forms.ModelForm):
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
-                self.fields['Customer_machine_id'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
-                self.fields['Customer_recipe_no'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_recipe'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_drive_time0'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_drive_time1'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_drive_time2'].widgets.attrs["class"] = "form-control"

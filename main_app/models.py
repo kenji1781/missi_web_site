@@ -140,10 +140,7 @@ class Setting_Item(models.Model):
     Setting_item_memo = models.TextField(verbose_name='メモ',blank=True,null=True,max_length=50)
 
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 設定項目ID : ' + str(self.Setting_item_id) + \
-            ' 設定項目 : ' + str(self.Setting_item_name) + \
-        '>'
+       return 'ID:' + str(self.Setting_item_id) + ' ' + str(self.Setting_item_name)
 
     class Meta:
         verbose_name_plural = ('設定項目')
@@ -151,12 +148,9 @@ class Setting_Item(models.Model):
 
 #レシピ
 class Customer_Machine_Recipe(models.Model):
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',default=0,blank=True,null=True)
-    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
-    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=False,null=False)
-    Recipe_id = models.IntegerField(verbose_name='品種ID',default=1,blank=True,null=True)
-    Recipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
-    Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
+    Machine_model = models.ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
+    Setting_item = models.ForeignKey(Setting_Item,on_delete=CASCADE,verbose_name='コース名')
+    Customer_recipe_no = models.IntegerField(verbose_name='コースNo',validators=[MinValueValidator(0)],default=1,blank=False,null=False)
     Customer_recipe_time0 = models.FloatField(verbose_name='運転時間設定0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Customer_recipe_time1 = models.FloatField(verbose_name='運転時間設定1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Customer_recipe_time2 = models.FloatField(verbose_name='運転時間設定2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -242,10 +236,9 @@ class Customer_Machine_Recipe(models.Model):
 
 
     def __str__(self):
-       return '<id=' + str(self.id) + ', ' + \
-		' 品種No : ' + str(self.Recipe_id) + \
-            ' 品種名 : ' + str(self.Recipe_name)+ \
-        '>'
+       return str(self.Machine_model) + '    ' + \
+		    str(self.Setting_item) + '    ' + \
+                'コースNo.:' + str(self.Customer_recipe_no)
 
     class Meta:
         verbose_name_plural = ('レシピ情報')
@@ -519,12 +512,7 @@ class Solvent9_Conf(models.Model):
 
 #装置稼働履歴
 class Machine_Drive_History(models.Model):
-    His_id = models.AutoField(verbose_name='履歴ID',primary_key=True)
-    Customer_machine_id = models.IntegerField(verbose_name='装置ID',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
-    Machine_model = models.CharField(verbose_name='型式',max_length=20,blank=True,null=True)
-    Customer_machine_unit_no = models.IntegerField(verbose_name='号機',validators=[MinValueValidator(1)],default=1,blank=True,null=True)
-    Customer_recipe_no = models.IntegerField(verbose_name='品種No',validators=[MinValueValidator(0)],default=1,blank=True,null=True)
-    Customer_recipe_name = models.CharField(verbose_name='品種名',max_length=20,blank=True,null=True)
+    Customer_machine_recipe = models.ForeignKey(Customer_Machine_Recipe,on_delete=CASCADE,verbose_name='コース名')
     Machine_drive_time0 = models.IntegerField(verbose_name='運転時間0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_time1 = models.IntegerField(verbose_name='運転時間1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_drive_time2 = models.IntegerField(verbose_name='運転時間2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
@@ -612,7 +600,7 @@ class Machine_Drive_History(models.Model):
 
 
     def __str__(self):
-       return str(self.Customer_machine_id) + str(self.Machine_model)+\
+       return str(self.Customer_Machine_recipe) + \
             ' データ取得日 : ' + str(self.Data_datetime) + \
                 ' 登録日 : ' + str(self.Machine_history_input_date) + \
         '>'
