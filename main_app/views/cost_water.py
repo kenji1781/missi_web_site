@@ -28,17 +28,17 @@ class CostWaterView(LoginRequiredMixin,ListView):
         q_date_f = self.request.GET.get('query_date_f')
         q_date_l = self.request.GET.get('query_date_l')
         if q_word and q_date_f and q_date_l:
-            e_cost_total = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Sum('Cost_water'))    #Q(Machine_drive_history__Machine_model__contains=q_word)|Q(Machine_drive_history__Machine_model__icontains=q_word))
-            e_cost_avg = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Avg('Cost_water'))
-            e_cost_max = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Max('Cost_water'))
-            e_cost_min = Machine_Drive_History.objects.all().filter(Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Min('Cost_water'))
+            e_cost_total = Machine_Drive_History.objects.select_related('Customer_machine_recipe').all().filter(Customer_machine_recipe__Machine_model__Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Sum('Cost_water'))    #Q(Machine_drive_history__Machine_model__contains=q_word)|Q(Machine_drive_history__Machine_model__icontains=q_word))
+            e_cost_avg = Machine_Drive_History.objects.select_related('Customer_machine_recipe').all().filter(Customer_machine_recipe__Machine_model__Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Avg('Cost_water'))
+            e_cost_max = Machine_Drive_History.objects.select_related('Customer_machine_recipe').all().filter(Customer_machine_recipe__Machine_model__Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Max('Cost_water'))
+            e_cost_min = Machine_Drive_History.objects.select_related('Customer_machine_recipe').all().filter(Customer_machine_recipe__Machine_model__Customer_machine_id=q_word).filter(Data_date__range=(q_date_f, q_date_l)).aggregate(Min('Cost_water'))
         
         
         else:
-            e_cost_total = Machine_Drive_History.objects.all().aggregate(Sum('Cost_water'))
-            e_cost_avg = Machine_Drive_History.objects.all().aggregate(Avg('Cost_water'))
-            e_cost_max = Machine_Drive_History.objects.all().aggregate(Max('Cost_water'))
-            e_cost_min = Machine_Drive_History.objects.all().aggregate(Min('Cost_water'))
+            e_cost_total = Machine_Drive_History.objects.select_related('Customer_machine_recipe').all().aggregate(Sum('Cost_water'))
+            e_cost_avg = Machine_Drive_History.objects.select_related('Customer_machine_recipe').all().aggregate(Avg('Cost_water'))
+            e_cost_max = Machine_Drive_History.objects.select_related('Customer_machine_recipe').all().aggregate(Max('Cost_water'))
+            e_cost_min = Machine_Drive_History.objects.select_related('Customer_machine_recipe').all().aggregate(Min('Cost_water'))
         
         ctx.update(**e_cost_total)
         ctx.update(**e_cost_avg)
@@ -53,20 +53,20 @@ class CostWaterView(LoginRequiredMixin,ListView):
         q_date_l = self.request.GET.get('query_date_l')
 
         if q_word and q_date_f and q_date_l:
-            object_list = Machine_Drive_History.objects.filter(Customer_machine_id=q_word).filter(Data_datetime__range=(q_date_f, q_date_l))
+            object_list = Machine_Drive_History.objects.select_related('Customer_machine_recipe').filter(Customer_machine_recipe__Machine_model__Customer_machine_id=q_word).filter(Data_datetime__range=(q_date_f, q_date_l))
                 
             
         else:
-            object_list = Machine_Drive_History.objects.all().order_by('-Data_datetime')    #.values('Customer_machine_id','Machine_model','Customer_machine_unit_no','Cost_electric','Data_datetime')
+            object_list = Machine_Drive_History.objects.select_related('Customer_machine_recipe').all().order_by('-Data_datetime')    #.values('Customer_machine_id','Machine_model','Customer_machine_unit_no','Cost_electric','Data_datetime')
             
             #稼働履歴モデルの補完を行う##########################
             modelcomp = ModelComplement()
             #datetimeをdateとtimeに分割
             modelcomp.datetime_complement(object_list)
             #idから機種を書込み
-            modelcomp.machine_model_complement(object_list)
+            #modelcomp.machine_model_complement(object_list)
             #品種No.から品種名を書込み
-            modelcomp.recipe_model_complement(object_list)
+            #modelcomp.recipe_model_complement(object_list)
             #各最新単価を書込み
             modelcomp.unit_cost_complement(object_list)
             #################################################
