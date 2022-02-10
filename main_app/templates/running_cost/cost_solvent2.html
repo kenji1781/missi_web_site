@@ -49,9 +49,9 @@ Data Monitoring System {{ title }}
     {% for item in object_list %}
         <tr>
             
-            <td>{{ item.Customer_machine_id }}</td>
-            <td>{{ item.Machine_model }}</td>
-            <td>{{ item.Customer_machine_unit_no }}</td>
+            <td>{{ item.Customer_machine_recipe.Machine_model.Customer_machine_id }}</td>
+            <td>{{ item.Customer_machine_recipe.Machine_model.Machine_model }}</td>
+            <td>{{ item.Customer_machine_recipe.Machine_model.Customer_machine_unit_no }}</td>
             <td>{{ item.Machine_solvent2_used }}</td>
             <td>{{ item.Unit_price_solvent2 | intcomma }}</td>
             <td>{{ item.Cost_solvent2 | intcomma }}</td>

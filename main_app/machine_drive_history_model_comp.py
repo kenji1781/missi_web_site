@@ -6,31 +6,7 @@ from .models import Customer_Machine,Customer_Machine_Recipe,\
 
 class ModelComplement:
     """ビューから呼び出されて、モデルを補完する"""
-    def machine_model_complement(self,object):
-        #idから機種を書込み
-        for history_i in object:
-            if (history_i.Machine_model==None) and (history_i.Customer_machine_id != None):
-                    for c_machine in Customer_Machine.objects.select_related('Machine_model').all():
-                       if history_i.Customer_machine_id == c_machine.Customer_machine_id:
-                            try:
-                                history_i.Machine_model = str(c_machine.Machine_model) + ': #' +str(c_machine.Customer_machine_unit_no)                  
-                                history_i.save()
-                            except:
-                                pass
     
-    def recipe_model_complement(self,object):
-        #品種No.から品種名を書込み
-        for history_i in object:
-            if (history_i.Customer_recipe_name==None) and (history_i.Customer_recipe_no != None):
-                for re_m in Customer_Machine_Recipe.objects.all():
-                    print(re_m)
-                    if (history_i.Customer_recipe_no == re_m.Customer_recipe_no) and (history_i.Customer_machine_id == re_m.Customer_machine_id):
-                        try:
-                            history_i.Customer_recipe_name = re_m.Recipe_name
-                            history_i.save()
-                        except:
-                            pass
-
     def unit_cost_complement(self,object):
         #各単価読み込み
         e_price = Unit_Price_Electric.objects.all().order_by('-Unit_price_electric_input_date').first()

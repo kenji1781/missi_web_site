@@ -31,6 +31,7 @@ Data Monitoring System {{ title }}
         <tr>
             <th>装置ID</th>
             <th>型式</th>
+            <th>号機</th>
             <th>コースNo</th>
             <th>品種名</th>
             <th>運転時間0</th>
@@ -75,6 +76,7 @@ Data Monitoring System {{ title }}
         <tr>
             <td>{{ item.Customer_machine_recipe.Machine_model.Customer_machine_id }}</td>
             <td>{{ item.Customer_machine_recipe.Machine_model.Machine_model }}</td>
+            <td>{{ item.Customer_machine_recipe.Machine_model.Customer_machine_unit_no }}</td>
             <td>{{ item.Customer_machine_recipe.Setting_item.Setting_item_id }}</td>
             <td>{{ item.Customer_machine_recipe.Setting_item.Setting_item_name }}</td>
             <td>{{ item.Machine_drive_time0 }}</td>

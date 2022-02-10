@@ -59,19 +59,15 @@ class CostSolvent2GraphView(LoginRequiredMixin,TemplateView):
         modelcomp = ModelComplement()
         #datetimeをdateとtimeに分割
         modelcomp.datetime_complement(queryset)
-        #idから機種を書込み
-        modelcomp.machine_model_complement(queryset)
-        #品種No.から品種名を書込み
-        modelcomp.recipe_model_complement(queryset)
         #各最新単価を書込み
         modelcomp.unit_cost_complement(queryset)
         #################################################
-        df = read_frame(queryset,fieldnames=['Data_date','Cost_solvent2','Machine_model'])
+        df = read_frame(queryset,fieldnames=['Data_date','Cost_solvent2','Customer_machine_recipe'])
         
         gen = GraphGenerator()
 
         # pieチャートの素材を作成
-        df_pie = pd.pivot_table(df,index='Machine_model',values='Cost_solvent2',aggfunc=np.sum)
+        df_pie = pd.pivot_table(df,index='Customer_machine_recipe',values='Cost_solvent2',aggfunc=np.sum)
         
         pie_labels = list(df_pie.index.values)
         pie_values = [val[0] for val in df_pie.values]

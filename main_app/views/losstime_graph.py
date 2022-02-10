@@ -19,8 +19,8 @@ class LossTimeGraphView(LoginRequiredMixin,TemplateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         
-        ctx['title'] = 'ロスタイム集計'
-        ctx['msg'] = 'ロスタイム詳細確認が出来ます。'
+        ctx['title'] = 'タイムロス集計'
+        ctx['msg'] = 'タイムロス詳細確認が出来ます。'
         
 
         year = int(self.kwargs.get('year'))
