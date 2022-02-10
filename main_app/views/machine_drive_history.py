@@ -31,24 +31,24 @@ class MachineDriveHistoryView(LoginRequiredMixin,ListView):
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
-            object_list = Machine_Drive_History.objects.filter(\
+            object_list = Machine_Drive_History.objects.select_related('Customer_machine_recipe').filter(\
                     Q(Customer_machine_recipe__Machine_model__Customer_machine_id__contains=q_word)|Q(Customer_Machine_recipe__Machine_model__Customer_machine_id__icontains=q_word)|\
                         Q(Customer_machine_recipe__Machine_model__Machine_model__contains=q_word)|Q(Customer_Machine_recipe__Machine_model__Machine_model__icontains=q_word))        
        
         elif q_date:
-            object_list = Machine_Drive_History.objects.filter(\
+            object_list = Machine_Drive_History.objects.select_related('Customer_machine_recipe').filter(\
                 Q(Data_datetime__contains=q_date)|\
                     Q(Data_datetime__icontains=q_date)|\
                         Q(Machine_history_input_date__contains=q_date)|\
                             Q(Machine_history_input_date__icontains=q_date))
                        
         else:
-            object_list = Machine_Drive_History.objects.order_by('-Machine_history_input_date')
+            object_list = Machine_Drive_History.objects.select_related('Customer_machine_recipe').order_by('-Machine_history_input_date')
         
             #稼働履歴モデルの補完を行う##########################
             modelcomp = ModelComplement()
-            #datetimeをdateとtimeに分割
-            #modelcomp.datetime_complement(object_list)
+            datetimeをdateとtimeに分割
+            modelcomp.datetime_complement(object_list)
             #idから機種を書込み
             #modelcomp.machine_model_complement(object_list)
             #品種No.から品種名を書込み
