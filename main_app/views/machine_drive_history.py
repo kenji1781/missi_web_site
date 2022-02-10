@@ -47,7 +47,7 @@ class MachineDriveHistoryView(LoginRequiredMixin,ListView):
         
             #稼働履歴モデルの補完を行う##########################
             modelcomp = ModelComplement()
-            datetimeをdateとtimeに分割
+            #datetimeをdateとtimeに分割
             modelcomp.datetime_complement(object_list)
             #idから機種を書込み
             #modelcomp.machine_model_complement(object_list)
