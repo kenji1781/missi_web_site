@@ -52,19 +52,19 @@ class LossTimeGraphView(LoginRequiredMixin,TemplateView):
         queryset = queryset.filter(Trouble_occurrence_time__month=month)
         q_word = self.request.GET.get('query_text')
         if q_word:
-            queryset = queryset.filter(Customer_machine_recipe__Machine_model__Customer_machine_id=q_word)
+            queryset = queryset.filter(Trouble_contents__Machine_model__Customer_machine_id=q_word)
    
         if not queryset:
             return ctx
         
         
-        df = read_frame(queryset,fieldnames=['Trouble_occurrence_time','Trouble_recovery_time','Machine_model'])
+        df = read_frame(queryset,fieldnames=['Trouble_occurrence_time','Trouble_recovery_time','Trouble_contents'])
         df['loss_time'] = df['Trouble_recovery_time']-df['Trouble_occurrence_time']
         print(df['loss_time'])
         gen = GraphGenerator()
 
             # pieチャートの素材を作成
-        df_pie = pd.pivot_table(df,index='Machine_model',values='loss_time',aggfunc=np.sum)
+        df_pie = pd.pivot_table(df,index='Trouble_contents',values='loss_time',aggfunc=np.sum)
         
         pie_labels = list(df_pie.index.values)
         pie_values = [val[0] for val in df_pie.values]
