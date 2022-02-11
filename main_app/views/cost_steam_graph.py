@@ -51,7 +51,10 @@ class CostSteamGraphView(LoginRequiredMixin,TemplateView):
 
         queryset = Machine_Drive_History.objects.filter(Data_datetime__year=year)
         queryset = queryset.filter(Data_datetime__month=month)
-           
+        q_word = self.request.GET.get('query_text')
+        if q_word:
+            queryset = queryset.filter(Customer_machine_recipe__Machine_model__Customer_machine_id=q_word)
+   
         if not queryset:
             return ctx
         

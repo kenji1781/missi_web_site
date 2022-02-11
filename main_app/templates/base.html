@@ -40,11 +40,10 @@
                                         　ユーザー設定
                                       </a>
                                       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="{% url 'main_app:customer_machine' %}">装置設定</a></li>
+                                        
                                         <li><a class="dropdown-item" href="{% url 'main_app:setting_item' %}">品種名登録</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:customer_machine_recipe' %}">コース設定</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent_name' %}">溶剤名</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:solvent_manufacturer' %}">溶剤メーカー</a></li>
+                                        <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:mail_notification' %}">メール登録</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:maintenance_email' %}">メール通知設定</a></li>
 
@@ -66,6 +65,9 @@
                                       <li><a class="dropdown-item" href="{% url 'main_app:steam_price' %}">蒸気単価</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:gas_price' %}">ガス単価</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:water_price' %}">水単価</a></li>
+                                      <li><hr class="dropdown-divider"></li>
+                                      <li><a class="dropdown-item" href="{% url 'main_app:solvent_name' %}">溶剤名</a></li>
+                                      <li><a class="dropdown-item" href="{% url 'main_app:solvent_manufacturer' %}">溶剤メーカー</a></li>
                                       <li><hr class="dropdown-divider"></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:solvent0_conf' %}">溶剤0単価</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:solvent1_conf' %}">溶剤1単価</a></li>
@@ -146,10 +148,11 @@
                                         　メーカー設定
                                       </a>
                                       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="{% url 'main_app:customer_infomation' %}">客先情報</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:customer_infomation' %}">ユーザー情報</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:equipment_category' %}">装置カテゴリー</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:machine_model' %}">装置型式</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:trouble_contents' %}">異常設定</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:customer_machine' %}">ユーザー装置設定</a></li>
                                         
                                       </ul>
                                     </li>
@@ -167,11 +170,10 @@
                                       　ユーザー設定
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                      <li><a class="dropdown-item" href="{% url 'main_app:customer_machine' %}">装置設定</a></li>
+                                      
                                       <li><a class="dropdown-item" href="{% url 'main_app:setting_item' %}">品種名登録</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:customer_machine_recipe' %}">コース設定</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:solvent_name' %}">溶剤名</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:solvent_manufacturer' %}">溶剤メーカー</a></li>
+                                      <li><hr class="dropdown-divider"></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:mail_notification' %}">メール登録</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:maintenance_email' %}">メール通知設定</a></li>
 
@@ -193,6 +195,9 @@
                                     <li><a class="dropdown-item" href="{% url 'main_app:steam_price' %}">蒸気単価</a></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:gas_price' %}">ガス単価</a></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:water_price' %}">水単価</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'main_app:solvent_name' %}">溶剤名</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'main_app:solvent_manufacturer' %}">溶剤メーカー</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:solvent0_conf' %}">溶剤0単価</a></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:solvent1_conf' %}">溶剤1単価</a></li>
@@ -271,11 +276,11 @@
                                       　メーカー設定
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                      <li><a class="dropdown-item" href="{% url 'main_app:customer_infomation' %}">客先情報</a></li>
+                                      <li><a class="dropdown-item" href="{% url 'main_app:customer_infomation' %}">ユーザー情報</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:equipment_category' %}">装置カテゴリー</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:machine_model' %}">装置型式</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:trouble_contents' %}">異常設定</a></li>
-                                      
+                                      <li><a class="dropdown-item" href="{% url 'main_app:customer_machine' %}">ユーザー装置設定</a></li>
                                     </ul>
                                   </li>
                                 </ul>
@@ -294,11 +299,10 @@
                                     　ユーザー設定
                                   </a>
                                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="{% url 'main_app:customer_machine' %}">装置設定</a></li>
+                                    
                                     <li><a class="dropdown-item" href="{% url 'main_app:setting_item' %}">品種名登録</a></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:customer_machine_recipe' %}">コース設定</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'main_app:solvent_name' %}">溶剤名</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'main_app:solvent_manufacturer' %}">溶剤メーカー</a></li>
+                                    <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:mail_notification' %}">メール登録</a></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:maintenance_email' %}">メール通知設定</a></li>
 
@@ -320,6 +324,9 @@
                                   <li><a class="dropdown-item" href="{% url 'main_app:steam_price' %}">蒸気単価</a></li>
                                   <li><a class="dropdown-item" href="{% url 'main_app:gas_price' %}">ガス単価</a></li>
                                   <li><a class="dropdown-item" href="{% url 'main_app:water_price' %}">水単価</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="{% url 'main_app:solvent_name' %}">溶剤名</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'main_app:solvent_manufacturer' %}">溶剤メーカー</a></li>
                                   <li><hr class="dropdown-divider"></li>
                                   <li><a class="dropdown-item" href="{% url 'main_app:solvent0_conf' %}">溶剤0単価</a></li>
                                   <li><a class="dropdown-item" href="{% url 'main_app:solvent1_conf' %}">溶剤1単価</a></li>
@@ -398,11 +405,11 @@
                                     　メーカー設定
                                   </a>
                                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="{% url 'main_app:customer_infomation' %}">客先情報</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'main_app:customer_infomation' %}">ユーザー情報</a></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:equipment_category' %}">装置カテゴリー</a></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:machine_model' %}">装置型式</a></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:trouble_contents' %}">異常設定</a></li>
-                                    
+                                    <li><a class="dropdown-item" href="{% url 'main_app:customer_machine' %}">ユーザー装置設定</a></li>
                                   </ul>
                                 </li>
                               </ul>

@@ -50,7 +50,10 @@ class LossTimeGraphView(LoginRequiredMixin,TemplateView):
 
         queryset = Trouble_History.objects.filter(Trouble_occurrence_time__year=year)
         queryset = queryset.filter(Trouble_occurrence_time__month=month)
-           
+        q_word = self.request.GET.get('query_text')
+        if q_word:
+            queryset = queryset.filter(Customer_machine_recipe__Machine_model__Customer_machine_id=q_word)
+   
         if not queryset:
             return ctx
         

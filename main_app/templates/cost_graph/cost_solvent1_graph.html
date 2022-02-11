@@ -71,6 +71,11 @@ Data Monitoring System {{ title }}
         次月
     </a>
 </div>
+<form action="" method="get">
+  <label for="mchn_id">装置ID</label>
+      <input name="query_text" value="{{ request.GET.query }}" type="text" id="mchn_id">
+  <button type="submit" class="btn btn-secondary">検索</button>
+</form>
 
 <!-- ここからグラフ -->
 {% autoescape off %}

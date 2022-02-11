@@ -63,10 +63,6 @@ class CostElectricView(LoginRequiredMixin,ListView):
             modelcomp = ModelComplement()
             #datetimeをdateとtimeに分割
             modelcomp.datetime_complement(object_list)
-            #idから機種を書込み
-            #modelcomp.machine_model_complement(object_list)
-            #品種No.から品種名を書込み
-            #modelcomp.recipe_model_complement(object_list)
             #各最新単価を書込み
             modelcomp.unit_cost_complement(object_list)
             #################################################

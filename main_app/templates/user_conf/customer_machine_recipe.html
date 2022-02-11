@@ -20,9 +20,14 @@ Data Monitoring System {{ title }}
 {% block content %}
 <div style="padding: 20px">
     <form action="" method="get">
-        <input name="query_text" value="{{ request.GET.query }}" type="text">
-        <input name="query_date" value="{{ request.GET.query }}" type="date">
+        <label for="mchn_id">装置ID</label>
+            <input name="query_text_mid" value="{{ request.GET.query }}" type="text" id="mchn_id">
+        <label for="rec_id">品種名ID</label>
+            <input name="query_text_rid" value="{{ request.GET.query }}" type="text" id="rec_id">
+        <label for="date">登録日</label>
+            <input name="query_date" value="{{ request.GET.query }}" type="date" id="date">
         <button type="submit" class="btn btn-secondary">検索</button>
+            
     </form>
     
     <a href="{% url 'main_app:customer_machine_recipe_create' %}" class="btn btn-outline-primary">登録</a>

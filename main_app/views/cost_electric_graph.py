@@ -49,9 +49,13 @@ class CostElectricGraphView(LoginRequiredMixin,TemplateView):
         ctx['next_year'] = next_year
         ctx['next_month'] = next_month
 
-        queryset = Machine_Drive_History.objects.filter(Data_datetime__year=year)
+        queryset = Machine_Drive_History.objects.select_related('Customer_machine_recipe').filter(Data_datetime__year=year)
         queryset = queryset.filter(Data_datetime__month=month)
-           
+               
+        q_word = self.request.GET.get('query_text')
+        if q_word:
+            queryset = queryset.filter(Customer_machine_recipe__Machine_model__Customer_machine_id=q_word)
+
         if not queryset:
             return ctx
         
@@ -59,13 +63,10 @@ class CostElectricGraphView(LoginRequiredMixin,TemplateView):
         modelcomp = ModelComplement()
         #datetimeをdateとtimeに分割
         modelcomp.datetime_complement(queryset)
-        #idから機種を書込み
-        #modelcomp.machine_model_complement(queryset)
-        #品種No.から品種名を書込み
-        #modelcomp.recipe_model_complement(queryset)
         #各最新単価を書込み
         modelcomp.unit_cost_complement(queryset)
         #################################################
+        
         df = read_frame(queryset,fieldnames=['Data_date','Cost_electric','Customer_machine_recipe'])
         
         gen = GraphGenerator()

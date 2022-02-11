@@ -26,18 +26,19 @@ class CustomerMachineRecipeView(LoginRequiredMixin,ListView):
         return ctx
 
     def get_queryset(self):
-        q_word = self.request.GET.get('query_text')
+        q_word_mid = self.request.GET.get('query_text_mid')
+        q_word_rid = self.request.GET.get('query_text_rid')
         q_date = self.request.GET.get('query_date')
-        if q_word:
+        if q_word_mid:
             object_list = Customer_Machine_Recipe.objects.select_related('Machine_model','Setting_item').filter(\
-                    Q(Machine_model__Customer_machine_id__contains=q_word)|Q(Machine_model__Customer_machine_id__icontains=q_word)|\
-                        Q(Machine_model__Machine_model__contains=q_word)|Q(Machine_model__Machine_model__icontains=q_word)|\
-                            Q(Machine_model__Customer_machine_unit_no__contains=q_word)|Q(Machine_model__Customer_machine_unit_no__icontains=q_word)|\
-                                Q(Setting_item__Setting_item_id__contains=q_word)|Q(Setting_item__Setting_item_id__icontains=q_word)|\
-                                    Q(Setting_item__Setting_item_name__contains=q_word)|Q(Setting_item__Setting_item_name__icontains=q_word)|\
-                                        Q(Recipe_name__contains=q_word)|Q(Recipe_name__icontains=q_word)|\
-                                            Q(Customer_recipe_no__contains=q_word)|Q(Customer_recipe_no__icontains=q_word))        
-       
+                    Q(Machine_model__Customer_machine_id__contains=q_word_mid)|Q(Machine_model__Customer_machine_id__icontains=q_word_mid))
+        
+                           
+        elif q_word_rid:
+            object_list = Customer_Machine_Recipe.objects.select_related('Machine_model','Setting_item').filter(\
+                    Q(Setting_item__Setting_item_id__contains=q_word_rid)|Q(Setting_item__Setting_item_id__icontains=q_word_rid))
+                                
+        
         elif q_date:
             object_list = Customer_Machine_Recipe.objects.select_related('Machine_model','Setting_item').filter(\
                 Q(Customer_machine_input_date__contains=q_date)|\
