@@ -95,10 +95,10 @@
                                       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                         <li><a class="dropdown-item" href="{% url 'main_app:machine_drive_history' %}">稼働履歴</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:work_history_graph' now_year now_month %}">稼働詳細</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'main_app:losstime_graph' now_year now_month %}">タイムロス集計</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:trouble_history'%}">異常履歴</a></li>
                                         <li><a class="dropdown-item" href="{% url 'main_app:trouble_history_graph' now_year now_month %}">異常詳細</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'main_app:losstime_graph' now_year now_month %}">タイムロス集計</a></li>
                                         
                                         
                                         </ul>
@@ -225,10 +225,11 @@
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                       <li><a class="dropdown-item" href="{% url 'main_app:machine_drive_history' %}">稼働履歴</a></li>
                                       <li><a class="dropdown-item" href="{% url 'main_app:work_history_graph' now_year now_month %}">稼働詳細</a></li>
-                                      <li><a class="dropdown-item" href="{% url 'main_app:losstime_graph' now_year now_month %}">タイムロス集計</a></li>
+                                      
                                       <li><hr class="dropdown-divider"></li>
+                                      
                                       <li><a class="dropdown-item" href="{% url 'main_app:trouble_history_graph' now_year now_month %}">異常詳細</a></li>
-                                          
+                                      <li><a class="dropdown-item" href="{% url 'main_app:losstime_graph' now_year now_month %}">タイムロス集計</a></li>    
                                       </ul>
                                   </li>
                                 </ul>
@@ -354,9 +355,10 @@
                                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" href="{% url 'main_app:machine_drive_history' %}">稼働履歴</a></li>
                                     <li><a class="dropdown-item" href="{% url 'main_app:work_history_graph' now_year now_month %}">稼働詳細</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'main_app:losstime_graph' now_year now_month %}">タイムロス集計</a></li>
                                     <li><hr class="dropdown-divider"></li>
+                                    
                                     <li><a class="dropdown-item" href="{% url 'main_app:trouble_history_graph' now_year now_month %}">異常詳細</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'main_app:losstime_graph' now_year now_month %}">タイムロス集計</a></li>
                                       
                                     </ul>
                                 </li>
