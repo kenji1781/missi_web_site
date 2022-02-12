@@ -860,7 +860,7 @@ class Maintenance_Mail_Setting(models.Model):
 
 #装置温度ログ
 class Machine_Temperature_Log(models.Model):
-    Machine_model = models.ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='装置')
+    Customer_machine_recipe = models.ForeignKey(Customer_Machine_Recipe,on_delete=CASCADE,verbose_name='コース名')
     Machine_log_temp0 = models.IntegerField(verbose_name='温度0',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_log_temp1 = models.IntegerField(verbose_name='温度1',validators=[MinValueValidator(0)],default=0,blank=True,null=True)
     Machine_log_temp2 = models.IntegerField(verbose_name='温度2',validators=[MinValueValidator(0)],default=0,blank=True,null=True)

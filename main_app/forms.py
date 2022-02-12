@@ -1765,7 +1765,7 @@ class MaintenanceEmailUpdateForm(forms.ModelForm):
 ######################################################################################################
 
 Machine_temperature_log_fields = (
-                    'Machine_model',
+                    'Customer_machine_recipe',
                     'Machine_log_temp0',
                     'Machine_log_temp1',
                     'Machine_log_temp2',
@@ -1785,7 +1785,7 @@ Machine_temperature_log_fields = (
                     'Machine_history_memo')
 
 Machine_temperature_log_labels = {
-                    'Machine_model':'装置',
+                    'Customer_machine_recipe':'装置',
                     'Machine_log_temp0':'温度0',
                     'Machine_log_temp1':'温度1',
                     'Machine_log_temp2':'温度2',
@@ -1820,7 +1820,7 @@ class MachineTemperatureLogCreateForm(forms.ModelForm):
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
-                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_recipe'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_temp0'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_temp1'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_temp2'].widgets.attrs["class"] = "form-control"
@@ -1853,7 +1853,7 @@ class MachineDriveHistoryUpdateForm(forms.ModelForm):
         def __init__(self,*args,**kwargs):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
-                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Customer_machine_recipe'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_temp0'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_temp1'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_temp2'].widgets.attrs["class"] = "form-control"
