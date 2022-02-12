@@ -6,7 +6,7 @@ from .models import Customer_Infomation,Equipment_Category,Machine_Model,Trouble
         Solvent0_Conf,Solvent1_Conf,Solvent2_Conf,Solvent3_Conf,Solvent4_Conf,Solvent5_Conf,Solvent6_Conf,Solvent7_Conf,Solvent8_Conf,Solvent9_Conf,\
             Customer_Machine,Trouble_History,Customer_Machine_Recipe,Machine_Drive_History,\
                 Cost_Electric,Cost_Steam,Cost_Gas,Cost_Water,Cost_Solvent,Cost_Total,Setting_Item,\
-                    Mail_Notification,Maintenance_Mail_Setting
+                    Mail_Notification,Maintenance_Mail_Setting,Machine_Temperature_Log,Machine_Operating_Log,Plc_Output_Count_Log
 
 
 class DateInput(forms.DateInput):
