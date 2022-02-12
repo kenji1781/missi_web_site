@@ -1761,3 +1761,111 @@ class MaintenanceEmailUpdateForm(forms.ModelForm):
                 self.fields['Maintenance_send_setting'].widgets.attrs["class"] = "form-control"
                 self.fields['Maintenance_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Maintenance_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+
+Machine_temperature_log_fields = (
+                    'Machine_model',
+                    'Machine_log_temp0',
+                    'Machine_log_temp1',
+                    'Machine_log_temp2',
+                    'Machine_log_temp3',
+                    'Machine_log_temp4',
+                    'Machine_log_temp5',
+                    'Machine_log_temp6',
+                    'Machine_log_temp7',
+                    'Machine_log_temp8',
+                    'Machine_log_temp9',
+                    'Machine_log_temp10',
+                    'Machine_log_temp11',
+                    #'Data_date',
+                    #'Data_time',
+                    'Data_datetime',
+                    'Machine_history_input_date',
+                    'Machine_history_memo')
+
+Machine_temperature_log_labels = {
+                    'Machine_model':'装置',
+                    'Machine_log_temp0':'温度0',
+                    'Machine_log_temp1':'温度1',
+                    'Machine_log_temp2':'温度2',
+                    'Machine_log_temp3':'温度3',
+                    'Machine_log_temp4':'温度4',
+                    'Machine_log_temp5':'温度5',
+                    'Machine_log_temp6':'温度6',
+                    'Machine_log_temp7':'温度7',
+                    'Machine_log_temp8':'温度8',
+                    'Machine_log_temp9':'温度9',
+                    'Machine_log_temp10':'温度10',
+                    'Machine_log_temp11':'温度11',
+                    #'Data_date':'データ取得日',
+                    #'Data_time':'データ取得時刻',
+                    'Data_datetime':'データ取得時刻',
+                    'Machine_temp_log_input_date':'登録日',
+                    'Machine_temp_log_memo':'メモ',
+                }
+
+
+class MachineTemperatureLogCreateForm(forms.ModelForm):
+    class Meta:
+        model = Machine_Temperature_Log
+        widgets = {
+            'Machine_temp_log_input_date':DateInput(),
+        }
+        #fields = ('Equipment_category')
+        
+        fields = Machine_temperature_log_fields
+        labels = Machine_temperature_log_labels
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp0'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp1'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp2'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp3'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp4'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp5'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp6'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp7'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp8'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp9'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp10'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp11'].widgets.attrs["class"] = "form-control"
+                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_temp_log_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_temp_log_memo'].widgets.attrs["class"] = "form-control"
+                        
+
+ 
+class MachineDriveHistoryUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Machine_Temperature_Log
+        widgets = {
+            'Machine_temp_log_input_date':DateInput(),
+        }
+        #fields = ('Equipment_category')
+        
+        fields = Machine_temperature_log_fields
+        labels = Machine_temperature_log_labels
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp0'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp1'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp2'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp3'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp4'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp5'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp6'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp7'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp8'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp9'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp10'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_temp11'].widgets.attrs["class"] = "form-control"
+                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_temp_log_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_temp_log_memo'].widgets.attrs["class"] = "form-control"
