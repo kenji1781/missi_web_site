@@ -885,7 +885,7 @@ class Machine_Temperature_Log(models.Model):
        return str(self.Machine_model)
 
     class Meta:
-        verbose_name_plural = ('稼働履歴')
+        verbose_name_plural = ('温度log')
 
 #装置稼働履歴
 class Machine_Operating_Log(models.Model):
@@ -922,7 +922,7 @@ class Machine_Operating_Log(models.Model):
        return str(self.Machine_model)
 
     class Meta:
-        verbose_name_plural = ('稼働履歴')
+        verbose_name_plural = ('装置稼働log')
 
 
 #PLC出力ログ
