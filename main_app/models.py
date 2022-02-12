@@ -600,10 +600,7 @@ class Machine_Drive_History(models.Model):
 
 
     def __str__(self):
-       return str(self.Customer_Machine_recipe) + \
-            ' データ取得日 : ' + str(self.Data_datetime) + \
-                ' 登録日 : ' + str(self.Machine_history_input_date) + \
-        '>'
+       return str(self.Customer_machine_recipe)
 
     class Meta:
         verbose_name_plural = ('稼働履歴')
