@@ -6,7 +6,7 @@ from .models import Customer_Infomation,Equipment_Category,Machine_Model,Trouble
         Solvent0_Conf,Solvent1_Conf,Solvent2_Conf,Solvent3_Conf,Solvent4_Conf,Solvent5_Conf,Solvent6_Conf,Solvent7_Conf,Solvent8_Conf,Solvent9_Conf,\
             Customer_Machine,Trouble_History,Customer_Machine_Recipe,Machine_Drive_History,\
                 Cost_Electric,Cost_Steam,Cost_Gas,Cost_Water,Cost_Solvent,Cost_Total,Setting_Item,\
-                    Mail_Notification,Maintenance_Mail_Setting,Machine_Temperature_Log,Machine_Operating_Log,Plc_Output_Count_Log
+                    Mail_Notification,Maintenance_Mail_Setting,Machine_Temperature_Log,Machine_Log,Plc_Output_Count_Log
 
 
 class DateInput(forms.DateInput):
@@ -1781,8 +1781,8 @@ Machine_temperature_log_fields = (
                     #'Data_date',
                     #'Data_time',
                     'Data_datetime',
-                    'Machine_history_input_date',
-                    'Machine_history_memo')
+                    'Machine_temp_log_input_date',
+                    'Machine_temp_log_memo')
 
 Machine_temperature_log_labels = {
                     'Customer_machine_recipe':'装置',
@@ -1839,7 +1839,7 @@ class MachineTemperatureLogCreateForm(forms.ModelForm):
                         
 
  
-class MachineDriveHistoryUpdateForm(forms.ModelForm):
+class MachineTemperatureLogUpdateForm(forms.ModelForm):
     class Meta:
         model = Machine_Temperature_Log
         widgets = {
@@ -1869,3 +1869,461 @@ class MachineDriveHistoryUpdateForm(forms.ModelForm):
                 self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_temp_log_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_temp_log_memo'].widgets.attrs["class"] = "form-control"
+
+######################################################################################################
+
+Machine_log_fields = (
+                    'Machine_model',
+                    'Machine_log_time0',
+                    'Machine_log_time1',
+                    'Machine_log_time2',
+                    'Machine_log_time3',
+                    'Machine_log_time4',
+                    'Machine_log_time5',
+                    'Machine_log_time6',
+                    'Machine_log_time7',
+                    'Machine_log_time8',
+                    'Machine_log_time9',
+                    'Machine_log_count0',
+                    'Machine_log_count1',
+                    'Machine_log_count2',
+                    'Machine_log_count3',
+                    'Machine_log_count4',
+                    'Machine_log_count5',
+                    'Machine_log_count6',
+                    'Machine_log_count7',
+                    'Machine_log_count8',
+                    'Machine_log_count9',
+                    #'Data_date',
+                    #'Data_time',
+                    'Data_datetime',
+                    'Machine_log_input_date',
+                    'Machine_log_memo')
+
+Machine_log_labels = {
+                    'Machine_model':'装置',
+                    'Machine_log_time0':'稼働時間0',
+                    'Machine_log_time1':'稼働時間1',
+                    'Machine_log_time2':'稼働時間2',
+                    'Machine_log_time3':'稼働時間3',
+                    'Machine_log_time4':'稼働時間4',
+                    'Machine_log_time5':'稼働時間5',
+                    'Machine_log_time6':'稼働時間6',
+                    'Machine_log_time7':'稼働時間7',
+                    'Machine_log_time8':'稼働時間8',
+                    'Machine_log_time9':'稼働時間9',
+                    'Machine_log_count0':'稼働回数0',
+                    'Machine_log_count1':'稼働回数1',
+                    'Machine_log_count2':'稼働回数2',
+                    'Machine_log_count3':'稼働回数3',
+                    'Machine_log_count4':'稼働回数4',
+                    'Machine_log_count5':'稼働回数5',
+                    'Machine_log_count6':'稼働回数6',
+                    'Machine_log_count7':'稼働回数7',
+                    'Machine_log_count8':'稼働回数8',
+                    'Machine_log_count9':'稼働回数9',
+                    #'Data_date':'データ取得日',
+                    #'Data_time':'データ取得時刻',
+                    'Data_datetime':'データ取得時刻',
+                    'Machine_log_input_date':'登録日',
+                    'Machine_log_memo':'メモ',
+                }
+
+
+class MachineLogCreateForm(forms.ModelForm):
+    class Meta:
+        model = Machine_Log
+        widgets = {
+            'Machine_log_input_date':DateInput(),
+        }
+        #fields = ('Equipment_category')
+        
+        fields = Machine_log_fields
+        labels = Machine_log_labels
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time0'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time1'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time2'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time3'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time4'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time5'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time6'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time7'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time8'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time9'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count0'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count1'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count2'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count3'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count4'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count5'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count6'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count7'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count8'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count9'].widgets.attrs["class"] = "form-control"
+                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_memo'].widgets.attrs["class"] = "form-control"
+                        
+
+ 
+class MachineLogUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Machine_Log
+        widgets = {
+            'Machine_log_input_date':DateInput(),
+        }
+        #fields = ('Equipment_category')
+        
+        fields = Machine_log_fields
+        labels = Machine_log_labels
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time0'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time1'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time2'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time3'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time4'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time5'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time6'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time7'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time8'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_time9'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count0'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count1'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count2'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count3'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count4'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count5'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count6'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count7'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count8'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_count9'].widgets.attrs["class"] = "form-control"
+                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Machine_log_memo'].widgets.attrs["class"] = "form-control"
+
+
+######################################################################################################
+
+Plc_output_count_log_fields = (
+                    'Machine_model',
+                    'Plc_count_log_output0',
+                    'Plc_count_log_output1',
+                    'Plc_count_log_output2',
+                    'Plc_count_log_output3',
+                    'Plc_count_log_output4',
+                    'Plc_count_log_output5',
+                    'Plc_count_log_output6',
+                    'Plc_count_log_output7',
+                    'Plc_count_log_output8',
+                    'Plc_count_log_output9',
+                    'Plc_count_log_output10',
+                    'Plc_count_log_output11',
+                    'Plc_count_log_output12',
+                    'Plc_count_log_output13',
+                    'Plc_count_log_output14',
+                    'Plc_count_log_output15',
+                    'Plc_count_log_output16',
+                    'Plc_count_log_output17',
+                    'Plc_count_log_output18',
+                    'Plc_count_log_output19',
+                    'Plc_count_log_output20',
+                    'Plc_count_log_output21',
+                    'Plc_count_log_output22',
+                    'Plc_count_log_output23',
+                    'Plc_count_log_output24',
+                    'Plc_count_log_output25',
+                    'Plc_count_log_output26',
+                    'Plc_count_log_output27',
+                    'Plc_count_log_output28',
+                    'Plc_count_log_output29',
+                    'Plc_count_log_output30',
+                    'Plc_count_log_output31',
+                    'Plc_count_log_output32',
+                    'Plc_count_log_output33',
+                    'Plc_count_log_output34',
+                    'Plc_count_log_output35',
+                    'Plc_count_log_output36',
+                    'Plc_count_log_output37',
+                    'Plc_count_log_output38',
+                    'Plc_count_log_output39',
+                    'Plc_count_log_output40',
+                    'Plc_count_log_output41',
+                    'Plc_count_log_output42',
+                    'Plc_count_log_output43',
+                    'Plc_count_log_output44',
+                    'Plc_count_log_output45',
+                    'Plc_count_log_output46',
+                    'Plc_count_log_output47',
+                    'Plc_count_log_output48',
+                    'Plc_count_log_output49',
+                    'Plc_count_log_output50',
+                    'Plc_count_log_output51',
+                    'Plc_count_log_output52',
+                    'Plc_count_log_output53',
+                    'Plc_count_log_output54',
+                    'Plc_count_log_output55',
+                    'Plc_count_log_output56',
+                    'Plc_count_log_output57',
+                    'Plc_count_log_output58',
+                    'Plc_count_log_output59',
+                    'Plc_count_log_output60',
+                    'Plc_count_log_output61',
+                    'Plc_count_log_output62',
+                    'Plc_count_log_output63',
+                    
+                    #'Data_date',
+                    #'Data_time',
+                    'Data_datetime',
+                    'Plc_count_log_input_date',
+                    'Plc_count_log_memo')
+
+Plc_output_count_log_labels = {
+                    'Machine_model':'装置',
+                    'Plc_count_log_output0':'OUT:0',
+                    'Plc_count_log_output1':'OUT:1',
+                    'Plc_count_log_output2':'OUT:2',
+                    'Plc_count_log_output3':'OUT:3',
+                    'Plc_count_log_output4':'OUT:4',
+                    'Plc_count_log_output5':'OUT:5',
+                    'Plc_count_log_output6':'OUT:6',
+                    'Plc_count_log_output7':'OUT:7',
+                    'Plc_count_log_output8':'OUT:8',
+                    'Plc_count_log_output9':'OUT:9',
+                    'Plc_count_log_output10':'OUT:10',
+                    'Plc_count_log_output11':'OUT:11',
+                    'Plc_count_log_output12':'OUT:12',
+                    'Plc_count_log_output13':'OUT:13',
+                    'Plc_count_log_output14':'OUT:14',
+                    'Plc_count_log_output15':'OUT:15',
+                    'Plc_count_log_output16':'OUT:16',
+                    'Plc_count_log_output17':'OUT:17',
+                    'Plc_count_log_output18':'OUT:18',
+                    'Plc_count_log_output19':'OUT:19',
+                    'Plc_count_log_output20':'OUT:20',
+                    'Plc_count_log_output21':'OUT:21',
+                    'Plc_count_log_output22':'OUT:22',
+                    'Plc_count_log_output23':'OUT:23',
+                    'Plc_count_log_output24':'OUT:24',
+                    'Plc_count_log_output25':'OUT:25',
+                    'Plc_count_log_output26':'OUT:26',
+                    'Plc_count_log_output27':'OUT:27',
+                    'Plc_count_log_output28':'OUT:28',
+                    'Plc_count_log_output29':'OUT:29',
+                    'Plc_count_log_output30':'OUT:30',
+                    'Plc_count_log_output31':'OUT:31',
+                    'Plc_count_log_output32':'OUT:32',
+                    'Plc_count_log_output33':'OUT:33',
+                    'Plc_count_log_output34':'OUT:34',
+                    'Plc_count_log_output35':'OUT:35',
+                    'Plc_count_log_output36':'OUT:36',
+                    'Plc_count_log_output37':'OUT:37',
+                    'Plc_count_log_output38':'OUT:38',
+                    'Plc_count_log_output39':'OUT:39',
+                    'Plc_count_log_output40':'OUT:40',
+                    'Plc_count_log_output41':'OUT:41',
+                    'Plc_count_log_output42':'OUT:42',
+                    'Plc_count_log_output43':'OUT:43',
+                    'Plc_count_log_output44':'OUT:44',
+                    'Plc_count_log_output45':'OUT:45',
+                    'Plc_count_log_output46':'OUT:46',
+                    'Plc_count_log_output47':'OUT:47',
+                    'Plc_count_log_output48':'OUT:48',
+                    'Plc_count_log_output49':'OUT:49',
+                    'Plc_count_log_output50':'OUT:50',
+                    'Plc_count_log_output51':'OUT:51',
+                    'Plc_count_log_output52':'OUT:52',
+                    'Plc_count_log_output53':'OUT:53',
+                    'Plc_count_log_output54':'OUT:54',
+                    'Plc_count_log_output55':'OUT:55',
+                    'Plc_count_log_output56':'OUT:56',
+                    'Plc_count_log_output57':'OUT:57',
+                    'Plc_count_log_output58':'OUT:58',
+                    'Plc_count_log_output59':'OUT:59',
+                    'Plc_count_log_output60':'OUT:60',
+                    'Plc_count_log_output61':'OUT:61',
+                    'Plc_count_log_output62':'OUT:62',
+                    'Plc_count_log_output63':'OUT:63',
+                    #'Data_date':'データ取得日',
+                    #'Data_time':'データ取得時刻',
+                    'Data_datetime':'データ取得時刻',
+                    'Plc_count_log_input_date':'登録日',
+                    'Plc_count_log_memo':'メモ',
+                }
+
+
+class PlcOutputCountLogCreateForm(forms.ModelForm):
+    class Meta:
+        model = Plc_Output_Count_Log
+        widgets = {
+            'Plc_count_log_input_date':DateInput(),
+        }
+        #fields = ('Equipment_category')
+        
+        fields = Plc_output_count_log_fields
+        labels = Plc_output_count_log_labels
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output0'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output1'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output2'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output3'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output4'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output5'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output6'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output7'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output8'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output9'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output10'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output11'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output12'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output13'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output14'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output15'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output16'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output17'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output18'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output19'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output20'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output21'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output22'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output23'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output24'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output25'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output26'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output27'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output28'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output29'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output30'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output31'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output32'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output33'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output34'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output35'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output36'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output37'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output38'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output39'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output40'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output41'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output42'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output43'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output44'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output45'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output46'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output47'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output48'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output49'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output50'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output51'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output52'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output53'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output54'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output55'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output56'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output57'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output58'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output59'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output60'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output61'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output62'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output63'].widgets.attrs["class"] = "form-control"
+                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_memo'].widgets.attrs["class"] = "form-control"
+                        
+
+ 
+class PlcOutputCountLogUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Plc_Output_Count_Log
+        widgets = {
+            'Plc_count_log_input_date':DateInput(),
+        }
+        #fields = ('Equipment_category')
+        
+        fields = Plc_output_count_log_fields
+        labels = Plc_output_count_log_labels
+
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                self.fields['Machine_model'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output0'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output1'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output2'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output3'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output4'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output5'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output6'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output7'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output8'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output9'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output10'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output11'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output12'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output13'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output14'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output15'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output16'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output17'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output18'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output19'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output20'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output21'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output22'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output23'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output24'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output25'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output26'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output27'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output28'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output29'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output30'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output31'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output32'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output33'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output34'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output35'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output36'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output37'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output38'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output39'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output40'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output41'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output42'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output43'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output44'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output45'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output46'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output47'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output48'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output49'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output50'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output51'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output52'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output53'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output54'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output55'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output56'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output57'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output58'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output59'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output60'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output61'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output62'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_output63'].widgets.attrs["class"] = "form-control"
+                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_input_date'].widgets.attrs["class"] = "form-control"
+                self.fields['Plc_count_log_memo'].widgets.attrs["class"] = "form-control"

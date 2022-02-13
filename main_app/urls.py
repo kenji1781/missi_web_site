@@ -63,6 +63,9 @@ from .views.work_history_graph import WorkHistoryGraphView
 
 from .views.mail_notification import MailNotificationView,MailNotificationCreateView,MailNotificationUpdateView,MailNotificationDeleteView
 from .views.maintenance_email import MaintenanceEmailView,MaintenanceEmailCreateView,MaintenanceEmailUpdateView,MaintenanceEmailDeleteView
+from .views.machine_temperature_log import MachineTemperatureLogView,MachineTemperatureLogCreateView,MachineTemperatureLogUpdateView,MachineTemperatureLogDeleteView
+from .views.machine_log import MachineLogView,MachineLogCreateView,MachineLogUpdateView,MachineLogDeleteView
+from .views.plc_output_count_log import PlcOutputCountLogView,PlcOutputCountLogCreateView,PlcOutputCountLogUpdateView,PlcOutputCountLogDeleteView
 
 app_name = 'main_app'
 urlpatterns = [
@@ -211,5 +214,20 @@ urlpatterns = [
     path('maintenance_email/create/',MaintenanceEmailCreateView.as_view(),name="maintenance_email_create"),   #メンテナンスメール
     path('maintenance_email/update/<int:pk>',MaintenanceEmailUpdateView.as_view(),name="maintenance_email_update"),   #メンテナンスメール
     path('maintenance_email/delete/<int:pk>',MaintenanceEmailDeleteView.as_view(),name="maintenance_email_delete"),   #メンテナンスメール
+
+    path('machine_temperature_log/',MachineTemperatureLogView.as_view(),name="machine_temperature_log"),        #温度監視
+    path('machine_temperature_log/create/',MachineTemperatureLogCreateView.as_view(),name="machine_temperature_log_create"),   #温度監視
+    path('machine_temperature_log/update/<int:pk>',MachineTemperatureLogUpdateView.as_view(),name="machine_temperature_log_update"),   #温度監視
+    path('machine_temperature_log/delete/<int:pk>',MachineTemperatureLogDeleteView.as_view(),name="machine_temperature_log_delete"),   #温度監視
+
+    path('machine_log/',MachineLogView.as_view(),name="machine_log"),        #稼働監視
+    path('machine_log/create/',MachineLogCreateView.as_view(),name="machine_log_create"),   #稼働監視
+    path('machine_log/update/<int:pk>',MachineLogUpdateView.as_view(),name="machine_log_update"),   #稼働監視
+    path('machine_log/delete/<int:pk>',MachineLogDeleteView.as_view(),name="machine_log_delete"),   #稼働監視
+
+    path('plc_output_count_log/',PlcOutputCountLogView.as_view(),name="plc_output_count_log"),        #plc出力監視
+    path('plc_output_count_log/create/',PlcOutputCountLogCreateView.as_view(),name="plc_output_count_log_create"),   #plc出力監視
+    path('plc_output_count_log/update/<int:pk>',PlcOutputCountLogUpdateView.as_view(),name="plc_output_count_log_update"),   #plc出力監視
+    path('plc_output_count_log/delete/<int:pk>',PlcOutputCountLogDeleteView.as_view(),name="plc_output_count_log_delete"),   #plc出力監視
 
     ]
