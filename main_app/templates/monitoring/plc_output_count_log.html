@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Data Monitoring System {{ title }}
+{% endblock %}
+{% block header %}
+<div style="padding: 20px">
+    <br>
+    <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
+            <p class="h5 mt-4">{{msg|safe}}</p>
+        <br>
+</div>    
+<style>
+    th{white-space: nowrap;}
+    td{white-space: nowrap;}
+</style>        
+{% endblock %}
+{% block content %}
+<div style="padding: 20px">
+    <form action="" method="get">
+        <input name="query_text" value="{{ request.GET.query }}" type="text">
+        <input name="query_date" value="{{ request.GET.query }}" type="date">
+        <button type="submit" class="btn btn-secondary">検索</button>
+    
+    </form>
+    
+    <a href="{% url 'main_app:plc_output_count_log_create' %}" class="btn btn-outline-primary">登録</a>
+<div class="table-responsive">    
+    <table class="table" style="font-size : 12px;">
+        <tr>
+            <th>装置ID</th>
+            <th>型式</th>
+            <th>号機</th>
+            <th>データ取得日</th>
+            <th>登録日</th>
+            <th>メモ</th>
+        </tr>
+<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.Machine_model.Customer_machine_id }}</td>
+            <td>{{ item.Machine_model.Machine_model }}</td>
+            <td>{{ item.Machine_model.Customer_machine_unit_no }}</td>
+            <td>{{ item.Data_datetime}}</td>
+            <td>{{ item.Machine_history_input_date}}</td>
+            <td>{{ item.Machine_history_memo}}</td>
+            <td><a href="{% url 'main_app:plc_output_count_log_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
+            <td><a href="{% url 'main_app:plc_output_count_log_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    
+    <table class="table" style="font-size : 12px;">
+        <tr>
+            <th>OUT0</th>
+            <th>OUT1</th>
+            <th>OUT2</th>
+            <th>OUT3</th>
+            <th>OUT4</th>
+            <th>OUT5</th>
+            <th>OUT6</th>
+            <th>OUT7</th>
+            <th>OUT8</th>
+            <th>OUT9</th>
+        </tr>
+<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.Plc_count_log_output0 }}</td>
+            <td>{{ item.Plc_count_log_output1 }}</td>
+            <td>{{ item.Plc_count_log_output2 }}</td>
+            <td>{{ item.Plc_count_log_output3 }}</td>
+            <td>{{ item.Plc_count_log_output4 }}</td>
+            <td>{{ item.Plc_count_log_output5 }}</td>
+            <td>{{ item.Plc_count_log_output6 }}</td>
+            <td>{{ item.Plc_count_log_output7 }}</td>
+            <td>{{ item.Plc_count_log_output8 }}</td>
+            <td>{{ item.Plc_count_log_output9 }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <table class="table" style="font-size : 12px;">
+        <tr>
+            <th>OUT10</th>
+            <th>OUT11</th>
+            <th>OUT12</th>
+            <th>OUT13</th>
+            <th>OUT14</th>
+            <th>OUT15</th>
+            <th>OUT16</th>
+            <th>OUT17</th>
+            <th>OUT18</th>
+            <th>OUT19</th>
+        </tr>
+<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.Plc_count_log_output10 }}</td>
+            <td>{{ item.Plc_count_log_output11 }}</td>
+            <td>{{ item.Plc_count_log_output12 }}</td>
+            <td>{{ item.Plc_count_log_output13 }}</td>
+            <td>{{ item.Plc_count_log_output14 }}</td>
+            <td>{{ item.Plc_count_log_output15 }}</td>
+            <td>{{ item.Plc_count_log_output16 }}</td>
+            <td>{{ item.Plc_count_log_output17 }}</td>
+            <td>{{ item.Plc_count_log_output18 }}</td>
+            <td>{{ item.Plc_count_log_output19 }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <table class="table" style="font-size : 12px;">
+        <tr>
+            <th>OUT20</th>
+            <th>OUT21</th>
+            <th>OUT22</th>
+            <th>OUT23</th>
+            <th>OUT24</th>
+            <th>OUT25</th>
+            <th>OUT26</th>
+            <th>OUT27</th>
+            <th>OUT28</th>
+            <th>OUT29</th>
+        </tr>
+<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.Plc_count_log_output20 }}</td>
+            <td>{{ item.Plc_count_log_output21 }}</td>
+            <td>{{ item.Plc_count_log_output22 }}</td>
+            <td>{{ item.Plc_count_log_output23 }}</td>
+            <td>{{ item.Plc_count_log_output24 }}</td>
+            <td>{{ item.Plc_count_log_output25 }}</td>
+            <td>{{ item.Plc_count_log_output26 }}</td>
+            <td>{{ item.Plc_count_log_output27 }}</td>
+            <td>{{ item.Plc_count_log_output28 }}</td>
+            <td>{{ item.Plc_count_log_output29 }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <table class="table" style="font-size : 12px;">
+        <tr>
+            <th>OUT30</th>
+            <th>OUT31</th>
+            <th>OUT32</th>
+            <th>OUT33</th>
+            <th>OUT34</th>
+            <th>OUT35</th>
+            <th>OUT36</th>
+            <th>OUT37</th>
+            <th>OUT38</th>
+            <th>OUT39</th>
+        </tr>
+<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.Plc_count_log_output30 }}</td>
+            <td>{{ item.Plc_count_log_output31 }}</td>
+            <td>{{ item.Plc_count_log_output32 }}</td>
+            <td>{{ item.Plc_count_log_output33 }}</td>
+            <td>{{ item.Plc_count_log_output34 }}</td>
+            <td>{{ item.Plc_count_log_output35 }}</td>
+            <td>{{ item.Plc_count_log_output36 }}</td>
+            <td>{{ item.Plc_count_log_output37 }}</td>
+            <td>{{ item.Plc_count_log_output38 }}</td>
+            <td>{{ item.Plc_count_log_output39 }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <table class="table" style="font-size : 12px;">
+        <tr>
+            <th>OUT40</th>
+            <th>OUT41</th>
+            <th>OUT42</th>
+            <th>OUT43</th>
+            <th>OUT44</th>
+            <th>OUT45</th>
+            <th>OUT46</th>
+            <th>OUT47</th>
+            <th>OUT48</th>
+            <th>OUT49</th>
+        </tr>
+<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.Plc_count_log_output40 }}</td>
+            <td>{{ item.Plc_count_log_output41 }}</td>
+            <td>{{ item.Plc_count_log_output42 }}</td>
+            <td>{{ item.Plc_count_log_output43 }}</td>
+            <td>{{ item.Plc_count_log_output44 }}</td>
+            <td>{{ item.Plc_count_log_output45 }}</td>
+            <td>{{ item.Plc_count_log_output46 }}</td>
+            <td>{{ item.Plc_count_log_output47 }}</td>
+            <td>{{ item.Plc_count_log_output48 }}</td>
+            <td>{{ item.Plc_count_log_output49 }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <table class="table" style="font-size : 12px;">
+        <tr>
+            <th>OUT50</th>
+            <th>OUT51</th>
+            <th>OUT52</th>
+            <th>OUT53</th>
+            <th>OUT54</th>
+            <th>OUT55</th>
+            <th>OUT56</th>
+            <th>OUT57</th>
+            <th>OUT58</th>
+            <th>OUT59</th>
+        </tr>
+<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.Plc_count_log_output50 }}</td>
+            <td>{{ item.Plc_count_log_output51 }}</td>
+            <td>{{ item.Plc_count_log_output52 }}</td>
+            <td>{{ item.Plc_count_log_output53 }}</td>
+            <td>{{ item.Plc_count_log_output54 }}</td>
+            <td>{{ item.Plc_count_log_output55 }}</td>
+            <td>{{ item.Plc_count_log_output56 }}</td>
+            <td>{{ item.Plc_count_log_output57 }}</td>
+            <td>{{ item.Plc_count_log_output58 }}</td>
+            <td>{{ item.Plc_count_log_output59 }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <table class="table" style="font-size : 12px;">
+        <tr>
+            <th>OUT60</th>
+            <th>OUT61</th>
+            <th>OUT62</th>
+            <th>OUT63</th>
+        </tr>
+<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.Plc_count_log_output60 }}</td>
+            <td>{{ item.Plc_count_log_output61 }}</td>
+            <td>{{ item.Plc_count_log_output62 }}</td>
+            <td>{{ item.Plc_count_log_output63 }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+    <!--以下よりページネーション-->
+    <nav aria-label="Page navigation example">
+
+        <ul class="pagination justify-content-center pagination g-mt-28 g-mb-28">
+            <!-- 前へ の部分 -->
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+    
+            <!-- 数字の部分 -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if num <= page_obj.number|add:5 and num >= page_obj.number|add:-5 %}
+    
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+    
+            <!-- 次へ の部分 -->
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    
+    </nav>
+</div>
+{% endblock %}
