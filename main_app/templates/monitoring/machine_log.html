@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Data Monitoring System {{ title }}
+{% endblock %}
+{% block header %}
+<div style="padding: 20px">
+    <br>
+    <h3 class="display-6 text-light bg-primary d-inline p-3">{{title}}</h3>
+            <p class="h5 mt-4">{{msg|safe}}</p>
+        <br>
+</div>    
+<style>
+    th{white-space: nowrap;}
+    td{white-space: nowrap;}
+</style>        
+{% endblock %}
+{% block content %}
+<div style="padding: 20px">
+    <form action="" method="get">
+        <input name="query_text" value="{{ request.GET.query }}" type="text">
+        <input name="query_date" value="{{ request.GET.query }}" type="date">
+        <button type="submit" class="btn btn-secondary">検索</button>
+    
+    </form>
+    
+    <a href="{% url 'main_app:machine_log_create' %}" class="btn btn-outline-primary">登録</a>
+<div class="table-responsive">    
+    <table class="table" style="font-size : 12px;">
+        <tr>
+            <th>装置ID</th>
+            <th>型式</th>
+            <th>号機</th>
+            <th>稼働時間0</th>
+            <th>稼働時間1</th>
+            <th>稼働時間2</th>
+            <th>稼働時間3</th>
+            <th>稼働時間4</th>
+            <th>稼働時間5</th>
+            <th>稼働時間6</th>
+            <th>稼働時間7</th>
+            <th>稼働時間8</th>
+            <th>稼働時間9</th>
+            <th>稼働回数0</th>
+            <th>稼働回数1</th>
+            <th>稼働回数2</th>
+            <th>稼働回数3</th>
+            <th>稼働回数4</th>
+            <th>稼働回数5</th>
+            <th>稼働回数6</th>
+            <th>稼働回数7</th>
+            <th>稼働回数8</th>
+            <th>稼働回数9</th>
+            <th>データ取得日</th>
+                      
+            <th>登録日</th>
+            <th>メモ</th>
+        </tr>
+<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.Machine_model.Customer_machine_id }}</td>
+            <td>{{ item.Machine_model.Machine_model }}</td>
+            <td>{{ item.Machine_model.Customer_machine_unit_no }}</td>
+            <td>{{ item.Machine_log_time0 }}</td>
+            <td>{{ item.Machine_log_time1 }}</td>
+            <td>{{ item.Machine_log_time2 }}</td>
+            <td>{{ item.Machine_log_time3 }}</td>
+            <td>{{ item.Machine_log_time4 }}</td>
+            <td>{{ item.Machine_log_time5 }}</td>
+            <td>{{ item.Machine_log_time6 }}</td>
+            <td>{{ item.Machine_log_time7 }}</td>
+            <td>{{ item.Machine_log_time8 }}</td>
+            <td>{{ item.Machine_log_time9 }}</td>
+            <td>{{ item.Machine_log_count0 }}</td>
+            <td>{{ item.Machine_log_count1 }}</td>
+            <td>{{ item.Machine_log_count2 }}</td>
+            <td>{{ item.Machine_log_count3 }}</td>
+            <td>{{ item.Machine_log_count4 }}</td>
+            <td>{{ item.Machine_log_count5 }}</td>
+            <td>{{ item.Machine_log_count6 }}</td>
+            <td>{{ item.Machine_log_count7 }}</td>
+            <td>{{ item.Machine_log_count8 }}</td>
+            <td>{{ item.Machine_log_count9 }}</td>
+            <td>{{ item.Data_datetime}}</td>
+            <td>{{ item.Machine_history_input_date}}</td>
+            <td>{{ item.Machine_history_memo}}</td>
+            <td><a href="{% url 'main_app:machine_log_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
+            <td><a href="{% url 'main_app:machine_log_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+    <!--以下よりページネーション-->
+    <nav aria-label="Page navigation example">
+
+        <ul class="pagination justify-content-center pagination g-mt-28 g-mb-28">
+            <!-- 前へ の部分 -->
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+    
+            <!-- 数字の部分 -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if num <= page_obj.number|add:5 and num >= page_obj.number|add:-5 %}
+    
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+    
+            <!-- 次へ の部分 -->
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    
+    </nav>
+</div>
+{% endblock %}
