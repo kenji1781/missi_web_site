@@ -43,8 +43,8 @@ Data Monitoring System {{ title }}
             <td>{{ item.Machine_model.Machine_model }}</td>
             <td>{{ item.Machine_model.Customer_machine_unit_no }}</td>
             <td>{{ item.Data_datetime}}</td>
-            <td>{{ item.Machine_history_input_date}}</td>
-            <td>{{ item.Machine_history_memo}}</td>
+            <td>{{ item.Plc_count_log_input_date}}</td>
+            <td>{{ item.Plc_count_log_memo}}</td>
             <td><a href="{% url 'main_app:plc_output_count_log_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
             <td><a href="{% url 'main_app:plc_output_count_log_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
         </tr>
