@@ -13,7 +13,7 @@ class PlcOutputCountLogView(LoginRequiredMixin,ListView):
     
     template_name = 'monitoring/plc_output_count_log.html'
     model = Plc_Output_Count_Log
-    paginate_by = 1
+    paginate_by = 10
 
     
     def get_context_data(self,**kwargs):
