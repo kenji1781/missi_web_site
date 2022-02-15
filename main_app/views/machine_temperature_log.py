@@ -31,10 +31,10 @@ class MachineTemperatureLogView(LoginRequiredMixin,ListView):
             object_list = Machine_Temperature_Log.objects.select_related('Customer_machine_recipe').filter(\
                     Q(Customer_machine_recipe__Customer_machine_recipe__Machine_model__contains=q_word)|Q(Customer_machine_recipe__Customer_machine_recipe__Machine_model__icontains=q_word))
         elif q_date:
-            object_list = Machine_Temperature_Log.objects.select_related('Machine_model').filter(Q(Machine_temperature_log_input_date__icontains=q_date)|\
-                Q(Machine_temperature_log_input_date__icontains=q_date))
+            object_list = Machine_Temperature_Log.objects.select_related('Customer_machine_recipe').filter(Q(Machine_temp_log_input_date__icontains=q_date)|\
+                Q(Machine_temp_log_input_date__icontains=q_date))
         else:
-            object_list = Machine_Temperature_Log.objects.select_related('Machine_model').order_by('-Machine_log_input_date')
+            object_list = Machine_Temperature_Log.objects.select_related('Customer_machine_recipe').order_by('-Machine_temp_log_input_date')
 
 
         return object_list
