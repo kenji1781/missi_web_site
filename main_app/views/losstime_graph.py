@@ -60,7 +60,7 @@ class LossTimeGraphView(LoginRequiredMixin,TemplateView):
         
         df = read_frame(queryset,fieldnames=['Trouble_occurrence_time','Trouble_recovery_time','Trouble_contents'])
         df['loss_time'] = df['Trouble_recovery_time']-df['Trouble_occurrence_time']
-        print(df['loss_time'])
+    
         gen = GraphGenerator()
 
             # pieチャートの素材を作成

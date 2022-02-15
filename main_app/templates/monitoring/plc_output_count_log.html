@@ -35,25 +35,6 @@ Data Monitoring System {{ title }}
             <th>データ取得日</th>
             <th>登録日</th>
             <th>メモ</th>
-        </tr>
-<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
-    {% for item in object_list %}
-        <tr>
-            <td>{{ item.Machine_model.Customer_machine_id }}</td>
-            <td>{{ item.Machine_model.Machine_model }}</td>
-            <td>{{ item.Machine_model.Customer_machine_unit_no }}</td>
-            <td>{{ item.Data_datetime}}</td>
-            <td>{{ item.Plc_count_log_input_date}}</td>
-            <td>{{ item.Plc_count_log_memo}}</td>
-            <td><a href="{% url 'main_app:plc_output_count_log_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
-            <td><a href="{% url 'main_app:plc_output_count_log_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
-        </tr>
-    {% endfor %}
-    </table>
-
-    
-    <table class="table" style="font-size : 12px;">
-        <tr>
             <th>OUT0</th>
             <th>OUT1</th>
             <th>OUT2</th>
@@ -64,26 +45,6 @@ Data Monitoring System {{ title }}
             <th>OUT7</th>
             <th>OUT8</th>
             <th>OUT9</th>
-        </tr>
-<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
-    {% for item in object_list %}
-        <tr>
-            <td>{{ item.Plc_count_log_output0 }}</td>
-            <td>{{ item.Plc_count_log_output1 }}</td>
-            <td>{{ item.Plc_count_log_output2 }}</td>
-            <td>{{ item.Plc_count_log_output3 }}</td>
-            <td>{{ item.Plc_count_log_output4 }}</td>
-            <td>{{ item.Plc_count_log_output5 }}</td>
-            <td>{{ item.Plc_count_log_output6 }}</td>
-            <td>{{ item.Plc_count_log_output7 }}</td>
-            <td>{{ item.Plc_count_log_output8 }}</td>
-            <td>{{ item.Plc_count_log_output9 }}</td>
-        </tr>
-    {% endfor %}
-    </table>
-
-    <table class="table" style="font-size : 12px;">
-        <tr>
             <th>OUT10</th>
             <th>OUT11</th>
             <th>OUT12</th>
@@ -94,26 +55,6 @@ Data Monitoring System {{ title }}
             <th>OUT17</th>
             <th>OUT18</th>
             <th>OUT19</th>
-        </tr>
-<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
-    {% for item in object_list %}
-        <tr>
-            <td>{{ item.Plc_count_log_output10 }}</td>
-            <td>{{ item.Plc_count_log_output11 }}</td>
-            <td>{{ item.Plc_count_log_output12 }}</td>
-            <td>{{ item.Plc_count_log_output13 }}</td>
-            <td>{{ item.Plc_count_log_output14 }}</td>
-            <td>{{ item.Plc_count_log_output15 }}</td>
-            <td>{{ item.Plc_count_log_output16 }}</td>
-            <td>{{ item.Plc_count_log_output17 }}</td>
-            <td>{{ item.Plc_count_log_output18 }}</td>
-            <td>{{ item.Plc_count_log_output19 }}</td>
-        </tr>
-    {% endfor %}
-    </table>
-
-    <table class="table" style="font-size : 12px;">
-        <tr>
             <th>OUT20</th>
             <th>OUT21</th>
             <th>OUT22</th>
@@ -124,26 +65,6 @@ Data Monitoring System {{ title }}
             <th>OUT27</th>
             <th>OUT28</th>
             <th>OUT29</th>
-        </tr>
-<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
-    {% for item in object_list %}
-        <tr>
-            <td>{{ item.Plc_count_log_output20 }}</td>
-            <td>{{ item.Plc_count_log_output21 }}</td>
-            <td>{{ item.Plc_count_log_output22 }}</td>
-            <td>{{ item.Plc_count_log_output23 }}</td>
-            <td>{{ item.Plc_count_log_output24 }}</td>
-            <td>{{ item.Plc_count_log_output25 }}</td>
-            <td>{{ item.Plc_count_log_output26 }}</td>
-            <td>{{ item.Plc_count_log_output27 }}</td>
-            <td>{{ item.Plc_count_log_output28 }}</td>
-            <td>{{ item.Plc_count_log_output29 }}</td>
-        </tr>
-    {% endfor %}
-    </table>
-
-    <table class="table" style="font-size : 12px;">
-        <tr>
             <th>OUT30</th>
             <th>OUT31</th>
             <th>OUT32</th>
@@ -154,26 +75,6 @@ Data Monitoring System {{ title }}
             <th>OUT37</th>
             <th>OUT38</th>
             <th>OUT39</th>
-        </tr>
-<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
-    {% for item in object_list %}
-        <tr>
-            <td>{{ item.Plc_count_log_output30 }}</td>
-            <td>{{ item.Plc_count_log_output31 }}</td>
-            <td>{{ item.Plc_count_log_output32 }}</td>
-            <td>{{ item.Plc_count_log_output33 }}</td>
-            <td>{{ item.Plc_count_log_output34 }}</td>
-            <td>{{ item.Plc_count_log_output35 }}</td>
-            <td>{{ item.Plc_count_log_output36 }}</td>
-            <td>{{ item.Plc_count_log_output37 }}</td>
-            <td>{{ item.Plc_count_log_output38 }}</td>
-            <td>{{ item.Plc_count_log_output39 }}</td>
-        </tr>
-    {% endfor %}
-    </table>
-
-    <table class="table" style="font-size : 12px;">
-        <tr>
             <th>OUT40</th>
             <th>OUT41</th>
             <th>OUT42</th>
@@ -184,26 +85,6 @@ Data Monitoring System {{ title }}
             <th>OUT47</th>
             <th>OUT48</th>
             <th>OUT49</th>
-        </tr>
-<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
-    {% for item in object_list %}
-        <tr>
-            <td>{{ item.Plc_count_log_output40 }}</td>
-            <td>{{ item.Plc_count_log_output41 }}</td>
-            <td>{{ item.Plc_count_log_output42 }}</td>
-            <td>{{ item.Plc_count_log_output43 }}</td>
-            <td>{{ item.Plc_count_log_output44 }}</td>
-            <td>{{ item.Plc_count_log_output45 }}</td>
-            <td>{{ item.Plc_count_log_output46 }}</td>
-            <td>{{ item.Plc_count_log_output47 }}</td>
-            <td>{{ item.Plc_count_log_output48 }}</td>
-            <td>{{ item.Plc_count_log_output49 }}</td>
-        </tr>
-    {% endfor %}
-    </table>
-
-    <table class="table" style="font-size : 12px;">
-        <tr>
             <th>OUT50</th>
             <th>OUT51</th>
             <th>OUT52</th>
@@ -214,26 +95,6 @@ Data Monitoring System {{ title }}
             <th>OUT57</th>
             <th>OUT58</th>
             <th>OUT59</th>
-        </tr>
-<!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
-    {% for item in object_list %}
-        <tr>
-            <td>{{ item.Plc_count_log_output50 }}</td>
-            <td>{{ item.Plc_count_log_output51 }}</td>
-            <td>{{ item.Plc_count_log_output52 }}</td>
-            <td>{{ item.Plc_count_log_output53 }}</td>
-            <td>{{ item.Plc_count_log_output54 }}</td>
-            <td>{{ item.Plc_count_log_output55 }}</td>
-            <td>{{ item.Plc_count_log_output56 }}</td>
-            <td>{{ item.Plc_count_log_output57 }}</td>
-            <td>{{ item.Plc_count_log_output58 }}</td>
-            <td>{{ item.Plc_count_log_output59 }}</td>
-        </tr>
-    {% endfor %}
-    </table>
-
-    <table class="table" style="font-size : 12px;">
-        <tr>
             <th>OUT60</th>
             <th>OUT61</th>
             <th>OUT62</th>
@@ -244,18 +105,90 @@ Data Monitoring System {{ title }}
             <th>OUT67</th>
             <th>OUT68</th>
             <th>OUT69</th>
-            
+
         </tr>
 <!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
     {% for item in object_list %}
         <tr>
+            <td>{{ item.Machine_model.Customer_machine_id }}</td>
+            <td>{{ item.Machine_model.Machine_model }}</td>
+            <td>{{ item.Machine_model.Customer_machine_unit_no }}</td>
+            <td>{{ item.Data_datetime}}</td>
+            <td>{{ item.Plc_count_log_input_date}}</td>
+            <td>{{ item.Plc_count_log_memo}}</td>
+            
+            <td>{{ item.Plc_count_log_output0 }}</td>
+            <td>{{ item.Plc_count_log_output1 }}</td>
+            <td>{{ item.Plc_count_log_output2 }}</td>
+            <td>{{ item.Plc_count_log_output3 }}</td>
+            <td>{{ item.Plc_count_log_output4 }}</td>
+            <td>{{ item.Plc_count_log_output5 }}</td>
+            <td>{{ item.Plc_count_log_output6 }}</td>
+            <td>{{ item.Plc_count_log_output7 }}</td>
+            <td>{{ item.Plc_count_log_output8 }}</td>
+            <td>{{ item.Plc_count_log_output9 }}</td>
+            <td>{{ item.Plc_count_log_output10 }}</td>
+            <td>{{ item.Plc_count_log_output11 }}</td>
+            <td>{{ item.Plc_count_log_output12 }}</td>
+            <td>{{ item.Plc_count_log_output13 }}</td>
+            <td>{{ item.Plc_count_log_output14 }}</td>
+            <td>{{ item.Plc_count_log_output15 }}</td>
+            <td>{{ item.Plc_count_log_output16 }}</td>
+            <td>{{ item.Plc_count_log_output17 }}</td>
+            <td>{{ item.Plc_count_log_output18 }}</td>
+            <td>{{ item.Plc_count_log_output19 }}</td>
+            <td>{{ item.Plc_count_log_output20 }}</td>
+            <td>{{ item.Plc_count_log_output21 }}</td>
+            <td>{{ item.Plc_count_log_output22 }}</td>
+            <td>{{ item.Plc_count_log_output23 }}</td>
+            <td>{{ item.Plc_count_log_output24 }}</td>
+            <td>{{ item.Plc_count_log_output25 }}</td>
+            <td>{{ item.Plc_count_log_output26 }}</td>
+            <td>{{ item.Plc_count_log_output27 }}</td>
+            <td>{{ item.Plc_count_log_output28 }}</td>
+            <td>{{ item.Plc_count_log_output29 }}</td>
+            <td>{{ item.Plc_count_log_output30 }}</td>
+            <td>{{ item.Plc_count_log_output31 }}</td>
+            <td>{{ item.Plc_count_log_output32 }}</td>
+            <td>{{ item.Plc_count_log_output33 }}</td>
+            <td>{{ item.Plc_count_log_output34 }}</td>
+            <td>{{ item.Plc_count_log_output35 }}</td>
+            <td>{{ item.Plc_count_log_output36 }}</td>
+            <td>{{ item.Plc_count_log_output37 }}</td>
+            <td>{{ item.Plc_count_log_output38 }}</td>
+            <td>{{ item.Plc_count_log_output39 }}</td>
+            <td>{{ item.Plc_count_log_output40 }}</td>
+            <td>{{ item.Plc_count_log_output41 }}</td>
+            <td>{{ item.Plc_count_log_output42 }}</td>
+            <td>{{ item.Plc_count_log_output43 }}</td>
+            <td>{{ item.Plc_count_log_output44 }}</td>
+            <td>{{ item.Plc_count_log_output45 }}</td>
+            <td>{{ item.Plc_count_log_output46 }}</td>
+            <td>{{ item.Plc_count_log_output47 }}</td>
+            <td>{{ item.Plc_count_log_output48 }}</td>
+            <td>{{ item.Plc_count_log_output49 }}</td>
+            <td>{{ item.Plc_count_log_output50 }}</td>
+            <td>{{ item.Plc_count_log_output51 }}</td>
+            <td>{{ item.Plc_count_log_output52 }}</td>
+            <td>{{ item.Plc_count_log_output53 }}</td>
+            <td>{{ item.Plc_count_log_output54 }}</td>
+            <td>{{ item.Plc_count_log_output55 }}</td>
+            <td>{{ item.Plc_count_log_output56 }}</td>
+            <td>{{ item.Plc_count_log_output57 }}</td>
+            <td>{{ item.Plc_count_log_output58 }}</td>
+            <td>{{ item.Plc_count_log_output59 }}</td>
             <td>{{ item.Plc_count_log_output60 }}</td>
             <td>{{ item.Plc_count_log_output61 }}</td>
             <td>{{ item.Plc_count_log_output62 }}</td>
             <td>{{ item.Plc_count_log_output63 }}</td>
+
+            <td><a href="{% url 'main_app:plc_output_count_log_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
+            <td><a href="{% url 'main_app:plc_output_count_log_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
+        
         </tr>
     {% endfor %}
     </table>
+
 </div>
     <!--以下よりページネーション-->
     <nav aria-label="Page navigation example">

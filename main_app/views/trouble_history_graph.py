@@ -75,7 +75,7 @@ class TroubleHistoryGraphView(LoginRequiredMixin,ListView):
         
         
         df = read_frame(object_list,fieldnames=['Trouble_contents','Trouble_occurrence_time'])
-        
+        print(df['Trouble_contents'])
         gen = GraphGenerator()
 
         #円グラフ
