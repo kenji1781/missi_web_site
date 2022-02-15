@@ -55,9 +55,9 @@ class WorkHistoryGraphView(LoginRequiredMixin,TemplateView):
         if not queryset:
             return ctx
         
-        object_list_recipe = Customer_Machine_Recipe.objects.order_by('-Customer_machine_input_date')
+        #object_list_recipe = Customer_Machine_Recipe.objects.order_by('-Customer_machine_input_date')
         #レシピモデルの補完を行う##########################
-        recipemodelcomp = RecipeModelComplement()
+        #recipemodelcomp = RecipeModelComplement()
         #idから機種を書込み
         #recipemodelcomp.machine_model_complement(object_list_recipe)
         #品種No.から品種名を書込み
