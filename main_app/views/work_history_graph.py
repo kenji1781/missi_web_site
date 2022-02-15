@@ -76,13 +76,13 @@ class WorkHistoryGraphView(LoginRequiredMixin,TemplateView):
         #各最新単価を書込み
         modelcomp.unit_cost_complement(queryset)
         #################################################
-        df = read_frame(queryset,fieldnames=['Data_datetime','Customer_recipe_name','Machine_model'])
+        df = read_frame(queryset,fieldnames=['Data_datetime','Customer_machine_recipe'])
         
         gen = GraphGenerator()
         
         
-        pie_labels = df['Customer_recipe_name'].unique()
-        pie_values = df['Customer_recipe_name'].value_counts()#件数を渡す
+        pie_labels = df['Customer_machine_recipe'].unique()
+        pie_values = df['Customer_machine_recipe'].value_counts()#件数を渡す
         
         
         plot_pie = gen.month_pie(labels=pie_labels, values=pie_values)
@@ -93,10 +93,10 @@ class WorkHistoryGraphView(LoginRequiredMixin,TemplateView):
         
         # テーブルでのカテゴリと金額の表示用。
         # {カテゴリ:金額,カテゴリ:金額…}の辞書を作る
-        ctx['table_set'] = df['Customer_recipe_name'].value_counts()#件数を渡す
+        ctx['table_set'] = df['Customer_machine_recipe'].value_counts()#件数を渡す
 
         # totalの数字を計算して渡す
-        ctx['total_payment'] = df['Customer_recipe_name'].value_counts().sum()
+        ctx['total_payment'] = df['Customer_machine_recipe'].value_counts().sum()
 
         
         # 日別の棒グラフの素材を渡す
