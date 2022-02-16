@@ -61,8 +61,8 @@ Data Monitoring System {{ title }}
 <!--  データベースで読み出した変数dataをitemに転送しデータ分forで回す-->
     {% for item in object_list %}
         <tr>
-            <td>{{ item.Maintenance_machine_history.Machine_model.Machine_model }}</td>
-            <td>{{ item.Maintenance_machine_history.Machine_model.Customer_machine_unit_no }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_model }}</td>
+            <td>{{ item.Maintenance_machine_history.Customer_machine_unit_no }}</td>
             <td>{{ item.Maintenance_machine_history.Machine_log_time0 }}</td>
             <td>{{ item.Maintenance_machine_history.Machine_log_time1 }}</td>
             <td>{{ item.Maintenance_machine_history.Machine_log_time2 }}</td>
