@@ -30,7 +30,16 @@ Data Monitoring System {{ title }}
         <tr>
             <th>装置</th>
             <th>号機</th>
-            <th>稼働回数</th>
+            <th>稼働回数0</th>
+            <th>稼働回数1</th>
+            <th>稼働回数2</th>
+            <th>稼働回数3</th>
+            <th>稼働回数4</th>
+            <th>稼働回数5</th>
+            <th>稼働回数6</th>
+            <th>稼働回数7</th>
+            <th>稼働回数8</th>
+            <th>稼働回数9</th>
             <th>メール受信者</th>
             <th>Email</th>
             <th>閾値</th>
@@ -43,7 +52,16 @@ Data Monitoring System {{ title }}
         <tr>
             <td>{{ item.Maintenance_machine_history.Machine_model.Machine_model }}</td>
             <td>{{ item.Maintenance_machine_history.Machine_model.Customer_machine_unit_no }}</td>
-            <td>{{ item.Maintenance_machine_history.Machine_drive_count }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_log_count0 }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_log_count1 }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_log_count2 }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_log_count3 }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_log_count4 }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_log_count5 }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_log_count6 }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_log_count7 }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_log_count8 }}</td>
+            <td>{{ item.Maintenance_machine_history.Machine_log_count9 }}</td>
             <td>{{ item.Maintenance_mail_notification.Mail_name }}</td>
             <td>{{ item.Maintenance_mail_notification.Mail_address }}</td>
             <td>{{ item.Maintenance_threshold }}</td>
