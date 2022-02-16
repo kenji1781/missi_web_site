@@ -1709,7 +1709,7 @@ class MaintenanceEmailCreateForm(forms.ModelForm):
     class Meta:
         model = Maintenance_Mail_Setting
         #fields = ('Equipment_category')
-        fields = ('Maintenance_machine_history','Maintenance_mail_notification','Maintenance_threshold','Maintenance_send_setting','Maintenance_input_date','Maintenance_memo')
+        fields = ('Maintenance_machine_history','Maintenance_mail_notification','Maintenance_threshold_time','Maintenance_threshold_count','Maintenance_send_setting','Maintenance_input_date','Maintenance_memo')
         
         widgets = {
             'Maintenance_input_date':DateInput(),
@@ -1717,7 +1717,8 @@ class MaintenanceEmailCreateForm(forms.ModelForm):
         labels = {
                     'Maintenance_machine_history':'装置',
                     'Maintenance_mail_notification':'メール発信者',
-                    'Maintenance_threshold':'閾値',
+                    'Maintenance_threshold_time':'閾値:時間',
+                    'Maintenance_threshold_count':'閾値:回数',
                     'Maintenance_send_setting':'送信設定',
                     'Maintenance_input_date':'登録日',
                     'Maintenance_memo':'メモ',
@@ -1728,7 +1729,8 @@ class MaintenanceEmailCreateForm(forms.ModelForm):
             for field in self.fields.values():
                 self.fields['Maintenance_machine_history'].widgets.attrs["class"] = "form-control"
                 self.fields['Maintenance_mail_notification'].widgets.attrs["class"] = "form-control"
-                self.fields['Maintenance_threshold'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_threshold_time'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_threshold_count'].widgets.attrs["class"] = "form-control"
                 self.fields['Maintenance_send_setting'].widgets.attrs["class"] = "form-control"
                 self.fields['Maintenance_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Maintenance_memo'].widgets.attrs["class"] = "form-control"
@@ -1738,7 +1740,7 @@ class MaintenanceEmailUpdateForm(forms.ModelForm):
     class Meta:
         model = Maintenance_Mail_Setting
         #fields = ('Equipment_category')
-        fields = ('Maintenance_machine_history','Maintenance_mail_notification','Maintenance_threshold','Maintenance_send_setting','Maintenance_input_date','Maintenance_memo')
+        fields = ('Maintenance_machine_history','Maintenance_mail_notification','Maintenance_threshold_time','Maintenance_threshold_count','Maintenance_send_setting','Maintenance_input_date','Maintenance_memo')
         
         widgets = {
             'Maintenance_input_date':DateInput(),
@@ -1746,7 +1748,8 @@ class MaintenanceEmailUpdateForm(forms.ModelForm):
         labels = {
                     'Maintenance_machine_history':'装置',
                     'Maintenance_mail_notification':'メール発信者',
-                    'Maintenance_threshold':'閾値',
+                    'Maintenance_threshold_time':'閾値:時間',
+                    'Maintenance_threshold_count':'閾値:回数',
                     'Maintenance_send_setting':'送信設定',
                     'Maintenance_input_date':'登録日',
                     'Maintenance_memo':'メモ',
@@ -1757,7 +1760,8 @@ class MaintenanceEmailUpdateForm(forms.ModelForm):
             for field in self.fields.values():
                 self.fields['Maintenance_machine_history'].widgets.attrs["class"] = "form-control"
                 self.fields['Maintenance_mail_notification'].widgets.attrs["class"] = "form-control"
-                self.fields['Maintenance_threshold'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_threshold_time'].widgets.attrs["class"] = "form-control"
+                self.fields['Maintenance_threshold_count'].widgets.attrs["class"] = "form-control"
                 self.fields['Maintenance_send_setting'].widgets.attrs["class"] = "form-control"
                 self.fields['Maintenance_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Maintenance_memo'].widgets.attrs["class"] = "form-control"
