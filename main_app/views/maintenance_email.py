@@ -34,9 +34,8 @@ class MaintenanceEmailView(LoginRequiredMixin,ListView):
                         Q(Maintenance_send_setting__contains=q_word)|Q(Maintenance_send_setting__icontains=q_word)|\
                             Q(Maintenance_memo__contains=q_word)|Q(Maintenance_memo__icontains=q_word)|\
                                 Q(Maintenance_machine_history__Machine_model__contains=q_word)|Q(Maintenance_machine_history__Machine_model__icontains=q_word)|\
-                                    Q(Maintenance_machine_history__Machine_drive_count__contains=q_word)|Q(Maintenance_machine_history__Machine_drive_count__icontains=q_word)|\
-                                        Q(Maintenance_mail_notification__Mail_name__contains=q_word)|Q(Maintenance_mail_notification__Mail_name__icontains=q_word)|\
-                                            Q(Maintenance_mail_notification__Mail_address__contains=q_word)|Q(Maintenance_mail_notification__Mail_address__icontains=q_word))
+                                    Q(Maintenance_mail_notification__Mail_name__contains=q_word)|Q(Maintenance_mail_notification__Mail_name__icontains=q_word)|\
+                                        Q(Maintenance_mail_notification__Mail_address__contains=q_word)|Q(Maintenance_mail_notification__Mail_address__icontains=q_word))
         elif q_date:
             object_list = Maintenance_Mail_Setting.objects.select_related('Maintenance_machine_history','Maintenance_mail_notification').filter(Q(Maintenance_input_date__icontains=q_date)|\
                 Q(Maintenance_input_date__icontains=q_date))
