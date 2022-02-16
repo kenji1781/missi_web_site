@@ -997,7 +997,7 @@ class Trouble_Mail_Setting(models.Model):
 
 #メンテナンスメール設定
 class Maintenance_Mail_Setting(models.Model):
-    Maintenance_machine_history = ForeignKey(Customer_Machine,on_delete=CASCADE,verbose_name='稼働履歴')
+    Maintenance_machine_history = ForeignKey(Machine_Log,on_delete=CASCADE,verbose_name='稼働履歴')
     Maintenance_mail_notification = ForeignKey(Mail_Notification,on_delete=CASCADE,verbose_name='メール設定')
     Maintenance_threshold_time = models.IntegerField(verbose_name='閾値:時間',validators=[MinValueValidator(1)],default=1,blank=True,null=True)
     Maintenance_threshold_count = models.IntegerField(verbose_name='閾値:回数',validators=[MinValueValidator(1)],default=1,blank=True,null=True)
