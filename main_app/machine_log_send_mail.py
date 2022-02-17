@@ -6,7 +6,8 @@ from django.core.mail import send_mail
 class MachineLogSendMail:
     
     def mail_send():
-        object_list = Maintenance_Mail_Setting.objects.all
+        
+        object_list = Maintenance_Mail_Setting.objects.all()
         for log_i in object_list:
             if log_i.Maintenance_send_setting:
                 if (log_i.Maintenance_threshold_time < log_i.Maintenance_machine_history.Machine_log_time0)or\
@@ -25,6 +26,7 @@ class MachineLogSendMail:
                         from_email = 'kenji1781@gmail.com'
                         to_mail = [str(log_i.Maintenance_mail_notification.Mail_address)]
                         send_mail(subject,msg,from_email,to_mail,fail_silently=False)
+                        
                     except:
                         pass
     
