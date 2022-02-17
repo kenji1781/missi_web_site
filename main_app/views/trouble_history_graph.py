@@ -59,7 +59,7 @@ class TroubleHistoryGraphView(LoginRequiredMixin,ListView):
 
         #グラフ処理
         q_word = self.request.GET.get('query_text')
-        q_date = self.request.GET.get('query_date')
+        #q_date = self.request.GET.get('query_date')
         if q_word:
             object_list = Trouble_History.objects.select_related('Trouble_contents').filter(\
                     Q(Trouble_contents__Machine_model__Customer_machine_id__contains=q_word)|Q(Trouble_contents__Machine_model__Customer_machine_id__icontains=q_word))

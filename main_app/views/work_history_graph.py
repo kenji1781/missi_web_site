@@ -20,8 +20,8 @@ class WorkHistoryGraphView(LoginRequiredMixin,TemplateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         
-        ctx['title'] = '稼働詳細'
-        ctx['msg'] = '稼働詳細確認が出来ます。'
+        ctx['title'] = 'ワーク'
+        ctx['msg'] = 'ワーク処理数の詳細確認が出来ます。'
         
 
         year = int(self.kwargs.get('year'))

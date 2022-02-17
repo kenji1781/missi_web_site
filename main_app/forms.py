@@ -1464,24 +1464,6 @@ class CustomerMachineRecipeUpdateForm(forms.ModelForm):
 
 Machine_drive_history_fields = (
                     'Customer_machine_recipe',
-                    'Machine_drive_time0',
-                    'Machine_drive_time1',
-                    'Machine_drive_time2',
-                    'Machine_drive_time3',
-                    'Machine_drive_time4',
-                    'Machine_drive_temp0',
-                    'Machine_drive_temp1',
-                    'Machine_drive_temp2',
-                    'Machine_drive_temp3',
-                    'Machine_drive_temp4',
-                    'Machine_drive_temp5',
-                    'Machine_drive_temp6',
-                    'Machine_drive_temp7',
-                    'Machine_drive_temp8',
-                    'Machine_drive_temp9',
-                    'Machine_drive_temp10',
-                    'Machine_drive_temp11',
-                    'Machine_drive_count',
                     'Machine_electric_used',
                     'Machine_steam_used',
                     'Machine_gas_used',
@@ -1504,24 +1486,6 @@ Machine_drive_history_fields = (
 
 Machine_drive_history_labels = {
                     'Customer_machine_recipe':'装置:コースNo.',
-                    'Machine_drive_time0':'運転時間0',
-                    'Machine_drive_time1':'運転時間1',
-                    'Machine_drive_time2':'運転時間2',
-                    'Machine_drive_time3':'運転時間3',
-                    'Machine_drive_time4':'運転時間4',
-                    'Machine_drive_temp0':'温度0',
-                    'Machine_drive_temp1':'温度1',
-                    'Machine_drive_temp2':'温度2',
-                    'Machine_drive_temp3':'温度3',
-                    'Machine_drive_temp4':'温度4',
-                    'Machine_drive_temp5':'温度5',
-                    'Machine_drive_temp6':'温度6',
-                    'Machine_drive_temp7':'温度7',
-                    'Machine_drive_temp8':'温度8',
-                    'Machine_drive_temp9':'温度9',
-                    'Machine_drive_temp10':'温度10',
-                    'Machine_drive_temp11':'温度11',
-                    'Machine_drive_count':'稼働回数',
                     'Machine_electric_used':'電力使用量',
                     'Machine_steam_used':'蒸気使用量',
                     'Machine_gas_used':'ガス使用量',
@@ -1559,24 +1523,6 @@ class MachineDriveHistoryCreateForm(forms.ModelForm):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
                 self.fields['Customer_machine_recipe'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_time0'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_time1'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_time2'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_time3'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_time4'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp0'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp1'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp2'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp3'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp4'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp5'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp6'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp7'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp8'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp9'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp10'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp11'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_count'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_electric_used'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_steam_used'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_gas_used'].widgets.attrs["class"] = "form-control"
@@ -1612,24 +1558,6 @@ class MachineDriveHistoryUpdateForm(forms.ModelForm):
             super().__init__(*args,**kwargs)
             for field in self.fields.values():
                 self.fields['Customer_machine_recipe'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_time0'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_time1'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_time2'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_time3'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_time4'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp0'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp1'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp2'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp3'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp4'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp5'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp6'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp7'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp8'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp9'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp10'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_temp11'].widgets.attrs["class"] = "form-control"
-                self.fields['Machine_drive_count'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_electric_used'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_steam_used'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_gas_used'].widgets.attrs["class"] = "form-control"

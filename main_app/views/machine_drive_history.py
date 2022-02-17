@@ -23,8 +23,8 @@ class MachineDriveHistoryView(LoginRequiredMixin,ListView):
         ctx = super().get_context_data(**kwargs)
 
         # page_title を追加する
-        ctx['title'] = '稼働履歴'
-        ctx['msg'] = '稼働履歴の確認／変更が出来ます。'
+        ctx['title'] = 'ユーティリティ'
+        ctx['msg'] = 'ユーティリティ監視履歴の確認／変更が出来ます。'
         return ctx
 
     def get_queryset(self):
@@ -75,8 +75,8 @@ class MachineDriveHistoryCreateView(CreateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
-        ctx['title'] = '稼働履歴'
-        ctx['msg'] = '稼働履歴の登録が出来ます。'
+        ctx['title'] = 'ユーティリティ'
+        ctx['msg'] = 'ユーティリティ監視履歴の登録が出来ます。'
         return ctx
     
 ################################################################################
@@ -92,8 +92,8 @@ class MachineDriveHistoryUpdateView(UpdateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
-        ctx['title'] = '稼働履歴'
-        ctx['msg'] = '稼働履歴の変更が出来ます。'
+        ctx['title'] = 'ユーティリティ'
+        ctx['msg'] = 'ユーティリティ監視履歴の変更が出来ます。'
         return ctx
 
 ################################################################################

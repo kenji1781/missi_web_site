@@ -6,6 +6,7 @@ from ..forms import MaintenanceEmailCreateForm,MaintenanceEmailUpdateForm
 from django.db .models import Q
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from ..send_mail import MachineLogSendMail
 
 
 
@@ -16,6 +17,7 @@ class MaintenanceEmailView(LoginRequiredMixin,ListView):
     model = Maintenance_Mail_Setting
     paginate_by = 10
 
+    MachineLogSendMail.mail_send()
     
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
