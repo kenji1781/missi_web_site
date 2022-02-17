@@ -72,8 +72,8 @@ Data Monitoring System {{ title }}
             <td>{{ item.Machine_log_temp10 }}</td>
             <td>{{ item.Machine_log_temp11 }}</td>
             <td>{{ item.Data_datetime}}</td>
-            <td>{{ item.Machine_history_input_date}}</td>
-            <td>{{ item.Machine_history_memo}}</td>
+            <td>{{ item.Machine_temp_log_input_date}}</td>
+            <td>{{ item.Machine_temp_log_memo}}</td>
             <td><a href="{% url 'main_app:machine_temperature_log_update' item.pk %}" class="btn btn-outline-primary btn-sm">編集</a></td>
             <td><a href="{% url 'main_app:machine_temperature_log_delete' item.pk %}" class="btn btn-outline-primary btn-sm">削除</a></td>
         </tr>

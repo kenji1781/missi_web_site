@@ -1837,7 +1837,7 @@ class MachineTemperatureLogCreateForm(forms.ModelForm):
                 self.fields['Machine_log_temp9'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_temp10'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_temp11'].widgets.attrs["class"] = "form-control"
-                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Data_datetime'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_temp_log_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_temp_log_memo'].widgets.attrs["class"] = "form-control"
                         
@@ -1870,7 +1870,7 @@ class MachineTemperatureLogUpdateForm(forms.ModelForm):
                 self.fields['Machine_log_temp9'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_temp10'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_temp11'].widgets.attrs["class"] = "form-control"
-                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Data_datetime'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_temp_log_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_temp_log_memo'].widgets.attrs["class"] = "form-control"
 
@@ -1969,7 +1969,7 @@ class MachineLogCreateForm(forms.ModelForm):
                 self.fields['Machine_log_count7'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_count8'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_count9'].widgets.attrs["class"] = "form-control"
-                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Data_datetime'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_memo'].widgets.attrs["class"] = "form-control"
                         
@@ -2010,10 +2010,9 @@ class MachineLogUpdateForm(forms.ModelForm):
                 self.fields['Machine_log_count7'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_count8'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_count9'].widgets.attrs["class"] = "form-control"
-                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Data_datetime'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Machine_log_memo'].widgets.attrs["class"] = "form-control"
-
 
 ######################################################################################################
 
@@ -2243,7 +2242,7 @@ class PlcOutputCountLogCreateForm(forms.ModelForm):
                 self.fields['Plc_count_log_output61'].widgets.attrs["class"] = "form-control"
                 self.fields['Plc_count_log_output62'].widgets.attrs["class"] = "form-control"
                 self.fields['Plc_count_log_output63'].widgets.attrs["class"] = "form-control"
-                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Data_datetime'].widgets.attrs["class"] = "form-control"
                 self.fields['Plc_count_log_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Plc_count_log_memo'].widgets.attrs["class"] = "form-control"
                         
@@ -2328,6 +2327,6 @@ class PlcOutputCountLogUpdateForm(forms.ModelForm):
                 self.fields['Plc_count_log_output61'].widgets.attrs["class"] = "form-control"
                 self.fields['Plc_count_log_output62'].widgets.attrs["class"] = "form-control"
                 self.fields['Plc_count_log_output63'].widgets.attrs["class"] = "form-control"
-                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
+                self.fields['Data_datetime'].widgets.attrs["class"] = "form-control"
                 self.fields['Plc_count_log_input_date'].widgets.attrs["class"] = "form-control"
                 self.fields['Plc_count_log_memo'].widgets.attrs["class"] = "form-control"

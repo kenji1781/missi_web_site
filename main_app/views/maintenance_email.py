@@ -1,7 +1,7 @@
 from django.contrib.auth import login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView,CreateView,ListView,DeleteView,UpdateView
-from ..models import Maintenance_Mail_Setting
+from ..models import Maintenance_Mail_Setting,Machine_Log
 from ..forms import MaintenanceEmailCreateForm,MaintenanceEmailUpdateForm
 from django.db .models import Q
 from django.contrib import messages

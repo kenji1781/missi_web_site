@@ -33,11 +33,10 @@ class TroubleHistoryView(LoginRequiredMixin,ListView):
         q_date_l = self.request.GET.get('query_date_l')
 
         if q_word and q_date_f and q_date_l:
+            #object_list = Trouble_History.objects.filter
             object_list = Trouble_History.objects.select_related('Trouble_contents')\
-                .filter(Q(Trouble_contents__Trouble_no__contains=q_word)|Q(Trouble_contents__Trouble_no__icontains=q_word)|\
-                            Q(Trouble_contents__Trouble_contents__contains=q_word)|Q(Trouble_contents__Trouble_contents__icontains=q_word)|\
-                                Q(Trouble_contents__Trouble_memo__contains=q_word)|Q(Trouble_contents__Trouble_memo__icontains=q_word))\
-                .filter(Trouble_occurrence_time__range=(q_date_f, q_date_l))
+                .filter(Q(Trouble_contents__Machine_model__Customer_machine_id__contains=q_word)|Q(Trouble_contents__Machine_model__Customer_machine_id__icontains=q_word)).filter(Trouble_occurrence_time__range=(q_date_f, q_date_l))
+                                        
                 
             
         else:
