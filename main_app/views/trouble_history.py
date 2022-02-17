@@ -34,7 +34,7 @@ class TroubleHistoryView(LoginRequiredMixin,ListView):
 
         if q_word and q_date_f and q_date_l:
             object_list = Trouble_History.objects.select_related('Trouble_contents')\
-                .filter(Q(Trouble_contents__Trouble_contents__machine_model__custimer_machine_id__contains=q_word)|Q(Trouble_contents__Trouble_contents__icontains=q_word))\
+                .filter(Q(Trouble_contents__Trouble_contents__contains=q_word)|Q(Trouble_contents__Trouble_contents__icontains=q_word))\
                     .filter(Trouble_occurrence_time__range=(q_date_f, q_date_l))
                 
             
