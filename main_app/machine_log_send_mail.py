@@ -19,7 +19,17 @@ class MachineLogSendMail:
                     (log_i.Maintenance_threshold_time < log_i.Maintenance_machine_history.Machine_log_time6)or\
                     (log_i.Maintenance_threshold_time < log_i.Maintenance_machine_history.Machine_log_time7)or\
                     (log_i.Maintenance_threshold_time < log_i.Maintenance_machine_history.Machine_log_time8)or\
-                    (log_i.Maintenance_threshold_time < log_i.Maintenance_machine_history.Machine_log_time9):
+                    (log_i.Maintenance_threshold_time < log_i.Maintenance_machine_history.Machine_log_time9)or\
+                    (log_i.Maintenance_threshold_count < log_i.Maintenance_machine_history.Machine_log_count0)or\
+                    (log_i.Maintenance_threshold_count < log_i.Maintenance_machine_history.Machine_log_count1)or\
+                    (log_i.Maintenance_threshold_count < log_i.Maintenance_machine_history.Machine_log_count2)or\
+                    (log_i.Maintenance_threshold_count < log_i.Maintenance_machine_history.Machine_log_count3)or\
+                    (log_i.Maintenance_threshold_count < log_i.Maintenance_machine_history.Machine_log_count4)or\
+                    (log_i.Maintenance_threshold_count < log_i.Maintenance_machine_history.Machine_log_count5)or\
+                    (log_i.Maintenance_threshold_count < log_i.Maintenance_machine_history.Machine_log_count6)or\
+                    (log_i.Maintenance_threshold_count < log_i.Maintenance_machine_history.Machine_log_count7)or\
+                    (log_i.Maintenance_threshold_count < log_i.Maintenance_machine_history.Machine_log_count8)or\
+                    (log_i.Maintenance_threshold_count < log_i.Maintenance_machine_history.Machine_log_count9):
                     try:
                         subject = str(log_i.Maintenance_machine_history.Machine_model) + 'メンテナンス時期のお知らせ'                  
                         msg = str(log_i.Maintenance_mail_notification.Mail_name) + '様  \n' + str(log_i.Maintenance_machine_history.Machine_model) + 'の稼働時間がメンテナンス時期になりましたのでメールにてお知らせ致します。'
@@ -29,4 +39,3 @@ class MachineLogSendMail:
                         
                     except:
                         pass
-    
