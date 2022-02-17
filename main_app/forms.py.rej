@@ -1,0 +1,19 @@
+diff a/main_app/forms.py b/main_app/forms.py	(rejected hunks)
+@@ -1837,7 +1837,7 @@
+                 self.fields['Machine_log_temp9'].widgets.attrs["class"] = "form-control"
+                 self.fields['Machine_log_temp10'].widgets.attrs["class"] = "form-control"
+                 self.fields['Machine_log_temp11'].widgets.attrs["class"] = "form-control"
+-                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
++                self.fields['Data_datetime'].widgets.attrs["class"] = "form-control"
+                 self.fields['Machine_temp_log_input_date'].widgets.attrs["class"] = "form-control"
+                 self.fields['Machine_temp_log_memo'].widgets.attrs["class"] = "form-control"
+                         
+@@ -1870,7 +1870,7 @@
+                 self.fields['Machine_log_temp9'].widgets.attrs["class"] = "form-control"
+                 self.fields['Machine_log_temp10'].widgets.attrs["class"] = "form-control"
+                 self.fields['Machine_log_temp11'].widgets.attrs["class"] = "form-control"
+-                self.fields['data_datetime'].widgets.attrs["class"] = "form-control"
++                self.fields['Data_datetime'].widgets.attrs["class"] = "form-control"
+                 self.fields['Machine_temp_log_input_date'].widgets.attrs["class"] = "form-control"
+                 self.fields['Machine_temp_log_memo'].widgets.attrs["class"] = "form-control"
+ 
