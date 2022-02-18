@@ -31,9 +31,8 @@ class MachineDriveHistoryView(LoginRequiredMixin,ListView):
         q_word = self.request.GET.get('query_text')
         q_date = self.request.GET.get('query_date')
         if q_word:
-            object_list = Machine_Drive_History.objects.select_related('Customer_machine_recipe').filter(\
-                    Q(Customer_machine_recipe__Machine_model__Customer_machine_id__contains=q_word)|Q(Customer_Machine_recipe__Machine_model__Customer_machine_id__icontains=q_word)|\
-                        Q(Customer_machine_recipe__Machine_model__Machine_model__contains=q_word)|Q(Customer_Machine_recipe__Machine_model__Machine_model__icontains=q_word))        
+            object_list = Machine_Drive_History.objects.select_related('Customer_machine_recipe').filter(Q(Customer_machine_recipe__Machine_model__Customer_machine_id__contains=q_word)|Q(Customer_machine_recipe__Machine_model__Customer_machine_id__icontains=q_word)|\
+                        Q(Customer_machine_recipe__Machine_model__Machine_model__Machine_model__contains=q_word)|Q(Customer_machine_recipe__Machine_model__Machine_model__Machine_model__icontains=q_word))        
        
         elif q_date:
             object_list = Machine_Drive_History.objects.select_related('Customer_machine_recipe').filter(\
