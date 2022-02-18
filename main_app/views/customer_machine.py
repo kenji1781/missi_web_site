@@ -21,7 +21,7 @@ class CustomerMachineView(LoginRequiredMixin,ListView):
         ctx = super().get_context_data(**kwargs)
 
         # page_title を追加する
-        ctx['title'] = '装置設定'
+        ctx['title'] = 'ユーザー装置設定'
         ctx['msg'] = 'ユーザー装置登録の確認／変更が出来ます。'
         return ctx
 
@@ -56,7 +56,7 @@ class CustomerMachineCreateView(CreateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
-        ctx['title'] = '装置設定'
+        ctx['title'] = 'ユーザー装置設定'
         ctx['msg'] = 'ユーザー装置の登録が出来ます。'
         return ctx
     
@@ -73,7 +73,7 @@ class CustomerMachineUpdateView(UpdateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
-        ctx['title'] = '装置設定'
+        ctx['title'] = 'ユーザー装置設定'
         ctx['msg'] = 'ユーザー装置登録の変更が出来ます。'
         return ctx
 
