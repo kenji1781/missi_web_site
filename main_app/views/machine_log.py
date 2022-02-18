@@ -20,7 +20,7 @@ class MachineLogView(LoginRequiredMixin,ListView):
         ctx = super().get_context_data(**kwargs)
 
         # page_title を追加する
-        ctx['title'] = '稼働監視'
+        ctx['title'] = '稼働時間・回数'
         ctx['msg'] = '稼働時間・回数の確認／変更が出来ます。'
         return ctx
 
@@ -53,7 +53,7 @@ class MachineLogCreateView(CreateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
-        ctx['title'] = '稼働監視'
+        ctx['title'] = '稼働時間・回数'
         ctx['msg'] = '稼働時間・回数の登録が出来ます。'
         return ctx
     
@@ -70,7 +70,7 @@ class MachineLogUpdateView(UpdateView):
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
         # page_title を追加する
-        ctx['title'] = '稼働監視'
+        ctx['title'] = '稼働時間・回数'
         ctx['msg'] = '稼働時間・回数の変更が出来ます。'
         return ctx
 
