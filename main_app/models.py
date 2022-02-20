@@ -88,9 +88,9 @@ class Trouble_Contents(models.Model):
     
 
     def __str__(self):
-       return str(self.Machine_model) + ' '+\
-            str(self.Trouble_contents)
-    
+       return str(self.Machine_model) + ' TB:'+\
+                str(self.Trouble_no) + ':'+\
+                    str(self.Trouble_contents)
     class Meta:
         verbose_name_plural = ('異常内容')
         constraints = [

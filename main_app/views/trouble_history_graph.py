@@ -21,6 +21,10 @@ class TroubleHistoryGraphView(LoginRequiredMixin,ListView):
     model = Trouble_History
     paginate_by = 10
 
+
+
+
+
     
     def get_context_data(self,**kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -73,17 +77,27 @@ class TroubleHistoryGraphView(LoginRequiredMixin,ListView):
             return ctx
         
         
+
         
         df = read_frame(object_list,fieldnames=['Trouble_contents','Trouble_occurrence_time'])
         print(df['Trouble_contents'])
         gen = GraphGenerator()
-
+        #df['Trouble_count'] = df['Trouble_contents'].value_counts()#件数を渡す
+        
+        #df_pie = pd.pivot_table(df,index='Trouble_contents')
         #円グラフ
-        pie_labels = df['Trouble_contents']#トラブル名を渡す
-        pie_values = df['Trouble_contents'].value_counts()#件数を渡す
+        pie_labels = df['Trouble_contents'].unique()#トラブル名を渡す
+        #pie_labels = list(df_pie.index.values)#トラブル名を渡す
+        pie_values = df['Trouble_contents'].value_counts(sort=False)
         plot_pie = gen.month_pie(labels=pie_labels, values=pie_values)
         ctx['plot_pie'] = plot_pie
         
+        # テーブルでのカテゴリと回数の表示用。
+        # {カテゴリ:金額,カテゴリ:回数…}の辞書を作る
+        ctx['table_set'] = df.to_dict()['Trouble_contents']
+
+        # totalの数字を計算して渡す
+        ctx['total_count'] = df['Trouble_contents'].shape[0]
         #棒グラフ
         # 日別の棒グラフの素材を渡す
         dates = df['Trouble_occurrence_time']
@@ -92,26 +106,3 @@ class TroubleHistoryGraphView(LoginRequiredMixin,ListView):
         ctx['plot_bar'] = plot_bar
         
         return ctx
-        
-
-    def get_queryset(self):
-
-        year = int(self.kwargs.get('year'))
-        month = int(self.kwargs.get('month'))
-
-        q_word = self.request.GET.get('query_text')
-        
-        if q_word:
-            object_list = Trouble_History.objects.select_related('Trouble_contents').filter(\
-                    Q(Trouble_contents__Machine_model__Customer_machine_id__contains=q_word)|Q(Trouble_contents__Machine_model__Customer_machine_id__icontains=q_word))
-                        
-        else:
-            object_list = Trouble_History.objects.select_related('Trouble_contents').filter(Trouble_occurrence_time__year=year)
-            object_list = object_list.filter(Trouble_occurrence_time__month=month).order_by('-Trouble_occurrence_time')
-            
-            modelcomp = ModelComplement()
-            #装置IDから客先装置型式号機　ロスタイムを補完
-            modelcomp.trouble_history_model_complement(object_list)
-            
-            
-        return object_list
