@@ -1,3 +1,6 @@
+仮想環境名　mac　conda activate heroku_site
+　　　　　　windows　missi_site_project
+
 １・マイグレーションする際は、view（customer_machine_recipe.pyとmachine_drive_history.py）
 にあるfor文をコメントアウトすること。しないとdjango.db.utils.OperationalError: no such table
 エラーとなる。trouble_historyにもfor文使っているので怪しい。
