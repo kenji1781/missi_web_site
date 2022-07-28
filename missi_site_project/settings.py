@@ -97,6 +97,8 @@ DATABASES = {
     }
 }
 """
+
+#ポスグレの設定にする
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -134,9 +136,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'ja'
+LANGUAGE_CODE = 'ja' #日本語に変更
 
-TIME_ZONE = 'Asia/Tokyo'
+TIME_ZONE = 'Asia/Tokyo' #Asia/Tokyoに変更
 
 USE_I18N = True
 

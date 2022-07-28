@@ -12,3 +12,5 @@ update用のテーブルがいる。これらを再度データベース設計�
 modelをForginkeyにした。
 それによってview等変更が必要
 
+仮想環境（WINDOWS）
+c:/python/missi_site_project/missi_site_project/Scripts/Activate.ps1
